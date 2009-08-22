@@ -65,6 +65,15 @@ body {
 	margin-left: -20px;
 }
 
+#description_text p {
+        padding: 20px 0px;
+}
+
+#examples {
+    padding: 10px 0px;
+    color: #CCCCCC;
+}
+
 #search_results {
 	display: none;
 }
@@ -97,6 +106,7 @@ body {
 	padding-top: 44px;
 	width: 267px;
 	margin-right: 125px;
+        /*padding-right: 50px;*/
 	font-size: 14px;
         background-color: #CCCCCC;
 }

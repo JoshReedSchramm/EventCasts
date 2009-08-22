@@ -8,10 +8,10 @@
 	
 <%= @group.name if !@group.nil? %>
 <%= @group.title if !@group.title.nil? %>
-<a href='javascript:void(0)' class='edit_inline'><%= @group.description %></a>
-<% form_for :group_data, :url => {:action=>"set_data"}, :html => { :id => "description_form" } do |p| %>
+<a id='group_description' href='javascript:void(0)' class='edit_inline'><%= @group.description == "" ? "Set a group description" : @group.description %></a>
+<% form_for :group_datum, :url => "/groups/set_data?format=json", :html => { :id => "description_form", :class=>"group_data_form" } do |p| %>
 	<%= p.text_field :description, :size=>30, :maxlength=>140, :id=>'description_box', :value=>@group.description %>
-	<%= p.hidden_field :group_id, :value=>@group.description %>
+	<%= p.hidden_field :group_id, :value=>@group.id %>
 	<%= p.hidden_field :group_data_type_id, :value=>GroupDataType.description.id %>
 	<%= p.submit "save", :class => "submit" %>	
 <% end %>

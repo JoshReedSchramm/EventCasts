@@ -9,11 +9,17 @@
     <% end %>
   </ul>
   <% end %>
-
-  <p>
-    <h2>recent tweets</h2>
-    <%= pull_recent_tweets(@group.get_full_path,5) %>
-  </p>
+  <h2>recent tweets</h2>
+  <div id="groupRecentTweets">
+    <ul >
+      <li id="tweetTemplate" style="display:none;">
+        <span id="tweeter"></span>:<span id="tweet"></span>
+      </li>
+    </ul>
+  </div>
+  <form>
+    <input type="hidden" id="sinceTweetId" value="0" />
+  </form>
 
 <br/>
 <br/>

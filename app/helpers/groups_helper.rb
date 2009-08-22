@@ -1,7 +1,8 @@
 module GroupsHelper
-  def pull_recent_tweets(tag,num)
+  def pull_recent_tweets(tag,num = nil,since = nil)
     # assume the user passes the full tag
 
+    html = ""
     @terms = tag.split('/')
     @search = ""
     @match = ""
@@ -18,7 +19,11 @@ module GroupsHelper
 
     twitter = Net::HTTP.start('search.twitter.com')
     # Set the form data with options
-    req = Net::HTTP::Get.new("/search.json?" + "q=" + URI.escape("#{@search}") + "&" +"per_page=" + num.to_s)
+    command = "/search.json?" + "q=" + URI.escape("#{@search}")
+    command << "&" + "per_page=" + num.to_s if !num.nil?
+    command << "&" + "since_id=" + since.to_s if !since.nil?
+
+    req = Net::HTTP::Get.new(command)
 
     res = twitter.request(req)
 
@@ -28,42 +33,15 @@ module GroupsHelper
       html << res.body
     end
 
-    html = ""
-    html << "<b>JSON Respone:</b><br>"
-    html << "<pre>"
-    html << res.body
-    html << "</pre>"
-    html << "<br>"
-    html << "<b>Parsed Response:</b><br>"
-
     result = JSON.parse(res.body)
 
-    html << "<pre>"
+    json_result = Array.new()
     result["results"].each do |j|
       if j["text"] =~ /#{@match}/
-      #if j["text"].casecmp(@match) # i would really love this work instead
-        html << "<br/>"
-        html << j.inspect
+        json_result.push(j)
       end
     end
-    html << "</pre>"
 
-#    # Return the request body
-#    return Hpricot(res.body)
-#
-#    Twitter::Search.new(@search).per_page(num).each do |r|
-#      html << "<b>#{r.from_user}:</b>"
-#      html << "&nbsp;"
-#      html << "#{r.text}"
-#      html << "<br/>"
-#    end
-#
-#    Twitter::Request.post(Twitter::Base.new(Twitter::General.new()), "search", {:q => "#{@search}"}).each do |r|
-#      html << "<b>#{r.from_user}:</b>"
-#      html << "&nbsp;"
-#      html << "#{r.text}"
-#      html << "<br/>"
-#    end
-    html << "</pre>"
+    json_result.to_json
   end
 end

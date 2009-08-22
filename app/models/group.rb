@@ -1,5 +1,6 @@
 class Group < ActiveRecord::Base
   has_and_belongs_to_many :users  
+  has_many :group_data
   validates_presence_of :name, :on => :create, :message => "can't be blank"
   #validates_format_of :name, :with => /!\s+/, :on => :create, :message => "cannot contain spaces"
   
@@ -17,6 +18,14 @@ class Group < ActiveRecord::Base
       parent.get_full_path(current_path)
     end
   end
+  
+  def title
+    get_data_item('title')
+  end
+
+  def description
+    get_data_item('description')
+  end  
   
   def Group.search_by_name(query)    
     if !query.nil?          
@@ -42,4 +51,18 @@ class Group < ActiveRecord::Base
       Group.find_group_from_heirarchy(group_names, group.id)
     end
   end
+  
+  private
+  
+  def get_data_item(name)    
+    items = self.group_data.select do |data|
+      data.group_data_type.name == name
+    end
+    if (!items.nil? && items.length > 0)
+      return items[0].description
+    else
+      return ""
+    end
+  end
+  
 end

@@ -4,4 +4,8 @@ class GroupDataType < ActiveRecord::Base
   def GroupDataType.description
     GroupDataType.find_by_name("description")
   end
+  
+  def GroupDataType.title
+    GroupDataType.find_by_name("title")
+  end  
 end

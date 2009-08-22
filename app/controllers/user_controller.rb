@@ -32,9 +32,16 @@ class UserController < ApplicationController
 
         user_name = user_info['screen_name']
         session[:twitter_name] = user_name
-        user = User.find_all_by_twitter_name user_name
+        #user = User.find_all_by_twitter_name(user_name
+
+        user = User.find_by_twitter_name(user_name)
+        if user.nil?
+          user = User.new
+          user.twitter_name = user_name
+        end
+
         user.atoken = access_token.token
-        user.secret = access_token.asecret
+        user.asecret = access_token.secret
         user.save!
 
         redirect_to :action => :home

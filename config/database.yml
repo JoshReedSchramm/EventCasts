@@ -32,5 +32,7 @@ production:
   database: twoups_production
   pool: 5
   username: root
-  password: 
-  socket: /tmp/mysql.sock
+  password: 8dJtAQ9o
+  socket:  <%=
+        ['/var/run/mysqld/mysqld.sock',           # ubuntu/debian
+         '/tmp/mysql.sock'].select { |f| File.exist? f }.first %>

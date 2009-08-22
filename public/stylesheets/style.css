@@ -1,0 +1,107 @@
+@import url("reset.css");
+
+* {
+	vertical-align:top;
+}
+
+body {
+	background: url('../images/background.jpg');
+	font-size: 14px;
+	font-family: Verdana;
+}
+
+.clear {
+	clear: both;
+}
+
+#container {
+	margin: 0px auto;
+	width: 1130px;
+}
+
+#container h1 {
+	height: 259px;
+	text-indent: -10000px;
+	background: url('../images/header.png');
+	margin: 0px;
+}
+
+#body_container {
+	margin-top: -3px;
+	padding-bottom: 50px;
+	background: url('../images/bodyBG.png') repeat-y;
+}
+
+#search_container {
+	margin-top: 40px;
+	float: left;
+	vertical-align:top;	
+	width: 500px;
+	margin-left: 125px;
+}
+
+#search_container form {
+	vertical-align:middle;
+}
+
+#search_container input {
+	margin-top:3px;
+	width: 300px;
+	height: 32px;
+	font-size:20px;
+	border: 1px solid;
+	padding-top:7px;
+	padding-left: 2px;
+	color: gray;
+	
+}
+
+#search_container a.submit {
+	display:inline-block;
+	background: url('../images/searchButtonOn.png');
+	border: 0px;
+	height: 48px;
+	width: 146px;
+	margin-left: -20px;
+}
+
+#examples_list {
+	float: right;
+	padding-right: 300px;	
+}
+
+#examples_list li {
+	font-size: 14px;
+}
+
+#divider {
+	float:left;
+	font-size: 25px;
+	margin-top: 50px;
+}
+
+#user_section {
+	float: right;
+	margin-top: 40px;	
+	width: 267px;
+	margin-right: 125px;
+	font-size: 14px;
+}
+
+#footer {
+	clear: both;
+	background: url('../images/footerBG.png') no-repeat;
+	height: 89px;
+	padding: 7px 110px 6px 6px;		
+	text-align:right;
+	color: white;
+}
+
+#footer a {
+	color: white;
+	text-decoration: none;
+}
+
+#footer a:hover {
+	text-decoration: underline;
+}

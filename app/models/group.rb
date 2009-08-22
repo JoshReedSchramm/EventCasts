@@ -35,7 +35,7 @@ class Group < ActiveRecord::Base
   end
   
   def Group.find_group_from_heirarchy(group_names, parent_id=0, conditional="=")
-    group = Group.find(:first, :conditions =>["name=? and parent_id=?", group_names[0], parent_id])
+    group = Group.find(:first, :conditions =>["name "+conditional+" ? and parent_id=?", group_names[0], parent_id])
     if (group.nil? || group_names.length == 1)
       return group
     else

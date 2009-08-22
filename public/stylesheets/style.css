@@ -92,6 +92,25 @@ body {
 	font-size: 14px;
 }
 
+#login_user_section {
+	float: right;
+	padding-top: 44px;
+	width: 267px;
+	margin-right: 125px;
+	font-size: 14px;
+        background-color: #CCCCCC;
+}
+
+#user_groups {
+    line-height: 18px;
+}
+
+#user_groups_sub_groups li {
+    list-style-image: url('../images/hierarchyTick.gif');
+    list-style-position: inside;
+    margin-left: 20px;
+}
+
 #footer {
 	clear: both;
 	background: url('../images/footerBG.png') no-repeat;

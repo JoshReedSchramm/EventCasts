@@ -1,0 +1,4 @@
+<% if @group.nil? %>
+	Unable to find group
+<% end %>
+<%= @group.name if !@group.nil? %>

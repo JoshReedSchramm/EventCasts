@@ -15,7 +15,7 @@ class GroupsController < ApplicationController
       if @group.save
         flash[:notice] = 'Group was successfully created.'
         format.html { redirect_to :controller=>"user", :action=>"home" }
-      else
+      else        
         format.html { render :action => "new" }
       end
     end

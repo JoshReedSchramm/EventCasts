@@ -13,7 +13,7 @@ class UserController < ApplicationController
     verification_response = verify_credentials
     clear_request_token
 
-    unless verification_response == Net::HTTPSuccess
+    unless verification_response.is_a? Net::HTTPSuccess
       #handle_failed_authorization
       redirect_to :controller => :home, :action => :index2
       return

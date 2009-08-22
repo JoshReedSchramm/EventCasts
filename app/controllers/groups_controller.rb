@@ -26,5 +26,20 @@ class GroupsController < ApplicationController
     if (@group.nil?)
         flash[:notice] = 'Could not find the group.'      
     end
-  end  
+
+    populate_sub_group(@group)
+
+  end
+
+private
+  def populate_sub_group(group)
+    @sub_groups = Group.find_all_by_parent_id(group.id)
+    unless @sub_groups == nil
+      group.sub_groups = Array.new()
+      @sub_groups.each do |g|
+        group.sub_groups.push(g)
+        populate_sub_group(g)
+      end
+    end
+  end
 end

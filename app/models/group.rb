@@ -2,6 +2,7 @@ class Group < ActiveRecord::Base
   has_and_belongs_to_many :users  
   validates_presence_of :name, :on => :create, :message => "can't be blank"
   #validates_format_of :name, :with => /!\s+/, :on => :create, :message => "cannot contain spaces"
+  attr_accessor :sub_groups
   
   def add_user_by_twitter_name(twitter_name)
     user = User.find_by_twitter_name(twitter_name) 

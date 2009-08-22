@@ -1,7 +1,10 @@
 class Search
   def Search.search(search)
     @results = []
-    @results << Group.search_by_name(search[:query])
+    @result = SearchResult.new()
+    @group_result = Group.search_by_name(search[:query])    
+    @result.group = @group_result
+    @results << @result
     @results
   end
 end

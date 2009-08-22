@@ -1,10 +1,11 @@
+<%= javascript_include_tag "index.js" %>
 <div id='container'>
 	<h1>Twoups</h1>
 	<div id='body_container'>
 		<div id='search_container'>
-				<% form_for :search, :url => {:action=>"search"} do |p| %>
-					<%= p.text_field :query, :size=>30, :maxlength=>140 %>
-					<a href='#' type='submit' class='submit'></a>
+				<% form_for :search, :url => {:action=>"search"}, :html => { :id => "search_form" } do |p| %>
+					<%= p.text_field :query, :size=>30, :maxlength=>140, :id=>'search_box', :value=>'Search for conversations' %>
+					<a id='search_button' href='#' type='submit' class='submit'></a>
 				<% end %>	
 			<span id='examples'>examples:</span>
 			<ul id='examples_list'>

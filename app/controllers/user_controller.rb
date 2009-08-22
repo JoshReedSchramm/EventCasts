@@ -63,6 +63,6 @@ class UserController < ApplicationController
   end
 
   def get_request_token
-    Twitter::OAuth::RequestToken.new(consumer, session['rtoken'], session['rsecret'])
+    OAuth::RequestToken.new(consumer, session['rtoken'], session['rsecret'])
   end
  end

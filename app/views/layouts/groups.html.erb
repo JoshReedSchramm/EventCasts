@@ -7,6 +7,16 @@
 	<%= javascript_include_tag "groups" %>	
 </head>
 <body>
-	<%= yield  %>
+	<div id='container'>
+		<h1>Twoups</h1>
+		<div id='body_container'>		
+			<%= yield  %>
+			<div class='clear'></div>			
+		</div>
+		<div id='footer'>
+			email: <a href='mailto:info@twoups.com' id='email_link'>info@twoups.com</a>
+			twitter: <a href='http://twitter.com/twoupsinfo' id='twitter_link'>@twoupsinfo</a>
+		</div>
+	</div>
 </body>
 </html>

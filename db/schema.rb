@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090822045705) do
+ActiveRecord::Schema.define(:version => 20090822141451) do
 
   create_table "groups", :force => true do |t|
     t.string   "name"
@@ -34,6 +34,8 @@ ActiveRecord::Schema.define(:version => 20090822045705) do
     t.string   "twitter_name"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "atoken"
+    t.string   "asecret"
   end
 
 end

@@ -28,6 +28,14 @@
     <orderEntry type="library" name="[gem] rails (v2.3.3, /usr/lib/ruby/gems/1.8/gems/rails-2.3.3)" level="application" />
     <orderEntry type="library" name="[gem] activerecord (v2.3.3, /usr/lib/ruby/gems/1.8/gems/activerecord-2.3.3)" level="application" />
     <orderEntry type="library" name="[gem] mysql (v2.8.1, /usr/lib/ruby/gems/1.8/gems/mysql-2.8.1)" level="application" />
+    <orderEntry type="library" name="[gem] ruby-hmac (v0.3.2, /usr/lib/ruby/gems/1.8/gems/ruby-hmac-0.3.2)" level="application" />
+    <orderEntry type="library" name="[gem] mash (v0.0.3, /usr/lib/ruby/gems/1.8/gems/mash-0.0.3)" level="application" />
+    <orderEntry type="library" name="[gem] rubyforge (v1.0.4, /usr/lib/ruby/gems/1.8/gems/rubyforge-1.0.4)" level="application" />
+    <orderEntry type="library" name="[gem] httparty (v0.4.2, /home/john/.gem/ruby/1.8/gems/httparty-0.4.2)" level="application" />
+    <orderEntry type="library" name="[gem] crack (v0.1.4, /usr/lib/ruby/gems/1.8/gems/crack-0.1.4)" level="application" />
+    <orderEntry type="library" name="[gem] twitter (v0.6.6, /home/john/.gem/ruby/1.8/gems/twitter-0.6.6)" level="application" />
+    <orderEntry type="library" name="[gem] hoe (v2.3.3, /usr/lib/ruby/gems/1.8/gems/hoe-2.3.3)" level="application" />
+    <orderEntry type="library" name="[gem] oauth (v0.3.2, /home/john/.gem/ruby/1.8/gems/oauth-0.3.2)" level="application" />
   </component>
   <component name="RModuleSettingsStorage">
     <RMODULE_SETTINGS_STORAGE_ID NAME="NUMBER" VALUE="0" />

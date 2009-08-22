@@ -5,18 +5,20 @@ class UserController < ApplicationController
   end
 
   def login
-    store_request_token oauth.request_token
-    redirect_to oauth.request_token.authorize_url
+    #store_request_token oauth.request_token(:oath_callback => 'http://0.0.0.0:3000/user/authorize')
+    #redirect_to oauth.request_token.authorize_url
 
-    #request_token = consumer.get_request_token
-    #store_request_token request_token
-    #redirect_to request_token.authorize_url
+    
+    request_token = consumer.get_request_token
+    store_request_token request_token
+    redirect_to request_token.authorize_url(:oauth_callback => 'http://0.0.0.0:3000/user/authorize')
   end
 
   def authorize
-    access_token = get_request_token.get_access_token
-    consumer.authorize_from_request(session['rtoken'], session['rsecret'])
-    @response = consumer.request(:get, '/account/verify_credentials.json', access_token, {:sceme => :query_string})
+    request_token = get_request_token
+    access_token = request_token.get_access_token
+    #consumer.authorize_from_request(session['rtoken'], session['rsecret'])
+    @response = consumer.request(:get, '/account/verify_credentials.json', access_token, {:scheme => :query_string})
     clear_request_token
 
     case @response
@@ -47,7 +49,7 @@ class UserController < ApplicationController
   end
 
   def consumer
-    @consumer ||= OAuth::Consumer.new(ConsumerConfig['token'], ConsumerConfig['secret'])
+    @consumer ||= OAuth::Consumer.new(ConsumerConfig['token'], ConsumerConfig['secret'], {:site => 'http://twitter.com'})
   end
 
   def store_request_token(request_token)

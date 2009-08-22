@@ -23,7 +23,7 @@ class UserController < ApplicationController
 
     case @response
       when Net::HTTPSuccess
-        user_info = JSON.parse @response.body
+        user_info = JSON.parse(@response.body)
         unless user_info['screen_name']
           flash[:notice] = "Authentication failed"
           redirect_to :action => :home
@@ -33,8 +33,8 @@ class UserController < ApplicationController
         user_name = user_info['screen_name']
         session[:twitter_name] = user_name
         user = User.find_all_by_twitter_name user_name
-        user.atoken = consumer.access_token.token
-        user.secret = consumer.access_token.asecret
+        user.atoken = access_token.token
+        user.secret = access_token.asecret
         user.save!
 
         redirect_to :action => :home

@@ -23,7 +23,7 @@ class UserController < ApplicationController
 
     case @response
       when Net::HTTPSuccess
-        user_info = JSON.parse @response_body
+        user_info = JSON.parse @response.body
         unless user_info['screen_name']
           flash[:notice] = "Authentication failed"
           redirect_to :action => :home

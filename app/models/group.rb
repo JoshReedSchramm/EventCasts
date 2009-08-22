@@ -43,4 +43,14 @@ class Group < ActiveRecord::Base
       Group.find_group_from_heirarchy(group_names, group.id)
     end
   end
+
+  def populate_sub_group
+    sub_groups = Group.find_all_by_parent_id(self.id)
+    unless sub_groups == nil
+      self.sub_groups = Array.new()
+      sub_groups.each do |g|
+        self.sub_groups.push(g)
+      end
+    end
+  end
 end

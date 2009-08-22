@@ -9,12 +9,13 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090822005108) do
+ActiveRecord::Schema.define(:version => 20090822015636) do
 
   create_table "groups", :force => true do |t|
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "parent_id",  :default => 0
   end
 
   create_table "groups_users", :id => false, :force => true do |t|

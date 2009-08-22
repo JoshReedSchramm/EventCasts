@@ -898,3 +898,145 @@ Completed in 87ms (View: 6, DB: 19) | 200 OK [http://localhost/user/home]
   [4;36;1mSQL (0.5ms)[0m   [0;1mINSERT INTO `schema_migrations` (version) VALUES ('20090822004651')[0m
   [4;35;1mSQL (0.6ms)[0m   [0mINSERT INTO `schema_migrations` (version) VALUES ('20090822004701')[0m
   [4;36;1mSQL (0.5ms)[0m   [0;1mINSERT INTO `schema_migrations` (version) VALUES ('20090822004900')[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing GroupsController#new (for 127.0.0.1 at 2009-08-21 21:50:47) [GET]
+  [4;36;1mGroup Columns (1.3ms)[0m   [0;1mSHOW FIELDS FROM `groups`[0m
+Rendering groups/new
+Completed in 8ms (View: 2, DB: 2) | 200 OK [http://localhost/groups/new]
+  [4;35;1mSQL (0.1ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing GroupsController#create (for 127.0.0.1 at 2009-08-21 21:50:51) [POST]
+  Parameters: {"commit"=>"Create Group", "authenticity_token"=>"bPOu4okGvUCHo/9EAAZfz/Z2YTWE2K34rHhbPqHdVQk=", "group"=>{"name"=>"#group5"}}
+  [4;35;1mGroup Columns (2.1ms)[0m   [0mSHOW FIELDS FROM `groups`[0m
+  [4;36;1mUser Columns (1.4ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mUser Load (0.3ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`twitter_name` = 'asktwoups') LIMIT 1[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mCOMMIT[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mGroup Create (0.2ms)[0m   [0mINSERT INTO `groups` (`name`, `updated_at`, `created_at`) VALUES('group5', '2009-08-22 01:50:51', '2009-08-22 01:50:51')[0m
+  [4;36;1mgroups_users Columns (1.2ms)[0m   [0;1mSHOW FIELDS FROM `groups_users`[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mINSERT INTO `groups_users` (`updated_at`, `group_id`, `user_id`, `created_at`) VALUES ('2009-08-22 01:21:24', 5, 1, '2009-08-22 01:21:24')[0m
+  [4;36;1mSQL (0.4ms)[0m   [0;1mCOMMIT[0m
+Redirected to http://localhost:3000/user/home
+Completed in 20ms (DB: 6) | 302 Found [http://localhost/groups/new]
+  [4;35;1mSQL (0.1ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing UserController#home (for 127.0.0.1 at 2009-08-21 21:50:51) [GET]
+  [4;35;1mUser Columns (1.4ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mUser Load (0.2ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`twitter_name` = 'asktwoups') LIMIT 1[0m
+Rendering user/home
+  [4;35;1mgroups_users Columns (1.3ms)[0m   [0mSHOW FIELDS FROM `groups_users`[0m
+  [4;36;1mGroup Load (0.3ms)[0m   [0;1mSELECT * FROM `groups` INNER JOIN `groups_users` ON `groups`.id = `groups_users`.group_id WHERE (`groups_users`.user_id = 1 ) [0m
+  [4;35;1mGroup Columns (1.1ms)[0m   [0mSHOW FIELDS FROM `groups`[0m
+Completed in 16ms (View: 6, DB: 5) | 200 OK [http://localhost/user/home]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mSQL (0.4ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSELECT version FROM schema_migrations[0m
+Migrating to CreateUsers (20090822004651)
+Migrating to CreateGroups (20090822004701)
+Migrating to CreateGroupsUsers (20090822004900)
+Migrating to AddDefaultUserAndGroup (20090822005108)
+Migrating to AddParentToGroup (20090822015636)
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mSQL (0.4ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSELECT version FROM schema_migrations[0m
+Migrating to CreateUsers (20090822004651)
+Migrating to CreateGroups (20090822004701)
+Migrating to CreateGroupsUsers (20090822004900)
+Migrating to AddDefaultUserAndGroup (20090822005108)
+Migrating to AddParentToGroup (20090822015636)
+  [4;36;1mSQL (59.2ms)[0m   [0;1mALTER TABLE `groups` ADD `parent_id` int(11)[0m
+  [4;35;1mSQL (0.7ms)[0m   [0mINSERT INTO schema_migrations (version) VALUES ('20090822015636')[0m
+  [4;36;1mSQL (0.5ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSELECT version FROM schema_migrations[0m
+  [4;36;1mSQL (0.3ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (1.4ms)[0m   [0mSHOW FIELDS FROM `groups`[0m
+  [4;36;1mSQL (1.2ms)[0m   [0;1mdescribe `groups`[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSHOW KEYS FROM `groups`[0m
+  [4;36;1mSQL (1.3ms)[0m   [0;1mSHOW FIELDS FROM `groups_users`[0m
+  [4;35;1mSQL (1.1ms)[0m   [0mdescribe `groups_users`[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSHOW KEYS FROM `groups_users`[0m
+  [4;35;1mSQL (1.2ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mSQL (1.3ms)[0m   [0;1mdescribe `users`[0m
+  [4;35;1mSQL (0.3ms)[0m   [0mSHOW KEYS FROM `users`[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mSQL (0.5ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSELECT version FROM schema_migrations[0m
+  [4;36;1mSQL (0.3ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSELECT version FROM schema_migrations[0m
+Migrating to AddParentToGroup (20090822015636)
+  [4;36;1mSQL (0.6ms)[0m   [0;1mDELETE FROM schema_migrations WHERE version = '20090822015636'[0m
+Migrating to AddDefaultUserAndGroup (20090822005108)
+  [4;35;1mUser Delete all (17.6ms)[0m   [0mDELETE FROM `users` [0m
+  [4;36;1mGroup Delete all (4.7ms)[0m   [0;1mDELETE FROM `groups` [0m
+  [4;35;1mSQL (0.8ms)[0m   [0mDELETE FROM schema_migrations WHERE version = '20090822005108'[0m
+Migrating to CreateGroupsUsers (20090822004900)
+  [4;36;1mSQL (3.6ms)[0m   [0;1mDROP TABLE `groups_users`[0m
+  [4;35;1mSQL (0.6ms)[0m   [0mDELETE FROM schema_migrations WHERE version = '20090822004900'[0m
+Migrating to CreateGroups (20090822004701)
+  [4;36;1mSQL (5.0ms)[0m   [0;1mDROP TABLE `groups`[0m
+  [4;35;1mSQL (0.5ms)[0m   [0mDELETE FROM schema_migrations WHERE version = '20090822004701'[0m
+Migrating to CreateUsers (20090822004651)
+  [4;36;1mSQL (5.2ms)[0m   [0;1mDROP TABLE `users`[0m
+  [4;35;1mSQL (0.7ms)[0m   [0mDELETE FROM schema_migrations WHERE version = '20090822004651'[0m
+  [4;36;1mSQL (0.4ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSELECT version FROM schema_migrations[0m
+  [4;36;1mSQL (0.3ms)[0m   [0;1mSHOW TABLES[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mSQL (0.4ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSELECT version FROM schema_migrations[0m
+Migrating to CreateUsers (20090822004651)
+  [4;36;1mSQL (72.9ms)[0m   [0;1mCREATE TABLE `users` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `twitter_name` varchar(255), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [4;35;1mSQL (1.2ms)[0m   [0mINSERT INTO schema_migrations (version) VALUES ('20090822004651')[0m
+Migrating to CreateGroups (20090822004701)
+  [4;36;1mSQL (167.5ms)[0m   [0;1mCREATE TABLE `groups` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `name` varchar(255), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [4;35;1mSQL (0.6ms)[0m   [0mINSERT INTO schema_migrations (version) VALUES ('20090822004701')[0m
+Migrating to CreateGroupsUsers (20090822004900)
+  [4;36;1mSQL (96.5ms)[0m   [0;1mCREATE TABLE `groups_users` (`group_id` int(11), `user_id` int(11), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [4;35;1mSQL (0.6ms)[0m   [0mINSERT INTO schema_migrations (version) VALUES ('20090822004900')[0m
+Migrating to AddDefaultUserAndGroup (20090822005108)
+  [4;36;1mUser Columns (1.6ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mBEGIN[0m
+  [4;36;1mUser Create (0.3ms)[0m   [0;1mINSERT INTO `users` (`updated_at`, `twitter_name`, `created_at`) VALUES('2009-08-22 02:05:37', 'asktwoups', '2009-08-22 02:05:37')[0m
+  [4;35;1mSQL (0.5ms)[0m   [0mCOMMIT[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mCOMMIT[0m
+  [4;36;1mGroup Columns (1.6ms)[0m   [0;1mSHOW FIELDS FROM `groups`[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mBEGIN[0m
+  [4;36;1mGroup Create (0.2ms)[0m   [0;1mINSERT INTO `groups` (`name`, `updated_at`, `created_at`) VALUES('twoups', '2009-08-22 02:05:37', '2009-08-22 02:05:37')[0m
+  [4;35;1mSQL (0.5ms)[0m   [0mCOMMIT[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mCOMMIT[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mgroups_users Columns (10.2ms)[0m   [0mSHOW FIELDS FROM `groups_users`[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mINSERT INTO `groups_users` (`updated_at`, `group_id`, `user_id`, `created_at`) VALUES ('2009-08-22 02:05:37', 1, 1, '2009-08-22 02:05:37')[0m
+  [4;35;1mSQL (0.4ms)[0m   [0mCOMMIT[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mCOMMIT[0m
+  [4;36;1mSQL (0.7ms)[0m   [0;1mINSERT INTO schema_migrations (version) VALUES ('20090822005108')[0m
+Migrating to AddParentToGroup (20090822015636)
+  [4;35;1mSQL (90.0ms)[0m   [0mALTER TABLE `groups` ADD `parent_id` int(11) DEFAULT 0[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mINSERT INTO schema_migrations (version) VALUES ('20090822015636')[0m
+  [4;35;1mSQL (0.5ms)[0m   [0mSHOW TABLES[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSELECT version FROM schema_migrations[0m
+  [4;35;1mSQL (0.3ms)[0m   [0mSHOW TABLES[0m
+  [4;36;1mSQL (1.5ms)[0m   [0;1mSHOW FIELDS FROM `groups`[0m
+  [4;35;1mSQL (1.1ms)[0m   [0mdescribe `groups`[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSHOW KEYS FROM `groups`[0m
+  [4;35;1mSQL (1.3ms)[0m   [0mSHOW FIELDS FROM `groups_users`[0m
+  [4;36;1mSQL (1.1ms)[0m   [0;1mdescribe `groups_users`[0m
+  [4;35;1mSQL (0.3ms)[0m   [0mSHOW KEYS FROM `groups_users`[0m
+  [4;36;1mSQL (1.2ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mSQL (1.3ms)[0m   [0mdescribe `users`[0m
+  [4;36;1mSQL (0.3ms)[0m   [0;1mSHOW KEYS FROM `users`[0m

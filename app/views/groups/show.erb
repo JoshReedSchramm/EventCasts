@@ -1,0 +1,10 @@
+<% if @group.nil? %>
+	Unable to find group
+<% end %>
+<%= @group.name if !@group.nil? %>
+<br/>
+<br/>
+
+<% if !@group.nil? %>
+	<a href='/groups/new/<%= @group.id %>'>Add sub-group</a><br />	
+<% end %>

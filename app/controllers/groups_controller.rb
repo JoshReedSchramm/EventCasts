@@ -15,9 +15,16 @@ class GroupsController < ApplicationController
       if @group.save
         flash[:notice] = 'Group was successfully created.'
         format.html { redirect_to :controller=>"user", :action=>"home" }
-      else
+      else        
         format.html { render :action => "new" }
       end
     end
   end
+  
+  def show
+    @group = Group.find_group_from_heirarchy(params[:group_names])
+    if (@group.nil?)
+        flash[:notice] = 'Could not find the group.'      
+    end
+  end  
 end

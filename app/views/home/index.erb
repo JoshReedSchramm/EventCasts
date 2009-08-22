@@ -1,0 +1,12 @@
+<% form_for :search, :url => {:action=>"search"} do |p| %>
+	<%= p.error_messages %>
+	<fieldset>
+		<div>
+			<%= p.label :query %>
+			<%= p.text_field :query, :size=>30, :maxlength=>140 %>
+		</div>
+		<div>
+			<%= p.submit "Search", :class => "submit" %>
+		</div>
+	</fieldset>
+<% end %>

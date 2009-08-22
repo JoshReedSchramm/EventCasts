@@ -1,0 +1,14 @@
+<h1>Add a group</h1>
+
+<% form_for :group, :url => {:action=>"new"} do |p| %>
+	<%= p.error_messages %>
+	<fieldset>
+		<div>
+			<%= p.label :name %>
+			<%= p.text_field :name, :size=>30, :maxlength=>140 %>
+		</div>
+		<div>
+			<%= p.submit "Create Group", :class => "submit" %>
+		</div>
+	</fieldset>
+<% end %>

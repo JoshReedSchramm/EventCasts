@@ -1,2 +1,8 @@
 <%= @user.twitter_name%>
-<%= @user.groups%>
+
+<br /><br />
+<% for group in @user.groups %>
+	<%= group.name %>
+<% end %>
+<br />
+<%= link_to "Add a group", :controller=>"groups", :action=>"new" %>

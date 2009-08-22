@@ -1,4 +1,5 @@
 <%= javascript_include_tag "index.js" %>
+<%= javascript_include_tag "jquery.form.js" %>
 <div id='container'>
 	<h1>Twoups</h1>
 	<div id='body_container'>
@@ -7,12 +8,16 @@
 					<%= p.text_field :query, :size=>30, :maxlength=>140, :id=>'search_box', :value=>'Search for conversations' %>
 					<a id='search_button' href='#' type='submit' class='submit'></a>
 				<% end %>	
-			<span id='examples'>examples:</span>
-			<ul id='examples_list'>
-				<li>#twoups</li>
-				<li>#railsrumble</li>
-				<li>@twoupsinfo</li>
-			</ul>
+			<div id='description_text'>
+				<span id='examples'>examples:</span>
+				<ul id='examples_list'>
+					<li>#twoups</li>
+					<li>#railsrumble</li>
+					<li>@twoupsinfo</li>
+				</ul>
+			</div>
+			<div id='search_results'>
+			</div>
 		</div>
 		<div id='divider'> or </div>
 		<div id='user_section'>

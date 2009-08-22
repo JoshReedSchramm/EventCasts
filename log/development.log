@@ -6716,3 +6716,172 @@ Completed in 3ms (View: 2, DB: 0) | 200 OK [http://localhost/]
   [4;36;1mSQL (0.3ms)[0m   [0;1mINSERT INTO `schema_migrations` (version) VALUES ('20090822004900')[0m
   [4;35;1mSQL (0.4ms)[0m   [0mINSERT INTO `schema_migrations` (version) VALUES ('20090822005108')[0m
   [4;36;1mSQL (0.7ms)[0m   [0;1mINSERT INTO `schema_migrations` (version) VALUES ('20090822015636')[0m
+  [4;36;1mSQL (1.9ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing HomeController#index (for 127.0.0.1 at 2009-08-22 10:39:38) [GET]
+Rendering template within layouts/home
+Rendering home/index
+Completed in 6ms (View: 5, DB: 2) | 200 OK [http://localhost/]
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing HomeController#index (for 127.0.0.1 at 2009-08-22 10:41:51) [GET]
+Rendering template within layouts/home
+Rendering home/index
+Completed in 6ms (View: 5, DB: 0) | 200 OK [http://localhost/]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing HomeController#index (for 127.0.0.1 at 2009-08-22 10:42:21) [GET]
+Rendering template within layouts/home
+Rendering home/index
+Completed in 6ms (View: 5, DB: 0) | 200 OK [http://localhost/]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing HomeController#search (for 127.0.0.1 at 2009-08-22 10:55:43) [POST]
+  Parameters: {"search"=>{"query"=>""}, "authenticity_token"=>"a0QUyEto+1KEE6lEJjDftJC4f0vJmo3JcKbWpQAClPQ="}
+  [4;36;1mGroup Load (0.4ms)[0m   [0;1mSELECT * FROM `groups` WHERE (name like NULL and parent_id=0) LIMIT 1[0m
+Rendering home/search
+Completed in 13ms (View: 6, DB: 1) | 200 OK [http://localhost/home/search]
+  [4;35;1mSQL (0.1ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing HomeController#index (for 127.0.0.1 at 2009-08-22 10:56:28) [GET]
+Rendering template within layouts/home
+Rendering home/index
+Completed in 3ms (View: 2, DB: 0) | 200 OK [http://localhost/]
+  [4;35;1mSQL (0.1ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing HomeController#search (for 127.0.0.1 at 2009-08-22 10:56:29) [POST]
+  Parameters: {"search"=>{"query"=>""}, "authenticity_token"=>"a0QUyEto+1KEE6lEJjDftJC4f0vJmo3JcKbWpQAClPQ="}
+  [4;35;1mGroup Load (0.5ms)[0m   [0mSELECT * FROM `groups` WHERE (name like NULL and parent_id=0) LIMIT 1[0m
+Rendering template within layouts/home
+Rendering home/search
+
+ActionView::TemplateError (Called id for nil, which would mistakenly be 4 -- if you really wanted the id of nil, use object_id) on line #4 of app/views/home/_search.html.erb:
+1: <% if !@results.nil? %>
+2: 	<ul id='results_list'>	
+3: 		<% for result in @results %>
+4: 			<li id='result_<%= result.id %>' class='result'>
+5: 				<span class='name'><%= result.name %></span>
+6: 			</li>
+7: 		<% end %>
+
+    app/views/home/_search.html.erb:4
+    app/views/home/_search.html.erb:3:in `each'
+    app/views/home/_search.html.erb:3
+    app/views/home/search.erb:1
+    app/controllers/home_controller.rb:7:in `search'
+
+Rendered rescues/_trace (101.1ms)
+Rendered rescues/_request_and_response (0.3ms)
+Rendering rescues/layout (internal_server_error)
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing HomeController#search (for 127.0.0.1 at 2009-08-22 10:56:31) [POST]
+  Parameters: {"search"=>{"query"=>"twoups"}, "authenticity_token"=>"a0QUyEto+1KEE6lEJjDftJC4f0vJmo3JcKbWpQAClPQ="}
+  [4;36;1mGroup Load (0.4ms)[0m   [0;1mSELECT * FROM `groups` WHERE (name like 'twoups' and parent_id=0) LIMIT 1[0m
+Rendering template within layouts/home
+Rendering home/search
+  [4;35;1mGroup Columns (1.3ms)[0m   [0mSHOW FIELDS FROM `groups`[0m
+Rendered home/_search (2.7ms)
+Completed in 11ms (View: 3, DB: 2) | 200 OK [http://localhost/home/search]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing HomeController#index (for 127.0.0.1 at 2009-08-22 10:56:38) [GET]
+Rendering template within layouts/home
+Rendering home/index
+Completed in 3ms (View: 2, DB: 0) | 200 OK [http://localhost/]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing HomeController#search (for 127.0.0.1 at 2009-08-22 10:56:48) [POST]
+  Parameters: {"search"=>{"query"=>"twoups"}, "authenticity_token"=>"a0QUyEto+1KEE6lEJjDftJC4f0vJmo3JcKbWpQAClPQ="}
+  [4;36;1mGroup Load (0.4ms)[0m   [0;1mSELECT * FROM `groups` WHERE (name like 'twoups' and parent_id=0) LIMIT 1[0m
+Rendering template within layouts/home
+Rendering home/search
+  [4;35;1mGroup Columns (1.4ms)[0m   [0mSHOW FIELDS FROM `groups`[0m
+Rendered home/_search (2.7ms)
+Completed in 11ms (View: 3, DB: 2) | 200 OK [http://localhost/home/search]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing HomeController#index (for 127.0.0.1 at 2009-08-22 10:56:51) [GET]
+Rendering template within layouts/home
+Rendering home/index
+Completed in 3ms (View: 2, DB: 0) | 200 OK [http://localhost/]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing HomeController#search (for 127.0.0.1 at 2009-08-22 10:56:54) [POST]
+  Parameters: {"search"=>{"query"=>"twoups"}, "authenticity_token"=>"a0QUyEto+1KEE6lEJjDftJC4f0vJmo3JcKbWpQAClPQ="}
+  [4;36;1mGroup Load (0.5ms)[0m   [0;1mSELECT * FROM `groups` WHERE (name like 'twoups' and parent_id=0) LIMIT 1[0m
+Rendering template within layouts/home
+Rendering home/search
+  [4;35;1mGroup Columns (1.8ms)[0m   [0mSHOW FIELDS FROM `groups`[0m
+Rendered home/_search (3.4ms)
+Completed in 16ms (View: 3, DB: 2) | 200 OK [http://localhost/home/search]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing HomeController#index (for 127.0.0.1 at 2009-08-22 10:57:01) [GET]
+Rendering template within layouts/home
+Rendering home/index
+Completed in 3ms (View: 2, DB: 0) | 200 OK [http://localhost/]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing HomeController#search (for 127.0.0.1 at 2009-08-22 10:57:06) [POST]
+  Parameters: {"search"=>{"query"=>"railsrumble"}, "authenticity_token"=>"a0QUyEto+1KEE6lEJjDftJC4f0vJmo3JcKbWpQAClPQ="}
+  [4;36;1mGroup Load (0.4ms)[0m   [0;1mSELECT * FROM `groups` WHERE (name like 'railsrumble' and parent_id=0) LIMIT 1[0m
+Rendering template within layouts/home
+Rendering home/search
+
+ActionView::TemplateError (Called id for nil, which would mistakenly be 4 -- if you really wanted the id of nil, use object_id) on line #4 of app/views/home/_search.html.erb:
+1: <% if !@results.nil? %>
+2: 	<ul id='results_list'>	
+3: 		<% for result in @results %>
+4: 			<li id='result_<%= result.id %>' class='result'>
+5: 				<span class='name'><%= result.name %></span>
+6: 			</li>
+7: 		<% end %>
+
+    app/views/home/_search.html.erb:4
+    app/views/home/_search.html.erb:3:in `each'
+    app/views/home/_search.html.erb:3
+    app/views/home/search.erb:1
+    app/controllers/home_controller.rb:7:in `search'
+
+Rendered rescues/_trace (47.1ms)
+Rendered rescues/_request_and_response (0.3ms)
+Rendering rescues/layout (internal_server_error)
+  [4;35;1mSQL (0.1ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing HomeController#search (for 127.0.0.1 at 2009-08-22 10:57:13) [POST]
+  Parameters: {"search"=>{"query"=>"twoups"}, "authenticity_token"=>"a0QUyEto+1KEE6lEJjDftJC4f0vJmo3JcKbWpQAClPQ="}
+  [4;35;1mGroup Load (0.4ms)[0m   [0mSELECT * FROM `groups` WHERE (name like 'twoups' and parent_id=0) LIMIT 1[0m
+Rendering template within layouts/home
+Rendering home/search
+  [4;36;1mGroup Columns (1.3ms)[0m   [0;1mSHOW FIELDS FROM `groups`[0m
+Rendered home/_search (2.5ms)
+Completed in 10ms (View: 2, DB: 2) | 200 OK [http://localhost/home/search]

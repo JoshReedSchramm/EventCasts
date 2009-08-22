@@ -20,7 +20,12 @@ $(document).ready(function() {
 			$('#search_box').val("Search for conversations");
 		}	
 	});
-	$('#search_form').submit(function(){
-		return false;
+	$('#search_form').ajaxForm({
+	    success: show_search_results
 	});
 });
+function show_search_results(response_text) {
+	$("#description_text").hide();
+	$("#search_results").html(response_text);	
+	$("#search_results").show('slow');
+}

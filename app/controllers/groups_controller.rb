@@ -58,7 +58,7 @@ class GroupsController < ApplicationController
     pull_recent_tweets(full_group_name,num,since)
   end
 
-private
+
   def populate_sub_group(group)
     @sub_groups = Group.find_all_by_parent_id(group.id)
     unless @sub_groups == nil
@@ -70,6 +70,8 @@ private
       end
     end
   end
+
+  private
 
   def pull_recent_tweets(tag,num = nil,since = nil)
     # assume the user passes the full tag

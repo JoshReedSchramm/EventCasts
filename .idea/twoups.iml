@@ -27,6 +27,7 @@
     <orderEntry type="library" name="[gem] actionmailer (v2.3.3, /usr/lib/ruby/gems/1.8/gems/actionmailer-2.3.3)" level="application" />
     <orderEntry type="library" name="[gem] rails (v2.3.3, /usr/lib/ruby/gems/1.8/gems/rails-2.3.3)" level="application" />
     <orderEntry type="library" name="[gem] activerecord (v2.3.3, /usr/lib/ruby/gems/1.8/gems/activerecord-2.3.3)" level="application" />
+    <orderEntry type="library" name="[gem] mysql (v2.8.1, /usr/lib/ruby/gems/1.8/gems/mysql-2.8.1)" level="application" />
   </component>
   <component name="RModuleSettingsStorage">
     <RMODULE_SETTINGS_STORAGE_ID NAME="NUMBER" VALUE="0" />

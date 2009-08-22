@@ -65,6 +65,10 @@ body {
 	margin-left: -20px;
 }
 
+#search_results {
+	display: none;
+}
+
 #examples_list {
 	float: right;
 	padding-right: 300px;	

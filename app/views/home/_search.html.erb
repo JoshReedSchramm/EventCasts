@@ -1,0 +1,9 @@
+<% if !@results.nil? %>
+	<ul id='results_list'>	
+		<% for result in @results %>
+			<li id='result_<%= result.id %>' class='result'>
+				<span class='name'><%= result.name %></span>
+			</li>
+		<% end %>
+	</ul>
+<% end %>

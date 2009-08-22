@@ -1,29 +1,22 @@
 class UserController < ApplicationController
   def home
-    session[:twitter_name]='asktwoups'
+    redirect_to :action => :login unless session[:twitter_name]
     @user = User.find_by_twitter_name(session[:twitter_name]) 
   end
 
   def login
-    #store_request_token oauth.request_token(:oath_callback => 'http://0.0.0.0:3000/user/authorize')
-    #redirect_to oauth.request_token.authorize_url
-
-    
-    request_token = consumer.get_request_token
-    store_request_token request_token
-    redirect_to request_token.authorize_url(:oauth_callback => 'http://0.0.0.0:3000/user/authorize')
+    store_request_token login_request_token
+    redirect_to login_request_token.authorize_url
   end
 
   def authorize
-    request_token = get_request_token
-    access_token = request_token.get_access_token
-    #consumer.authorize_from_request(session['rtoken'], session['rsecret'])
     @response = consumer.request(:get, '/account/verify_credentials.json', access_token, {:scheme => :query_string})
     clear_request_token
 
     case @response
       when Net::HTTPSuccess
         user_info = JSON.parse(@response.body)
+
         unless user_info['screen_name']
           flash[:notice] = "Authentication failed"
           redirect_to :action => :home
@@ -69,7 +62,15 @@ class UserController < ApplicationController
     session['rsecret'] = nil
   end
 
-  def get_request_token
-    OAuth::RequestToken.new(consumer, session['rtoken'], session['rsecret'])
+  def login_request_token
+    @login_rtoken ||= consumer.get_request_token
+  end
+
+  def authorization_request_token
+    @authorization_rtoken ||= OAuth::RequestToken.new(consumer, session['rtoken'], session['rsecret'])
+  end
+
+  def access_token
+     @atoken ||= authorization_request_token.get_access_token
   end
  end

@@ -1,32 +1,30 @@
 class Search
   def Search.search(search)
-    @results = []
+    search_term = search[:query]
+    groups = Array.new
 
-    name_search_result = Search.search_by_name search
-    @results << name_search_result
-    @results << Search.search_by_title(search)
-    @results << Search.search_by_description(search)
-    @results
+    results_by_name = Search.search_by_name search_term
+    groups << results_by_name unless results_by_name.nil?
+    groups.concat Search.search_by_title(search_term)
+    groups.concat Search.search_by_description(search_term)
+    @results = Search.convert_groups_to_search_results(groups)
   end
 
-  def Search.search_by_name search
-    result = SearchResult.new()
-    group_result = Group.search_by_name(search[:query])
-    result.group = group_result
-    result
+  def Search.search_by_name search_term
+    Group.search_by_name(search_term)
   end
 
   def Search.search_by_description search_term
-    groups = Group.find_by_description search_term
-    search_results = convert_groups_to_search_results groups
+    Group.find_by_description search_term
   end
 
   def Search.search_by_title search_term
-    groups = Group.find_by_title search_term
-    search_results = convert_groups_to_search_results groups
+    Group.find_by_title search_term
   end
 
   def Search.convert_groups_to_search_results groups
+    return [] if groups.nil?
+
     results = []
 
     groups.each do |group|

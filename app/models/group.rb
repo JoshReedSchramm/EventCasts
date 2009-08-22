@@ -55,14 +55,14 @@ class Group < ActiveRecord::Base
 
   def Group.find_by_description description
     groups = Group.find(:all,
-                       :joins => :group_datum,
-                       :conditions => ["data_type_id = ? and description like ?", 2, description ])
+                       :joins => :group_data,
+                       :conditions => ["group_data.group_data_type_id = ? and group_data.description like ?", 2, description ])
   end
 
   def Group.find_by_title title
     groups = Group.find(:all,
-                       :joins => :group_datum,
-                       :conditions => ["data_type_id = ? and description like ?", 1, title ])
+                       :joins => :group_data,
+                       :conditions => ["group_data.group_data_type_id = ? and group_data.description like ?", 1, title ])
   end
   
   private

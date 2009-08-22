@@ -14,14 +14,16 @@ class UserController < ApplicationController
     clear_request_token
 
     unless verification_response == Net::HTTPSuccess
-      handle_failed_authorization
+      #handle_failed_authorization
+      redirect_to :controller => :home, :action => :index2
       return
     end
 
     user_info = JSON.parse(verification_response.body)
 
     unless user_info['screen_name']
-      handle_failed_authorization
+      #handle_failed_authorization
+      redirect_to :controller => :home, :action => :index3
       return
     end
 

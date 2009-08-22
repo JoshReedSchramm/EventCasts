@@ -10,38 +10,25 @@ class UserController < ApplicationController
   end
 
   def authorize
-    @response = consumer.request(:get, '/account/verify_credentials.json', access_token, {:scheme => :query_string})
+    verification_response = verify_credentials
     clear_request_token
 
-    case @response
-      when Net::HTTPSuccess
-        user_info = JSON.parse(@response.body)
-
-        unless user_info['screen_name']
-          flash[:notice] = "Authentication failed"
-          redirect_to :action => :home
-          return
-        end
-
-        user_name = user_info['screen_name']
-        session[:twitter_name] = user_name
-        #user = User.find_all_by_twitter_name(user_name
-
-        user = User.find_by_twitter_name(user_name)
-        if user.nil?
-          user = User.new
-          user.twitter_name = user_name
-        end
-
-        user.atoken = access_token.token
-        user.asecret = access_token.secret
-        user.save!
-
-        redirect_to :action => :home
-      else
-        flash[:notice] = "Authentication failed"
-        redirect_to :action => :home
+    unless verification_response = Net::HTTPSuccess
+      handle_failed_authorization
+      return
     end
+
+    user_info = JSON.parse(verification_response.body)
+
+    unless user_info['screen_name']
+      handle_failed_authorization
+      return
+    end
+
+    user_name = user_info['screen_name']
+    session[:twitter_name] = user_name
+    update_user user_name
+    redirect_to :action => :home
   end
 
   def oauth
@@ -72,5 +59,27 @@ class UserController < ApplicationController
 
   def access_token
      @atoken ||= authorization_request_token.get_access_token
+  end
+
+  def verify_credentials
+    consumer.request(:get, '/account/verify_credentials.json', access_token, {:scheme => :query_string})
+  end
+
+  def update_user user_name
+    user = User.find_by_twitter_name(user_name)
+
+    if user.nil?
+      user = User.new
+      user.twitter_name = user_name
+    end
+
+    user.atoken = access_token.token
+    user.asecret = access_token.secret
+    user.save!
+  end
+
+  def handle_failed_authorization
+    flash[:notice] = "Authentication failed"
+    redirect_to :controller => :home, :action => :index
   end
  end

@@ -52,6 +52,18 @@ class Group < ActiveRecord::Base
       Group.find_group_from_heirarchy(group_names, group.id)
     end
   end
+
+  def Group.find_by_description description
+    groups = Group.find(:all,
+                       :joins => :group_datum,
+                       :conditions => ["data_type_id = ? and description like ?", 2, description ])
+  end
+
+  def Group.find_by_title title
+    groups = Group.find(:all,
+                       :joins => :group_datum,
+                       :conditions => ["data_type_id = ? and description like ?", 1, title ])
+  end
   
   private
   

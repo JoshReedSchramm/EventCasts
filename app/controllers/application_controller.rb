@@ -12,7 +12,7 @@ class ApplicationController < ActionController::Base
 
   private
     def twitter_unauthorized(exception)
-      flash[:notice] = "Unathorized. Please log in again."
+      flash[:notice] = "Unable to update at the moment. Twitter may be down or you may need to log in again."
       redirect_to :controller => :home, :action => :index
     end
 end

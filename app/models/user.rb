@@ -1,8 +1,6 @@
 class User < ActiveRecord::Base
-  include Clearance::App::Models::User
-
+ # include Clearance::App::Models::User
   has_and_belongs_to_many :groups
-
- # attr_accessible :atoken, :asecret
+  validates_presence_of :twitter_name, :on => :create, :message => "can't be blank"
   
 end

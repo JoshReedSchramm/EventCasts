@@ -18,14 +18,24 @@ class Group < ActiveRecord::Base
       parent.get_full_path(current_path)
     end
   end
+  
+  def Group.search_by_name(query)    
+    if !query.nil?          
+      words = query.split(" ")      
+      words.each_with_index do |word, index|
+        words[index] = Group.filter_hash(word)        
+      end
+      return Group.find_group_from_heirarchy(words, 0, "like")
+    end
+  end
     
   def Group.filter_hash(group_name)
     group_name.slice!(0) if group_name[0,1] == '#'    
     group_name
   end
   
-  def Group.find_group_from_heirarchy(group_names, parent_id=0)
-    group = self.find(:first, :conditions =>["name=? and parent_id=?", group_names[0], parent_id])
+  def Group.find_group_from_heirarchy(group_names, parent_id=0, conditional="=")
+    group = Group.find(:first, :conditions =>["name=? and parent_id=?", group_names[0], parent_id])
     if (group.nil? || group_names.length == 1)
       return group
     else

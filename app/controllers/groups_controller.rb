@@ -38,7 +38,8 @@ private
       group.sub_groups = Array.new()
       @sub_groups.each do |g|
         group.sub_groups.push(g)
-        populate_sub_group(g)
+        #too agressive
+        #populate_sub_group(g)
       end
     end
   end

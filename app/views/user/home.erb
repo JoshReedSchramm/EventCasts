@@ -2,7 +2,7 @@
 
 <br /><br />
 <% for group in @user.groups %>
-	<a href='/groups/<%= group.name %>'><%= group.name %></a><br />
+	<a href='/groups/<%= group.get_full_path %>'><%= group.get_full_path %></a><br />
 <% end %>
 <br />
 <%= link_to "Add a group", :controller=>"groups", :action=>"new" %>

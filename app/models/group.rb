@@ -7,6 +7,16 @@ class Group < ActiveRecord::Base
     user = User.find_by_twitter_name(twitter_name) 
     self.users << user
   end
+  
+  def get_full_path(current_path=[])
+    current_path.push(self.name)
+    if (self.parent_id == 0)
+      return current_path.reverse.join("/")
+    else
+      parent = Group.find(self.parent_id)
+      parent.get_full_path(current_path)
+    end
+  end
     
   def Group.filter_hash(group_name)
     group_name.slice!(0) if group_name[0,1] == '#'    

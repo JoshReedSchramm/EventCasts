@@ -15,6 +15,25 @@
 	<%= p.hidden_field :group_data_type_id, :value=>GroupDataType.description.id %>
 	<%= p.submit "save", :class => "submit" %>	
 <% end %>
+  <% if @group.sub_groups %>
+  <ul>
+    <% @group.sub_groups.each do |sg| %>
+      <li><a href='/groups/<%= sg.get_full_path %>'><%= sg.name %></a></li>
+    <% end %>
+  </ul>
+  <% end %>
+  <h2>recent tweets</h2>
+  <div id="groupRecentTweets">
+    <ul >
+      <li id="tweetTemplate" style="display:none;">
+        <span id="tweeter"></span>:<span id="tweet"></span>
+      </li>
+    </ul>
+  </div>
+  <form>
+    <input type="hidden" id="sinceTweetId" value="0" />
+  </form>
+
 <br/>
 
 <br/>

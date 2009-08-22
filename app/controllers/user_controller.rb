@@ -1,54 +1,34 @@
 class UserController < ApplicationController
   def home
-    session[:twitter_name]='asktwoups'
+    redirect_to :action => :login unless session[:twitter_name]
     @user = User.find_by_twitter_name(session[:twitter_name]) 
   end
 
   def login
-    #store_request_token oauth.request_token(:oath_callback => 'http://0.0.0.0:3000/user/authorize')
-    #redirect_to oauth.request_token.authorize_url
-
-    
-    request_token = consumer.get_request_token
-    store_request_token request_token
-    redirect_to request_token.authorize_url(:oauth_callback => 'http://0.0.0.0:3000/user/authorize')
+    store_request_token login_request_token
+    redirect_to login_request_token.authorize_url
   end
 
   def authorize
-    request_token = get_request_token
-    access_token = request_token.get_access_token
-    #consumer.authorize_from_request(session['rtoken'], session['rsecret'])
-    @response = consumer.request(:get, '/account/verify_credentials.json', access_token, {:scheme => :query_string})
+    verification_response = verify_credentials
     clear_request_token
 
-    case @response
-      when Net::HTTPSuccess
-        user_info = JSON.parse(@response.body)
-        unless user_info['screen_name']
-          flash[:notice] = "Authentication failed"
-          redirect_to :action => :home
-          return
-        end
-
-        user_name = user_info['screen_name']
-        session[:twitter_name] = user_name
-        #user = User.find_all_by_twitter_name(user_name
-
-        user = User.find_by_twitter_name(user_name)
-        if user.nil?
-          user = User.new
-          user.twitter_name = user_name
-        end
-
-        user.atoken = access_token.token
-        user.asecret = access_token.secret
-        user.save!
-
-        redirect_to :action => :home
-      else
-        flash[:notice] = "Authentication failed"
-        redirect_to :action => :home
+    unless verification_response.is_a? Net::HTTPSuccess
+      handle_failed_authorization
+      return
     end
+
+    user_info = JSON.parse(verification_response.body)
+
+    unless user_info['screen_name']
+      handle_failed_authorization
+      return
+    end
+
+    user_name = user_info['screen_name']
+    session[:twitter_name] = user_name
+    update_user user_name
+    redirect_to :action => :home
   end
 
   def oauth
@@ -69,7 +49,37 @@ class UserController < ApplicationController
     session['rsecret'] = nil
   end
 
-  def get_request_token
-    OAuth::RequestToken.new(consumer, session['rtoken'], session['rsecret'])
+  def login_request_token
+    @login_rtoken ||= consumer.get_request_token
+  end
+
+  def authorization_request_token
+    @authorization_rtoken ||= OAuth::RequestToken.new(consumer, session['rtoken'], session['rsecret'])
+  end
+
+  def access_token
+     @atoken ||= authorization_request_token.get_access_token
+  end
+
+  def verify_credentials
+    consumer.request(:get, '/account/verify_credentials.json', access_token, {:scheme => :query_string})
+  end
+
+  def update_user user_name
+    user = User.find_by_twitter_name(user_name)
+
+    if user.nil?
+      user = User.new
+      user.twitter_name = user_name
+    end
+
+    user.atoken = access_token.token
+    user.asecret = access_token.secret
+    user.save!
+  end
+
+  def handle_failed_authorization
+    flash[:notice] = "Authentication failed"
+    redirect_to :controller => :home, :action => :index
   end
  end

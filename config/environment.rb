@@ -36,10 +36,6 @@ Rails::Initializer.run do |config|
   #  :source  => 'http://gems.github.com',
   #  :version => '0.5.3'
   
-  config.gem 'twitter',
-    :lib => 'twitter',
-    :version => '0.6.6'
-
   # Set Time.zone default to the specified zone and make Active Record auto-convert to this zone.
   # Run "rake -D time" for a list of tasks for finding time zone names.
   config.time_zone = 'UTC'
@@ -47,6 +43,12 @@ Rails::Initializer.run do |config|
   # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
   # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}')]
   # config.i18n.default_locale = :de
+  config.gem 'twitter',
+    :lib => 'twitter',
+    :version => '0.6.6'
+  config.gem 'json',
+    :lib => 'json',
+    :version => '1.1.7'
 end
 
 ConsumerConfig = YAML.load(File.read(Rails.root + 'config' + 'consumer.yml'))

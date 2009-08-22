@@ -9,6 +9,7 @@ class GroupsController < ApplicationController
   def create
     @group = Group.new(params[:group])
     @group.add_user_by_twitter_name(session[:twitter_name])    
+    @group.name = Group.filter_hash(@group.name)
 
     respond_to do |format|
       if @group.save

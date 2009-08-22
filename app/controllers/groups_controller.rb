@@ -6,6 +6,21 @@ class GroupsController < ApplicationController
     end
   end
   
+  def set_data
+    @group_data = GroupDatum.new(params[:group_datum]) 
+    existing_data_item = GroupDatum.find(:first, :conditions=>["group_id=? and group_data_type_id=?", @group_data.group_id, @group_data.group_data_type_id])
+    if (!existing_data_item.nil?)   
+      existing_data_item.description = @group_data.description
+      @group_data = existing_data_item
+    end
+    @group_data.save    
+    respond_to do |format|
+      format.html 
+      format.json  { render :json => @group_data.to_json }
+      format.js { render :partial=> "set_data" }
+    end
+  end
+  
   def create
     @group = Group.new(params[:group])
     @group.add_user_by_twitter_name(session[:twitter_name])    

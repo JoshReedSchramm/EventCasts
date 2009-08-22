@@ -128,3 +128,7 @@ body {
 #footer a:hover {
 	text-decoration: underline;
 }
+
+.group_data_form {
+	display:none;
+}

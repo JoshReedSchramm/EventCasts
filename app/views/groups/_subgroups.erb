@@ -8,7 +8,7 @@
 				<ul id='user_groups_sub_groups'>						
 					<% sg.sub_groups.each do |child_group| %>
 						<li>
-							<a href='/<%= sg.get_full_path %>'>#<%= child_group.name %></a>
+							<a href='/<%= child_group.get_full_path %>'>#<%= child_group.name %></a>
 				    	</li>
 					<% end %>
 				</ul>

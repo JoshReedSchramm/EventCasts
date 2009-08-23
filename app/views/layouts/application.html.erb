@@ -16,8 +16,8 @@
             <a href="#" class="submit" type="submit"><img src="../images/groupSearchButtonOff.png"/></a>
           </form>
         </div>
-        <a href="#" id="home_header_link"><span>asdf</span></a>
-        <a href="#" id="my_groups_header_link"><span>asdf</span></a>
+        <%=  link_to "<span>&nbsp;</span>", { :controller => "user" }, :id => "home_header_link" %>
+        <%=  link_to "<span>&nbsp;</span>", { :controller => "groups" }, :id => "my_groups_header_link" %>
       </h1>
     <% else %>
       <h1>Twoups</h1>

@@ -1,6 +1,6 @@
 class Search
   def Search.search(search)
-    search_term = search[:query]
+    search_term = search[:query]#.gsub(/[\@\#]/, '')
     groups = Array.new
 
     results_by_name = Search.search_by_name search_term

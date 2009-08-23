@@ -111,6 +111,15 @@ a#login_link:hover {
     color: #CCCCCC;
 }
 
+#examples a{
+    color: #CCCCCC;
+    text-decoration: none;
+}
+
+#examples a:hover{
+    text-decoration: underline;
+}
+
 #search_results {
 	display: none;
 	clear:both;
@@ -121,7 +130,7 @@ a#login_link:hover {
 }
 
 #search_results li {
-	margin: 0px 0 20px;;
+	margin: 0px 0 30px;;
 }
 
 #search_results .hashtag {

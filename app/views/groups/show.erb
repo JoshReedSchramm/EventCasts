@@ -59,7 +59,7 @@
 		<% if User.can_edit_group?(@group, session[:twitter_name])   %>
 			<a id='add_vip_link' href='javascript:void(0);'>Add group VIP</a>
 			<a id='cancel_add_vip_link' href='javascript:void(0);'>cancel</a>
-			<div id='add_sub_group'>
+			<div id='add_vip'>
 				<% form_for [:group,@vip_user], :url => {:action=>"add_group_vip"}, :html => { :id => "add_vip_form" } do |p| %>
 					<%= p.label :name, "twitter user: " %>
 					<%= p.text_field :twitter_name, :size=>20, :maxlength=>140, :id=>'add_vip_box' %>

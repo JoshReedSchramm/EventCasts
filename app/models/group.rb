@@ -24,12 +24,11 @@ class Group < ActiveRecord::Base
     end
   end
   
-  def get_full_path(current_path=[])
-    current_path.push(self.name)
+  def get_full_path
     if (self.parent_id == 0)
-      return current_path.reverse.join("/")
+      return self.name
     else
-      parent.get_full_path(current_path)
+      return parent.get_full_path + "/" + self.name
     end
   end
 

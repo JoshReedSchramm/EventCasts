@@ -467,8 +467,8 @@ em .save_subgroup_link,
 }
 
 .error_message {
-	background-color: red;
-	color: white;
+	background-color: #ffde00;
+	color: black;
 	border: solid 1px black;
 	width: 275px;
 	margin-top: 10px;

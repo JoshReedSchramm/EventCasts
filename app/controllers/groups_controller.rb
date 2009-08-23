@@ -80,11 +80,11 @@ class GroupsController < ApplicationController
       end
 
       if allowed
-        @group.add_user_by_twitter_name(user[:twitter_name])
+        @group.add_user_by_twitter_name(user[:twitter_name],true)
         @group.save!
         respond_to do |format|
           format.html
-          format.json  { render :json => User.find_all_by_twitter_name(user[:twitter_name]).to_json  }
+          format.json  { render :json => @group  }
           format.js { render :partial=> "set_data" }
         end
       else

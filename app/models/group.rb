@@ -16,7 +16,9 @@ class Group < ActiveRecord::Base
         user.save!
       end
     end
-    self.users << user
+    if !User.can_edit_group(self, user.twitter_name)
+      self.users << user
+    end
   end
   
   def get_full_path(current_path=[])

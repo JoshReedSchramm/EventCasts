@@ -48,6 +48,10 @@ class Group < ActiveRecord::Base
     Group.find(self.parent_id)
   end
   
+  def participants
+    Group.pull_recent_tweets(self.get_full_path, 200)    
+  end
+  
   def Group.search_by_name(query)    
     if !query.nil?          
       words = query.split(" ")      
@@ -108,6 +112,65 @@ class Group < ActiveRecord::Base
     @user_profiles
   end
   
+  def Group.pull_recent_tweets(tag,num = nil,since = nil)
+    # assume the user passes the full tag
+
+    html = ""
+    logger.debug("Got #{tag}")
+    @terms = tag.split('/')
+    @search = ""
+    @match = ""
+    @terms.each do |t|
+      @search << "+##{t}"
+      @match << "##{t} "
+    end
+    #remove trailing space
+    @match.chop!
+
+    logger.debug("Searching for #{@search}")
+    logger.debug("Matching on #{@match}")
+
+
+    twitter = Net::HTTP.start('search.twitter.com')
+    # Set the form data with options
+    command = "/search.json?" + "q=" + URI.escape("#{@search}")
+    command << "&" + "per_page=" + num.to_s if !num.nil?
+    command << "&" + "since_id=" + since.to_s if !since.nil?
+    command << "&refresh=true" if !num.nil? || !since.nil?
+
+    logger.debug("Request URI: " + command)
+
+    req = Net::HTTP::Get.new(command)
+
+    res = twitter.request(req)
+
+    # Raise an exception unless Twitter
+    # returned an OK result
+    unless res.is_a? Net::HTTPOK
+      html << res.body
+    end
+
+    result = JSON.parse(res.body)
+    
+    regex_to_build = @match.split(' ')
+    regex_match = ""
+    regex_to_build.each do |r|
+      regex_match << r
+      regex_match << "\\s*"
+    end
+
+    json_result = Array.new()
+    result["results"].each do |j|
+      logger.debug("Got: "+j["text"])
+      if j["text"] =~ /#{regex_match}/
+        json_result.push(j)
+      end
+      logger.debug(regex_match)      
+    end
+
+    json_result
+  end
+  
   private
   
   def get_data_item(name)    
@@ -124,4 +187,6 @@ class Group < ActiveRecord::Base
   def create_mock_profile
     ""
   end
+  
+  
 end

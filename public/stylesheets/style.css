@@ -333,6 +333,15 @@ em .save_subgroup_link {
     left: 4px;
 }
 
+
+#group_header_nav {
+    position: relative;
+    top: 116px;
+    left: 705px;
+    width: 341px;
+    height: 51px;
+}
+
 #group_header_search a {
     position: absolute;
     background: url('../images/groupSearchButtonOff.png') no-repeat;
@@ -352,8 +361,8 @@ em .save_subgroup_link {
 #home_header_link {
     background: url('../images/headerNavButtonHomeOff.png') no-repeat;
     position: absolute;
-    top: 210px;
-    left: 870px;
+    top: 21px;
+    left: 0px;
     height: 30px;
     width: 98px;
 }
@@ -361,8 +370,8 @@ em .save_subgroup_link {
 #my_groups_header_link {
     background: url('../images/headerNavButtonMyGroupsOff.png') no-repeat;
     position: absolute;
-    top: 210px;
-    left: 972px;
+    top: 21px;
+    left: 102px;
     height: 30px;
     width: 98px;
 }

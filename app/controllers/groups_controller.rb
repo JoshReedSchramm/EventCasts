@@ -69,18 +69,19 @@ class GroupsController < ApplicationController
     num = params[:num]
     since = params[:since_id]
     if (@group.nil?)
-      #is the user logged in?
-      if session[:twitter_user] != nil
-        if params[:group_names].length() < 2
-          redirect_to :controller => "groups", :action => "new"
-          return
-        else
-          redirect_to :controller => "user", :action => "home"
-          return
-        end
-      else
-        redirect_to :controller => "user", :action => "login"
-        return
+      @group = Group.new()
+      @group.sub_groups = Array.new()
+
+      unknown_path = "";
+      if !params[:group_names].nil?
+        unknown_path = params[:group_names].join('/')
+        @group.name = params[:group_names][0]
+      end
+
+      respond_to do |format|
+        format.html
+        format.json { render :json => recent_tweets(unknown_path,num,since).to_json }
+        format.js { render :partial=> "results" }
       end
     else
       populate_sub_group(@group)

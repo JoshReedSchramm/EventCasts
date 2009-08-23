@@ -11,7 +11,7 @@
 </head>
 <body>
 	<div id='container'>
-    <% if controller.controller_name == "groups" && !session[:twitter_user].nil? %>
+    <% if controller.controller_name == "groups" %>
       <h1 class="logged_in">Twoups
         <div id="group_header_search">
           <form>
@@ -21,7 +21,9 @@
         </div>
         <div id="group_header_nav">
           <a href="/" id="home_header_link"><span>&nbsp;</span></a>
-          <a href="/user/groups" rel="/user/groups" id="my_groups_header_link" title="My Groups"><span>&nbsp;</span></a>
+          <%  if session[:twitter_name] %>
+            <a href="/user/groups" rel="/user/groups" id="my_groups_header_link" title="My Groups"><span>&nbsp;</span></a>
+          <% end %>
         </div>
       </h1>
 	  <div id='my_groups_container'></div>

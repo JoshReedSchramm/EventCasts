@@ -21,7 +21,7 @@ class GroupsController < ApplicationController
         format.json  { render :json => @group_data.to_json }
         format.js { render :partial=> "set_data" }
       end
-    end    
+    end
   end
   
   def create
@@ -41,6 +41,10 @@ class GroupsController < ApplicationController
     end
     
     if allowed
+      user = User.find_by_twitter_name(session[:twitter_name])
+      if !user.nil?
+        @group.creator_id = user.id
+      end
       if @group.save
         if (@group.parent_id == 0)
           @user = User.find_by_twitter_name(session[:twitter_name])
@@ -60,6 +64,30 @@ class GroupsController < ApplicationController
         @error_messages = get_error_descriptions(@group.errors)
         render :layout => false      
       end
+    end
+  end
+
+  def add_group_vip
+    @group = Group.find_group_from_heirarchy(params[:group_names])
+
+    if !@group.nil?
+      if (@group.parent_id != 0)
+        @parent = Group.find(@group.parent_id)
+        allowed = User.can_edit_group?(@parent, session[:twitter_name])
+      else
+        allowed = true
+      end
+
+      if allowed
+        @group.add_user_by_twitter_name(params[:twitter_name])
+        @group.save!
+      else
+        @error_messages = get_error_descriptions(@group.errors)
+        render :layout => false
+      end
+    else
+      @error_messages = get_error_descriptions(@group.errors)
+      render :layout => false
     end
   end
   

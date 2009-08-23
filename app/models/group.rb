@@ -16,7 +16,7 @@ class Group < ActiveRecord::Base
         user.save!
       end
     end
-    if !User.can_edit_group(self, user.twitter_name)
+    if !User.can_edit_group?(self, user.twitter_name)
       self.users << user
     end
   end

@@ -51,7 +51,18 @@ class Group < ActiveRecord::Base
   end
   
   def participants
-    Group.pull_recent_tweets(self.get_full_path, 200)    
+    tweets = Group.pull_recent_tweets(self.get_full_path, 200)    
+    results = []
+    tweets.each do |t|
+      found = false
+      results.each do |r| 
+        if t["from_user"] == r["from_user"]
+          found = true
+        end
+      end      
+      results << t unless found
+    end
+    results
   end
   
   def Group.search_by_name(query)    
@@ -138,7 +149,7 @@ class Group < ActiveRecord::Base
     command = "/search.json?" + "q=" + URI.escape("#{@search}")
     command << "&" + "per_page=" + num.to_s if !num.nil?
     command << "&" + "since_id=" + since.to_s if !since.nil?
-    command << "&refresh=true" if !num.nil? || !since.nil?
+    command << "&refresh=true" if ((!num.nil? || !since.nil?) && num <= 20)
 
     logger.debug("Request URI: " + command)
 

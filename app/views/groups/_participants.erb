@@ -1,1 +1,3 @@
-<%= @participants %>
+<% @participants.each do |p| %>
+	<img src='<%= p["profile_image_url"] %>' alt='<%= p["from_user"] %>' title='<%= p["from_user"] %>'/>
+<% end %>

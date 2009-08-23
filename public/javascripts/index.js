@@ -20,9 +20,9 @@ $(document).ready(function() {
 			$('#search_box').val("Search for conversations");
 		}	
 	});
-	/*$('#search_form').ajaxForm({
+	$('#search_form').ajaxForm({
 	    success: show_search_results
-	});*/
+	});
 });
 function show_search_results(response_text) {
 	$("#description_text").hide();

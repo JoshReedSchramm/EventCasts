@@ -129,6 +129,11 @@ body {
 	font-size: 13px;
 }
 
+#search_results_header{
+    font-size: 15px;
+    padding-bottom: 25px;
+}
+
 #examples_list {
 	float: right;
 	padding-right: 300px;	

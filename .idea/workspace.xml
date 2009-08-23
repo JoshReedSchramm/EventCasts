@@ -5,34 +5,26 @@
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/headerNavButtonHomeOn.png" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/search_result.rb" afterPath="$PROJECT_DIR$/app/models/search_result.rb" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/header2.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/headerNavButtonMyGroupsOn.png" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/home/_search.html.erb" afterPath="$PROJECT_DIR$/app/views/home/_search.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/groups/show.erb" afterPath="$PROJECT_DIR$/app/views/groups/show.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/groups_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/groups_controller.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/stylesheets/style.css" afterPath="$PROJECT_DIR$/public/stylesheets/style.css" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/headerNavButtonHomeOff.png" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/spec/models/group_data_spec.rb" afterPath="$PROJECT_DIR$/spec/models/group_data_spec.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/user.rb" afterPath="$PROJECT_DIR$/app/models/user.rb" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/groupSearchButtonOn.png" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/views/groups/create.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/home/index.erb" afterPath="$PROJECT_DIR$/app/views/home/index.erb" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/headerNavButtonMyGroupsOff.png" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/spec/models/group_data_types_spec.rb" afterPath="$PROJECT_DIR$/spec/models/group_data_types_spec.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/javascripts/group_data_editing.js" afterPath="$PROJECT_DIR$/public/javascripts/group_data_editing.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/routes.rb" afterPath="$PROJECT_DIR$/config/routes.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/group.rb" afterPath="$PROJECT_DIR$/app/models/group.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/spec/models/group_spec.rb" afterPath="$PROJECT_DIR$/spec/models/group_spec.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/headerNavButtonMyGroupsOn.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/user.rb" afterPath="$PROJECT_DIR$/app/models/user.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/home_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/home_controller.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/headerNavButtonMyGroupsOff.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/views/groups/_subgroups.erb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/search.rb" afterPath="$PROJECT_DIR$/app/models/search.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/spec/models/group_spec.rb" afterPath="$PROJECT_DIR$/spec/models/group_spec.rb" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/groupSearchButtonOff.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/layouts/application.html.erb" afterPath="$PROJECT_DIR$/app/views/layouts/application.html.erb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/groups/new.erb" afterPath="$PROJECT_DIR$/app/views/groups/new.erb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/application_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/application_controller.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/javascripts/groups.js" afterPath="$PROJECT_DIR$/public/javascripts/groups.js" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/headerSearch.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/javascripts/index.js" afterPath="$PROJECT_DIR$/public/javascripts/index.js" />
     </list>
     <ignored path=".idea/workspace.xml" />
     <ignored path="twoups.iws" />
@@ -53,7 +45,7 @@
       <file leaf-file-name="index.erb" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/views/home/index.erb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="15" column="0" selection-start="665" selection-end="665" vertical-scroll-proportion="-10.227273">
+            <state line="49" column="0" selection-start="2431" selection-end="2431" vertical-scroll-proportion="-23.818182">
               <folding />
             </state>
           </provider>
@@ -62,25 +54,25 @@
       <file leaf-file-name="index.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/javascripts/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="28" column="0" selection-start="822" selection-end="822" vertical-scroll-proportion="0.0">
+            <state line="64" column="0" selection-start="1818" selection-end="1818" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="search.rb" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="search.rb" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/models/search.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="23" column="5" selection-start="665" selection-end="665" vertical-scroll-proportion="0.41516244">
+            <state line="20" column="45" selection-start="622" selection-end="622" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="_search.html.erb" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="_search.html.erb" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/views/home/_search.html.erb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="3" column="52" selection-start="125" selection-end="125" vertical-scroll-proportion="-2.0454545">
+            <state line="7" column="103" selection-start="473" selection-end="473" vertical-scroll-proportion="0.13224182">
               <folding />
             </state>
           </provider>
@@ -89,7 +81,7 @@
       <file leaf-file-name="show.erb" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/views/groups/show.erb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="15" column="42" selection-start="463" selection-end="463" vertical-scroll-proportion="2.0454545">
+            <state line="10" column="91" selection-start="252" selection-end="252" vertical-scroll-proportion="-6.818182">
               <folding />
             </state>
           </provider>
@@ -98,7 +90,7 @@
       <file leaf-file-name="groups.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/javascripts/groups.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="79" column="47" selection-start="2459" selection-end="2459" vertical-scroll-proportion="0.0">
+            <state line="69" column="49" selection-start="2069" selection-end="2069" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -107,7 +99,7 @@
       <file leaf-file-name="group.rb" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/models/group.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="8" column="45" selection-start="425" selection-end="425" vertical-scroll-proportion="0.0">
+            <state line="8" column="45" selection-start="440" selection-end="440" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -125,7 +117,7 @@
       <file leaf-file-name="style.css" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/stylesheets/style.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="103" column="20" selection-start="1551" selection-end="1551" vertical-scroll-proportion="0.0">
+            <state line="133" column="25" selection-start="1966" selection-end="1966" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -811,44 +803,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/home/index.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="15" column="0" selection-start="665" selection-end="665" vertical-scroll-proportion="-10.227273">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/stylesheets/style.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="103" column="20" selection-start="1551" selection-end="1551" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/javascripts/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="28" column="0" selection-start="822" selection-end="822" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/javascripts/groups.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="79" column="47" selection-start="2459" selection-end="2459" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/models/group_datum.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/group.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="8" column="45" selection-start="425" selection-end="425" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
@@ -881,23 +838,58 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/search.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="20" column="45" selection-start="622" selection-end="622" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/stylesheets/style.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="133" column="25" selection-start="1966" selection-end="1966" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/views/groups/show.erb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="15" column="42" selection-start="463" selection-end="463" vertical-scroll-proportion="2.0454545">
+        <state line="10" column="91" selection-start="252" selection-end="252" vertical-scroll-proportion="-6.818182">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/group.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="8" column="45" selection-start="440" selection-end="440" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/home/index.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="49" column="0" selection-start="2431" selection-end="2431" vertical-scroll-proportion="-23.818182">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/javascripts/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="64" column="0" selection-start="1818" selection-end="1818" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/javascripts/groups.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="69" column="49" selection-start="2069" selection-end="2069" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/views/home/_search.html.erb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="3" column="52" selection-start="125" selection-end="125" vertical-scroll-proportion="-2.0454545">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/search.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="23" column="5" selection-start="665" selection-end="665" vertical-scroll-proportion="0.41516244">
+        <state line="7" column="103" selection-start="473" selection-end="473" vertical-scroll-proportion="0.13224182">
           <folding />
         </state>
       </provider>

@@ -3,14 +3,14 @@ $(document).ready(function() {
 	$('a#my_groups_header_link').cluetip({
 		sticky: true, 
 		closePosition: 'title',
-		arrows: true,
+		arrows: false,
 		dropShadow: false,
 		positionBy: 'bottomTop',
 		fx: {
 			open: 'fadeIn',
 			openSpeed: ''
 		},
-		topOffset: 30,
+		topOffset: 25,
 		leftOffset: 20,
 		activation: 'click'
 	});

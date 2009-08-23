@@ -45,7 +45,7 @@ Rails::Initializer.run do |config|
   # config.i18n.default_locale = :de
   config.gem 'twitter',
     :lib => 'twitter',
-    :version => '0.6.6'
+    :version => '0.6.14'
   config.gem 'json',
     :lib => 'json',
     :version => '1.1.7'

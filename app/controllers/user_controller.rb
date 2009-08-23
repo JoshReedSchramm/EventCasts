@@ -88,7 +88,6 @@ class UserController < ApplicationController
     @user.groups.each do |ug|
       ug.sub_groups = ug.populate_sub_group
     end
-    @sub_groups = @user.groups
     render :layout => false
   end
  end

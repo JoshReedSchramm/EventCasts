@@ -29,6 +29,8 @@ $(document).ready(function() {
 		$("#add_group_form").show();
 	});
 	$("#cancel_add_group_link").click(function(){
+		$(".error_message").remove();
+        
 		$("#cancel_add_group_link").hide();
 		$("#add_group_link").show();
 		$("#add_group_form").hide();

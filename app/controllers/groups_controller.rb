@@ -69,6 +69,7 @@ class GroupsController < ApplicationController
 
   def add_group_vip
     @group = Group.find_group_from_heirarchy(params[:group_names])
+    user = params[:user]
 
     if !@group.nil?
       if (@group.parent_id != 0)
@@ -79,7 +80,7 @@ class GroupsController < ApplicationController
       end
 
       if allowed
-        @group.add_user_by_twitter_name(params[:twitter_name])
+        @group.add_user_by_twitter_name(user[:twitter_name])
         @group.save!
       else
         @error_messages = get_error_descriptions(@group.errors)

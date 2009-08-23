@@ -82,6 +82,7 @@ class GroupsController < ApplicationController
       if allowed
         @group.add_user_by_twitter_name(user[:twitter_name])
         @group.save!
+        render :layout => false
       else
         @error_messages = get_error_descriptions(@group.errors)
         render :layout => false

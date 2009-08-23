@@ -25,7 +25,5 @@ class User < ActiveRecord::Base
     ha = Twitter::HTTPAuth.new('', '')
     base = Twitter::Base.new(ha)    
     base.user(self.twitter_name)
-  rescue
-    return nil
   end
 end

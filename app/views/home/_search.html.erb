@@ -3,14 +3,14 @@
         <% for result in @results
             if !result.group.nil? %>    
                 <li id='result_<% result.group.id %>' class='result'>
-                    <span class='hashtag'><%= result.group.name %></span>
+                    <span class='hashtag'><a href='/groups/<%= result.group.name %>'>#<%= result.group.name %></a></span>
                     <span class='registration'>owner: @<% if !result.group.owner.nil? %><%= result.group.owner.twitter_name %> <% end %>
-                      registered: <%= result.group.created_at.to_s %>
+                      registered: <%= result.group.created_at.strftime("%m/%d/%Y") %>
                       </span>
                     <div class='clear'></div>
                      <hr class='tweet_rule' />
                   <div class='clear'></div>
-                    <div class='tweet'><%= result.group.description %></div>
+                    <div class='description'><%= result.group.description %></div>
                     <div class='clear'></div>
                 </li>
             <% end

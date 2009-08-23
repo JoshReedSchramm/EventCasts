@@ -101,7 +101,7 @@ body {
 }
 
 #search_results li {
-	margin: 0px;
+	margin: 0px 0 20px;;
 }
 
 #search_results .hashtag {
@@ -109,7 +109,24 @@ body {
 }
 
 #search_results .registration {
-    float:right;
+    margin-top:5px;
+	float: right;
+	font-size: 10px;
+	color: #999;
+}
+
+#search_results a {
+	color: blue;
+	text-decoration: none;
+}
+
+#search_results a:hover {
+	text-decoration: underline;
+}
+
+#search_results .description {
+	margin-top: 5px;
+	font-size: 13px;
 }
 
 #examples_list {

@@ -7,7 +7,7 @@ class Search
     groups << results_by_name unless results_by_name.nil?
     groups.concat Search.search_by_title(search_term)
     groups.concat Search.search_by_description(search_term)
-    @results = Search.convert_groups_to_search_results(groups).uniq
+    @results = Search.convert_groups_to_search_results(groups.uniq)
   end
 
   def Search.search_by_name search_term

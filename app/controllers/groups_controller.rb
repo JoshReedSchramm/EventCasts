@@ -97,10 +97,17 @@ class GroupsController < ApplicationController
     end
   end
   
+  def vips
+    @group = Group.find(params[:group_id])
+    @vips = @group.get_vips
+    render :layout => false
+  end
+  
   def show
     @group = Group.find_group_from_heirarchy(params[:group_names])
+    @vips = @group.get_vips
+    
     @vip_user = User.new()
-
     num = params[:num]
     since = params[:since_id]
     if (@group.nil?)

@@ -13,10 +13,10 @@
 				<hr class='tweet_rule' />
 				<img src='/images/fakeAvatar.jpg' alt='' class='profile_image' height="48px" width="48px"/>
 				<div class='tweet_info'>
-	        		<span class="tweeter"><a href='#'>jeremyskelly</a></span>				
-	        		<span class="update_stamp">about 2 hours ago via tweetdeck</span>					
+	        		<span class="tweeter"><a href='#'></a></span>				
+	        		<span class="update_stamp"></span>					
 				</div>
-				<div class='tweet'>Just drove thru a crazy North Caroline storm. Thunder, lightning &amp; rail so heavy a lot of cars pulled off the road. Fun! Through scary!</div>
+				<div class='tweet'></div>
 				<div class='clear'></div>
 	      	</li>
 		</ul>
@@ -89,6 +89,12 @@
 		<%= "<a href='javascript:void(0)' class='edit_data_link' id='edit_description_link'>edit</a><a href='javascript:void(0)' class='save_data_link' id='save_description_link'>save</a>"  if User.can_edit_group?(@group, session[:twitter_name])    %>
 	</em>	
 	<br/><br/>
+	
+	<div id='vips'>
+		<%= render :partial => "vips" %>
+		<br />		
+		<em>organizers / VIPs</em>
+	</div>
 	
 	<div id='sub_groups'>
 		<% if !@group.sub_groups.nil? %>

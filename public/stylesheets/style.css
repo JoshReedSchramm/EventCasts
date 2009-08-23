@@ -329,7 +329,7 @@ em .save_subgroup_link {
     height: 16px;
     width: 225px;
     position: absolute;
-    top: 6px;
+    top: 5px;
     left: 4px;
 }
 
@@ -340,11 +340,29 @@ em .save_subgroup_link {
     width: 80px;
     float: right;
     margin-right: 25px;
-    top: 6px;
+    top: 5px;
     left: 225px;
 }
 
 #group_header_search a:hover {
     background: url('../images/groupSearchButtonOn.png') no-repeat;
 
+}
+
+#home_header_link {
+    background: url('../images/headerNavButtonHomeOff.png') no-repeat;
+    position: absolute;
+    top: 210px;
+    left: 870px;
+    height: 30px;
+    width: 98px;
+}
+
+#my_groups_header_link {
+    background: url('../images/headerNavButtonMyGroupsOff.png') no-repeat;
+    position: absolute;
+    top: 210px;
+    left: 972px;
+    height: 30px;
+    width: 98px;
 }

@@ -60,7 +60,7 @@
 			<a id='add_vip_link' href='javascript:void(0);'>Add group VIP</a>
 			<a id='cancel_add_vip_link' href='javascript:void(0);'>cancel</a>
 			<div id='add_sub_group'>
-				<% form_for [:group,:user], :url => {:action=>"add_group_vip"}, :html => { :id => "add_vip_form" } do |p| %>
+				<% form_for [:group,@vip_user], :url => {:action=>"add_group_vip"}, :html => { :id => "add_vip_form" } do |p| %>
 					<%= p.label :name, "twitter user: " %>
 					<%= p.text_field :twitter_name, :size=>20, :maxlength=>140, :id=>'add_vip_box' %>
 					<%= p.hidden_field :group_id, :value=>@group.id %>

@@ -94,6 +94,7 @@ class GroupsController < ApplicationController
   
   def show
     @group = Group.find_group_from_heirarchy(params[:group_names])
+    @vip_user = User.new()
 
     num = params[:num]
     since = params[:since_id]

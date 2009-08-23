@@ -56,7 +56,7 @@
 	<br/><br/>
 
   	<%
-	if User.can_edit_group?(@group, session[:twitter_name] && params[:test_mode])
+	if User.can_edit_group?(@group, session[:twitter_name]) && params[:test_mode]
 		form_for :group_user, :url => "/groups/add_group_vip?format=json", :html => { :id => "vip_form", :class=>"group_data_form" } do |p| %>
 		<%= p.text_field :twitter_name, :size=>30, :maxlength=>140, :id=>'title_box' %>
 		<%= p.hidden_field :group_id, :value=>@group.id %>

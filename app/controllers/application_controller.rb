@@ -9,6 +9,14 @@ class ApplicationController < ActionController::Base
   # filter_parameter_logging :password
 
   rescue_from Twitter::Unauthorized, :with => :twitter_unauthorized
+  
+  def get_error_descriptions(errors)
+    desc = ""
+    errors.each do |e|
+      desc << e[1]
+    end
+    desc
+  end
 
   private
     def twitter_unauthorized(exception)

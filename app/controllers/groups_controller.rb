@@ -38,6 +38,9 @@ class GroupsController < ApplicationController
         populate_sub_group(@group)    
         render :layout => false
       end
+    else      
+      @error_messages = get_error_descriptions(@group.errors)
+      render :layout => false      
     end
   end
   

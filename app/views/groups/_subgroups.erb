@@ -1,18 +1,20 @@
-<% if !@group.nil? && !@group.sub_groups.nil? %>
-<% @group.sub_groups.each do |sg| 
-	sg.populate_sub_group()
-%>
-   	<li>
-		<a href='/groups/<%= sg.get_full_path %>'>#<%= sg.name %></a>
-			<% if !sg.sub_groups.nil? %>
-			<ul id='user_groups_sub_groups'>						
-				<% sg.sub_groups.each do |child_group| %>
-					<li>
-						<a href='/groups/<%= sg.get_full_path %>'>#<%= child_group.name %></a>
-			    	</li>
-				<% end %>
-			</ul>
-		<% end %>					
-	</li>
-<% end %>
+<% if !@group.nil? && !@group.sub_groups.nil? && @group.errors.length == 0 %>
+	<% @group.sub_groups.each do |sg| 
+		sg.populate_sub_group()
+	%>
+	   	<li>
+			<a href='/groups/<%= sg.get_full_path %>'>#<%= sg.name %></a>
+				<% if !sg.sub_groups.nil? %>
+				<ul id='user_groups_sub_groups'>						
+					<% sg.sub_groups.each do |child_group| %>
+						<li>
+							<a href='/groups/<%= sg.get_full_path %>'>#<%= child_group.name %></a>
+				    	</li>
+					<% end %>
+				</ul>
+			<% end %>					
+		</li>
+	<% end %>
+<% elsif @error_messages != "" %>
+Error: <%= @error_messages %>
 <% end %>

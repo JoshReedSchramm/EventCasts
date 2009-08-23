@@ -308,3 +308,12 @@ em .save_subgroup_link {
 #tweetTemplate {
 	display: none;
 }
+
+.error_message {
+	background-color: red;
+	color: white;
+	border: solid 1px black;
+	width: 275px;
+	margin-top: 10px;
+	padding: 10px;
+}

@@ -212,6 +212,10 @@ a#login_link:hover {
 	display: none;
 }
 
+#add_vip {
+        display: none;
+}
+
 #footer {
 	clear: both;
 	background: url('../images/footerBG.png') no-repeat;
@@ -332,6 +336,18 @@ a#login_link:hover {
 }
 
 #cancel_add_subgroup_link {
+	display: none;
+}
+
+#add_vip_link,
+#cancel_add_vip_link {
+	padding-left: 10px;
+	color: blue;
+	text-decoration: none;
+	font-size:10px;
+}
+
+#cancel_add_vip_link {
 	display: none;
 }
 
@@ -489,4 +505,8 @@ h1.not_logged_in #group_header_nav #home_header_link {
 
 #vips {
 	margin-top: 10px;
+}
+
+#participants {
+	margin-top: 40px;
 }

@@ -24,6 +24,8 @@ class User < ActiveRecord::Base
   def get_twitter_profile
     ha = Twitter::HTTPAuth.new('', '')
     base = Twitter::Base.new(ha)    
-    base.user(self.twitter_name)    
+    base.user(self.twitter_name)
+  rescue
+    return nil
   end
 end

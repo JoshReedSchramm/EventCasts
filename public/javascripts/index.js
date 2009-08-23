@@ -23,7 +23,44 @@ $(document).ready(function() {
 	$('#search_form').ajaxForm({
 	    success: show_search_results
 	});
+	$("#add_group_link").click(function(){
+		$("#cancel_add_group_link").show();
+		$("#add_group_link").hide();
+		$("#add_group_form").show();
+	});
+	$("#cancel_add_group_link").click(function(){
+		$("#cancel_add_group_link").hide();
+		$("#add_group_link").show();
+		$("#add_group_form").hide();
+	});
+	$("#save_group_link").click(function(){
+		$('#add_group_form').submit();
+	});
+
+	$('#add_group_form').ajaxForm({
+	    success: update_sub_groups		
+	});
 });
+
+function update_sub_groups(result) {
+	if (result.indexOf("Error: ")>-1) {	
+ 		display_error_on('add_group_box', result.substr(result.indexOf("Error: ")+7));
+	} else {
+		$(".error_message").remove();		
+		$("#user_groups").html(result);
+		$("#add_group_form").hide();	
+		$('#add_group_link').show();						
+		$('#cancel_add_group_link').hide();				
+	}
+}
+
+function display_error_on(fieldId, error) {
+	$(".error_message").remove();
+	
+	$("#"+fieldId).parent().after("<div class='error_message' id='error_"+fieldId+"'>"+error+"</div>");
+	var parent_pos = $("#"+fieldId).position();
+}
+
 function show_search_results(response_text) {
 	$("#description_text").hide();
 	alert(response_text)

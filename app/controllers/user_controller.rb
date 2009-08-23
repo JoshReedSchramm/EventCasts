@@ -1,12 +1,4 @@
 class UserController < ApplicationController
-  def home
-    redirect_to :action => :login unless session[:twitter_name]
-    @user = User.find_by_twitter_name(session[:twitter_name])
-    @user.groups.each do |ug|
-      ug.sub_groups = ug.populate_sub_group
-    end
-  end
-
   def login
     store_request_token login_request_token
     redirect_to login_request_token.authorize_url

@@ -14,7 +14,7 @@ class GroupsController < ApplicationController
       @group_data = existing_data_item
     end
     @group = Group.find(@group_data.group_id)
-    if User.can_edit_group?(@group, session["twitter_name"])
+    if User.can_edit_group?(@group, session[:twitter_name])
       @group_data.save    
       respond_to do |format|
         format.html 
@@ -25,16 +25,17 @@ class GroupsController < ApplicationController
   end
   
   def create
-    if (session["twitter_name"].nil? || session["twitter_name"].blank? )
+    if (session[:twitter_name].nil? || session[:twitter_name].blank? )
       return
     end
+    
     @group = Group.new(params[:group])
-    @group.add_user_by_twitter_name(session["twitter_name"])    
+    @group.add_user_by_twitter_name(session[:twitter_name])    
     @group.name = Group.filter_hash(@group.name)
     
     if (@group.parent_id != 0)
       @parent = Group.find(@group.parent_id)
-      allowed = User.can_edit_group?(@parent, session["twitter_name"])      
+      allowed = User.can_edit_group?(@parent, session[:twitter_name])      
     else
       allowed = true
     end
@@ -42,10 +43,17 @@ class GroupsController < ApplicationController
     if allowed
       if @group.save
         if (@group.parent_id == 0)
-          #redirect
+          @user = User.find_by_twitter_name(session[:twitter_name])
+          @user.groups.each do |ug|
+            ug.sub_groups = ug.populate_sub_group
+          end
+          @sub_groups = @user.groups
+          @error_messages = get_error_descriptions(@group.errors)
+          render :layout => false
         else
           @group = @parent
           populate_sub_group(@group)    
+          @sub_groups = @group.sub_groups
           render :layout => false
         end
       else      

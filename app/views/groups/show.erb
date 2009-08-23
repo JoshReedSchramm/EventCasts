@@ -93,6 +93,12 @@
 		<% end %>
 	</div>
 	
+	<div id='participants'>
+		<%= render :partial => "participants" %>
+		<br />		
+		<em>participants</em>
+	</div>
+	
 	<div id='sub_groups'>
 		<% if !@group.sub_groups.nil? %>
 			<ul id='subgroup_list'>		

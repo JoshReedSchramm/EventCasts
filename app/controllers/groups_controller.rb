@@ -14,7 +14,7 @@ class GroupsController < ApplicationController
       @group_data = existing_data_item
     end
     @group = Group.find(@group_data.group_id)
-    if User.can_edit_group?(@group, session["twitter_name"])
+    if User.can_edit_group?(@group, session[:twitter_name])
       @group_data.save    
       respond_to do |format|
         format.html 
@@ -25,16 +25,17 @@ class GroupsController < ApplicationController
   end
   
   def create
-    if (session["twitter_name"].nil? || session["twitter_name"].blank? )
+    if (session[:twitter_name].nil? || session[:twitter_name].blank? )
       return
     end
+    
     @group = Group.new(params[:group])
-    @group.add_user_by_twitter_name(session["twitter_name"])    
+    @group.add_user_by_twitter_name(session[:twitter_name])    
     @group.name = Group.filter_hash(@group.name)
     
     if (@group.parent_id != 0)
       @parent = Group.find(@group.parent_id)
-      allowed = User.can_edit_group?(@parent, session["twitter_name"])      
+      allowed = User.can_edit_group?(@parent, session[:twitter_name])      
     else
       allowed = true
     end
@@ -42,10 +43,17 @@ class GroupsController < ApplicationController
     if allowed
       if @group.save
         if (@group.parent_id == 0)
-          #redirect
+          @user = User.find_by_twitter_name(session[:twitter_name])
+          @user.groups.each do |ug|
+            ug.sub_groups = ug.populate_sub_group
+          end
+          @sub_groups = @user.groups
+          @error_messages = get_error_descriptions(@group.errors)
+          render :layout => false
         else
           @group = @parent
           populate_sub_group(@group)    
+          @sub_groups = @group.sub_groups
           render :layout => false
         end
       else      
@@ -61,18 +69,19 @@ class GroupsController < ApplicationController
     num = params[:num]
     since = params[:since_id]
     if (@group.nil?)
-      #is the user logged in?
-      if session[:twitter_user] != nil
-        if params[:group_names].length() < 2
-          redirect_to :controller => "groups", :action => "new"
-          return
-        else
-          redirect_to :controller => "user", :action => "home"
-          return
-        end
-      else
-        redirect_to :controller => "user", :action => "login"
-        return
+      @group = Group.new()
+      @group.sub_groups = Array.new()
+
+      unknown_path = "";
+      if !params[:group_names].nil?
+        unknown_path = params[:group_names].join('/')
+        @group.name = params[:group_names][0]
+      end
+
+      respond_to do |format|
+        format.html
+        format.json { render :json => recent_tweets(unknown_path,num,since).to_json }
+        format.js { render :partial=> "results" }
       end
     else
       populate_sub_group(@group)

@@ -44,6 +44,7 @@ function update_sub_groups(result) {
 	if (result.indexOf("Error: ")>-1) {	
  		display_error_on('add_subgroup_box', result.substr(result.indexOf("Error: ")+7));
 	} else {
+		$(".error_message").remove();		
 		$("#subgroup_list").html(result);
 		$("#add_sub_group").hide();	
 		$('#add_subgroup_link').show();						

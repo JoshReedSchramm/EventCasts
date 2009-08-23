@@ -1,5 +1,5 @@
-<% if !@group.nil? && !@group.sub_groups.nil? && @group.errors.length == 0 %>
-	<% @group.sub_groups.each do |sg| 
+<% if !@sub_groups.nil? && @group.errors.length == 0 %>
+	<% @sub_groups.each do |sg| 
 		sg.populate_sub_group()
 	%>
 	   	<li>

@@ -1,11 +1,21 @@
 <% if !@results.nil? %>
-	<ul id='results_list'>	
-		<% for result in @results 
-			if !result.group.nil? %>
-				<li id='result_<%= result.group.id %>' class='result'>
-					<span class='name'><%= result.group.name %></span>
-				</li>
-			<% end
-		end %>
-	</ul>
+    <ul id='results_list'>
+        <% for result in @results
+            if !result.group.nil? %>    
+                <li id='result_<% result.group.id %>' class='result'>
+                    <span class='hashtag'><%= result.group.name %></span>
+                    <span class='registration'>owner: @<% if !result.group.owner.nil? %><%= result.group.owner.twitter_name %> <% end %>
+                      registered: <%= result.group.created_at.to_s %>
+                      </span>
+                    <div class='clear'></div>
+                     <hr class='tweet_rule' />
+                  <div class='clear'></div>
+                    <div class='tweet'><%= result.group.description %></div>
+                    <div class='clear'></div>
+                </li>
+            <% end
+        end %>
+    </ul>
+<% else %>
+    No results found!
 <% end %>

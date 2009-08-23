@@ -89,6 +89,23 @@ body {
 
 #search_results {
 	display: none;
+	clear:both;
+    float: left;
+	width: 490px;
+	margin-left: 5px;
+	margin-top:100px;
+}
+
+#search_results li {
+	margin: 0px;
+}
+
+#search_results .hashtag {
+    float:left;
+}
+
+#search_results .registration {
+    float:right;
 }
 
 #examples_list {

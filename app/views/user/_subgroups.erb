@@ -1,21 +1,17 @@
-<% if !@sub_groups.nil?  %>
-	<ul id='my_groups_list'>
-	<% @sub_groups.each do |sg| 
-		sg.populate_sub_group()
-	%>
-	   	<li>
-			<a href='/<%= sg.get_full_path %>'>#<%= sg.name %></a>
-				<% if !sg.sub_groups.nil? %>
-				<ul id='user_groups_sub_groups'>						
-					<% sg.sub_groups.each do |child_group| %>
-						<li>
-							<a href='/<%= sg.get_full_path %>'>#<%= child_group.name %></a>
-				    	</li>
-					<% end %>
-				</ul>
-			<% end %>					
-		</li>
-	<% end %>
-</ul>
-	
+<% if !@user.nil? && !@user.groups.nil? && !@user.groups.empty?  %>
+	<ul id="user_groups">
+		<% for group in @user.groups %>
+			<% if group.parent_id == 0 %>
+		    	<li><a href='/<%= group.get_full_path %>'>#<%= group.name %></a>
+		    	<% if !group.sub_groups.nil? %>
+						<ul id="user_groups_sub_groups">
+		      				<% group.sub_groups.each do |sg| %>
+								<li><a href='/<%= sg.get_full_path %>'>#<%= sg.name %></a></li>
+							<% end %>
+						</ul>
+					</li>
+		    	<% end %>
+		  	<% end %>
+		<% end %>
+	</ul>	
 <% end %>

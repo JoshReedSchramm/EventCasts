@@ -104,10 +104,7 @@ class Group < ActiveRecord::Base
   def populate_sub_group
     sub_groups = Group.find_all_by_parent_id(self.id)
     unless sub_groups == nil
-      self.sub_groups = Array.new()
-      sub_groups.each do |g|
-        self.sub_groups.push(g)
-      end
+      self.sub_groups = sub_groups
     end
   end
   

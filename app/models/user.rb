@@ -22,7 +22,7 @@ class User < ActiveRecord::Base
   end
   
   def get_twitter_profile
-    ha = Twitter::HTTPAuth.new('twoupsinfo', 'vMxzWUmylHJf')
+    ha = Twitter::HTTPAuth.new('asktwoups', '1rumbleapp!')
     base = Twitter::Base.new(ha)    
     base.user(self.twitter_name)
   rescue

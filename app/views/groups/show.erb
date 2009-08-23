@@ -26,50 +26,78 @@
 	</form>
 </div>
 <div id="sidebar">
-	<h2><a href='javascript:void(0)' class='edit_inline_link' id='edit_name_inline_link'>#<%=@group.name%></a></h2>
-	<em>hashtag <a href='javascript:void(0)' id='edit_name_link' class='edit_data_link' id='edit_name_link'>edit</a></em>
+	<h2>#<%=@group.name%></h2>
+	<em>
+		hashtag 
+		<% if @group.parent_id != 0 %>
+			<a href='/groups/<%=@group.parent.get_full_path %>' id='parent_link'>child of #<%= @group.parent.name %></a>		
+		<% end %>
+		</em>
 	<br /><br />
 	
-	<h3><a href='javascript:void(0)' class='edit_inline_link' id='edit_title_inline_link'><%= @group.title == "" ? "Set a group short name" : @group.title %></a></h3>
-	<% form_for :group_datum, :url => "/groups/set_data?format=json", :html => { :id => "title_form", :class=>"group_data_form" } do |p| %>
+	<h3>
+		<%= "<a href='javascript:void(0)' class='edit_inline_link' id='edit_title_inline_link'>" if User.can_edit_group?(@group, session["twitter_name"])  %>
+		<%= @group.title == "" ? 'Set a group short name' : @group.title %>
+		<%= "</a>"  if User.can_edit_group?(@group, session["twitter_name"])  %>
+	</h3>
+
+	<% 
+	if User.can_edit_group?(@group, session["twitter_name"])  
+		form_for :group_datum, :url => "/groups/set_data?format=json", :html => { :id => "title_form", :class=>"group_data_form" } do |p| %>
 		<%= p.text_field :description, :size=>30, :maxlength=>140, :id=>'title_box', :value=>@group.title %>
 		<%= p.hidden_field :group_id, :value=>@group.id %>
 		<%= p.hidden_field :group_data_type_id, :value=>GroupDataType.title.id %>
 		<%= p.submit "save", :class => "submit, submit_button" %>	
-	<% end %>
-	<em>short name <a href='javascript:void(0)' class='edit_data_link' id='edit_title_link'>edit</a><a href='javascript:void(0)' class='save_data_link' id='save_title_link'>save</a></em>	
+		<% end
+	 end %>
+	<em>short name 
+		<%= "<a href='javascript:void(0)' class='edit_data_link' id='edit_title_link'>edit</a><a href='javascript:void(0)' class='save_data_link' id='save_title_link'>save</a>"  if User.can_edit_group?(@group, session["twitter_name"])  %>
+	</em>	
 	<br/><br/>
+		
 	
-	<h4><a href='javascript:void(0)' class='edit_inline_link' id='edit_description_inline_link'><%= @group.description == "" ? "Set a group description" : @group.description.gsub(/\n/, '<br />') %></a></h4>
-	<% form_for :group_datum, :url => "/groups/set_data?format=json", :html => { :id => "description_form", :class=>"group_data_form" } do |p| %>
-		<%= p.text_area :description, :rows=>6, :maxlength=>140, :id=>'description_box', :value=>@group.description %>
-		<%= p.hidden_field :group_id, :value=>@group.id %>
-		<%= p.hidden_field :group_data_type_id, :value=>GroupDataType.description.id %>
-		<%= p.submit "save", :class => "submit, submit_button" %>	
-	<% end %>	
-	<em>description <a href='javascript:void(0)' class='edit_data_link' id='edit_description_link'>edit</a><a href='javascript:void(0)' class='save_data_link' id='save_description_link'>save</a></em>	
+	
+	<h3>
+		<%= "<a href='javascript:void(0)' class='edit_inline_link' id='edit_description_inline_link'>"  if User.can_edit_group?(@group, session["twitter_name"])    %>
+		<%= @group.description == "" ? "Set a group description" : @group.description.gsub(/\n/, '<br />') %>
+		<%= "</a>"  if User.can_edit_group?(@group, session["twitter_name"])   %>
+	</h3>
+	<% 
+ 	if User.can_edit_group?(@group, session["twitter_name"])  	
+		form_for :group_datum, :url => "/groups/set_data?format=json", :html => { :id => "description_form", :class=>"group_data_form" } do |p| %>
+			<%= p.text_area :description, :rows=>6, :cols=>30, :maxlength=>140, :id=>'description_box', :value=>@group.description %>
+			<%= p.hidden_field :group_id, :value=>@group.id %>
+			<%= p.hidden_field :group_data_type_id, :value=>GroupDataType.description.id %>
+			<%= p.submit "save", :class => "submit, submit_button" %>	
+		<% end 
+	end %>	
+	<em>description 
+		<%= "<a href='javascript:void(0)' class='edit_data_link' id='edit_description_link'>edit</a><a href='javascript:void(0)' class='save_data_link' id='save_description_link'>save</a>"  if User.can_edit_group?(@group, session["twitter_name"])    %>
+	</em>	
 	<br/><br/>
 	
 	<div id='sub_groups'>
 		<% if !@group.sub_groups.nil? %>
-			<ul>
-		    	<% @group.sub_groups.each do |sg| %>
-		      		<li>
-						<a href='/groups/<%= sg.get_full_path %>'>#<%= sg.name %></a>
-							<% if !sg.sub_groups.nil? %>
-							<ul>						
-								<% sg.sub_groups.each do |child_group| %>
-									<li>
-										<a href='/groups/<%= sg.get_full_path %>'><%= child_group.name %></a>
-							    	</li>
-								<% end %>
-							</ul>
-						<% end %>					
-					</li>
-		    	<% end %>
-		  	</ul>
+			<ul id='subgroup_list'>		
+				<%= render :partial => "subgroups" %>
+			</ul>
 		<% end %>
-		<em>related groups</em> <a id='add_subgroup_link' href='/groups/new/<%= @group.id %>'>Add sub-group</a>
+		
+		<em>related groups</em> 
+		<% if User.can_edit_group?(@group, session["twitter_name"])   %>
+			<a id='add_subgroup_link' href='javascript:void(0);'>Add sub-group</a>
+			<a id='cancel_add_subgroup_link' href='javascript:void(0);'>cancel</a>
+			<div id='add_sub_group'>
+				<% form_for :group, :url => {:action=>"new"}, :html => { :id => "add_sub_group_form" } do |p| %>
+					<%= p.label :name, "hashtag: " %>
+					<%= p.text_field :name, :size=>30, :maxlength=>140, :id=>'add_subgroup_box' %>
+					<%= p.hidden_field :parent_id, :value=>@group.id %>
+					<a href='javascript:void(0)' id='save_subgroup_link'>save</a>
+					<%= p.submit "Create Group", :class => "submit, submit_button" %>				
+				<% end %>
+			</div>
+			<p style="color: green"><%= flash[:notice] %></p>		
+		<% end %>
 	</div>
 </div>
 

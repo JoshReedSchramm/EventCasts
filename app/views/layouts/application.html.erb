@@ -8,7 +8,20 @@
 </head>
 <body>
 	<div id='container'>
-		<h1>Twoups</h1>
+    <% if controller.controller_name == "groups" && session[:twitter_user].nil? %>
+      <h1 class="logged_in">Twoups
+        <div id="group_header_search">
+          <form>
+            <input type="text" />
+            <a href="#" class="submit" type="submit"><img src="../images/groupSearchButtonOff.png"/></a>
+          </form>
+        </div>
+        <%=  link_to "<span>&nbsp;</span>", { :controller => "user" }, :id => "home_header_link" %>
+        <%=  link_to "<span>&nbsp;</span>", { :controller => "groups" }, :id => "my_groups_header_link" %>
+      </h1>
+    <% else %>
+      <h1>Twoups</h1>
+    <% end %>
 		<div id='body_container'>
 			<%= yield  %>
 			<div class='clear'></div>			

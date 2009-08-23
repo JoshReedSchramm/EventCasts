@@ -1,8 +1,10 @@
 class Group < ActiveRecord::Base
   has_and_belongs_to_many :users  
   has_many :group_data
-  validates_presence_of :name, :on => :create, :message => "can't be blank"
-  #validates_format_of :name, :with => /!\s+/, :on => :create, :message => "cannot contain spaces"
+  validates_presence_of :name, :on => :create, :message => "hashtag can't be blank"
+  validates_uniqueness_of :name, :scope => "parent_id", :message => "hashtag is already registered" 
+  
+  validates_format_of :name, :with => /^[A-Za-z0-9]+$/, :on => :create, :message => "hashtag cannot contain spaces"
   attr_accessor :sub_groups
   
   def add_user_by_twitter_name(twitter_name)
@@ -15,7 +17,6 @@ class Group < ActiveRecord::Base
     if (self.parent_id == 0)
       return current_path.reverse.join("/")
     else
-      parent = Group.find(self.parent_id)
       parent.get_full_path(current_path)
     end
   end
@@ -35,6 +36,10 @@ class Group < ActiveRecord::Base
   def description
     get_data_item('description')
   end  
+  
+  def parent
+    Group.find(self.parent_id)
+  end
   
   def Group.search_by_name(query)    
     if !query.nil?          

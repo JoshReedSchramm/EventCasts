@@ -27,6 +27,10 @@ body {
 	margin: 0px;
 }
 
+#container h1.logged_in {
+        background: url('../images/header2.png');
+}
+
 #body_container {
 	margin-top: -3px;
 	padding-bottom: 0;
@@ -153,6 +157,10 @@ body {
     margin-left: 20px;
 }
 
+#add_sub_group {
+	display: none;
+}
+
 #footer {
 	clear: both;
 	background: url('../images/footerBG.png') no-repeat;
@@ -220,7 +228,7 @@ body {
 
 #sidebar {
 	float: right;
-	width: 340px;
+	width: 300px;
 	background-color: #ccc;
 	margin:0px;	
 	margin-right: 85px;
@@ -264,11 +272,16 @@ body {
 	text-decoration: none;
 }
 
-#add_subgroup_link {
+#add_subgroup_link,
+#cancel_add_subgroup_link {
 	padding-left: 10px;
 	color: blue;
 	text-decoration: none;
 	font-size:10px;	
+}
+
+#cancel_add_subgroup_link {
+	display: none;
 }
 
 #sub_groups {
@@ -277,6 +290,10 @@ body {
 
 #sub_groups a {
 	color: blue;
+}
+
+ul.child_groups li {
+	padding-left: 10px;
 }
 
 .group_data_form {
@@ -295,6 +312,82 @@ body {
 	color: blue;
 }
 
+#add_sub_group {
+	margin-top: 10px;
+}
+
+#add_sub_group label {
+	font-size:12px;
+}
+
+em #parent_link,
+em .save_subgroup_link {
+	color: blue;
+	padding-left: 10px;
+}
+
 #tweetTemplate {
 	display: none;
+}
+
+#group_header_search {
+    background: url('../images/headerSearch.png') no-repeat;
+    position: relative;
+    top: 16px;
+    left: 729px;
+    width: 329px;
+    height: 51px;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    padding-left: 4px;
+}
+
+#group_header_search input {
+    height: 16px;
+    width: 225px;
+    position: absolute;
+    top: 5px;
+    left: 4px;
+}
+
+#group_header_search a {
+    position: absolute;
+    background: url('../images/groupSearchButtonOff.png') no-repeat;
+    height: 25px;
+    width: 80px;
+    float: right;
+    margin-right: 25px;
+    top: 5px;
+    left: 225px;
+}
+
+#group_header_search a:hover {
+    background: url('../images/groupSearchButtonOn.png') no-repeat;
+
+}
+
+#home_header_link {
+    background: url('../images/headerNavButtonHomeOff.png') no-repeat;
+    position: absolute;
+    top: 210px;
+    left: 870px;
+    height: 30px;
+    width: 98px;
+}
+
+#my_groups_header_link {
+    background: url('../images/headerNavButtonMyGroupsOff.png') no-repeat;
+    position: absolute;
+    top: 210px;
+    left: 972px;
+    height: 30px;
+    width: 98px;
+}
+.error_message {
+	background-color: red;
+	color: white;
+	border: solid 1px black;
+	width: 275px;
+	margin-top: 10px;
+	padding: 10px;
 }

@@ -43,19 +43,31 @@ class GroupsController < ApplicationController
   
   def show
     @group = Group.find_group_from_heirarchy(params[:group_names])
+
     num = params[:num]
     since = params[:since_id]
     if (@group.nil?)
-        flash[:notice] = 'Could not find the group.'
+      #is the user logged in?
+      if session[:twitter_user] != nil
+        if params[:group_names].length() < 2
+          redirect_to :controller => "groups", :action => "new"
+          return
+        else
+          redirect_to :controller => "user", :action => "home"
+          return
+        end
+      else
+        redirect_to :controller => "user", :action => "login"
         return
-    end
+      end
+    else
+      populate_sub_group(@group)
 
-    populate_sub_group(@group)
-
-    respond_to do |format|
-      format.html
-      format.json { render :json => recent_tweets(@group.get_full_path,num,since).to_json }
-      format.js { render :partial=> "results" }
+      respond_to do |format|
+        format.html
+        format.json { render :json => recent_tweets(@group.get_full_path,num,since).to_json }
+        format.js { render :partial=> "results" }
+      end
     end
   end
 

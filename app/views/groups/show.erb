@@ -7,6 +7,7 @@
 <% end %>
 
 <div id="live_feed">
+	<img id='loading_graphic' src='images/ajax-loader.gif'>	
 	<div id="groupRecentTweets">
 		<ul>
 	    	<li id="tweetTemplate" class='tweet'>
@@ -37,7 +38,7 @@
 	
 	<h3>
 		<%= "<a href='javascript:void(0)' class='edit_inline_link' id='edit_title_inline_link'>" if User.can_edit_group?(@group, session[:twitter_name])  %>
-		<%= @group.title == "" ? 'Set a group short name' : @group.title %>
+		<%= @group.title == "" ? 'No group short name set' : @group.title %>
 		<%= "</a>"  if User.can_edit_group?(@group, session[:twitter_name])  %>
 	</h3>
 
@@ -57,7 +58,7 @@
 	
 	<h4>
 		<%= "<a href='javascript:void(0)' class='edit_inline_link' id='edit_description_inline_link'>"  if User.can_edit_group?(@group, session[:twitter_name])    %>
-		<%= @group.description == "" ? "Set a group description" : @group.description.gsub(/\n/, '<br />') %>
+		<%= @group.description == "" ? "No group description set" : @group.description.gsub(/\n/, '<br />') %>
 		<%= "</a>"  if User.can_edit_group?(@group, session[:twitter_name])   %>
 	</h4>
 	<% 

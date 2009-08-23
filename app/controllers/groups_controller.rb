@@ -111,6 +111,7 @@ class GroupsController < ApplicationController
   end
   
   def show
+    @error_messages = ""
     @group = Group.find_group_from_heirarchy(params[:group_names])
     @vips = @group.get_vips if !@group.nil?
     @participants = @group.participants if !@group.nil?

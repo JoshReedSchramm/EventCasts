@@ -1,5 +1,5 @@
 //interval to refresh in seconds
-var tweet_refresh_intval = 30
+var tweet_refresh_intval = 15
 
 $(document).ready(function() {
         $.getJSON("?format=json", function(res){
@@ -94,6 +94,7 @@ function display_error_on(fieldId, error) {
 function update_tweet_results(tweets, first) {
     var tmp;
     var cssObj = {'display' : 'visible'};
+	$("#loading_graphic").hide();
     if(tweets.length > 0) {
         $("#sinceTweetId").val(tweets[0].id)
     }

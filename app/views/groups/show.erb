@@ -54,8 +54,15 @@
 		<%= "<a href='javascript:void(0)' class='edit_data_link' id='edit_title_link'>edit</a><a href='javascript:void(0)' class='save_data_link' id='save_title_link'>save</a>"  if User.can_edit_group?(@group, session[:twitter_name])  %>
 	</em>	
 	<br/><br/>
-		
-	
+
+  	<%
+	if User.can_edit_group?(@group, session[:twitter_name] && params[:test_mode])
+		form_for :group_user, :url => "/groups/add_group_vip?format=json", :html => { :id => "vip_form", :class=>"group_data_form" } do |p| %>
+		<%= p.text_field :twitter_name, :size=>30, :maxlength=>140, :id=>'title_box' %>
+		<%= p.hidden_field :group_id, :value=>@group.id %>
+		<%= p.submit "save", :class => "submit, submit_button" %>
+		<% end
+	 end %>
 	
 	<h3>
 		<%= "<a href='javascript:void(0)' class='edit_inline_link' id='edit_description_inline_link'>"  if User.can_edit_group?(@group, session[:twitter_name])    %>

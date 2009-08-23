@@ -8,7 +8,7 @@
 </head>
 <body>
 	<div id='container'>
-    <% if controller.controller_name == "groups" && session[:twitter_user].nil? %>
+    <% if controller.controller_name == "groups" && !session[:twitter_user].nil? %>
       <h1 class="logged_in">Twoups
         <div id="group_header_search">
           <form>

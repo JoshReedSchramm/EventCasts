@@ -4,6 +4,11 @@ class UserController < ApplicationController
     redirect_to login_request_token.authorize_url
   end
 
+  def logout
+    session[:twitter_name] = nil
+    redirect_to "/"
+  end
+
   def authorize
     verification_response = verify_credentials
     clear_request_token

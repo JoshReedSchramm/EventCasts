@@ -68,7 +68,8 @@ class GroupsController < ApplicationController
   end
 
   def add_group_vip
-    @group = Group.find_group_from_heirarchy(params[:group_names])
+    user = params[:user]
+    @group = Group.find_by_id(user[:group_id])
 
     if !@group.nil?
       if (@group.parent_id != 0)
@@ -79,8 +80,13 @@ class GroupsController < ApplicationController
       end
 
       if allowed
-        @group.add_user_by_twitter_name(params[:twitter_name])
+        @group.add_user_by_twitter_name(user[:twitter_name])
         @group.save!
+        respond_to do |format|
+          format.html
+          format.json  { render :json => User.find_all_by_twitter_name(user[:twitter_name]).to_json  }
+          format.js { render :partial=> "set_data" }
+        end
       else
         @error_messages = get_error_descriptions(@group.errors)
         render :layout => false
@@ -101,6 +107,7 @@ class GroupsController < ApplicationController
     @group = Group.find_group_from_heirarchy(params[:group_names])
     @vips = @group.get_vips
     
+    @vip_user = User.new()
     num = params[:num]
     since = params[:since_id]
     if (@group.nil?)

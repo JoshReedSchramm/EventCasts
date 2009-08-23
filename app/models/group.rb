@@ -15,7 +15,6 @@ class Group < ActiveRecord::Base
     if (self.parent_id == 0)
       return current_path.reverse.join("/")
     else
-      parent = Group.find(self.parent_id)
       parent.get_full_path(current_path)
     end
   end
@@ -27,6 +26,10 @@ class Group < ActiveRecord::Base
   def description
     get_data_item('description')
   end  
+  
+  def parent
+    Group.find(self.parent_id)
+  end
   
   def Group.search_by_name(query)    
     if !query.nil?          

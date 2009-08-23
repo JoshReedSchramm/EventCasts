@@ -25,13 +25,18 @@ class GroupsController < ApplicationController
     @group = Group.new(params[:group])
     @group.add_user_by_twitter_name(session[:twitter_name])    
     @group.name = Group.filter_hash(@group.name)
+    
+    if (@group.parent_id != 0)
+      @parent = Group.find(@group.parent_id)
+    end
 
-    respond_to do |format|
-      if @group.save
-        flash[:notice] = 'Group was successfully created.'
-        format.html { redirect_to :controller=>"user", :action=>"home" }
-      else        
-        format.html { render :action => "new" }
+    if @group.save
+      if (@group.parent_id == 0)
+        #redirect
+      else
+        @group = @parent
+        populate_sub_group(@group)    
+        render :layout => false
       end
     end
   end

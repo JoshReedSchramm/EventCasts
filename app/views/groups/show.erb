@@ -25,8 +25,13 @@
 	</form>
 </div>
 <div id="sidebar">
-	<h2><a href='javascript:void(0)' class='edit_inline_link' id='edit_name_inline_link'>#<%=@group.name%></a></h2>
-	<em>hashtag <a href='javascript:void(0)' id='edit_name_link' class='edit_data_link' id='edit_name_link'>edit</a></em>
+	<h2>#<%=@group.name%></h2>
+	<em>
+		hashtag 
+		<% if @group.parent_id != 0 %>
+			<a href='/groups/<%=@group.parent.get_full_path %>' id='parent_link'>child of #<%= @group.parent.name %></a>		
+		<% end %>
+		</em>
 	<br /><br />
 	
 	<h3><a href='javascript:void(0)' class='edit_inline_link' id='edit_title_inline_link'><%= @group.title == "" ? "Set a group short name" : @group.title %></a></h3>
@@ -51,24 +56,22 @@
 	
 	<div id='sub_groups'>
 		<% if !@group.sub_groups.nil? %>
-			<ul>
-		    	<% @group.sub_groups.each do |sg| %>
-		      		<li>
-						<a href='/groups/<%= sg.get_full_path %>'>#<%= sg.name %></a>
-							<% if !sg.sub_groups.nil? %>
-							<ul>						
-								<% sg.sub_groups.each do |child_group| %>
-									<li>
-										<a href='/groups/<%= sg.get_full_path %>'><%= child_group.name %></a>
-							    	</li>
-								<% end %>
-							</ul>
-						<% end %>					
-					</li>
-		    	<% end %>
-		  	</ul>
+			<ul id='subgroup_list'>		
+				<%= render :partial => "subgroups" %>
+			</ul>
 		<% end %>
-		<em>related groups</em> <a id='add_subgroup_link' href='/groups/new/<%= @group.id %>'>Add sub-group</a>
+		
+		<em>related groups</em> <a id='add_subgroup_link' href='javascript:void(0);'>Add sub-group</a>
+		<a id='cancel_add_subgroup_link' href='javascript:void(0);'>cancel</a>
+		<div id='add_sub_group'>
+			<% form_for :group, :url => {:action=>"new"}, :html => { :id => "add_sub_group_form" } do |p| %>
+				<%= p.label :name, "hashtag: " %>
+				<%= p.text_field :name, :size=>30, :maxlength=>140 %>
+				<%= p.hidden_field :parent_id, :value=>@group.id %>
+				<a href='javascript:void(0)' id='save_subgroup_link'>save</a>
+				<%= p.submit "Create Group", :class => "submit, submit_button" %>
+			<% end %>
+		</div>
 	</div>
 </div>
 

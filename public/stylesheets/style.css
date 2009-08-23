@@ -114,6 +114,10 @@ body {
     margin-left: 20px;
 }
 
+#add_sub_group {
+	display: none;
+}
+
 #footer {
 	clear: both;
 	background: url('../images/footerBG.png') no-repeat;
@@ -225,11 +229,16 @@ body {
 	text-decoration: none;
 }
 
-#add_subgroup_link {
+#add_subgroup_link,
+#cancel_add_subgroup_link {
 	padding-left: 10px;
 	color: blue;
 	text-decoration: none;
 	font-size:10px;	
+}
+
+#cancel_add_subgroup_link {
+	display: none;
 }
 
 #sub_groups {
@@ -238,6 +247,10 @@ body {
 
 #sub_groups a {
 	color: blue;
+}
+
+ul.child_groups li {
+	padding-left: 10px;
 }
 
 .group_data_form {
@@ -254,6 +267,20 @@ body {
 
 .edit_data_link, .save_data_link {
 	color: blue;
+}
+
+#add_sub_group {
+	margin-top: 10px;
+}
+
+#add_sub_group label {
+	font-size:12px;
+}
+
+em #parent_link,
+em .save_subgroup_link {
+	color: blue;
+	padding-left: 10px;
 }
 
 #tweetTemplate {

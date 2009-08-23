@@ -18,7 +18,34 @@ $(document).ready(function() {
                 update_tweet_results(res);
             });
         }, tweet_refresh_intval * 1000);
+
+		$("#save_subgroup_link").click(function(){
+			$('#add_sub_group_form').submit();
+		});
+
+		$('#add_sub_group_form').ajaxForm({
+		    success: update_sub_groups		
+		});
+		
+		$('#add_subgroup_link').click(function(){
+			$("#add_sub_group").show();
+			$('#cancel_add_subgroup_link').show();
+			$('#add_subgroup_link').hide();						
+		});
+		
+		$('#cancel_add_subgroup_link').click(function(){
+			$("#add_sub_group").hide();	
+			$('#add_subgroup_link').show();						
+			$('#cancel_add_subgroup_link').hide();					
+		});
 });
+
+function update_sub_groups(result) {
+	$("#subgroup_list").html(result);
+	$("#add_sub_group").hide();	
+	$('#add_subgroup_link').show();						
+	$('#cancel_add_subgroup_link').hide();		
+}
 
 function update_tweet_results(tweets, first) {
     var tmp;

@@ -14,6 +14,14 @@ $(document).ready(function() {
 		$("#title_form").show();			
 		$("#title_box").focus();
 	});
+	
+	$("#edit_name_inline_link, #edit_name_link").click(function(){
+		$("#edit_name_inline_link").hide();
+		$("#edit_name_link").hide();
+		$("#save_name_link").show();		
+		$("#group_edit_form").show();			
+		$("#group_box").focus();
+	});
 		
   	$('#save_description_link').click(function(){
 		$('#description_form').submit();
@@ -22,6 +30,10 @@ $(document).ready(function() {
 	$('#save_title_link').click(function(){
 		$('#title_form').submit();
 	});
+
+	$('#save_name_link').click(function(){
+		$('#group_edit_form').submit();
+	});	
 	
 	$('#description_form').ajaxForm({
 		dataType: 'json',
@@ -32,6 +44,11 @@ $(document).ready(function() {
 		dataType: 'json',
 	    success: update_title		
 	});
+	
+	/*$('#group_edit_form').ajaxForm({
+		dataType: 'json',
+	    success: update_title		
+	});*/
 });
 function update_description(result) {	
 	if (result.group_datum.description == "")
@@ -52,4 +69,15 @@ function update_title(result) {
 	$("#edit_title_link").show();
 	$("#save_title_link").hide();		
 	$("#title_form").hide();
+}
+
+function update_name(result) {	
+	if (result.group_datum.description == "")
+		result.group_datum.description = "Set a hashtag name"
+	$("#edit_name_inline_link").html(result.group_datum.description);
+	$("#group_box").val(result.group_datum.description)
+	$("#edit_name_inline_link").show();
+	$("#edit_name_link").show();
+	$("#save_name_link").hide();		
+	$("#group_edit_form").hide();
 }

@@ -1,6 +1,5 @@
 class HomeController < ApplicationController
   def index
-    session[:twitter_name] = "asktwoups"
     if (!session[:twitter_name].nil? && !session[:twitter_name].empty?)
       @user = User.find_by_twitter_name(session[:twitter_name])
       @user.groups.each do |ug|

@@ -6,12 +6,11 @@
             <a id='search_button' href='#' type='submit' class='submit'></a>
         <% end %>
     <div id='description_text'>
-        <span id='examples'>examples:</span>
-        <ul id='examples_list'>
-            <li>#twoups</li>
-            <li>#railsrumble</li>
-            <li>@twoupsinfo</li>
-        </ul>
+		<span id='examples'>examples: #twoups #railsrumble @twoupsinfo</span>
+		<br />
+		<p>
+		  Welcome to twoups.  We give you some tools to help better track and organize conversations over twitter using hashtags.  We tell you who's participating and allow you to set up information about the conversation too.  To get started, either search from some conversations and join in, or log in using your twitter account and create your own!
+		</p>
     </div>
     <div id='search_results'>
     </div>
@@ -20,38 +19,39 @@
 	<% if session[:twitter_name].nil? || session[:twitter_name].empty?%>
 	    <a href='/user/login'><img src='images/loginToTwitterButtonOff.png' alt='login'></a><br/>
 	    <span>Logging in will automatically create a user account on twoups that is tied to your twitter account.</span>
-	<% end %>
-	<div id='add_new_group'>
-		<h4>Welcome @<%= @user.twitter_name%>!</h4>
-		<br />
-		<a href='javascript:void(0);' id='add_group_link'>Add a group</a>
-		<a href='javascript:void(0);' id='cancel_add_group_link'>cancel</a>
+	<% else %>
+		<div id='add_new_group'>
+			<h4>Welcome @<%= @user.twitter_name%>!</h4>
+			<br />
+			<a href='javascript:void(0);' id='add_group_link'>Add a group</a>
+			<a href='javascript:void(0);' id='cancel_add_group_link'>cancel</a>
 		
-		<% form_for :group, :url => {:controller=>"groups", :action=>"new"}, :html => { :id => "add_group_form" } do |p| %>
-			<%= p.label :name, "hashtag: " %>
-			<%= p.text_field :name, :size=>20, :maxlength=>140, :id=>'add_group_box' %>
-			<%= p.hidden_field :parent_id, :value=>0 %>
-			<a href='javascript:void(0)' id='save_group_link'>save</a>
-			<%= p.submit "Create Group", :class => "submit, submit_button" %>				
-		<% end %>
-	</div>
-	<h4>Manage your groups</h4>
-	<ul id="user_groups">
-		<% for group in @user.groups %>
-			<% if group.parent_id == 0 %>
-		    	<li><a href='/groups/<%= group.get_full_path %>'>#<%= group.name %></a></li>
-		    	<% if !group.sub_groups.nil? %>
-		    		<li>
-						<ul id="user_groups_sub_groups">
-		      				<% group.sub_groups.each do |sg| %>
-								<li><a href='/groups/<%= sg.get_full_path %>'>#<%= sg.name %></a></li>
-							<% end %>
-						</ul>
-					</li>
-		    	<% end %>
-		  	<% end %>
-		<% end %>
-	</ul>	
+			<% form_for :group, :url => {:controller=>"groups", :action=>"new"}, :html => { :id => "add_group_form" } do |p| %>
+				<%= p.label :name, "hashtag: " %>
+				<%= p.text_field :name, :size=>20, :maxlength=>140, :id=>'add_group_box' %>
+				<%= p.hidden_field :parent_id, :value=>0 %>
+				<a href='javascript:void(0)' id='save_group_link'>save</a>
+				<%= p.submit "Create Group", :class => "submit, submit_button" %>				
+			<% end %>
+		</div>
+		<h4>Manage your groups</h4>
+		<ul id="user_groups">
+			<% for group in @user.groups %>
+				<% if group.parent_id == 0 %>
+			    	<li><a href='/groups/<%= group.get_full_path %>'>#<%= group.name %></a></li>
+			    	<% if !group.sub_groups.nil? %>
+			    		<li>
+							<ul id="user_groups_sub_groups">
+			      				<% group.sub_groups.each do |sg| %>
+									<li><a href='/groups/<%= sg.get_full_path %>'>#<%= sg.name %></a></li>
+								<% end %>
+							</ul>
+						</li>
+			    	<% end %>
+			  	<% end %>
+			<% end %>
+		</ul>	
+	<% end %>	
 </div>
 
 

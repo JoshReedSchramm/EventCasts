@@ -463,3 +463,17 @@ em .save_subgroup_link {
 	margin-top:5px;
 	display: none;
 }
+
+#my_groups_container{
+	position: absolute;
+    top: 21px;
+    left: 102px;
+	width: 100px;
+	background-color: #ccc;
+}
+
+h1.not_logged_in #group_header_nav #home_header_link {
+    position: absolute;
+    top: 80px;
+    left:60px;
+}

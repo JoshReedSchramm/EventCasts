@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090822165550) do
+ActiveRecord::Schema.define(:version => 20090823152735) do
 
   create_table "group_data", :force => true do |t|
     t.integer  "group_data_type_id"
@@ -30,6 +30,7 @@ ActiveRecord::Schema.define(:version => 20090822165550) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "parent_id",  :default => 0
+    t.integer  "creator_id", :default => 0
   end
 
   create_table "groups_users", :id => false, :force => true do |t|

@@ -4,6 +4,11 @@ class UserController < ApplicationController
     redirect_to login_request_token.authorize_url
   end
 
+  def logout
+    session[:twitter_name] = nil
+    redirect_to "/"
+  end
+
   def authorize
     verification_response = verify_credentials
     clear_request_token
@@ -76,5 +81,14 @@ class UserController < ApplicationController
   def handle_failed_authorization
     flash[:notice] = "Authentication failed"
     redirect_to :controller => :home, :action => :index
+  end
+  
+  def groups
+    @user = User.find_by_twitter_name(session[:twitter_name])
+    @user.groups.each do |ug|
+      ug.sub_groups = ug.populate_sub_group
+    end
+    @sub_groups = @user.groups
+    render :layout => false
   end
  end

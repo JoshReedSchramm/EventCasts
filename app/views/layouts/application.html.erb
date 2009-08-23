@@ -3,12 +3,15 @@
 <head>
   <title>Twoups - Organizes your twitter conversations</title>
 	<%= stylesheet_link_tag 'style' %>
+	<%= stylesheet_link_tag 'jquery.cluetip' %>
 	<%= javascript_include_tag "jquery.min.js" %>
-    
+	<%= javascript_include_tag "jquery.hoverIntent.js" %>
+	<%= javascript_include_tag "jquery.cluetip.js" %>	
+	<%= javascript_include_tag "header.js" %>	
 </head>
 <body>
 	<div id='container'>
-    <% if controller.controller_name == "groups" && session[:twitter_user].nil? %>
+    <% if controller.controller_name == "groups" %>
       <h1 class="logged_in">Twoups
         <div id="group_header_search">
             <% form_for :search, :url => {:controller => "home", :action=>"index"}, :html => { :id => "search_form" } do |p| %>
@@ -17,12 +20,20 @@
             <% end %>
         </div>
         <div id="group_header_nav">
-          <%=  link_to "<span>&nbsp;</span>", { :controller => "user" }, :id => "home_header_link" %>
-          <%=  link_to "<span>&nbsp;</span>", { :controller => "groups" }, :id => "my_groups_header_link" %>
+          <a href="/" id="home_header_link"><span>&nbsp;</span></a>
+          <%  if session[:twitter_name] %>
+            <a href="/user/groups" rel="/user/groups" id="my_groups_header_link" title="My Groups"><span>&nbsp;</span></a>
+          <% end %>
         </div>
       </h1>
+	  <div id='my_groups_container'></div>
+
     <% else %>
-      <h1>Twoups</h1>
+      <h1 class='not_logged_in'>Twoups
+	    <div id="group_header_nav">
+          <a href="/" id="home_header_link"><span>&nbsp;</span></a>
+        </div>
+	 </h1>
     <% end %>
 		<div id='body_container'>
 			<%= yield  %>

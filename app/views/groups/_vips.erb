@@ -2,4 +2,6 @@
 	<% @vips.each do |vip| %>
 		<a href='http://twitter.com/<%= vip["screen_name"] %>' target='_blank'><img src='<%= vip["profile_image_url"] %>' alt='<%= vip["name"] %><%= (" - "+vip["screen_name"]) if !vip["screen_name"].empty? %>' title='<%= vip["name"] %><%= (" - "+vip["screen_name"]) if !vip["screen_name"].empty? %>' class='vip_image' /></a>
 	<% end %>
+  <% elsif @error_messages != "" %>
+    Error: <%= @error_messages %>
 <% end %>

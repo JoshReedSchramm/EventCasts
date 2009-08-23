@@ -114,12 +114,12 @@ class Group < ActiveRecord::Base
   
   def get_vips
     @user_profiles = []
-    self.users.each do |u|
+    self.users.each do |u|      
       twitter_profile = u.get_twitter_profile
       if !twitter_profile.nil?
         @user_profiles << twitter_profile
       else
-        @user_profiles << create_mock_profile
+        @user_profiles << create_mock_profile(u.twitter_name)
       end
     end
     @user_profiles
@@ -197,8 +197,12 @@ class Group < ActiveRecord::Base
     end
   end
   
-  def create_mock_profile
-    ""
+  def create_mock_profile(twitter_name)
+    vip = {}
+    vip["profile_image_url"] = "http://twivatar.org/"+twitter_name+"/normal"
+    vip["name"] = twitter_name
+    vip["screen_name"] = ""
+    vip
   end
   
   

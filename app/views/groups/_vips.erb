@@ -1,5 +1,5 @@
 <% if !@vips.nil? && !@vips.empty? %>
 	<% @vips.each do |vip| %>
-		<img src='<%= vip["profile_image_url"] %>' alt='<%= vip["name"] %> - <%= vip["screen_name"] %>' title='<%= vip["name"] %> - <%= vip["screen_name"] %>' class='vip_image' />
+		<a href='http://twitter.com/<%= vip["screen_name"] %>' target='_blank'><img src='<%= vip["profile_image_url"] %>' alt='<%= vip["name"] %> - <%= vip["screen_name"] %>' title='<%= vip["name"] %> - <%= vip["screen_name"] %>' class='vip_image' /></a>
 	<% end %>
 <% end %>

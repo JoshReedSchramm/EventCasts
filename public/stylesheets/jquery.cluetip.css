@@ -33,19 +33,19 @@
 -------------------------------------- */
 
 .cluetip-default {
-  background-color: #d9d9c2;
+  background-color: #009ddf;
 }
 .cluetip-default #cluetip-outer {
   position: relative;
   margin: 0;
-  background-color: #d9d9c2;
+  background-color: #009ddf;
 }
 .cluetip-default h3#cluetip-title {
   margin: 0 0 5px;
   padding: 8px 10px 4px;
   font-size: 1.1em;
   font-weight: normal;
-  background-color: #87876a;
+  background-color: #333;
   color: #fff;
 }
 .cluetip-default #cluetip-title a {

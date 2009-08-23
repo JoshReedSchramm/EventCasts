@@ -312,8 +312,12 @@ a#login_link:hover {
 }
 
 #sidebar a {
-	color: #333;
 	text-decoration: none;
+}
+
+#sidebar h3 a, 
+#sidebar h4 a {
+	color: #333;
 }
 
 #sidebar a:hover {
@@ -328,7 +332,9 @@ a#login_link:hover {
 }
 
 #add_subgroup_link,
-#cancel_add_subgroup_link {
+#cancel_add_subgroup_link,
+#add_vip_link,
+#cancel_add_vip_link {
 	padding-left: 10px;
 	color: blue;
 	text-decoration: none;
@@ -337,14 +343,6 @@ a#login_link:hover {
 
 #cancel_add_subgroup_link {
 	display: none;
-}
-
-#add_vip_link,
-#cancel_add_vip_link {
-	padding-left: 10px;
-	color: blue;
-	text-decoration: none;
-	font-size:10px;
 }
 
 #cancel_add_vip_link {
@@ -388,7 +386,8 @@ ul.child_groups li {
 }
 
 em #parent_link,
-em .save_subgroup_link {
+em .save_subgroup_link,
+{
 	color: blue;
 	padding-left: 10px;
 }
@@ -509,4 +508,28 @@ h1.not_logged_in #group_header_nav #home_header_link {
 
 #participants {
 	margin-top: 40px;
+}
+
+#add_subgroup_link,
+#cancel_add_subgroup_link,
+#add_vip_link,
+#cancel_add_vip_link {
+	padding-left: 10px;
+	color: blue;
+	text-decoration: none;
+	font-size:10px;	
+}
+
+.vip_image,
+#participants img {
+	height: 48px;
+	width: 48px;
+}
+
+#cluetip a {
+	text-decoration: none;
+	color: #fff;
+}
+#cluetip a:hover {
+	text-decoration: underline;
 }

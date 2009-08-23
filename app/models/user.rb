@@ -26,6 +26,6 @@ class User < ActiveRecord::Base
     base = Twitter::Base.new(ha)    
     base.user(self.twitter_name)
   rescue
-    return nil
+    return self
   end
 end

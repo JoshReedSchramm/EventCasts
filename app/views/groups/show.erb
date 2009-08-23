@@ -64,11 +64,11 @@
 		<% end
 	 end %>
 	
-	<h3>
+	<h4>
 		<%= "<a href='javascript:void(0)' class='edit_inline_link' id='edit_description_inline_link'>"  if User.can_edit_group?(@group, session[:twitter_name])    %>
 		<%= @group.description == "" ? "Set a group description" : @group.description.gsub(/\n/, '<br />') %>
 		<%= "</a>"  if User.can_edit_group?(@group, session[:twitter_name])   %>
-	</h3>
+	</h4>
 	<% 
  	if User.can_edit_group?(@group, session[:twitter_name])  	
 		form_for :group_datum, :url => "/groups/set_data?format=json", :html => { :id => "description_form", :class=>"group_data_form" } do |p| %>

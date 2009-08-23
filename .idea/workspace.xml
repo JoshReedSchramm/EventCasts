@@ -2,15 +2,25 @@
 <project relativePaths="false" version="4">
   <component name="ChangeListManager">
     <list default="true" readonly="true" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/user_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/user_controller.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db/migrate/20090822165550_add_default_group_data.rb" afterPath="$PROJECT_DIR$/db/migrate/20090822165550_add_default_group_data.rb" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/fakeAvatar.jpg" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/layouts/groups.html.erb" afterPath="$PROJECT_DIR$/app/views/layouts/groups.html.erb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/group_data_type.rb" afterPath="$PROJECT_DIR$/app/models/group_data_type.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/home/_search.html.erb" afterPath="$PROJECT_DIR$/app/views/home/_search.html.erb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/groups/show.erb" afterPath="$PROJECT_DIR$/app/views/groups/show.erb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/groups_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/groups_controller.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/stylesheets/style.css" afterPath="$PROJECT_DIR$/public/stylesheets/style.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/hierarchyTick.gif" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/javascripts/group_data_editing.js" afterPath="$PROJECT_DIR$/public/javascripts/group_data_editing.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db/migrate/20090822165550_add_default_group_data.rb" afterPath="$PROJECT_DIR$/db/migrate/20090822165550_add_default_group_data.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/user/home.erb" afterPath="$PROJECT_DIR$/app/views/user/home.erb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/search.rb" afterPath="$PROJECT_DIR$/app/models/search.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/group.rb" afterPath="$PROJECT_DIR$/app/models/group.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/spec/models/group_spec.rb" afterPath="$PROJECT_DIR$/spec/models/group_spec.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/twoups.iml" afterPath="$PROJECT_DIR$/.idea/twoups.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/group.rb" afterPath="$PROJECT_DIR$/app/models/group.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/application_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/application_controller.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/twoups.iml" afterPath="$PROJECT_DIR$/.idea/twoups.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/javascripts/groups.js" afterPath="$PROJECT_DIR$/public/javascripts/groups.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/javascripts/index.js" afterPath="$PROJECT_DIR$/public/javascripts/index.js" />
     </list>
     <ignored path="twoups.iws" />
@@ -38,10 +48,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="search.rb" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="search.rb" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/models/search.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="27" column="24" selection-start="760" selection-end="760" vertical-scroll-proportion="0.4770318">
+            <state line="21" column="27" selection-start="645" selection-end="645" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -74,10 +84,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="group.rb" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="group.rb" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/models/group.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="61" column="26" selection-start="1850" selection-end="1850" vertical-scroll-proportion="0.0">
+            <state line="84" column="14" selection-start="2434" selection-end="2434" vertical-scroll-proportion="0.8056537">
               <folding />
             </state>
           </provider>
@@ -767,13 +777,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/group.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="61" column="26" selection-start="1850" selection-end="1850" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/controllers/user_controller.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state line="35" column="113" selection-start="899" selection-end="899" vertical-scroll-proportion="0.6183746">
@@ -783,7 +786,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/models/search.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="27" column="24" selection-start="760" selection-end="760" vertical-scroll-proportion="0.4770318">
+        <state line="21" column="27" selection-start="645" selection-end="645" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/group.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="84" column="14" selection-start="2434" selection-end="2434" vertical-scroll-proportion="0.8056537">
           <folding />
         </state>
       </provider>

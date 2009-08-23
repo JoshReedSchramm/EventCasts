@@ -54,15 +54,25 @@ class Group < ActiveRecord::Base
   end
 
   def Group.find_by_description description
-    groups = Group.find(:all,
-                       :joins => :group_data,
-                       :conditions => ["group_data.group_data_type_id = ? and group_data.description like ?", 2, description ])
+    Group.find(:all,
+               :joins => :group_data,
+               :conditions => ["group_data.group_data_type_id = ? and group_data.description like ?", 2, description ])
   end
 
   def Group.find_by_title title
-    groups = Group.find(:all,
-                       :joins => :group_data,
-                       :conditions => ["group_data.group_data_type_id = ? and group_data.description like ?", 1, title ])
+    Group.find(:all,
+               :joins => :group_data,
+               :conditions => ["group_data.group_data_type_id = ? and group_data.description like ?", 1, title ])
+  end
+
+  def populate_sub_group
+    sub_groups = Group.find_all_by_parent_id(self.id)
+    unless sub_groups == nil
+      self.sub_groups = Array.new()
+      sub_groups.each do |g|
+        self.sub_groups.push(g)
+      end
+    end
   end
   
   private
@@ -77,5 +87,4 @@ class Group < ActiveRecord::Base
       return ""
     end
   end
-  
 end

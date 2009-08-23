@@ -1,7 +1,10 @@
 class UserController < ApplicationController
   def home
     redirect_to :action => :login unless session[:twitter_name]
-    @user = User.find_by_twitter_name(session[:twitter_name]) 
+    #@user = User.find_by_twitter_name("asktwoups")
+    @user.groups.each do |ug|
+      ug.sub_groups = ug.populate_sub_group
+    end
   end
 
   def login

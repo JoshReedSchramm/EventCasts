@@ -58,7 +58,7 @@ class GroupsController < ApplicationController
     pull_recent_tweets(full_group_name,num,since)
   end
 
-private
+
   def populate_sub_group(group)
     @sub_groups = Group.find_all_by_parent_id(group.id)
     unless @sub_groups == nil
@@ -70,6 +70,8 @@ private
       end
     end
   end
+
+  private
 
   def pull_recent_tweets(tag,num = nil,since = nil)
     # assume the user passes the full tag
@@ -110,13 +112,21 @@ private
     end
 
     result = JSON.parse(res.body)
+    
+    regex_to_build = @match.split(' ')
+    regex_match = ""
+    regex_to_build.each do |r|
+      regex_match << r
+      regex_match << "\\s*"
+    end
 
     json_result = Array.new()
     result["results"].each do |j|
       logger.debug("Got: "+j["text"])
-      if j["text"] =~ /#{@match}/
+      if j["text"] =~ /#{regex_match}/
         json_result.push(j)
       end
+      logger.debug(regex_match)      
     end
 
     json_result

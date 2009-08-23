@@ -8,6 +8,7 @@ body {
 	background: url('../images/background.jpg');
 	font-size: 14px;
 	font-family: Verdana;
+	color: #333;
 }
 
 .clear {
@@ -28,7 +29,7 @@ body {
 
 #body_container {
 	margin-top: -3px;
-	padding-bottom: 50px;
+	padding-bottom: 0;
 	background: url('../images/bodyBG.png') repeat-y;
 }
 
@@ -38,6 +39,8 @@ body {
 	vertical-align:top;	
 	width: 500px;
 	margin-left: 125px;
+	padding-bottom: 50px;
+	
 }
 
 #search_container form {
@@ -45,15 +48,14 @@ body {
 }
 
 #search_container input {
-	margin-top:3px;
+	margin-top:0px;
 	width: 300px;
-	height: 32px;
+	height: 38px;
 	font-size:20px;
 	border: 1px solid;
 	padding-top:7px;
 	padding-left: 2px;
-	color: gray;
-	
+	color: gray;	
 }
 
 #search_container a.submit {
@@ -90,6 +92,26 @@ body {
 	width: 267px;
 	margin-right: 125px;
 	font-size: 14px;
+	padding-bottom: 50px;	
+}
+
+#login_user_section {
+	float: right;
+	padding-top: 44px;
+	width: 267px;
+	margin-right: 125px;
+	font-size: 14px;
+        background-color: #CCCCCC;
+}
+
+#user_groups {
+    line-height: 18px;
+}
+
+#user_groups_sub_groups li {
+    list-style-image: url('../images/hierarchyTick.gif');
+    list-style-position: inside;
+    margin-left: 20px;
 }
 
 #footer {
@@ -110,6 +132,130 @@ body {
 	text-decoration: underline;
 }
 
+#live_feed {
+	float: left;
+	width: 550px;
+	margin-left: 100px;
+	margin-top:10px;
+}
+
+#live_feed li {
+	margin: 0px;
+}
+
+.tweet_info {
+	padding-top: 5px;	
+}
+
+.tweeter a {
+	color: blue;
+	text-decoration: none;
+}
+
+.tweeter a:hover {
+	text-decoration: underline;
+}
+
+.tweet_rule {
+	margin-top:5px;	
+	height: 1px;
+	color: #006AB3;
+}
+
+.tweet {
+	margin-top: 5px;
+	font-size: 13px;
+}
+
+.update_stamp {
+	margin-top:5px;
+	float: right;
+	font-size: 10px;
+	color: #999;
+}
+
+.profile_image {
+	float: left;
+	margin: 5px;
+}
+
+#sidebar {
+	float: right;
+	width: 340px;
+	background-color: #ccc;
+	margin:0px;	
+	margin-right: 85px;
+	padding: 10px 20px 10px 20px;	
+}
+
+#sidebar h2 {
+	font-size: 22px;
+	font-weight:normal;
+	line-height: 30px;
+}
+
+#sidebar h3 {
+	font-size: 22px;
+	font-weight:normal;
+	line-height: 30px;	
+}
+
+#sidebar h4 {
+	font-size: 14px;
+	font-weight:normal;
+}
+
+#sidebar em {
+	font-size: 10px;
+}
+
+#sidebar a {
+	color: #333;
+	text-decoration: none;
+}
+
+#sidebar a:hover {
+	text-decoration: underline;
+}
+
+#sidebar a.edit_data_link,
+#sidebar a.save_data_link {
+	padding-left: 10px;
+	color: blue;
+	text-decoration: none;
+}
+
+#add_subgroup_link {
+	padding-left: 10px;
+	color: blue;
+	text-decoration: none;
+	font-size:10px;	
+}
+
+#sub_groups {
+	margin-top: 30px;
+}
+
+#sub_groups a {
+	color: blue;
+}
+
 .group_data_form {
 	display:none;
+}
+
+.save_data_link {
+	display: none;
+}
+
+.submit_button {
+	display:none;
+}
+
+.edit_data_link, .save_data_link {
+	color: blue;
+}
+
+#tweetTemplate {
+	display: none;
 }

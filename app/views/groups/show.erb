@@ -1,43 +1,74 @@
 <%= javascript_include_tag "group_data_editing.js" %>
 <%= javascript_include_tag "jquery.form.js" %>
 
-
 <% if @group.nil? %>
 	Unable to find group
 <% end %>
+
+<div id="live_feed">
+	<div id="groupRecentTweets">
+		<ul>
+	    	<li id="tweetTemplate" class='tweet'>
+				<hr class='tweet_rule' />
+				<img src='/images/fakeAvatar.jpg' alt='' class='profile_image' />				
+				<div class='tweet_info'>
+	        		<span class="tweeter"><a href='#'>jeremyskelly</a></span>				
+	        		<span class="update_stamp">about 2 hours ago via tweetdeck</span>					
+				</div>
+				<div class='tweet'>Just drove thru a crazy North Caroline storm. Thunder, lightning &amp; rail so heavy a lot of cars pulled off the road. Fun! Through scary!</div>
+				<div class='clear'></div>
+	      	</li>
+		</ul>
+	</div>
+	<form>
+		<input type="hidden" id="sinceTweetId" value="0" />
+	</form>
+</div>
+<div id="sidebar">
+	<h2><a href='javascript:void(0)' class='edit_inline_link' id='edit_name_inline_link'>#<%=@group.name%></a></h2>
+	<em>hashtag <a href='javascript:void(0)' id='edit_name_link' class='edit_data_link' id='edit_name_link'>edit</a></em>
+	<br /><br />
 	
-<%= @group.name if !@group.nil? %>
-<%= @group.title if !@group.title.nil? %>
-<a id='group_description' href='javascript:void(0)' class='edit_inline'><%= @group.description == "" ? "Set a group description" : @group.description %></a>
-<% form_for :group_datum, :url => "/groups/set_data?format=json", :html => { :id => "description_form", :class=>"group_data_form" } do |p| %>
-	<%= p.text_field :description, :size=>30, :maxlength=>140, :id=>'description_box', :value=>@group.description %>
-	<%= p.hidden_field :group_id, :value=>@group.id %>
-	<%= p.hidden_field :group_data_type_id, :value=>GroupDataType.description.id %>
-	<%= p.submit "save", :class => "submit" %>	
-<% end %>
-  <% if @group.sub_groups %>
-  <ul>
-    <% @group.sub_groups.each do |sg| %>
-      <li><a href='/groups/<%= sg.get_full_path %>'><%= sg.name %></a></li>
-    <% end %>
-  </ul>
-  <% end %>
-  <h2>recent tweets</h2>
-  <div id="groupRecentTweets">
-    <ul >
-      <li id="tweetTemplate" style="display:none;">
-        <span id="tweeter"></span>:<span id="tweet"></span>
-      </li>
-    </ul>
-  </div>
-  <form>
-    <input type="hidden" id="sinceTweetId" value="0" />
-  </form>
+	<h3><a href='javascript:void(0)' class='edit_inline_link' id='edit_title_inline_link'><%= @group.title == "" ? "Set a group short name" : @group.title %></a></h3>
+	<% form_for :group_datum, :url => "/groups/set_data?format=json", :html => { :id => "title_form", :class=>"group_data_form" } do |p| %>
+		<%= p.text_field :description, :size=>30, :maxlength=>140, :id=>'title_box', :value=>@group.title %>
+		<%= p.hidden_field :group_id, :value=>@group.id %>
+		<%= p.hidden_field :group_data_type_id, :value=>GroupDataType.title.id %>
+		<%= p.submit "save", :class => "submit, submit_button" %>	
+	<% end %>
+	<em>short name <a href='javascript:void(0)' class='edit_data_link' id='edit_title_link'>edit</a><a href='javascript:void(0)' class='save_data_link' id='save_title_link'>save</a></em>	
+	<br/><br/>
+	
+	<h4><a href='javascript:void(0)' class='edit_inline_link' id='edit_description_inline_link'><%= @group.description == "" ? "Set a group description" : @group.description.gsub(/\n/, '<br />') %></a></h4>
+	<% form_for :group_datum, :url => "/groups/set_data?format=json", :html => { :id => "description_form", :class=>"group_data_form" } do |p| %>
+		<%= p.text_area :description, :rows=>6, :maxlength=>140, :id=>'description_box', :value=>@group.description %>
+		<%= p.hidden_field :group_id, :value=>@group.id %>
+		<%= p.hidden_field :group_data_type_id, :value=>GroupDataType.description.id %>
+		<%= p.submit "save", :class => "submit, submit_button" %>	
+	<% end %>	
+	<em>description <a href='javascript:void(0)' class='edit_data_link' id='edit_description_link'>edit</a><a href='javascript:void(0)' class='save_data_link' id='save_description_link'>save</a></em>	
+	<br/><br/>
+	
+	<div id='sub_groups'>
+		<% if !@group.sub_groups.nil? %>
+			<ul>
+		    	<% @group.sub_groups.each do |sg| %>
+		      		<li>
+						<a href='/groups/<%= sg.get_full_path %>'>#<%= sg.name %></a>
+							<% if !sg.sub_groups.nil? %>
+							<ul>						
+								<% sg.sub_groups.each do |child_group| %>
+									<li>
+										<a href='/groups/<%= sg.get_full_path %>'><%= child_group.name %></a>
+							    	</li>
+								<% end %>
+							</ul>
+						<% end %>					
+					</li>
+		    	<% end %>
+		  	</ul>
+		<% end %>
+		<em>related groups</em> <a id='add_subgroup_link' href='/groups/new/<%= @group.id %>'>Add sub-group</a>
+	</div>
+</div>
 
-<br/>
-
-<br/>
-
-<% if !@group.nil? %>
-	<a href='/groups/new/<%= @group.id %>'>Add sub-group</a><br />	
-<% end %>

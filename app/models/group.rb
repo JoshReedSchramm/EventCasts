@@ -151,7 +151,11 @@ class Group < ActiveRecord::Base
     command = "/search.json?" + "q=" + URI.escape("#{@search}")
     command << "&" + "per_page=" + num.to_s if !num.nil?
     command << "&" + "since_id=" + since.to_s if !since.nil?
-    command << "&refresh=true" if ((!num.nil? || !since.nil?) && num <= 20)
+    if !num.nil?
+      if !since.nil? && num <= 20
+        command << "&refresh=true"
+      end
+    end
 
     logger.debug("Request URI: " + command)
 

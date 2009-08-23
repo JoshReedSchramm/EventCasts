@@ -68,8 +68,8 @@ class GroupsController < ApplicationController
   end
 
   def add_group_vip
-    @group = Group.find_group_from_heirarchy(params[:group_names])
     user = params[:user]
+    @group = Group.find_by_id(user[:group_id])
 
     if !@group.nil?
       if (@group.parent_id != 0)

@@ -28,7 +28,7 @@ class GroupsController < ApplicationController
     if (session[:twitter_name].nil? || session[:twitter_name].blank? )
       return
     end
-    
+    @sub_groups = nil
     @group = Group.new(params[:group])
     @group.add_user_by_twitter_name?(session[:twitter_name])
     @group.name = Group.filter_hash(@group.name)
@@ -49,15 +49,19 @@ class GroupsController < ApplicationController
         if (@group.parent_id == 0)
           @user = User.find_by_twitter_name(session[:twitter_name])
           @user.groups.each do |ug|
-            ug.sub_groups = ug.populate_sub_group
-          end
+              ug.sub_groups = ug.populate_sub_group
+          end          
           @sub_groups = @user.groups
-          @error_messages = get_error_descriptions(@group.errors)
+          @parent_check_id = 0
           render :layout => false
         else
           @group = @parent
-          populate_sub_group(@group)    
+          populate_sub_group(@group)  
+          @group.sub_groups.each do |sg|
+            sg.sub_groups = sg.populate_sub_group
+          end  
           @sub_groups = @group.sub_groups
+          @parent_check_id = @group.id
           render :layout => false
         end
       else      
@@ -80,8 +84,8 @@ class GroupsController < ApplicationController
         allowed = true
       end
 
-      if allowed
-        if !@group.add_user_by_twitter_name?(user[:twitter_name],true)
+      if allowed        
+        if !@group.add_user_by_twitter_name?(User.filter_at(user[:twitter_name]),true)
           @error_messages = "user is alread a VIP"
         else
           @group.save!
@@ -115,13 +119,14 @@ class GroupsController < ApplicationController
     @group = Group.find_group_from_heirarchy(params[:group_names])
     @vips = @group.get_vips if !@group.nil?
     @participants = @group.participants if !@group.nil?
+    @sub_groups = nil
     
     @vip_user = User.new()
     num = params[:num]
     since = params[:since_id]
     if (@group.nil?)
       @group = Group.new()
-      @group.sub_groups = Array.new()
+      @group.sub_groups = Array.new()      
 
       unknown_path = "";
       if !params[:group_names].nil?
@@ -136,6 +141,11 @@ class GroupsController < ApplicationController
       end
     else
       populate_sub_group(@group)
+      @group.sub_groups.each do |sg|
+        sg.sub_groups = sg.populate_sub_group
+      end
+      @parent_check_id = @group.id      
+      @sub_groups = @group.sub_groups
 
       respond_to do |format|
         format.html

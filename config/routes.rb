@@ -1,6 +1,7 @@
 ActionController::Routing::Routes.draw do |map|
   map.root :controller=>'home'
   
+  map.connect '/about_us', :controller=>"home", :action=>"about_us"
   map.connect '/groups/new', :controller=>"groups", :action=>"create", :conditions => { :method => :post}      
   map.connect '/groups/vips/:group_id', :controller=>"groups", :action=>"vips", :conditions => { :method => :get}        
   map.connect '/groups/participants/:group_id', :controller=>"groups", :action=>"participants", :conditions => { :method => :get}          

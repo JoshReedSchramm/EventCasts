@@ -28,4 +28,9 @@ class User < ActiveRecord::Base
   rescue
     return nil
   end
+  
+  def User.filter_at(user_name)
+    user_name.slice!(0) if user_name[0,1] == '@'    
+    user_name
+  end
 end

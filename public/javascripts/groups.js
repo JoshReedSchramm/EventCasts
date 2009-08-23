@@ -31,6 +31,8 @@ $(document).ready(function() {
                 $("#add_sub_group").show();
                 $('#cancel_add_subgroup_link').show();
                 $('#add_subgroup_link').hide();
+				$('#add_subgroup_box').val('')
+				$('#add_subgroup_box').focus()				
         });
 
         $('#cancel_add_subgroup_link').click(function(){
@@ -52,6 +54,8 @@ $(document).ready(function() {
                 $("#add_vip").show();
                 $('#cancel_add_vip_link').show();
                 $('#add_vip_link').hide();
+                $('#add_vip_box').focus();
+                $('#add_vip_box').val('');
         });
 
         $('#cancel_add_vip_link').click(function(){

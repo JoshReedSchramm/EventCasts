@@ -27,6 +27,7 @@ $(document).ready(function() {
 		$("#cancel_add_group_link").show();
 		$("#add_group_link").hide();
 		$("#add_group_form").show();
+		$("#add_group_box").focus();
 	});
 	$("#cancel_add_group_link").click(function(){
 		$(".error_message").remove();

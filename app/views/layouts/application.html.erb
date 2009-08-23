@@ -7,7 +7,18 @@
 	<%= javascript_include_tag "jquery.min.js" %>
 	<%= javascript_include_tag "jquery.hoverIntent.js" %>
 	<%= javascript_include_tag "jquery.cluetip.js" %>	
-	<%= javascript_include_tag "header.js" %>	
+	<%= javascript_include_tag "header.js" %>
+  <!-- google analytics -->
+  <script type="text/javascript">
+    var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+    document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+  </script>
+  <script type="text/javascript">
+    try {
+      var pageTracker = _gat._getTracker("UA-10353595-1");
+      pageTracker._trackPageview();
+    } catch(err) {}
+  </script>
 </head>
 <body>
 	<div id='container'>
@@ -42,7 +53,7 @@
 		<div id='footer'>
 			<a href='/home/about_us' id='about_link'>about twoups</a>
 			email: <a href='mailto:info@twoups.com' id='email_link'>info@twoups.com</a>
-			twitter: <a href='http://twitter.com/twoupsinfo' id='twitter_link' target='_blank'>@twoupsinfo</a>
+			twitter: <a href='http://twitter.com/asktwoups' id='twitter_link' target='_blank'>@asktwoups</a>
 		</div>
 	</div>
 </body>

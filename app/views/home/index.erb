@@ -1,35 +1,24 @@
 <%= javascript_include_tag "index.js" %>
 <%= javascript_include_tag "jquery.form.js" %>
-<div id='container'>
-	<h1>Twoups</h1>
-	<div id='body_container'>
-		<div id='search_container'>
-				<% form_for :search, :url => {:action=>"search"}, :html => { :id => "search_form" } do |p| %>
-					<%= p.text_field :query, :size=>30, :maxlength=>140, :id=>'search_box', :value=>'Search for conversations' %>
-					<a id='search_button' href='#' type='submit' class='submit'></a>
-				<% end %>	
-			<div id='description_text'>
-				<span id='examples'>examples:</span>
-				<ul id='examples_list'>
-					<li>#twoups</li>
-					<li>#railsrumble</li>
-					<li>@twoupsinfo</li>
-				</ul>
-			</div>
-			<div id='search_results'>
-			</div>
-		</div>
-		<div id='divider'> or </div>
-		<div id='user_section'>
-			<a href='/user/login'><img src='images/loginToTwitterButtonOff.png' alt='login'></a><br/>
-			<span>Logging in will automatically create a user account on twoups that is tied to your twitter account.</span>		
-		</div>
-		<div class='clear'></div>
-	</div>
-	<div id='footer'>
-		email: <a href='mailto:info@twoups.com' id='email_link'>info@twoups.com</a>
-		twitter: <a href='http://twitter.com/twoupsinfo' id='twitter_link'>@twoupsinfo</a>
-	</div>
+<div id='search_container'>
+        <% form_for :search, :url => {:action=>"search"}, :html => { :id => "search_form" } do |p| %>
+            <%= p.text_field :query, :size=>30, :maxlength=>140, :id=>'search_box', :value=>'Search for conversations' %>
+            <a id='search_button' href='#' type='submit' class='submit'></a>
+        <% end %>
+    <div id='description_text'>
+        <span id='examples'>examples:</span>
+        <ul id='examples_list'>
+            <li>#twoups</li>
+            <li>#railsrumble</li>
+            <li>@twoupsinfo</li>
+        </ul>
+    </div>
+    <div id='search_results'>
+    </div>
+</div>
+<div id='user_section'>
+    <a href='/user/login'><img src='images/loginToTwitterButtonOff.png' alt='login'></a><br/>
+    <span>Logging in will automatically create a user account on twoups that is tied to your twitter account.</span>
 </div>
 
 

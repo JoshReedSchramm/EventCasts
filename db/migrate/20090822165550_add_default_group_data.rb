@@ -3,7 +3,7 @@ class AddDefaultGroupData < ActiveRecord::Migration
     description = GroupDataType.find_by_name('description')
     group = Group.find(1)
     
-    gd = GroupData.new()
+    gd = GroupDatum.new()
     gd.group_data_type = description
     gd.group = group
     gd.description = "Sample Description"
@@ -13,6 +13,6 @@ class AddDefaultGroupData < ActiveRecord::Migration
   end
 
   def self.down
-    GroupData.delete_all
+    GroupDatum.delete_all
   end
 end

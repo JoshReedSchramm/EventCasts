@@ -6,37 +6,51 @@ class GroupsController < ApplicationController
     end
   end
   
-  def set_data
+  def set_data    
     @group_data = GroupDatum.new(params[:group_datum]) 
     existing_data_item = GroupDatum.find(:first, :conditions=>["group_id=? and group_data_type_id=?", @group_data.group_id, @group_data.group_data_type_id])
     if (!existing_data_item.nil?)   
       existing_data_item.description = @group_data.description
       @group_data = existing_data_item
     end
-    @group_data.save    
-    respond_to do |format|
-      format.html 
-      format.json  { render :json => @group_data.to_json }
-      format.js { render :partial=> "set_data" }
-    end
+    @group = Group.find(@group_data.group_id)
+    if User.can_edit_group?(@group, session["twitter_name"])
+      @group_data.save    
+      respond_to do |format|
+        format.html 
+        format.json  { render :json => @group_data.to_json }
+        format.js { render :partial=> "set_data" }
+      end
+    end    
   end
   
   def create
+    if (session["twitter_name"].nil? || session["twitter_name"].blank? )
+      return
+    end
     @group = Group.new(params[:group])
-    @group.add_user_by_twitter_name(session[:twitter_name])    
+    @group.add_user_by_twitter_name(session["twitter_name"])    
     @group.name = Group.filter_hash(@group.name)
     
     if (@group.parent_id != 0)
       @parent = Group.find(@group.parent_id)
+      allowed = User.can_edit_group?(@parent, session["twitter_name"])      
+    else
+      allowed = true
     end
-
-    if @group.save
-      if (@group.parent_id == 0)
-        #redirect
-      else
-        @group = @parent
-        populate_sub_group(@group)    
-        render :layout => false
+    
+    if allowed
+      if @group.save
+        if (@group.parent_id == 0)
+          #redirect
+        else
+          @group = @parent
+          populate_sub_group(@group)    
+          render :layout => false
+        end
+      else      
+        @error_messages = get_error_descriptions(@group.errors)
+        render :layout => false      
       end
     end
   end

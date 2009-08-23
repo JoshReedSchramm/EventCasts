@@ -365,4 +365,12 @@ em .save_subgroup_link {
     left: 972px;
     height: 30px;
     width: 98px;
+
+.error_message {
+	background-color: red;
+	color: white;
+	border: solid 1px black;
+	width: 275px;
+	margin-top: 10px;
+	padding: 10px;
 }

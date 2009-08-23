@@ -5,4 +5,19 @@ class User < ActiveRecord::Base
   def authorized?
     !atoken.blank? && !asecret.blank?
   end 
+  
+  def User.can_edit_group?(group, twitter_name)
+    if (twitter_name.nil? || twitter_name.empty?)
+      return false;
+    end
+    user = User.find_by_twitter_name(twitter_name)    
+    
+    if (user.nil?)
+      return false
+    end
+    
+    user.groups.select do |g|
+      g.id == group.id
+    end.length > 0    
+  end
 end

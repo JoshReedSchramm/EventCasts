@@ -1,6 +1,6 @@
 require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
 
-describe GroupDataTypes do
+describe GroupDataType do
   before(:each) do
     @valid_attributes = {
       
@@ -8,6 +8,6 @@ describe GroupDataTypes do
   end
 
   it "should create a new instance given valid attributes" do
-    GroupDataTypes.create!(@valid_attributes)
+    GroupDataType.create!(@valid_attributes)
   end
 end

@@ -41,12 +41,22 @@ $(document).ready(function() {
 });
 
 function update_sub_groups(result) {
-	$("#subgroup_list").html(result);
-	$("#add_sub_group").hide();	
-	$('#add_subgroup_link').show();						
-	$('#cancel_add_subgroup_link').hide();		
+	if (result.indexOf("Error: ")>-1) {	
+ 		display_error_on('add_subgroup_box', result.substr(result.indexOf("Error: ")+7));
+	} else {
+		$("#subgroup_list").html(result);
+		$("#add_sub_group").hide();	
+		$('#add_subgroup_link').show();						
+		$('#cancel_add_subgroup_link').hide();				
+	}
 }
 
+function display_error_on(fieldId, error) {
+	$(".error_message").remove();
+	
+	$("#"+fieldId).parent().after("<div class='error_message' id='error_"+fieldId+"'>"+error+"</div>");
+	var parent_pos = $("#"+fieldId).position();
+}
 function update_tweet_results(tweets, first) {
     var tmp;
     var cssObj = {'display' : 'visible'};

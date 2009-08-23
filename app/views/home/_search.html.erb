@@ -1,11 +1,22 @@
+<h3 id="search_results_header">Search Results:</h3>
 <% if !@results.nil? %>
-	<ul id='results_list'>	
-		<% for result in @results 
-			if !result.group.nil? %>
-				<li id='result_<%= result.group.id %>' class='result'>
-					<span class='name'><%= result.group.name %></span>
-				</li>
-			<% end
-		end %>
-	</ul>
+    <ul id='results_list'>
+        <% for result in @results
+            if !result.group.nil? %>    
+                <li id='result_<% result.group.id %>' class='result'>
+                    <span class='hashtag'><a href='/groups/<%= result.group.name %>'>#<%= result.group.name %></a></span>
+                    <span class='registration'>owner: <% if !result.group.owner.nil? %><a href='http://twitter.com/<%= result.group.owner.twitter_name %>' target='_blank'>@<%= result.group.owner.twitter_name %></a><% end %>
+                      registered: <%= result.group.created_at.strftime("%m/%d/%Y") %>
+                      </span>
+                    <div class='clear'></div>
+                     <hr class='tweet_rule' />
+                  <div class='clear'></div>
+                    <div class='description'><%= result.group.description %></div>
+                    <div class='clear'></div>
+                </li>
+            <% end
+        end %>
+    </ul>
+<% else %>
+    No results found!
 <% end %>

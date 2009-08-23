@@ -1,6 +1,3 @@
 class SearchResult
-  attr_accessor :group
-  attr_accessor :user
-  attr_accessor :property_name
-  attr_accessor :query
+  attr_accessor :group, :user, :property_name, :query
 end

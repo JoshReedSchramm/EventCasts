@@ -66,7 +66,7 @@ body {
 
 #search_container a.submit {
 	display:block;
-	background: url('../images/searchButtonOn.png');
+	background: url('../images/searchButtonOff.png');
 	border: 0px;
 	height: 48px;
 	width: 146px;
@@ -74,6 +74,26 @@ body {
         top:0;
         right:0;
         margin:0;
+}
+
+#search_container a.submit:hover {
+	background: url('../images/searchButtonOn.png');
+}
+
+a#login_link {
+	display:block;
+	background: url('../images/loginToTwitterButtonOff.png');
+	border: 0px;
+	height: 48px;
+	width: 267px;
+}
+
+a#login_link:hover {
+	display:block;
+	background: url('../images/loginToTwitterButtonOn.png');
+	border: 0px;
+	height: 48px;
+	width: 267px;
 }
 
 #description_text {
@@ -93,6 +113,45 @@ body {
 
 #search_results {
 	display: none;
+	clear:both;
+    float: left;
+	width: 490px;
+	margin-left: 5px;
+	margin-top:100px;
+}
+
+#search_results li {
+	margin: 0px 0 20px;;
+}
+
+#search_results .hashtag {
+    float:left;
+}
+
+#search_results .registration {
+    margin-top:5px;
+	float: right;
+	font-size: 10px;
+	color: #999;
+}
+
+#search_results a {
+	color: blue;
+	text-decoration: none;
+}
+
+#search_results a:hover {
+	text-decoration: underline;
+}
+
+#search_results .description {
+	margin-top: 5px;
+	font-size: 13px;
+}
+
+#search_results_header{
+    font-size: 15px;
+    padding-bottom: 25px;
 }
 
 #examples_list {

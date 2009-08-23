@@ -20,6 +20,14 @@ class Group < ActiveRecord::Base
       parent.get_full_path(current_path)
     end
   end
+
+  def owner
+    if !self.users.nil? and self.users.length > 0
+      self.users[0]
+    else
+      nil
+    end 
+  end
   
   def title
     get_data_item('title')
@@ -61,13 +69,13 @@ class Group < ActiveRecord::Base
   def Group.find_by_description description
     Group.find(:all,
                :joins => :group_data,
-               :conditions => ["group_data.group_data_type_id = ? and group_data.description like ?", 2, description ])
+               :conditions => ["group_data.group_data_type_id = ? and group_data.description like ?", 2, "%" + description + "%"])
   end
 
   def Group.find_by_title title
     Group.find(:all,
                :joins => :group_data,
-               :conditions => ["group_data.group_data_type_id = ? and group_data.description like ?", 1, title ])
+               :conditions => ["group_data.group_data_type_id = ? and group_data.description like ?", 1, "%" + title + "%" ])
   end
 
   def populate_sub_group

@@ -23,7 +23,7 @@ class UserController < ApplicationController
     user_name = user_info['screen_name']
     session[:twitter_name] = user_name
     update_user user_name
-    redirect_to :action => :home
+    redirect_to :controller => :home, :action => :index
   end
 
   def oauth

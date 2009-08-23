@@ -63,7 +63,6 @@ function display_error_on(fieldId, error) {
 
 function show_search_results(response_text) {
 	$("#description_text").hide();
-	alert(response_text)
 	$("#search_results").html(response_text);	
 	$("#search_results").show('slow');
 }

@@ -3,11 +3,11 @@
   <component name="ChangeListManager">
     <list default="true" readonly="true" name="Default" comment="">
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/headerNavButtonHomeOn.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/user_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/user_controller.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/search_result.rb" afterPath="$PROJECT_DIR$/app/models/search_result.rb" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/header2.png" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/headerNavButtonMyGroupsOn.png" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/home/_search.html.erb" afterPath="$PROJECT_DIR$/app/views/home/_search.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/stylesheets/style.css" afterPath="$PROJECT_DIR$/public/stylesheets/style.css" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/headerNavButtonHomeOff.png" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/spec/models/group_data_spec.rb" afterPath="$PROJECT_DIR$/spec/models/group_data_spec.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/user.rb" afterPath="$PROJECT_DIR$/app/models/user.rb" />
@@ -45,7 +45,7 @@
       <file leaf-file-name="index.erb" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/views/home/index.erb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="49" column="0" selection-start="2431" selection-end="2431" vertical-scroll-proportion="-23.818182">
+            <state line="49" column="0" selection-start="2389" selection-end="2389" vertical-scroll-proportion="-23.818182">
               <folding />
             </state>
           </provider>
@@ -60,19 +60,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="search.rb" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/models/search.rb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="20" column="45" selection-start="622" selection-end="622" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="_search.html.erb" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="_search.html.erb" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/views/home/_search.html.erb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="7" column="103" selection-start="473" selection-end="473" vertical-scroll-proportion="0.13224182">
+            <state line="7" column="103" selection-start="473" selection-end="473" vertical-scroll-proportion="-4.7727275">
               <folding />
             </state>
           </provider>
@@ -114,11 +105,31 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="user_controller.rb" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/controllers/user_controller.rb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="50" column="46" selection-start="1266" selection-end="1266" vertical-scroll-proportion="0.9025271">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="home_controller.rb" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/controllers/home_controller.rb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="7" column="14" selection-start="288" selection-end="288" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="style.css" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/stylesheets/style.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="133" column="25" selection-start="1966" selection-end="1966" vertical-scroll-proportion="0.0">
-              <folding />
+            <state line="153" column="25" selection-start="2334" selection-end="2334" vertical-scroll-proportion="0.0">
+              <folding>
+                <marker date="1251038222000" expanded="true" signature="1025:1084" placeholder="{...}" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -789,20 +800,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/user_controller.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="20" column="62" selection-start="574" selection-end="574" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/home_controller.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="7" column="14" selection-start="179" selection-end="179" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/models/group_datum.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
@@ -831,13 +828,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/db/migrate/20090822165148_create_group_data.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="5" column="28" selection-start="188" selection-end="188" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/models/search.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state line="20" column="45" selection-start="622" selection-end="622" vertical-scroll-proportion="0.0">
@@ -847,8 +837,10 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/public/stylesheets/style.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="133" column="25" selection-start="1966" selection-end="1966" vertical-scroll-proportion="0.0">
-          <folding />
+        <state line="153" column="25" selection-start="2334" selection-end="2334" vertical-scroll-proportion="0.0">
+          <folding>
+            <marker date="1251038222000" expanded="true" signature="1025:1084" placeholder="{...}" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -868,7 +860,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/views/home/index.erb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="49" column="0" selection-start="2431" selection-end="2431" vertical-scroll-proportion="-23.818182">
+        <state line="49" column="0" selection-start="2389" selection-end="2389" vertical-scroll-proportion="-23.818182">
           <folding />
         </state>
       </provider>
@@ -889,7 +881,28 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/views/home/_search.html.erb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="7" column="103" selection-start="473" selection-end="473" vertical-scroll-proportion="0.13224182">
+        <state line="7" column="103" selection-start="473" selection-end="473" vertical-scroll-proportion="-4.7727275">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/db/migrate/20090822165148_create_group_data.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="5" column="28" selection-start="188" selection-end="188" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/home_controller.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="7" column="14" selection-start="288" selection-end="288" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/user_controller.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="50" column="46" selection-start="1266" selection-end="1266" vertical-scroll-proportion="0.9025271">
           <folding />
         </state>
       </provider>

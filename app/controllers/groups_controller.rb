@@ -30,7 +30,7 @@ class GroupsController < ApplicationController
     end
     
     @group = Group.new(params[:group])
-    @group.add_user_by_twitter_name(session[:twitter_name])    
+    @group.add_user_by_twitter_name?(session[:twitter_name])
     @group.name = Group.filter_hash(@group.name)
     
     if (@group.parent_id != 0)
@@ -70,6 +70,7 @@ class GroupsController < ApplicationController
   def add_group_vip
     user = params[:user]
     @group = Group.find_by_id(user[:group_id])
+    @error_messages = ""
 
     if !@group.nil?
       if (@group.parent_id != 0)
@@ -80,9 +81,12 @@ class GroupsController < ApplicationController
       end
 
       if allowed
-        @group.add_user_by_twitter_name(user[:twitter_name],true)
-        @group.save!
-        @vips = @group.get_vips
+        if !@group.add_user_by_twitter_name?(user[:twitter_name],true)
+          @error_messages = "user is alread a VIP"
+        else
+          @group.save!
+          @vips = @group.get_vips
+        end
         render :layout => false
       else
         @error_messages = get_error_descriptions(@group.errors)

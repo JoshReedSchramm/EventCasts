@@ -7,7 +7,7 @@ class Group < ActiveRecord::Base
   validates_format_of :name, :with => /^[A-Za-z0-9_]+$/, :on => :create, :message => "hashtag can only contain letters and numbers"
   attr_accessor :sub_groups
   
-  def add_user_by_twitter_name(twitter_name, create_if_needed = false)
+  def add_user_by_twitter_name?(twitter_name, create_if_needed = false)
     user = User.find_by_twitter_name(twitter_name)
     if (create_if_needed)
       if user.nil?
@@ -18,6 +18,9 @@ class Group < ActiveRecord::Base
     end
     if !User.can_edit_group?(self, user.twitter_name)
       self.users << user
+      return true
+    else
+      return false
     end
   end
   

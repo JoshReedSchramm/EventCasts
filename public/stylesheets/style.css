@@ -27,6 +27,10 @@ body {
 	margin: 0px;
 }
 
+#container h1.logged_in {
+        background: url('../images/header2.png');
+}
+
 #body_container {
 	margin-top: -3px;
 	padding-bottom: 0;
@@ -307,4 +311,40 @@ em .save_subgroup_link {
 
 #tweetTemplate {
 	display: none;
+}
+
+#group_header_search {
+    background: url('../images/headerSearch.png') no-repeat;
+    position: relative;
+    top: 16px;
+    left: 729px;
+    width: 329px;
+    height: 51px;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    padding-left: 4px;
+}
+
+#group_header_search input {
+    height: 16px;
+    width: 225px;
+    position: absolute;
+    top: 6px;
+    left: 4px;
+}
+
+#group_header_search a {
+    position: absolute;
+    background: url('../images/groupSearchButtonOff.png') no-repeat;
+    height: 25px;
+    width: 80px;
+    float: right;
+    margin-right: 25px;
+    top: 6px;
+    left: 225px;
+}
+
+#group_header_search a:hover {
+    background: url('../images/groupSearchButtonOn.png') no-repeat;
+
 }

@@ -13,10 +13,10 @@
 				<hr class='tweet_rule' />
 				<img src='/images/fakeAvatar.jpg' alt='' class='profile_image' height="48px" width="48px"/>
 				<div class='tweet_info'>
-	        		<span class="tweeter"><a href='#'>jeremyskelly</a></span>				
-	        		<span class="update_stamp">about 2 hours ago via tweetdeck</span>					
+	        		<span class="tweeter"><a href='#'></a></span>				
+	        		<span class="update_stamp"></span>					
 				</div>
-				<div class='tweet'>Just drove thru a crazy North Caroline storm. Thunder, lightning &amp; rail so heavy a lot of cars pulled off the road. Fun! Through scary!</div>
+				<div class='tweet'></div>
 				<div class='clear'></div>
 	      	</li>
 		</ul>
@@ -55,14 +55,21 @@
 	</em>	
 	<br/><br/>
 
-  	<%
-	if User.can_edit_group?(@group, session[:twitter_name]) && params[:test_mode]
-		form_for :group_user, :url => "/groups/add_group_vip?format=json", :html => { :id => "vip_form", :class=>"group_data_form" } do |p| %>
-		<%= p.text_field :twitter_name, :size=>30, :maxlength=>140, :id=>'title_box' %>
-		<%= p.hidden_field :group_id, :value=>@group.id %>
-		<%= p.submit "save", :class => "submit, submit_button" %>
-		<% end
-	 end %>
+  <% if params[:test_mode] %>
+		<% if User.can_edit_group?(@group, session[:twitter_name])   %>
+			<a id='add_vip_link' href='javascript:void(0);'>Add group VIP</a>
+			<a id='cancel_add_vip_link' href='javascript:void(0);'>cancel</a>
+			<div id='add_vip'>
+				<% form_for [:group,@vip_user], :url => {:action=>"add_group_vip", :format => "json"}, :html => { :id => "add_vip_form" } do |p| %>
+					<%= p.label :name, "twitter user: " %>
+					<%= p.text_field :twitter_name, :size=>20, :maxlength=>140, :id=>'add_vip_box' %>
+					<%= p.hidden_field :group_id, :value=>@group.id %>
+					<a href='javascript:void(0)' id='save_vip_link'>save</a>
+					<%= p.submit "Create VIP", :class => "submit, submit_button" %>
+				<% end %>
+			</div>
+		<% end %>
+	<% end %>
 	
 	<h4>
 		<%= "<a href='javascript:void(0)' class='edit_inline_link' id='edit_description_inline_link'>"  if User.can_edit_group?(@group, session[:twitter_name])    %>
@@ -82,6 +89,12 @@
 		<%= "<a href='javascript:void(0)' class='edit_data_link' id='edit_description_link'>edit</a><a href='javascript:void(0)' class='save_data_link' id='save_description_link'>save</a>"  if User.can_edit_group?(@group, session[:twitter_name])    %>
 	</em>	
 	<br/><br/>
+	
+	<div id='vips'>
+		<%= render :partial => "vips" %>
+		<br />		
+		<em>organizers / VIPs</em>
+	</div>
 	
 	<div id='sub_groups'>
 		<% if !@group.sub_groups.nil? %>

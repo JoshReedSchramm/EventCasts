@@ -16,7 +16,9 @@ class Group < ActiveRecord::Base
         user.save!
       end
     end
-    self.users << user
+    if !User.can_edit_group(self, user.twitter_name)
+      self.users << user
+    end
   end
   
   def get_full_path(current_path=[])
@@ -95,6 +97,19 @@ class Group < ActiveRecord::Base
     end
   end
   
+  def get_vips
+    @user_profiles = []
+    self.users.each do |u|
+      twitter_profile = u.get_twitter_profile
+      if !twitter_profile.nil?
+        @user_profiles << twitter_profile
+      else
+        @user_profiles << create_mock_profile
+      end
+    end
+    @user_profiles
+  end
+  
   private
   
   def get_data_item(name)    
@@ -106,5 +121,9 @@ class Group < ActiveRecord::Base
     else
       return ""
     end
+  end
+  
+  def create_mock_profile
+    ""
   end
 end

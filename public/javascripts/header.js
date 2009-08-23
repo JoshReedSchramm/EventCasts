@@ -5,6 +5,13 @@ $(document).ready(function() {
 		closePosition: 'title',
 		arrows: true,
 		dropShadow: false,
-		positionBy: 'bottomTop'
+		positionBy: 'bottomTop',
+		fx: {
+			open: 'fadeIn',
+			openSpeed: ''
+		},
+		topOffset: 30,
+		leftOffset: 20,
+		activation: 'click'
 	});
 });

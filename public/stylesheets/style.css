@@ -375,6 +375,14 @@ em .save_subgroup_link {
     height: 30px;
     width: 98px;
 }
+#home_header_link:hover{
+    background: url('../images/headerNavButtonHomeOn.png') no-repeat;
+}
+
+#my_groups_header_link:hover{
+    background: url('../images/headerNavButtonMyGroupsOn.png') no-repeat;
+}
+
 .error_message {
 	background-color: red;
 	color: white;

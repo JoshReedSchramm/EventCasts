@@ -6,6 +6,11 @@ class HomeController < ApplicationController
         ug.sub_groups = ug.populate_sub_group
       end
     end
+
+    if request.post?
+      @auto_search = true
+      @search_term = params[:search][:query]
+    end
   end
   
   def search

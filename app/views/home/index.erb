@@ -5,6 +5,8 @@
             <%= p.text_field :query, :size=>30, :maxlength=>140, :id=>'search_box', :value=>'Search for conversations' %>
             <a id='search_button' href='#' type='submit' class='submit'></a>
         <% end %>
+
+  <% if !@auto_search %>
     <div id='description_text'>
 		<span id='examples'>examples: #twoups #railsrumble @twoupsinfo</span>
 		<br />
@@ -12,6 +14,7 @@
 		  Welcome to twoups.  We give you some tools to help better track and organize conversations over twitter using hashtags.  We tell you who's participating and allow you to set up information about the conversation too.  To get started, either search from some conversations and join in, or log in using your twitter account and create your own!
 		</p>
     </div>
+  <% end %>
     <div id='search_results'>
     </div>
 </div>
@@ -53,6 +56,14 @@
 		</ul>	
 	<% end %>	
 </div>
+<% if @auto_search %>
+<script type="text/javascript">
+$(document).ready(function() {
+  $('#search_box').val('<%=@search_term%>');
+  $('#search_button').submit();
+});
+</script>
+<% end %>
 
 
 

@@ -11,10 +11,10 @@
     <% if controller.controller_name == "groups" && session[:twitter_user].nil? %>
       <h1 class="logged_in">Twoups
         <div id="group_header_search">
-          <form>
-            <input type="text" />
-            <a href="#" class="submit" type="submit"><img src="../images/groupSearchButtonOff.png"/></a>
-          </form>
+            <% form_for :search, :url => {:controller => "home", :action=>"index"}, :html => { :id => "search_form" } do |p| %>
+                <%= p.text_field :query, :size=>30, :maxlength=>140, :id=>'search_box', :value=>'' %>
+                <a onclick="$('#search_form').submit();" class="submit" type="submit"><img src="../images/groupSearchButtonOff.png"/></a>
+            <% end %>
         </div>
         <div id="group_header_nav">
           <%=  link_to "<span>&nbsp;</span>", { :controller => "user" }, :id => "home_header_link" %>

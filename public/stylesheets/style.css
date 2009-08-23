@@ -156,8 +156,49 @@ body {
 
 #live_feed {
 	float: left;
-	width: 620px;
-	
+	width: 550px;
+	margin-left: 100px;
+	margin-top:10px;
+}
+
+#live_feed li {
+	margin: 0px;
+}
+
+.tweet_info {
+	padding-top: 5px;	
+}
+
+.tweeter a {
+	color: blue;
+	text-decoration: none;
+}
+
+.tweeter a:hover {
+	text-decoration: underline;
+}
+
+.tweet_rule {
+	margin-top:5px;	
+	height: 1px;
+	color: #006AB3;
+}
+
+.tweet {
+	margin-top: 5px;
+	font-size: 13px;
+}
+
+.update_stamp {
+	margin-top:5px;
+	float: right;
+	font-size: 10px;
+	color: #999;
+}
+
+.profile_image {
+	float: left;
+	margin: 5px;
 }
 
 #sidebar {
@@ -235,4 +276,8 @@ body {
 
 .edit_data_link, .save_data_link {
 	color: blue;
+}
+
+#tweetTemplate {
+	display: none;
 }

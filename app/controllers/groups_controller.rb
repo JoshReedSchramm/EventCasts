@@ -112,13 +112,21 @@ class GroupsController < ApplicationController
     end
 
     result = JSON.parse(res.body)
+    
+    regex_to_build = @match.split(' ')
+    regex_match = ""
+    regex_to_build.each do |r|
+      regex_match << r
+      regex_match << "\\s*"
+    end
 
     json_result = Array.new()
     result["results"].each do |j|
       logger.debug("Got: "+j["text"])
-      if j["text"] =~ /#{@match}/
+      if j["text"] =~ /#{regex_match}/
         json_result.push(j)
       end
+      logger.debug(regex_match)      
     end
 
     json_result

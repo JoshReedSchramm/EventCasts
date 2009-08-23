@@ -69,14 +69,11 @@ function update_sub_groups(result) {
 }
 
 function update_vip(result) {
-        if (console) {
-            console.log(result);
-        }
 	if (result.indexOf("Error: ")>-1) {
  		display_error_on('add_vip_box', result.substr(result.indexOf("Error: ")+7));
 	} else {
 		$(".error_message").remove();
-		$("#add_sub_group").hide();
+		$("#add_vip").hide();
 		$('#add_vip_link').show();
 		$('#cancel_add_vip_link').hide();
 	}

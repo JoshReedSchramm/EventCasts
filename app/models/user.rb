@@ -20,4 +20,10 @@ class User < ActiveRecord::Base
       g.id == group.id
     end.length > 0    
   end
+  
+  def get_twitter_profile
+    ha = Twitter::HTTPAuth.new('', '')
+    base = Twitter::Base.new(ha)    
+    base.user(self.twitter_name)    
+  end
 end

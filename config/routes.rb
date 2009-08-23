@@ -2,6 +2,7 @@ ActionController::Routing::Routes.draw do |map|
   map.root :controller=>'home'
   
   map.connect '/groups/new', :controller=>"groups", :action=>"create", :conditions => { :method => :post}      
+  map.connect '/groups/vips/:group_id', :controller=>"groups", :action=>"vips", :conditions => { :method => :get}        
   map.connect '/groups/new', :controller=>"groups", :action=>"new", :conditions => { :method => :get}          
   map.connect '/groups/new/:parent_id', :controller=>"groups", :action=>"new"  
   map.connect '/groups/subgroups/:id', :controller=>"groups", :action=>"subgroups", :conditions => { :method => :get}              

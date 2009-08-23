@@ -39,6 +39,10 @@ $(document).ready(function() {
                 $('#cancel_add_subgroup_link').hide();
         });
 
+        $("#save_vip_link").click(function(){
+                $('#add_vip_form').submit();
+        });
+
         $('#add_vip_form').ajaxForm({
             success: update_vip
         });

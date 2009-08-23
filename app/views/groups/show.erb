@@ -54,22 +54,6 @@
 		<%= "<a href='javascript:void(0)' class='edit_data_link' id='edit_title_link'>edit</a><a href='javascript:void(0)' class='save_data_link' id='save_title_link'>save</a>"  if User.can_edit_group?(@group, session[:twitter_name])  %>
 	</em>	
 	<br/><br/>
-
-  <% if params[:test_mode] %>
-		<% if User.can_edit_group?(@group, session[:twitter_name])   %>
-			<a id='add_vip_link' href='javascript:void(0);'>Add group VIP</a>
-			<a id='cancel_add_vip_link' href='javascript:void(0);'>cancel</a>
-			<div id='add_vip'>
-				<% form_for [:group,@vip_user], :url => {:action=>"add_group_vip", :format => "json"}, :html => { :id => "add_vip_form" } do |p| %>
-					<%= p.label :name, "twitter user: " %>
-					<%= p.text_field :twitter_name, :size=>20, :maxlength=>140, :id=>'add_vip_box' %>
-					<%= p.hidden_field :group_id, :value=>@group.id %>
-					<a href='javascript:void(0)' id='save_vip_link'>save</a>
-					<%= p.submit "Create VIP", :class => "submit, submit_button" %>
-				<% end %>
-			</div>
-		<% end %>
-	<% end %>
 	
 	<h3>
 		<%= "<a href='javascript:void(0)' class='edit_inline_link' id='edit_description_inline_link'>"  if User.can_edit_group?(@group, session[:twitter_name])    %>
@@ -94,6 +78,19 @@
 		<%= render :partial => "vips" %>
 		<br />		
 		<em>organizers / VIPs</em>
+		<% if User.can_edit_group?(@group, session[:twitter_name])   %>
+			<a id='add_vip_link' href='javascript:void(0);'>Add group VIP</a>
+			<a id='cancel_add_vip_link' href='javascript:void(0);'>cancel</a>
+			<div id='add_vip'>
+				<% form_for [:group,@vip_user], :url => {:action=>"add_group_vip", :format => "json"}, :html => { :id => "add_vip_form" } do |p| %>
+					<%= p.label :name, "twitter user: " %>
+					<%= p.text_field :twitter_name, :size=>20, :maxlength=>140, :id=>'add_vip_box' %>
+					<%= p.hidden_field :group_id, :value=>@group.id %>
+					<a href='javascript:void(0)' id='save_vip_link'>save</a>
+					<%= p.submit "Create VIP", :class => "submit, submit_button" %>
+				<% end %>
+			</div>
+		<% end %>
 	</div>
 	
 	<div id='sub_groups'>

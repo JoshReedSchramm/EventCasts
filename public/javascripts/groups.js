@@ -37,6 +37,7 @@ $(document).ready(function() {
                 $("#add_sub_group").hide();
                 $('#add_subgroup_link').show();
                 $('#cancel_add_subgroup_link').hide();
+                $(".error_message").remove();
         });
 
         $("#save_vip_link").click(function(){

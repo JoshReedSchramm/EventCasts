@@ -29,7 +29,11 @@
 	  <div id='my_groups_container'></div>
 
     <% else %>
-      <h1>Twoups</h1>
+      <h1 class='not_logged_in'>Twoups
+	    <div id="group_header_nav">
+          <a href="/" id="home_header_link"><span>&nbsp;</span></a>
+        </div>
+	 </h1>
     <% end %>
 		<div id='body_container'>
 			<%= yield  %>

@@ -4,7 +4,7 @@ class Group < ActiveRecord::Base
   validates_presence_of :name, :on => :create, :message => "hashtag can't be blank"
   validates_uniqueness_of :name, :scope => "parent_id", :message => "hashtag is already registered" 
   
-  validates_format_of :name, :with => /^[A-Za-z0-9]+$/, :on => :create, :message => "hashtag can only contain letters and numbers"
+  validates_format_of :name, :with => /^[A-Za-z0-9_]+$/, :on => :create, :message => "hashtag can only contain letters and numbers"
   attr_accessor :sub_groups
   
   def add_user_by_twitter_name(twitter_name, create_if_needed = false)

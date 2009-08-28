@@ -2,30 +2,8 @@
 <project relativePaths="false" version="4">
   <component name="ChangeListManager">
     <list default="true" readonly="true" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/headerNavButtonHomeOn.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/search_result.rb" afterPath="$PROJECT_DIR$/app/models/search_result.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/header2.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/home/_search.html.erb" afterPath="$PROJECT_DIR$/app/views/home/_search.html.erb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/headerNavButtonHomeOff.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/spec/models/group_data_spec.rb" afterPath="$PROJECT_DIR$/spec/models/group_data_spec.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/groupSearchButtonOn.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/views/groups/create.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/groups/_subgroups.erb" afterPath="$PROJECT_DIR$/app/views/groups/_subgroups.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/home/index.erb" afterPath="$PROJECT_DIR$/app/views/home/index.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/spec/models/group_data_types_spec.rb" afterPath="$PROJECT_DIR$/spec/models/group_data_types_spec.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/javascripts/group_data_editing.js" afterPath="$PROJECT_DIR$/public/javascripts/group_data_editing.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/spec/models/group_spec.rb" afterPath="$PROJECT_DIR$/spec/models/group_spec.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/headerNavButtonMyGroupsOn.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/home_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/home_controller.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/headerNavButtonMyGroupsOff.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/search.rb" afterPath="$PROJECT_DIR$/app/models/search.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/groupSearchButtonOff.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/groups/new.erb" afterPath="$PROJECT_DIR$/app/views/groups/new.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/layouts/application.html.erb" afterPath="$PROJECT_DIR$/app/views/layouts/application.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/twoups.iml" afterPath="$PROJECT_DIR$/.idea/twoups.iml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/headerSearch.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/consumer.yml" afterPath="$PROJECT_DIR$/config/consumer.yml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/spec/models/search_result_spec.rb" />
     </list>
     <ignored path=".idea/workspace.xml" />
     <ignored path="twoups.iws" />
@@ -46,25 +24,25 @@
       <file leaf-file-name="index.erb" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/views/home/index.erb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="23" column="11" selection-start="1197" selection-end="1197" vertical-scroll-proportion="-7.6363635">
+            <state line="23" column="125" selection-start="1165" selection-end="1165" vertical-scroll-proportion="-15.681818">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="consumer.yml" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/config/consumer.yml">
+      <file leaf-file-name="search_result_spec.rb" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/spec/models/search_result_spec.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="1" column="54" selection-start="80" selection-end="80" vertical-scroll-proportion="0.0">
+            <state line="3" column="0" selection-start="95" selection-end="95" vertical-scroll-proportion="0.06965944">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="_search.html.erb" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/views/home/_search.html.erb">
+      <file leaf-file-name="search_result.rb" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/models/search_result.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="14" column="49" selection-start="941" selection-end="941" vertical-scroll-proportion="-9.545455">
+            <state line="0" column="25" selection-start="18" selection-end="18" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -73,45 +51,8 @@
       <file leaf-file-name="style.css" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/stylesheets/style.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="166" column="0" selection-start="2472" selection-end="2472" vertical-scroll-proportion="110.48">
-              <folding>
-                <marker date="1251060803000" expanded="true" signature="29:53" placeholder="{...}" />
-                <marker date="1251060803000" expanded="true" signature="60:164" placeholder="{...}" />
-                <marker date="1251060803000" expanded="true" signature="173:190" placeholder="{...}" />
-                <marker date="1251060803000" expanded="true" signature="203:241" placeholder="{...}" />
-                <marker date="1251060803000" expanded="true" signature="257:356" placeholder="{...}" />
-                <marker date="1251060803000" expanded="true" signature="382:435" placeholder="{...}" />
-                <marker date="1251060803000" expanded="true" signature="453:546" placeholder="{...}" />
-                <marker date="1251060803000" expanded="true" signature="566:684" placeholder="{...}" />
-                <marker date="1251060803000" expanded="true" signature="709:760" placeholder="{...}" />
-                <marker date="1251060803000" expanded="true" signature="786:996" placeholder="{...}" />
-                <marker date="1251060803000" expanded="true" signature="1025:1216" placeholder="{...}" />
-                <marker date="1251060803000" expanded="true" signature="1025:1084" placeholder="{...}" />
-                <marker date="1251060803000" expanded="true" signature="1251:1304" placeholder="{...}" />
-                <marker date="1251060803000" expanded="true" signature="1319:1441" placeholder="{...}" />
-                <marker date="1251060803000" expanded="true" signature="1462:1583" placeholder="{...}" />
-                <marker date="1251060803000" expanded="true" signature="1603:1629" placeholder="{...}" />
-                <marker date="1251060803000" expanded="true" signature="1651:1701" placeholder="{...}" />
-                <marker date="1251060803000" expanded="true" signature="1713:1759" placeholder="{...}" />
-                <marker date="1251060803000" expanded="true" signature="1772:1822" placeholder="{...}" />
-                <marker date="1251060803000" expanded="true" signature="1841:1876" placeholder="{...}" />
-                <marker date="1251060803000" expanded="true" signature="1894:1996" placeholder="{...}" />
-                <marker date="1251060803000" expanded="true" signature="2017:2042" placeholder="{...}" />
-                <marker date="1251060803000" expanded="true" signature="2069:2088" placeholder="{...}" />
-                <marker date="1251060803000" expanded="true" signature="2120:2190" placeholder="{...}" />
-                <marker date="1251060803000" expanded="true" signature="2210:2251" placeholder="{...}" />
-                <marker date="1251060803000" expanded="true" signature="2277:2309" placeholder="{...}" />
-                <marker date="1251060803000" expanded="true" signature="2340:2379" placeholder="{...}" />
-                <marker date="1251060803000" expanded="true" signature="2403:2453" placeholder="{...}" />
-                <marker date="1251060803000" expanded="true" signature="2470:2512" placeholder="{...}" />
-                <marker date="1251060803000" expanded="true" signature="2532:2553" placeholder="{...}" />
-                <marker date="1251060803000" expanded="true" signature="2564:2617" placeholder="{...}" />
-                <marker date="1251060803000" expanded="true" signature="2633:2750" placeholder="{...}" />
-                <marker date="1251060803000" expanded="true" signature="2772:2957" placeholder="{...}" />
-                <marker date="1251060803000" expanded="true" signature="2972:2998" placeholder="{...}" />
-                <marker date="1251060803000" expanded="true" signature="3027:3144" placeholder="{...}" />
-                <marker date="1251060803000" expanded="true" signature="3161:3180" placeholder="{...}" />
-              </folding>
+            <state line="166" column="0" selection-start="2472" selection-end="2472" vertical-scroll-proportion="0.0">
+              <folding />
             </state>
           </provider>
         </entry>
@@ -119,7 +60,7 @@
       <file leaf-file-name="show.erb" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/views/groups/show.erb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="35" column="42" selection-start="987" selection-end="987" vertical-scroll-proportion="31.40909">
+            <state line="35" column="42" selection-start="1031" selection-end="1031" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -128,7 +69,7 @@
       <file leaf-file-name="_subgroups.erb" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/views/groups/_subgroups.erb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="20" column="0" selection-start="549" selection-end="549" vertical-scroll-proportion="-13.636364">
+            <state line="19" column="0" selection-start="576" selection-end="576" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -137,7 +78,7 @@
       <file leaf-file-name="group.rb" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/models/group.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="22" column="5" selection-start="808" selection-end="808" vertical-scroll-proportion="0.0">
+            <state line="22" column="5" selection-start="825" selection-end="825" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -152,10 +93,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="application.html.erb" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="application.html.erb" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/views/layouts/application.html.erb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="41" column="25" selection-start="1670" selection-end="1670" vertical-scroll-proportion="0.6705653">
+            <state line="32" column="60" selection-start="1458" selection-end="1458" vertical-scroll-proportion="-21.818182">
               <folding />
             </state>
           </provider>
@@ -191,27 +132,27 @@
     <subPane>
       <PATH>
         <PATH_ELEMENT>
-          <option name="myItemId" value="twoups" />
+          <option name="myItemId" value="Twoups" />
           <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
         </PATH_ELEMENT>
       </PATH>
       <PATH>
         <PATH_ELEMENT>
-          <option name="myItemId" value="twoups" />
+          <option name="myItemId" value="Twoups" />
           <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
         </PATH_ELEMENT>
         <PATH_ELEMENT>
-          <option name="myItemId" value="twoups" />
+          <option name="myItemId" value="Twoups" />
           <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
         </PATH_ELEMENT>
       </PATH>
       <PATH>
         <PATH_ELEMENT>
-          <option name="myItemId" value="twoups" />
+          <option name="myItemId" value="Twoups" />
           <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
         </PATH_ELEMENT>
         <PATH_ELEMENT>
-          <option name="myItemId" value="twoups" />
+          <option name="myItemId" value="Twoups" />
           <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
         </PATH_ELEMENT>
         <PATH_ELEMENT>
@@ -221,11 +162,11 @@
       </PATH>
       <PATH>
         <PATH_ELEMENT>
-          <option name="myItemId" value="twoups" />
+          <option name="myItemId" value="Twoups" />
           <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
         </PATH_ELEMENT>
         <PATH_ELEMENT>
-          <option name="myItemId" value="twoups" />
+          <option name="myItemId" value="Twoups" />
           <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
         </PATH_ELEMENT>
         <PATH_ELEMENT>
@@ -239,79 +180,11 @@
       </PATH>
       <PATH>
         <PATH_ELEMENT>
-          <option name="myItemId" value="twoups" />
+          <option name="myItemId" value="Twoups" />
           <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
         </PATH_ELEMENT>
         <PATH_ELEMENT>
-          <option name="myItemId" value="twoups" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="spec" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="controllers" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-      </PATH>
-      <PATH>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="twoups" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="twoups" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="public" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-      </PATH>
-      <PATH>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="twoups" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="twoups" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="public" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="stylesheets" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-      </PATH>
-      <PATH>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="twoups" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="twoups" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="public" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="javascripts" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-      </PATH>
-      <PATH>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="twoups" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="twoups" />
+          <option name="myItemId" value="Twoups" />
           <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
         </PATH_ELEMENT>
         <PATH_ELEMENT>
@@ -321,181 +194,25 @@
       </PATH>
       <PATH>
         <PATH_ELEMENT>
-          <option name="myItemId" value="twoups" />
+          <option name="myItemId" value="Twoups" />
           <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
         </PATH_ELEMENT>
         <PATH_ELEMENT>
-          <option name="myItemId" value="twoups" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="db" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-      </PATH>
-      <PATH>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="twoups" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="twoups" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="db" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="migrate" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-      </PATH>
-      <PATH>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="twoups" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="twoups" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="config" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-      </PATH>
-      <PATH>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="twoups" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="twoups" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="config" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="locales" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-      </PATH>
-      <PATH>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="twoups" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="twoups" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="config" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="environments" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-      </PATH>
-      <PATH>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="twoups" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="twoups" />
+          <option name="myItemId" value="Twoups" />
           <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
         </PATH_ELEMENT>
         <PATH_ELEMENT>
           <option name="myItemId" value="app" />
           <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
         </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="views" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="user" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
       </PATH>
       <PATH>
         <PATH_ELEMENT>
-          <option name="myItemId" value="twoups" />
+          <option name="myItemId" value="Twoups" />
           <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
         </PATH_ELEMENT>
         <PATH_ELEMENT>
-          <option name="myItemId" value="twoups" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="app" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="views" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="layouts" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-      </PATH>
-      <PATH>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="twoups" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="twoups" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="app" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="views" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="home" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-      </PATH>
-      <PATH>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="twoups" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="twoups" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="app" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="views" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="groups" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-      </PATH>
-      <PATH>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="twoups" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="twoups" />
+          <option name="myItemId" value="Twoups" />
           <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
         </PATH_ELEMENT>
         <PATH_ELEMENT>
@@ -504,38 +221,6 @@
         </PATH_ELEMENT>
         <PATH_ELEMENT>
           <option name="myItemId" value="models" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-      </PATH>
-      <PATH>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="twoups" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="twoups" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="app" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-      </PATH>
-      <PATH>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="twoups" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="twoups" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="app" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="controllers" />
           <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
         </PATH_ELEMENT>
       </PATH>
@@ -558,23 +243,23 @@
       <sortByType />
     </navigator>
   </component>
-  <component name="RunManager" selected="RSpec.Group When search for a known group by title should include the group in the results">
-    <tempConfiguration default="false" name="Group When search for a known group by title should include the group in the results" type="RSpecRunConfigurationType" factoryName="RSpec">
+  <component name="RunManager" selected="RSpec.All specs in: spec">
+    <tempConfiguration default="false" name="All specs in: spec" type="RSpecRunConfigurationType" factoryName="RSpec">
       <module name="twoups" />
       <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="RUBY_ARGS" VALUE="-e STDOUT.sync=true;STDERR.sync=true;load($0=ARGV.shift)" />
-      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="WORK DIR" VALUE="$PROJECT_DIR$" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="WORK DIR" VALUE="$PROJECT_DIR$/spec" />
       <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="SHOULD_USE_SDK" VALUE="false" />
       <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="ALTERN_SDK_NAME" VALUE="" />
       <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="myPassParentEnvs" VALUE="true" />
       <envs>
         <env name="RAILS_ENV" value="test" />
       </envs>
-      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="TESTS_FOLDER_PATH" VALUE="" />
-      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="TEST_SCRIPT_PATH" VALUE="$PROJECT_DIR$/spec/models/group_spec.rb" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="TESTS_FOLDER_PATH" VALUE="$PROJECT_DIR$/spec" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="TEST_SCRIPT_PATH" VALUE="" />
       <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="SPEC_RUNNER_PATH" VALUE="[none]" />
       <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="TEST_FILE_MASK" VALUE="**/*_spec.rb" />
-      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="SPEC_EXAMPLE_NAME" VALUE="Group When search for a known group by title should include the group in the results" />
-      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="TEST_TEST_TYPE" VALUE="TEST_SCRIPT" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="SPEC_EXAMPLE_NAME" VALUE="" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="TEST_TEST_TYPE" VALUE="ALL_IN_FOLDER" />
       <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="SPEC_ARGS" VALUE="" />
       <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="USE_CUSTOM_SPEC_RUNNER" VALUE="false" />
       <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="DRB" VALUE="false" />
@@ -760,11 +445,11 @@
       </method>
     </configuration>
     <list size="5">
-      <item index="0" class="java.lang.String" itemvalue="RSpec.Group When search for a known group by title should include the group in the results" />
-      <item index="1" class="java.lang.String" itemvalue="Rake.test" />
-      <item index="2" class="java.lang.String" itemvalue="Rake.spec" />
-      <item index="3" class="java.lang.String" itemvalue="Rails.Production: twoups" />
-      <item index="4" class="java.lang.String" itemvalue="Rails.Development: twoups" />
+      <item index="0" class="java.lang.String" itemvalue="Rake.test" />
+      <item index="1" class="java.lang.String" itemvalue="Rake.spec" />
+      <item index="2" class="java.lang.String" itemvalue="Rails.Production: twoups" />
+      <item index="3" class="java.lang.String" itemvalue="Rails.Development: twoups" />
+      <item index="4" class="java.lang.String" itemvalue="RSpec.All specs in: spec" />
     </list>
   </component>
   <component name="ShelveChangesManager" show_recycled="false" />
@@ -802,22 +487,22 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="25" width="1672" height="1000" extended-state="1" />
+    <frame x="0" y="25" width="1672" height="1000" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="true" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.32990867" sideWeight="0.5" order="6" side_tool="false" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32990867" sideWeight="0.5" order="1" side_tool="false" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24969475" sideWeight="0.5" order="1" side_tool="false" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.21978022" sideWeight="0.66210043" order="0" side_tool="false" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.21978022" sideWeight="0.78881276" order="0" side_tool="false" />
       <window_info id="Dependency Viewer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" />
       <window_info id="Web Preview" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.20340909" sideWeight="0.5" order="3" side_tool="false" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.20319635" sideWeight="0.5" order="2" side_tool="false" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.20319635" sideWeight="0.5" order="2" side_tool="false" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32990867" sideWeight="0.5" order="1" side_tool="false" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" />
@@ -849,33 +534,10 @@
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/public/javascripts/prototype.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="233" column="42" selection-start="6318" selection-end="6318" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/home_controller.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="8" column="11" selection-start="289" selection-end="289" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/controllers/groups_controller.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state line="48" column="9" selection-start="1494" selection-end="1494" vertical-scroll-proportion="0.0">
-          <folding>
-            <marker date="1251060803000" expanded="true" signature="56:153" placeholder=" ... end" />
-            <marker date="1251060803000" expanded="true" signature="95:147" placeholder="do ... end" />
-            <marker date="1251060803000" expanded="true" signature="175:848" placeholder=" ... end" />
-            <marker date="1251060803000" expanded="true" signature="393:535" placeholder="if ... end" />
-            <marker date="1251060803000" expanded="true" signature="586:848" placeholder="if ... end" />
-            <marker date="1251060803000" expanded="true" signature="686:840" placeholder="do ... end" />
-            <marker date="1251060803000" expanded="true" signature="740:779" placeholder="{ ... }" />
-            <marker date="1251060803000" expanded="true" signature="798:830" placeholder="{ ... }" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -893,102 +555,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/home/_search.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="49" selection-start="941" selection-end="941" vertical-scroll-proportion="-9.545455">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/controllers/user_controller.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state line="35" column="19" selection-start="850" selection-end="850" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/stylesheets/style.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="166" column="0" selection-start="2472" selection-end="2472" vertical-scroll-proportion="110.48">
-          <folding>
-            <marker date="1251060803000" expanded="true" signature="29:53" placeholder="{...}" />
-            <marker date="1251060803000" expanded="true" signature="60:164" placeholder="{...}" />
-            <marker date="1251060803000" expanded="true" signature="173:190" placeholder="{...}" />
-            <marker date="1251060803000" expanded="true" signature="203:241" placeholder="{...}" />
-            <marker date="1251060803000" expanded="true" signature="257:356" placeholder="{...}" />
-            <marker date="1251060803000" expanded="true" signature="382:435" placeholder="{...}" />
-            <marker date="1251060803000" expanded="true" signature="453:546" placeholder="{...}" />
-            <marker date="1251060803000" expanded="true" signature="566:684" placeholder="{...}" />
-            <marker date="1251060803000" expanded="true" signature="709:760" placeholder="{...}" />
-            <marker date="1251060803000" expanded="true" signature="786:996" placeholder="{...}" />
-            <marker date="1251060803000" expanded="true" signature="1025:1216" placeholder="{...}" />
-            <marker date="1251060803000" expanded="true" signature="1025:1084" placeholder="{...}" />
-            <marker date="1251060803000" expanded="true" signature="1251:1304" placeholder="{...}" />
-            <marker date="1251060803000" expanded="true" signature="1319:1441" placeholder="{...}" />
-            <marker date="1251060803000" expanded="true" signature="1462:1583" placeholder="{...}" />
-            <marker date="1251060803000" expanded="true" signature="1603:1629" placeholder="{...}" />
-            <marker date="1251060803000" expanded="true" signature="1651:1701" placeholder="{...}" />
-            <marker date="1251060803000" expanded="true" signature="1713:1759" placeholder="{...}" />
-            <marker date="1251060803000" expanded="true" signature="1772:1822" placeholder="{...}" />
-            <marker date="1251060803000" expanded="true" signature="1841:1876" placeholder="{...}" />
-            <marker date="1251060803000" expanded="true" signature="1894:1996" placeholder="{...}" />
-            <marker date="1251060803000" expanded="true" signature="2017:2042" placeholder="{...}" />
-            <marker date="1251060803000" expanded="true" signature="2069:2088" placeholder="{...}" />
-            <marker date="1251060803000" expanded="true" signature="2120:2190" placeholder="{...}" />
-            <marker date="1251060803000" expanded="true" signature="2210:2251" placeholder="{...}" />
-            <marker date="1251060803000" expanded="true" signature="2277:2309" placeholder="{...}" />
-            <marker date="1251060803000" expanded="true" signature="2340:2379" placeholder="{...}" />
-            <marker date="1251060803000" expanded="true" signature="2403:2453" placeholder="{...}" />
-            <marker date="1251060803000" expanded="true" signature="2470:2512" placeholder="{...}" />
-            <marker date="1251060803000" expanded="true" signature="2532:2553" placeholder="{...}" />
-            <marker date="1251060803000" expanded="true" signature="2564:2617" placeholder="{...}" />
-            <marker date="1251060803000" expanded="true" signature="2633:2750" placeholder="{...}" />
-            <marker date="1251060803000" expanded="true" signature="2772:2957" placeholder="{...}" />
-            <marker date="1251060803000" expanded="true" signature="2972:2998" placeholder="{...}" />
-            <marker date="1251060803000" expanded="true" signature="3027:3144" placeholder="{...}" />
-            <marker date="1251060803000" expanded="true" signature="3161:3180" placeholder="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/search.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="35" column="21" selection-start="916" selection-end="916" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/groups/show.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="35" column="42" selection-start="987" selection-end="987" vertical-scroll-proportion="31.40909">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/group.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="22" column="5" selection-start="808" selection-end="808" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/groups/_subgroups.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="20" column="0" selection-start="549" selection-end="549" vertical-scroll-proportion="-13.636364">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/home/index.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="23" column="11" selection-start="1197" selection-end="1197" vertical-scroll-proportion="-7.6363635">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/spec/controllers/user_controller_spec.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
@@ -1000,9 +569,79 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/home/_search.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="14" column="49" selection-start="941" selection-end="941" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/stylesheets/style.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="166" column="0" selection-start="2472" selection-end="2472" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/groups/show.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="35" column="42" selection-start="1031" selection-end="1031" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/groups/_subgroups.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="19" column="0" selection-start="576" selection-end="576" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/group.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="22" column="5" selection-start="825" selection-end="825" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/search.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="35" column="21" selection-start="916" selection-end="916" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/spec/controllers/user_controller_spec.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/views/layouts/application.html.erb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="41" column="25" selection-start="1670" selection-end="1670" vertical-scroll-proportion="0.6705653">
+        <state line="32" column="60" selection-start="1458" selection-end="1458" vertical-scroll-proportion="-21.818182">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/home/index.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="23" column="125" selection-start="1165" selection-end="1165" vertical-scroll-proportion="-15.681818">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/search_result.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="25" selection-start="18" selection-end="18" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/spec/models/search_result_spec.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="3" column="0" selection-start="95" selection-end="95" vertical-scroll-proportion="0.06965944">
           <folding />
         </state>
       </provider>

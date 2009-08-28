@@ -1,0 +1,38 @@
+<div id='user_section'>
+	<% if session[:twitter_name].nil? || session[:twitter_name].empty?%>
+	    <a href='/user/login' id='login_link'></a><br/>
+	    <span>Logging in will automatically create a user account on twoups that is tied to your twitter account.</span>
+	<% else %>
+		<div id='add_new_group'>
+			<h4>Welcome @<%= @user.twitter_name%>!</h4>
+			<br />
+			<a href='javascript:void(0);' id='add_group_link'>Add a group</a>
+			<a href='javascript:void(0);' id='cancel_add_group_link'>cancel</a>
+		
+			<% form_for :group, :url => {:controller=>"groups", :action=>"new"}, :html => { :id => "add_group_form" } do |p| %>
+				<%= p.label :name, "hashtag: " %>
+				<%= p.text_field :name, :size=>20, :maxlength=>140, :id=>'add_group_box' %>
+				<%= p.hidden_field :parent_id, :value=>0 %>
+				<a href='javascript:void(0)' id='save_group_link'>save</a>
+				<%= p.submit "Create Group", :class => "submit, submit_button" %>				
+			<% end %>
+		</div>
+		<h4>Manage your groups</h4>
+		<ul id="user_groups">
+			<% for group in @user.groups %>
+				<% if group.parent_id == 0 %>
+			    	<li><a href='/<%= group.get_full_path %>'>#<%= group.name %></a></li>
+			    	<% if !group.sub_groups.nil? %>
+			    		<li>
+							<ul id="user_groups_sub_groups">
+			      				<% group.sub_groups.each do |sg| %>
+									<li><a href='/<%= sg.get_full_path %>'>#<%= sg.name %></a></li>
+								<% end %>
+							</ul>
+						</li>
+			    	<% end %>
+			  	<% end %>
+			<% end %>
+		</ul>	
+	<% end %>	
+</div>

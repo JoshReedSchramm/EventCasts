@@ -5,6 +5,8 @@ class HomeController < ApplicationController
       @user.groups.each do |ug|
         ug.sub_groups = ug.populate_sub_group
       end
+      @sub_groups = @user.groups
+      @parent_check_id= 0
     end
 
     if request.post?

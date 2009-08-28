@@ -1,4 +1,6 @@
 class GroupsController < ApplicationController
+  before_filter :authorize, :except=>[:vips, :participants, :show, :recent_tweets, :populate_sub_group]
+  
   def new
     @group = Group.new
     respond_to do |format|
@@ -18,9 +20,6 @@ class GroupsController < ApplicationController
   end
   
   def create
-    if (session[:twitter_name].nil? || session[:twitter_name].blank? )
-      return
-    end
     @sub_groups = nil
     @group = Group.new(params[:group])
     @group.add_user_by_twitter_name?(session[:twitter_name])
@@ -159,13 +158,15 @@ class GroupsController < ApplicationController
       group.sub_groups = Array.new()
       @sub_groups.each do |g|
         group.sub_groups.push(g)
-        #too agressive
-        #populate_sub_group(g)
       end
     end
   end
-
-  private
-
   
+  private
+  
+  def authorize
+    if session[:twitter_name].nil? || session[:twitter_name].blank?
+      redirect_to(:controller=>"home", :action=>"index")
+    end
+  end
 end

@@ -2,24 +2,17 @@ class GroupsController < ApplicationController
   def new
     @group = Group.new
     respond_to do |format|
-      format.html # new.html.erb
+      format.html
     end
   end
   
-  def set_data    
-    @group_data = GroupDatum.new(params[:group_datum]) 
-    existing_data_item = GroupDatum.find(:first, :conditions=>["group_id=? and group_data_type_id=?", @group_data.group_id, @group_data.group_data_type_id])
-    if (!existing_data_item.nil?)   
-      existing_data_item.description = @group_data.description
-      @group_data = existing_data_item
-    end
-    @group = Group.find(@group_data.group_id)
-    if User.can_edit_group?(@group, session[:twitter_name])
-      @group_data.save    
+  def set_data 
+    group_data = GroupDatum.create_or_update(params[:group_datum])   
+
+    if User.can_edit_group?(group_data.group, session[:twitter_name])
+      group_data.save    
       respond_to do |format|
-        format.html 
-        format.json  { render :json => @group_data.to_json }
-        format.js { render :partial=> "set_data" }
+        format.json  { render :json => group_data.to_json }
       end
     end
   end

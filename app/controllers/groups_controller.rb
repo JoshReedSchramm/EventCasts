@@ -2,8 +2,7 @@ class GroupsController < ApplicationController
   before_filter :authorize, :except=>[:vips, :participants, :show, :recent_tweets, :populate_sub_group]
   
   def new
-    @group = Group.new
-    
+    @group = Group.new    
     respond_to do |format|
       format.html
     end

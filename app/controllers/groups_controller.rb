@@ -21,8 +21,6 @@ class GroupsController < ApplicationController
   end
   
   def create
-    return if !Security.is_authenticated?
-
     @sub_groups = nil
     @group = Group.new(params[:group])
     @group.add_user_by_twitter_name?(Security.current_user_twitter_name)
@@ -99,7 +97,7 @@ class GroupsController < ApplicationController
     
     render :layout => false
   end
-  
+
   def vips
     @group = Group.find(params[:group_id])
     @vips = @group.get_vips
@@ -167,11 +165,12 @@ class GroupsController < ApplicationController
     end
   end
   
-  private
-  
+  protected
+
   def authorize
-    if session[:twitter_name].nil? || session[:twitter_name].blank?
+    unless Security.is_authenticated?
       redirect_to(:controller=>"home", :action=>"index")
+      false
     end
   end
 end

@@ -10,6 +10,7 @@ class User < ActiveRecord::Base
     if (twitter_name.nil? || twitter_name.empty?)
       return false;
     end
+    
     user = User.find_by_twitter_name(twitter_name)    
     
     if (user.nil?)

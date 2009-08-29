@@ -51,6 +51,10 @@ class Group < ActiveRecord::Base
   def parent
     Group.find(self.parent_id)
   end
+
+  def has_parent?
+    parent_id > 0
+  end
   
   def participants
     tweets = Group.pull_recent_tweets(self.get_full_path, 200)    

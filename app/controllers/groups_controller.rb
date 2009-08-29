@@ -3,6 +3,7 @@ class GroupsController < ApplicationController
   
   def new
     @group = Group.new
+    
     respond_to do |format|
       format.html
     end
@@ -11,55 +12,58 @@ class GroupsController < ApplicationController
   def set_data 
     group_data = GroupDatum.create_or_update(params[:group_datum])   
 
-    if User.can_edit_group?(group_data.group, session[:twitter_name])
-      group_data.save    
-      respond_to do |format|
-        format.json  { render :json => group_data.to_json }
-      end
+    return if !Security.can_edit_group? group_data.group
+
+    group_data.save
+
+    respond_to do |format|
+      format.json  { render :json => group_data.to_json }
     end
   end
   
   def create
+    return if !Security.is_authenticated?
+
     @sub_groups = nil
     @group = Group.new(params[:group])
-    @group.add_user_by_twitter_name?(session[:twitter_name])
+    @group.add_user_by_twitter_name?(Security.current_user_twitter_name)
     @group.name = Group.filter_hash(@group.name)
     
     if (@group.parent_id != 0)
       @parent = Group.find(@group.parent_id)
-      allowed = User.can_edit_group?(@parent, session[:twitter_name])      
+      allowed = Security.can_edit_group? @parent
     else
       allowed = true
     end
-    
-    if allowed
-      user = User.find_by_twitter_name(session[:twitter_name])
-      if !user.nil?
-        @group.creator_id = user.id
+
+    return if !allowed
+
+    user = User.find_by_twitter_name(Security.current_user_twitter_name)
+    @group.creator_id = user.id if !user.nil?
+
+    if !@group.save
+      @error_messages = get_error_descriptions(@group.errors)
+      render :layout => false
+      return
+    end
+
+    if (!@group.has_parent?)
+      @user = User.find_by_twitter_name(Security.current_user_twitter_name)
+      @user.groups.each do |ug|
+          ug.sub_groups = ug.populate_sub_group
       end
-      if @group.save
-        if (@group.parent_id == 0)
-          @user = User.find_by_twitter_name(session[:twitter_name])
-          @user.groups.each do |ug|
-              ug.sub_groups = ug.populate_sub_group
-          end          
-          @sub_groups = @user.groups
-          @parent_check_id = 0
-          render :layout => false
-        else
-          @group = @parent
-          populate_sub_group(@group)  
-          @group.sub_groups.each do |sg|
-            sg.sub_groups = sg.populate_sub_group
-          end  
-          @sub_groups = @group.sub_groups
-          @parent_check_id = @group.id
-          render :layout => false
-        end
-      else      
-        @error_messages = get_error_descriptions(@group.errors)
-        render :layout => false      
+      @sub_groups = @user.groups
+      @parent_check_id = 0
+      render :layout => false
+    else
+      @group = @parent
+      populate_sub_group(@group)
+      @group.sub_groups.each do |sg|
+        sg.sub_groups = sg.populate_sub_group
       end
+      @sub_groups = @group.sub_groups
+      @parent_check_id = @group.id
+      render :layout => false
     end
   end
 
@@ -68,30 +72,33 @@ class GroupsController < ApplicationController
     @group = Group.find_by_id(user[:group_id])
     @error_messages = ""
 
-    if !@group.nil?
-      if (@group.parent_id != 0)
-        @parent = Group.find(@group.parent_id)
-        allowed = User.can_edit_group?(@parent, session[:twitter_name])
-      else
-        allowed = true
-      end
-
-      if allowed        
-        if !@group.add_user_by_twitter_name?(User.filter_at(user[:twitter_name]),true)
-          @error_messages = "user is alread a VIP"
-        else
-          @group.save!
-          @vips = @group.get_vips
-        end
-        render :layout => false
-      else
-        @error_messages = get_error_descriptions(@group.errors)
-        render :layout => false
-      end
-    else
+    if @group.nil?
       @error_messages = get_error_descriptions(@group.errors)
       render :layout => false
+      return
     end
+
+    if (@group.parent_id != 0)
+      @parent = Group.find(@group.parent_id)
+      allowed = Security.can_edit_group? @parent
+    else
+      allowed = true
+    end
+
+    if !allowed
+      @error_messages = get_error_descriptions(@group.errors)
+      render :layout => false
+      return
+    end
+
+    if !@group.add_user_by_twitter_name?(User.filter_at(user[:twitter_name]),true)
+      @error_messages = "user is alread a VIP"
+    else
+      @group.save!
+      @vips = @group.get_vips
+    end
+    
+    render :layout => false
   end
   
   def vips
@@ -150,7 +157,6 @@ class GroupsController < ApplicationController
   def recent_tweets(full_group_name,num = nil,since = nil)
     Group.pull_recent_tweets(full_group_name,num,since)
   end
-
 
   def populate_sub_group(group)
     @sub_groups = Group.find_all_by_parent_id(group.id)

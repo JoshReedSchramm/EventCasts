@@ -1,11 +1,20 @@
 class Group < ActiveRecord::Base
   has_and_belongs_to_many :users  
   has_many :group_data
+  belongs_to :parent,
+             :class_name => "Group",
+             :foreign_key => "parent_id"
+  belongs_to :creator,
+             :class_name => "User",
+             :foreign_key => "creator_id"
   validates_presence_of :name, :on => :create, :message => "hashtag can't be blank"
   validates_uniqueness_of :name, :scope => "parent_id", :message => "hashtag is already registered" 
   
   validates_format_of :name, :with => /^[A-Za-z0-9_]+$/, :on => :create, :message => "hashtag can only contain letters and numbers"
+  validate :user_can_edit_group?
+  
   attr_accessor :sub_groups
+  attr_accessor :editor
   
   def add_user_by_twitter_name?(twitter_name, create_if_needed = false)
     user = User.find_by_twitter_name(twitter_name)
@@ -48,10 +57,6 @@ class Group < ActiveRecord::Base
     get_data_item('description')
   end  
   
-  def parent
-    Group.find(self.parent_id)
-  end
-
   def has_parent?
     parent_id > 0
   end
@@ -107,7 +112,18 @@ class Group < ActiveRecord::Base
                :joins => :group_data,
                :conditions => ["group_data.group_data_type_id = ? and group_data.description like ?", 1, "%" + title + "%" ])
   end
-
+  
+  def Group.create_group(group_data, twitter_name)
+    group = Group.new(group_data)
+    user = User.find_by_twitter_name(twitter_name)    
+    group.editor = user
+    group.users << user
+    group.name = Group.filter_hash(group.name)    
+    group.creator = user
+    group.save
+    group
+  end
+  
   def populate_sub_group
     sub_groups = Group.find_all_by_parent_id(self.id)
     unless sub_groups == nil
@@ -129,8 +145,6 @@ class Group < ActiveRecord::Base
   end
   
   def Group.pull_recent_tweets(tag,num = nil,since = nil)
-    # assume the user passes the full tag
-
     html = ""
     logger.debug("Got #{tag}")
     @terms = tag.split('/')
@@ -140,15 +154,9 @@ class Group < ActiveRecord::Base
       @search << "+##{t}"
       @match << "##{t} "
     end
-    #remove trailing space
     @match.chop!
 
-    logger.debug("Searching for #{@search}")
-    logger.debug("Matching on #{@match}")
-
-
     twitter = Net::HTTP.start('search.twitter.com')
-    # Set the form data with options
     command = "/search.json?" + "q=" + URI.escape("#{@search}")
     command << "&" + "per_page=" + num.to_s if !num.nil?
     command << "&" + "since_id=" + since.to_s if !since.nil?
@@ -158,14 +166,9 @@ class Group < ActiveRecord::Base
       end
     end
 
-    logger.debug("Request URI: " + command)
-
     req = Net::HTTP::Get.new(command)
-
     res = twitter.request(req)
 
-    # Raise an exception unless Twitter
-    # returned an OK result
     unless res.is_a? Net::HTTPOK
       html << res.body
     end
@@ -181,11 +184,9 @@ class Group < ActiveRecord::Base
 
     json_result = Array.new()
     result["results"].each do |j|
-      logger.debug("Got: "+j["text"])
       if j["text"] =~ /#{regex_match}/
         json_result.push(j)
       end
-      logger.debug(regex_match)      
     end
 
     json_result
@@ -212,5 +213,10 @@ class Group < ActiveRecord::Base
     vip
   end
   
-  
+  def user_can_edit_group?
+    if !self.parent.nil?
+      return Security.can_edit_group?(self.editor, self.parent)
+    end
+    return true
+  end
 end

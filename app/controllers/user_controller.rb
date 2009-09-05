@@ -26,6 +26,7 @@ class UserController < ApplicationController
     end
 
     user_name = user_info['screen_name']
+    User.create_user(user_name)
     session[:twitter_name] = user_name
     update_user user_name
     redirect_to :controller => :home, :action => :index

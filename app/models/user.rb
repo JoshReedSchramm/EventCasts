@@ -6,6 +6,16 @@ class User < ActiveRecord::Base
     !atoken.blank? && !asecret.blank?
   end 
   
+  def User.create_user(twitter_name)
+    user = User.find_by_twitter_name(twitter_name)
+    if (user.nil?)
+      user = User.new()
+      user.twitter_name = twitter_name
+      user.save!
+    end
+    user
+  end
+  
   def User.can_edit_group?(group, twitter_name)
     if (twitter_name.nil? || twitter_name.empty?)
       return false;

@@ -21,31 +21,17 @@ class GroupsController < ApplicationController
   end
   
   def create
+    group = Group.create_group(params[:group], session[:twitter_name])
     @sub_groups = nil
-    @group = Group.new(params[:group])
-    @group.add_user_by_twitter_name?(Security.current_user_twitter_name)
-    @group.name = Group.filter_hash(@group.name)
     
-    if (@group.parent_id != 0)
-      @parent = Group.find(@group.parent_id)
-      allowed = Security.can_edit_group? @parent
-    else
-      allowed = true
-    end
-
-    return if !allowed
-
-    user = User.find_by_twitter_name(Security.current_user_twitter_name)
-    @group.creator_id = user.id if !user.nil?
-
-    if !@group.save
-      @error_messages = get_error_descriptions(@group.errors)
+    if !group.errors.empty?
+      @error_messages = get_error_descriptions(group.errors)
       render :layout => false
       return
     end
 
-    if (!@group.has_parent?)
-      @user = User.find_by_twitter_name(Security.current_user_twitter_name)
+    if (!group.has_parent?)
+      @user = User.find_by_twitter_name(session[:twitter_name])
       @user.groups.each do |ug|
           ug.sub_groups = ug.populate_sub_group
       end
@@ -53,13 +39,13 @@ class GroupsController < ApplicationController
       @parent_check_id = 0
       render :layout => false
     else
-      @group = @parent
-      populate_sub_group(@group)
-      @group.sub_groups.each do |sg|
+      group = @parent
+      populate_sub_group(group)
+      group.sub_groups.each do |sg|
         sg.sub_groups = sg.populate_sub_group
       end
-      @sub_groups = @group.sub_groups
-      @parent_check_id = @group.id
+      @sub_groups = group.sub_groups
+      @parent_check_id = group.id
       render :layout => false
     end
   end
@@ -168,7 +154,7 @@ class GroupsController < ApplicationController
   protected
 
   def authorize
-    unless Security.is_authenticated?
+    unless Security.is_authenticated?(session[:twitter_name])
       redirect_to(:controller=>"home", :action=>"index")
       false
     end

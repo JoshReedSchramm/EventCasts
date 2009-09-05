@@ -22,7 +22,7 @@
         <div id="group_header_nav">
           <a href="/" id="home_header_link"><span>&nbsp;</span></a>
           <%  if session[:twitter_name] %>
-            <a href="/user/groups" rel="/user/groups" id="my_groups_header_link" title="My Groups"><span>&nbsp;</span></a>
+            <a href="/user/groups/<%= session[:twitter_name] %>" rel="/user/groups/<%= session[:twitter_name] %>" id="my_groups_header_link" title="My Groups"><span>&nbsp;</span></a>
           <% end %>
         </div>
       </h1>

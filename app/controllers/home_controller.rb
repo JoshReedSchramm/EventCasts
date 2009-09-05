@@ -3,11 +3,7 @@ class HomeController < ApplicationController
     session[:twitter_name] = 'JoshReedSchramm'
     if (!session[:twitter_name].nil? && !session[:twitter_name].empty?)
       @user = User.find_by_twitter_name(session[:twitter_name])
-      @user.groups.each do |ug|
-        ug.sub_groups = ug.populate_sub_group
-      end
-      @sub_groups = @user.groups
-      @parent_check_id= 0
+      @owner = @user
     end
 
     if request.post?
@@ -24,9 +20,6 @@ class HomeController < ApplicationController
   def about_us
     if (!session[:twitter_name].nil? && !session[:twitter_name].empty?)
       @user = User.find_by_twitter_name(session[:twitter_name])
-      @user.groups.each do |ug|
-        ug.sub_groups = ug.populate_sub_group
-      end
     end    
   end
 end

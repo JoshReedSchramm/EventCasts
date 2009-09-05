@@ -10,44 +10,33 @@ class GroupsController < ApplicationController
   
   def set_data 
     group_data = GroupDatum.create_or_update(params[:group_datum])   
-
     return if !Security.can_edit_group? group_data.group
-
     group_data.save
-
     respond_to do |format|
       format.json  { render :json => group_data.to_json }
     end
   end
   
   def create
-    group = Group.create_group(params[:group], session[:twitter_name])
-    @sub_groups = nil
+    @group = Group.create_group(params[:group], session[:twitter_name])
     
-    if !group.errors.empty?
-      @error_messages = get_error_descriptions(group.errors)
+    if !@group.errors.empty?
+      @error_messages = get_error_descriptions(@group.errors)
       render :layout => false
       return
     end
 
-    if (!group.has_parent?)
-      @user = User.find_by_twitter_name(session[:twitter_name])
-      @user.groups.each do |ug|
-          ug.sub_groups = ug.populate_sub_group
-      end
-      @sub_groups = @user.groups
-      @parent_check_id = 0
-      render :layout => false
+    if (@group.parent.nil?)
+      redirect_to :controller=>"user", :action=>"groups", :twitter_name=>session[:twitter_name]
     else
-      group = @parent
-      populate_sub_group(group)
-      group.sub_groups.each do |sg|
-        sg.sub_groups = sg.populate_sub_group
-      end
-      @sub_groups = group.sub_groups
-      @parent_check_id = group.id
-      render :layout => false
+      redirect_to :controller=>"groups", :action=>"group_heirarchy", :id=>@group.parent.id
     end
+  end
+  
+  def group_heirarchy
+    @group = Group.find(params[:id])
+    @owner = @group
+    render :layout => false
   end
 
   def add_group_vip
@@ -99,6 +88,7 @@ class GroupsController < ApplicationController
   def show
     @error_messages = ""
     @group = Group.find_group_from_heirarchy(params[:group_names])
+    @owner = @group
     @vips = @group.get_vips if !@group.nil?
     @participants = @group.participants if !@group.nil?
     @sub_groups = nil
@@ -122,13 +112,6 @@ class GroupsController < ApplicationController
         format.js { render :partial=> "results" }
       end
     else
-      populate_sub_group(@group)
-      @group.sub_groups.each do |sg|
-        sg.sub_groups = sg.populate_sub_group
-      end
-      @parent_check_id = @group.id      
-      @sub_groups = @group.sub_groups
-
       respond_to do |format|
         format.html
         format.json { render :json => recent_tweets(@group.get_full_path,num,since).to_json }

@@ -18,21 +18,6 @@
 			<% end %>
 		</div>
 		<h4>Manage your groups</h4>
-		<ul id="user_groups">
-			<% for group in @user.groups %>
-				<% if group.parent_id == 0 %>
-			    	<li><a href='/<%= group.get_full_path %>'>#<%= group.name %></a></li>
-			    	<% if !group.sub_groups.nil? %>
-			    		<li>
-							<ul id="user_groups_sub_groups">
-			      				<% group.sub_groups.each do |sg| %>
-									<li><a href='/<%= sg.get_full_path %>'>#<%= sg.name %></a></li>
-								<% end %>
-							</ul>
-						</li>
-			    	<% end %>
-			  	<% end %>
-			<% end %>
-		</ul>	
+		<%= render :partial => "user/group_heirarchy" %>	
 	<% end %>	
 </div>

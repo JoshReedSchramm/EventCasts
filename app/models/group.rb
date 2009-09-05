@@ -7,6 +7,9 @@ class Group < ActiveRecord::Base
   belongs_to :creator,
              :class_name => "User",
              :foreign_key => "creator_id"
+  has_many :groups,
+           :class_name => "Group",
+           :foreign_key => "parent_id"
   validates_presence_of :name, :on => :create, :message => "hashtag can't be blank"
   validates_uniqueness_of :name, :scope => "parent_id", :message => "hashtag is already registered" 
   
@@ -34,7 +37,7 @@ class Group < ActiveRecord::Base
   end
   
   def get_full_path
-    if (self.parent_id == 0)
+    if (self.parent.nil?)
       return self.name
     else
       return parent.get_full_path + "/" + self.name
@@ -56,10 +59,6 @@ class Group < ActiveRecord::Base
   def description
     get_data_item('description')
   end  
-  
-  def has_parent?
-    parent_id > 0
-  end
   
   def participants
     tweets = Group.pull_recent_tweets(self.get_full_path, 200)    
@@ -123,14 +122,7 @@ class Group < ActiveRecord::Base
     group.save
     group
   end
-  
-  def populate_sub_group
-    sub_groups = Group.find_all_by_parent_id(self.id)
-    unless sub_groups == nil
-      self.sub_groups = sub_groups
-    end
-  end
-  
+    
   def get_vips
     @user_profiles = []
     self.users.each do |u|      

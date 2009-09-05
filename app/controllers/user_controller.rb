@@ -8,6 +8,11 @@ class UserController < ApplicationController
     session[:twitter_name] = nil
     redirect_to "/"
   end
+  
+  def groups
+    @owner = User.find_by_twitter_name(params[:twitter_name])    
+    render :layout => false
+  end
 
   def authorize
     verification_response = verify_credentials
@@ -84,11 +89,11 @@ class UserController < ApplicationController
     redirect_to :controller => :home, :action => :index
   end
   
-  def groups
-    @user = User.find_by_twitter_name(session[:twitter_name])
-    @user.groups.each do |ug|
-      ug.sub_groups = ug.populate_sub_group
-    end
-    render :layout => false
-  end
+  #def groups
+  #  @user = User.find_by_twitter_name(session[:twitter_name])
+  #  @user.groups.each do |ug|
+  #    ug.sub_groups = ug.populate_sub_group
+  #  end
+  #  render :layout => false
+  #end
  end

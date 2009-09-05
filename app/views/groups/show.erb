@@ -102,11 +102,9 @@
 	</div>
 	
 	<div id='sub_groups'>
-		<% if !@group.sub_groups.nil? %>
-			<ul id='subgroup_list'>		
-				<%= render :partial => "group_heirarchy" %>
-			</ul>
-		<% end %>
+		<div id='subgroup_list'>
+			<%= render :partial => "group_heirarchy" %>
+		</div>
 		
 		<em>related groups</em> 
 		<% if User.can_edit_group?(@group, session[:twitter_name])   %>

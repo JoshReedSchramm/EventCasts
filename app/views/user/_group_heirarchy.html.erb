@@ -1,0 +1,17 @@
+<% if !@owner.nil? %>
+	<ul id="user_groups">
+		<% for group in @owner.groups %>
+			<% if group.parent.nil? %>
+			    <li><a href='/<%= group.get_full_path %>'>#<%= group.name %></a>
+					<% if !group.groups.nil? %>
+						<ul id="user_groups_sub_groups">
+							<% group.groups.each do |sg| %>
+								<li><a href='/<%= sg.get_full_path %>'>#<%= sg.name %></a></li>
+							<% end %>
+						</ul>
+					<% end %>			
+				</li>		
+			<% end %>
+		<% end %>
+	</ul>	
+<% end %>

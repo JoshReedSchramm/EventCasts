@@ -40,9 +40,9 @@ $(document).ready(function() {
 		$('#add_group_form').submit();
 	});
 
-	/*$('#add_group_form').ajaxForm({
+	$('#add_group_form').ajaxForm({
 	    success: update_sub_groups		
-	});*/
+	});
 });
 
 function update_sub_groups(result) {

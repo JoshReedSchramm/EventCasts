@@ -4,6 +4,6 @@ class Security
   end
 
   def self.can_edit_group?(user, group)
-    is_authenticated? and User.can_edit_group?(group, user.twitter_name)
+    is_authenticated?(user.twitter_name) and User.can_edit_group?(group, user.twitter_name)
   end
 end

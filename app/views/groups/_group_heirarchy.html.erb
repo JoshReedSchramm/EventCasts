@@ -1,19 +1,15 @@
-<% if !@sub_groups.nil?  && !@sub_groups.empty?  %>
+<% if !@owner.nil? %>
 	<ul id="user_groups">
-		<% for group in @sub_groups %>
-			<% if group.parent_id == @parent_check_id %>
+		<% for group in @owner.groups %>
 		    <li><a href='/<%= group.get_full_path %>'>#<%= group.name %></a>
-				<% if !group.sub_groups.nil? %>
+				<% if !group.groups.nil? %>
 					<ul id="user_groups_sub_groups">
-						<% group.sub_groups.each do |sg| %>
+						<% group.groups.each do |sg| %>
 							<li><a href='/<%= sg.get_full_path %>'>#<%= sg.name %></a></li>
 						<% end %>
 					</ul>
 				<% end %>			
 			</li>		
-			<% end %>
 		<% end %>
 	</ul>	
-<% elsif @error_messages != "" %>
-Error: <%= @error_messages %>
 <% end %>

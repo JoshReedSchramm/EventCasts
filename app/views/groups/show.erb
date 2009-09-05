@@ -30,7 +30,7 @@
 	<h2>#<%=@group.name%></h2>
 	<em>
 		hashtag 
-		<% if @group.parent_id != 0 %>
+		<% if !@group.parent.nil? %>
 			<a href='/groups/<%=@group.parent.get_full_path %>' id='parent_link'>child of #<%= @group.parent.name %></a>		
 		<% end %>
 		</em>

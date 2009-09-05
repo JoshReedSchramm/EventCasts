@@ -1,22 +1,15 @@
 class Group < ActiveRecord::Base
   has_and_belongs_to_many :users  
   has_many :group_data
-  belongs_to :parent,
-             :class_name => "Group",
-             :foreign_key => "parent_id"
-  belongs_to :creator,
-             :class_name => "User",
-             :foreign_key => "creator_id"
-  has_many :groups,
-           :class_name => "Group",
-           :foreign_key => "parent_id"
+  belongs_to :parent, :class_name => "Group", :foreign_key => "parent_id"
+  belongs_to :creator, :class_name => "User", :foreign_key => "creator_id"
+  has_many :groups, :class_name => "Group", :foreign_key => "parent_id"
+
   validates_presence_of :name, :on => :create, :message => "hashtag can't be blank"
-  validates_uniqueness_of :name, :scope => "parent_id", :message => "hashtag is already registered" 
-  
+  validates_uniqueness_of :name, :scope => "parent_id", :message => "hashtag is already registered"   
   validates_format_of :name, :with => /^[A-Za-z0-9_]+$/, :on => :create, :message => "hashtag can only contain letters and numbers"
   validate :user_can_edit_group?
   
-  attr_accessor :sub_groups
   attr_accessor :editor
   
   def add_user_by_twitter_name?(twitter_name, create_if_needed = false)
@@ -121,19 +114,6 @@ class Group < ActiveRecord::Base
     group.creator = user
     group.save
     group
-  end
-    
-  def get_vips
-    @user_profiles = []
-    self.users.each do |u|      
-      twitter_profile = u.get_twitter_profile
-      if !twitter_profile.nil?
-        @user_profiles << twitter_profile
-      else
-        @user_profiles << create_mock_profile(u.twitter_name)
-      end
-    end
-    @user_profiles
   end
   
   def Group.pull_recent_tweets(tag,num = nil,since = nil)

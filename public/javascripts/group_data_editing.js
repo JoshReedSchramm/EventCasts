@@ -43,12 +43,7 @@ $(document).ready(function() {
 	$('#title_form').ajaxForm({
 		dataType: 'json',
 	    success: update_title		
-	});
-	
-	/*$('#group_edit_form').ajaxForm({
-		dataType: 'json',
-	    success: update_title		
-	});*/
+	});	
 });
 function update_description(result) {	
 	if (result.group_datum.description == "")

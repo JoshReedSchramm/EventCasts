@@ -10,7 +10,7 @@ class GroupsController < ApplicationController
   
   def set_data 
     group_data = GroupDatum.create_or_update(params[:group_datum])   
-    return if !Security.can_edit_group? group_data.group
+    return if !Security.can_edit_group?(User.find_by_twitter_name(session[:twitter_name]), group_data.group)
     group_data.save
     respond_to do |format|
       format.json  { render :json => group_data.to_json }
@@ -89,7 +89,6 @@ class GroupsController < ApplicationController
     @error_messages = ""
     @group = Group.find_group_from_heirarchy(params[:group_names])
     @owner = @group
-    @vips = @group.get_vips if !@group.nil?
     @participants = @group.participants if !@group.nil?
     @sub_groups = nil
     

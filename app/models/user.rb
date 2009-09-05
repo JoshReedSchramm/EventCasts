@@ -11,6 +11,9 @@ class User < ActiveRecord::Base
     if (user.nil?)
       user = User.new()
       user.twitter_name = twitter_name
+      if !user.twitter_profile.nil?
+        user.profile_image_url = user.twitter_profile["profile_image_url"]
+      end
       user.save!
     end
     user
@@ -32,10 +35,13 @@ class User < ActiveRecord::Base
     end.length > 0    
   end
   
-  def get_twitter_profile
-    ha = Twitter::HTTPAuth.new('asktwoups', '1rumbleapp!')
-    base = Twitter::Base.new(ha)    
-    base.user(self.twitter_name)
+  def twitter_profile
+    if @twitter_profile.nil?
+      ha = Twitter::HTTPAuth.new('asktwoups', '1rumbleapp!')
+      base = Twitter::Base.new(ha)    
+      @twitter_profile = base.user(self.twitter_name)    
+    end
+    @twitter_profile
   rescue
     return nil
   end

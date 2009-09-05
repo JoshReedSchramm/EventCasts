@@ -1,7 +1,5 @@
-<% if !@vips.nil? && !@vips.empty? %>
-	<% @vips.each do |vip| %>
-		<a href='http://twitter.com/<%= vip["name"] %>' target='_blank'><img src='<%= vip["profile_image_url"] %>' alt='<%= vip["name"] %><%= (" - "+vip["screen_name"]) if !vip["screen_name"].empty? %>' title='<%= vip["name"] %><%= (" - "+vip["screen_name"]) if !vip["screen_name"].empty? %>' class='vip_image' /></a>
+<% if !@group.users.nil? %>
+	<% @group.users.each do |user| %>
+		<a href='http://twitter.com/<%= user.twitter_name %>' target='_blank'><img src='<%= user.profile_image_url %>' alt='<%= user.twitter_name %>' title='<%= user.twitter_name %>' class='vip_image' /></a>		
 	<% end %>
-  <% elsif @error_messages != "" %>
-    Error: <%= @error_messages %>
 <% end %>

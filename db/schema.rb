@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090823152735) do
+ActiveRecord::Schema.define(:version => 20090905233240) do
 
   create_table "group_data", :force => true do |t|
     t.integer  "group_data_type_id"
@@ -51,6 +51,7 @@ ActiveRecord::Schema.define(:version => 20090823152735) do
     t.datetime "updated_at"
     t.string   "atoken"
     t.string   "asecret"
+    t.string   "profile_image_url"
   end
 
 end

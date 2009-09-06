@@ -11,7 +11,7 @@ class UserController < ApplicationController
   
   def groups
     @user = User.find_by_twitter_name(params[:twitter_name])    
-    render :layout => false
+    render :partial=>"group_heirarchy", :layout => false
   end
 
   def authorize

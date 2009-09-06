@@ -35,7 +35,6 @@ describe Group do
   describe "when verifying uniqueness of a tag" do
     it "should query for other similar tags" do
       @valid.save!
-      @valid.id.should == 1
       @valid.parent_id.should == 0
       @valid2.save.should == false
     end

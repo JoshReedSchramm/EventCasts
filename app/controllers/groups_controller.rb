@@ -1,7 +1,7 @@
 class GroupsController < ApplicationController
   include GroupsHelper
   
-  before_filter :authorize, :except=>[:vips, :participants, :show, :recent_tweets]
+  before_filter :authorize, :except=>[:vips, :participants, :show, :recent_tweets, :group_heirarchy]
   
   def create
     @group = Group.create_group(params[:group], session[:twitter_name])    

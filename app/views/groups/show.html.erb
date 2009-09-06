@@ -31,7 +31,7 @@
 	<em>
 		hashtag 
 		<% if !@group.parent.nil? %>
-			<a href='/groups/<%=@group.parent.full_path %>' id='parent_link'>child of #<%= @group.parent.name %></a>		
+			<a href='/<%=@group.parent.full_path %>' id='parent_link'>child of #<%= @group.parent.name %></a>		
 		<% end %>
 		</em>
 	<br /><br />

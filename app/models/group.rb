@@ -24,8 +24,6 @@ class Group < ActiveRecord::Base
     @full_path = path
   end
   
-  
-
   def owner
     if !self.users.nil? and self.users.length > 0
       self.users[0]
@@ -156,11 +154,8 @@ class Group < ActiveRecord::Base
   protected
   
   def get_full_path
-    if (self.parent.nil?)
-      return self.name
-    else
-      return parent.get_full_path + "/" + self.name
-    end
+    return self.name if self.parent.nil?
+    return parent.get_full_path + "/" + self.name
   end
   
   private
@@ -175,22 +170,10 @@ class Group < ActiveRecord::Base
       return ""
     end
   end
-  
-  def create_mock_profile(twitter_name)
-    vip = {}
-    vip["profile_image_url"] = "http://twivatar.org/"+twitter_name+"/normal"
-    vip["name"] = twitter_name
-    vip["screen_name"] = ""
-    vip
-  end
     
   def user_can_edit_group?
     user = User.find_by_twitter_name(self.last_updated_by)    
-    if !self.parent.nil?
-      return Security.can_edit_group?(user, self.parent)
-    end
+    return Security.can_edit_group?(user, self.parent) unless self.parent.nil?
     return true
   end
-  
-
 end

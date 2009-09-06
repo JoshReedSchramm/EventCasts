@@ -3,13 +3,6 @@ class GroupsController < ApplicationController
   
   before_filter :authorize, :except=>[:vips, :participants, :show, :recent_tweets]
   
-  def new
-    @group = Group.new    
-    respond_to do |format|
-      format.html
-    end
-  end
-  
   def create
     @group = Group.create_group(params[:group], session[:twitter_name])    
     return if handle_ajax_validation_errors(@group)
@@ -31,7 +24,7 @@ class GroupsController < ApplicationController
   def group_heirarchy
     @group = Group.find(params[:id])
     respond_to do |format|
-      format.html  { render :layout=>false }
+      format.html  { render :partial=>'group_heirarchy', :layout=>false }
     end
   end
 
@@ -46,7 +39,7 @@ class GroupsController < ApplicationController
     @group.save!
     
     respond_to do |format|
-      format.html { render :layout => false }       
+      format.html { render :partial=>"vips", :layout => false }       
     end unless handle_ajax_validation_errors(@group)
   end
 
@@ -54,14 +47,14 @@ class GroupsController < ApplicationController
     @group = Group.find(params[:group_id])
     @vips = @group.get_vips
     respond_to do |format|
-       format.html { render :layout => false }       
+       format.html { render :partial=>"vips", :layout => false }       
      end
   end
   
   def participants
     @group = Group.find(params[:group_id])
     respond_to do |format|
-       format.html { render :layout => false }       
+       format.html { render :partial=>"participants", :layout => false }       
      end 
   end
   

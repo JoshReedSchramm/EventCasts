@@ -40,10 +40,10 @@ $(document).ready(function() {
 	    success: update_description		
 	});
 	
-	$('#title_form').ajaxForm({
+	/*$('#title_form').ajaxForm({
 		dataType: 'json',
 	    success: update_title		
-	});	
+	});*/	
 });
 function update_description(result) {	
 	if (result.group_datum.description == "")

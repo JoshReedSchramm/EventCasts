@@ -7,27 +7,9 @@ class GroupsController < ApplicationController
       format.html
     end
   end
-  
-  def set_data 
-    group_data = GroupDatum.create_or_update(params[:group_datum])   
-    return if !Security.can_edit_group?(User.find_by_twitter_name(session[:twitter_name]), group_data.group)
-    group_data.save
-    respond_to do |format|
-      format.json  { render :json => group_data.to_json }
-    end
-  end
-  
   def create
-    @group = Group.create_group(params[:group], session[:twitter_name])
-    
-    if !@group.errors.empty?
-      if request.xhr?
-        response.headers['X-JSON'] = @group.errors.to_json
-      end
-      render :layout => false, :status=>444
-      return
-    end
-
+    @group = Group.create_group(params[:group], session[:twitter_name])    
+    return if handle_ajax_validation_errors(@group)
     if (@group.parent.nil?)
       redirect_to :controller=>"user", :action=>"groups", :twitter_name=>session[:twitter_name]
     else
@@ -35,38 +17,51 @@ class GroupsController < ApplicationController
     end
   end
   
+  def set_data 
+    group_data = GroupDatum.create_or_update(params[:group_datum], session[:twitter_name])   
+    group_data.save
+    respond_to do |format|
+      format.json  { render :json => group_data.to_json }
+    end unless handle_ajax_validation_errors(group_data)    
+  end
+  
   def group_heirarchy
     @group = Group.find(params[:id])
     @owner = @group
-    render :layout => false
+    respond_to do |format|
+      format.html  { render :layout=>false }
+    end
   end
 
   def add_group_vip
     user = params[:user]
+
     @group = Group.find_by_id(user[:group_id])
-    @error_messages = ""
-
     return if @group.nil?
-    return if !Security.can_edit_group? User.find_by_twitter_name(session[:twitter_name]), @group
+    @group.last_updated_by = session[:twitter_name]
 
-    if !@group.add_user_by_twitter_name?(User.filter_at(user[:twitter_name]),true)
-      @error_messages = "user is already a VIP"
-    else
-      @group.save!
-    end
-    render :layout => false
+    @group.add_user_by_twitter_name(user[:twitter_name])
+    @group.save!
+    
+    respond_to do |format|
+      format.html { render :layout => false }       
+    end unless handle_ajax_validation_errors(@group)
   end
 
   def vips
     @group = Group.find(params[:group_id])
     @vips = @group.get_vips
-    render :layout => false
+    respond_to do |format|
+       format.html { render :layout => false }       
+     end
   end
   
   def participants
     @group = Group.find(params[:group_id])
     @participants = @group.participants    
-    render :layout => false    
+    respond_to do |format|
+       format.html { render :layout => false }       
+     end 
   end
   
   def show
@@ -107,12 +102,9 @@ class GroupsController < ApplicationController
     Group.pull_recent_tweets(full_group_name,num,since)
   end
 
-  protected
-
-  def authorize
-    unless Security.is_authenticated?(session[:twitter_name])
-      redirect_to(:controller=>"home", :action=>"index")
-      false
-    end
+  protected  
+  
+  def can_edit_group    
+    !Security.can_edit_group?(User.find_by_twitter_name(session[:twitter_name]), self)    
   end
 end

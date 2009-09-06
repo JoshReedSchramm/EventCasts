@@ -17,6 +17,22 @@ class ApplicationController < ActionController::Base
     end
     desc
   end
+  
+  def handle_ajax_validation_errors(object)
+    if !object.errors.empty? && request.xhr?
+      response.headers['X-JSON'] = object.errors.to_json
+      render :nothing => true, :status=>444   
+      return true     
+    end
+    return false
+  end
+  
+  def authorize
+    unless Security.is_authenticated?(session[:twitter_name])
+      redirect_to(:controller=>"home", :action=>"index")
+      false
+    end
+  end
 
   private
     def twitter_unauthorized(exception)

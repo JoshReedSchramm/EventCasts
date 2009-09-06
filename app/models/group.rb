@@ -10,19 +10,10 @@ class Group < ActiveRecord::Base
   validates_format_of :name, :with => /^[A-Za-z0-9_]+$/, :on => :create, :message => "hashtag can only contain letters and numbers"
   validate :user_can_edit_group?
   
-  attr_accessor :editor
-  
-  def add_user_by_twitter_name?(twitter_name, create_if_needed = false)
-    user = User.find_by_twitter_name(twitter_name)
-    if create_if_needed && user.nil?
-      user = User.create_user(twitter_name)
-    end
-    if !User.can_edit_group?(self, user.twitter_name)
-      self.users << user
-      return true
-    else
-      return false
-    end
+  def add_user_by_twitter_name(twitter_name)
+    user = User.find_by_twitter_name(User.filter_at(twitter_name))
+    user ||= User.create_user(twitter_name)
+    self.users << user unless self.users.include? user
   end
   
   def get_full_path
@@ -104,7 +95,7 @@ class Group < ActiveRecord::Base
   def Group.create_group(group_data, twitter_name)
     group = Group.new(group_data)
     user = User.find_by_twitter_name(twitter_name)    
-    group.editor = user
+    group.last_updated_by = twitter_name
     group.users << user
     group.name = Group.filter_hash(group.name)    
     group.creator = user
@@ -180,10 +171,11 @@ class Group < ActiveRecord::Base
     vip["screen_name"] = ""
     vip
   end
-  
+    
   def user_can_edit_group?
+    user = User.find_by_twitter_name(self.last_updated_by)    
     if !self.parent.nil?
-      return Security.can_edit_group?(self.editor, self.parent)
+      return Security.can_edit_group?(user, self.parent)
     end
     return true
   end

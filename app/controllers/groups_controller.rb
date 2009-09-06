@@ -7,6 +7,7 @@ class GroupsController < ApplicationController
       format.html
     end
   end
+  
   def create
     @group = Group.create_group(params[:group], session[:twitter_name])    
     return if handle_ajax_validation_errors(@group)

@@ -1,6 +1,6 @@
 <% if !@user.nil? %>
 	<ul id="user_groups">
-		<% for group in @user_groups.groups %>
+		<% for group in @user.groups %>
 			<% if group.parent.nil? %>
 			    <li><a href='/<%= group.full_path %>'>#<%= group.name %></a>
 					<% if !group.groups.nil? %>

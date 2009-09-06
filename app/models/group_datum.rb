@@ -6,12 +6,12 @@ class GroupDatum < ActiveRecord::Base
   
   def GroupDatum.create_or_update(data, user)    
     group_data = GroupDatum.find(:first, :conditions=>["group_id=? and group_data_type_id=?", data[:group_id], data[:group_data_type_id]])
-    group_data.last_updated_by = user    
     if group_data.nil?
       group_data = GroupDatum.new(data)
     else
       group_data.update_attributes(data)
     end
+    group_data.last_updated_by = user        
     group_data
   end
   

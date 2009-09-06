@@ -1,12 +1,12 @@
-<% if !@owner.nil? %>
+<% if !@user.nil? %>
 	<ul id="user_groups">
-		<% for group in @owner.groups %>
+		<% for group in @user_groups.groups %>
 			<% if group.parent.nil? %>
-			    <li><a href='/<%= group.get_full_path %>'>#<%= group.name %></a>
+			    <li><a href='/<%= group.full_path %>'>#<%= group.name %></a>
 					<% if !group.groups.nil? %>
 						<ul id="user_groups_sub_groups">
 							<% group.groups.each do |sg| %>
-								<li><a href='/<%= sg.get_full_path %>'>#<%= sg.name %></a></li>
+								<li><a href='/<%= sg.full_path %>'>#<%= sg.name %></a></li>
 							<% end %>
 						</ul>
 					<% end %>			

@@ -10,7 +10,7 @@ class UserController < ApplicationController
   end
   
   def groups
-    @owner = User.find_by_twitter_name(params[:twitter_name])    
+    @user = User.find_by_twitter_name(params[:twitter_name])    
     render :layout => false
   end
 

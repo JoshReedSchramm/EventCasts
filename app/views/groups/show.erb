@@ -31,7 +31,7 @@
 	<em>
 		hashtag 
 		<% if !@group.parent.nil? %>
-			<a href='/groups/<%=@group.parent.get_full_path %>' id='parent_link'>child of #<%= @group.parent.name %></a>		
+			<a href='/groups/<%=@group.parent.full_path %>' id='parent_link'>child of #<%= @group.parent.name %></a>		
 		<% end %>
 		</em>
 	<br /><br />
@@ -119,7 +119,6 @@
 					<%= p.submit "Create Group", :class => "submit, submit_button" %>				
 				<% end %>
 			</div>
-			<p style="color: green"><%= flash[:notice] %></p>		
 		<% end %>
 	</div>
 </div>

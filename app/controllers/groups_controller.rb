@@ -27,7 +27,6 @@ class GroupsController < ApplicationController
   
   def group_heirarchy
     @group = Group.find(params[:id])
-    @owner = @group
     respond_to do |format|
       format.html  { render :layout=>false }
     end
@@ -58,53 +57,35 @@ class GroupsController < ApplicationController
   
   def participants
     @group = Group.find(params[:group_id])
-    @participants = @group.participants    
     respond_to do |format|
        format.html { render :layout => false }       
      end 
   end
   
   def show
-    @error_messages = ""
-    @group = Group.find_group_from_heirarchy(params[:group_names])
-    @owner = @group
-    @participants = @group.participants if !@group.nil?
-    @sub_groups = nil
-    
     @vip_user = User.new()
-    num = params[:num]
-    since = params[:since_id]
-    if (@group.nil?)
-      @group = Group.new()
-      @group.sub_groups = Array.new()      
-
-      unknown_path = "";
-      if !params[:group_names].nil?
-        unknown_path = params[:group_names].join('/')
-        @group.name = params[:group_names][0]
-      end
-
-      respond_to do |format|
-        format.html
-        format.json { render :json => recent_tweets(unknown_path,num,since).to_json }
-        format.js { render :partial=> "results" }
-      end
-    else
-      respond_to do |format|
-        format.html
-        format.json { render :json => recent_tweets(@group.get_full_path,num,since).to_json }
-        format.js { render :partial=> "results" }
-      end
+    @path = params[:group_names].join('/')
+    @group = get_group_for_display(params[:group_names])
+    respond_to do |format|
+      format.html
+      format.json { render :json =>  Group.pull_recent_tweets(@group.full_path,params[:num],params[:since_id]).to_json }
+      format.js { render :partial=> "results" }
     end
-  end
-
-  def recent_tweets(full_group_name,num = nil,since = nil)
-    Group.pull_recent_tweets(full_group_name,num,since)
   end
 
   protected  
   
-  def can_edit_group    
-    !Security.can_edit_group?(User.find_by_twitter_name(session[:twitter_name]), self)    
-  end
+  def get_group_for_display(group_names)
+    group = Group.find_group_from_heirarchy(group_names)
+    if group.nil?
+      group = Group.new()
+      unknown_path = "";
+      if !group_names.nil?
+        unknown_path = group_names.join('/')
+        group.name = group_names[0]
+      end
+      group.full_path = unknown_path
+    end
+    group
+  end  
 end

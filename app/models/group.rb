@@ -16,13 +16,15 @@ class Group < ActiveRecord::Base
     self.users << user unless self.users.include? user
   end
   
-  def get_full_path
-    if (self.parent.nil?)
-      return self.name
-    else
-      return parent.get_full_path + "/" + self.name
-    end
+  def full_path
+    @full_path ||= get_full_path
+    @full_path
   end
+  def full_path=(path)
+    @full_path = path
+  end
+  
+  
 
   def owner
     if !self.users.nil? and self.users.length > 0
@@ -41,7 +43,7 @@ class Group < ActiveRecord::Base
   end  
   
   def participants
-    tweets = Group.pull_recent_tweets(self.get_full_path, 200)    
+    tweets = Group.pull_recent_tweets(self.full_path, 200)    
     results = []
     tweets.each do |t|
       found = false
@@ -151,6 +153,16 @@ class Group < ActiveRecord::Base
     json_result
   end
   
+  protected
+  
+  def get_full_path
+    if (self.parent.nil?)
+      return self.name
+    else
+      return parent.get_full_path + "/" + self.name
+    end
+  end
+  
   private
   
   def get_data_item(name)    
@@ -179,4 +191,6 @@ class Group < ActiveRecord::Base
     end
     return true
   end
+  
+
 end

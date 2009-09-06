@@ -1,5 +1,5 @@
 class GroupsController < ApplicationController
-  before_filter :authorize, :except=>[:vips, :participants, :show, :recent_tweets, :populate_sub_group]
+  before_filter :authorize, :except=>[:vips, :participants, :show, :recent_tweets]
   
   def new
     @group = Group.new    
@@ -21,8 +21,10 @@ class GroupsController < ApplicationController
     @group = Group.create_group(params[:group], session[:twitter_name])
     
     if !@group.errors.empty?
-      @error_messages = get_error_descriptions(@group.errors)
-      render :layout => false
+      if request.xhr?
+        response.headers['X-JSON'] = @group.errors.to_json
+      end
+      render :layout => false, :status=>444
       return
     end
 
@@ -105,16 +107,6 @@ class GroupsController < ApplicationController
     Group.pull_recent_tweets(full_group_name,num,since)
   end
 
-  def populate_sub_group(group)
-    @sub_groups = Group.find_all_by_parent_id(group.id)
-    unless @sub_groups == nil
-      group.sub_groups = Array.new()
-      @sub_groups.each do |g|
-        group.sub_groups.push(g)
-      end
-    end
-  end
-  
   protected
 
   def authorize

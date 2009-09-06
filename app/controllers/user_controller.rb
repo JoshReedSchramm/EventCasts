@@ -88,12 +88,4 @@ class UserController < ApplicationController
     flash[:notice] = "Authentication failed"
     redirect_to :controller => :home, :action => :index
   end
-  
-  #def groups
-  #  @user = User.find_by_twitter_name(session[:twitter_name])
-  #  @user.groups.each do |ug|
-  #    ug.sub_groups = ug.populate_sub_group
-  #  end
-  #  render :layout => false
-  #end
  end

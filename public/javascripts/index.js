@@ -41,27 +41,29 @@ $(document).ready(function() {
 	});
 
 	$('#add_group_form').ajaxForm({
-	    success: update_sub_groups		
+	    success: update_sub_groups,
+		error: display_error
 	});
 });
 
-function update_sub_groups(result) {
-	if (result.indexOf("Error: ")>-1) {	
- 		display_error_on('add_group_box', result.substr(result.indexOf("Error: ")+7));
-	} else {
-		$(".error_message").remove();		
-		$("#user_groups").html(result);
-		$("#add_group_form").hide();	
-		$('#add_group_link').show();						
-		$('#cancel_add_group_link').hide();				
-	}
+function display_error(request, textStatus, errorThrown)
+{
+	errors = eval(request.getResponseHeader("X-JSON"));
+	if (errors[0][0] == "name")
+		display_error_on("group", errors[0][0], errors[0][1]);	
 }
 
-function display_error_on(fieldId, error) {
-	$(".error_message").remove();
-	
-	$("#"+fieldId).parent().after("<div class='error_message' id='error_"+fieldId+"'>"+error+"</div>");
-	var parent_pos = $("#"+fieldId).position();
+function update_sub_groups(result, status) {
+	$(".error_message").remove();		
+	$("#user_groups").html(result);
+	$("#add_group_form").hide();	
+	$('#add_group_link').show();						
+	$('#cancel_add_group_link').hide();				
+}
+
+function display_error_on(model, field_name, error) {
+	$(".error_message").remove();	
+	$("input[name='"+model+"["+field_name+"]']").parent().after("<div class='error_message' id='error_"+field_name+"'>"+error+"</div>");
 }
 
 function show_search_results(response_text) {

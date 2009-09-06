@@ -44,32 +44,14 @@ class GroupsController < ApplicationController
     @group = Group.find_by_id(user[:group_id])
     @error_messages = ""
 
-    if @group.nil?
-      @error_messages = get_error_descriptions(@group.errors)
-      render :layout => false
-      return
-    end
-
-    if (@group.parent_id != 0)
-      @parent = Group.find(@group.parent_id)
-      allowed = Security.can_edit_group? @parent
-    else
-      allowed = true
-    end
-
-    if !allowed
-      @error_messages = get_error_descriptions(@group.errors)
-      render :layout => false
-      return
-    end
+    return if @group.nil?
+    return if !Security.can_edit_group? User.find_by_twitter_name(session[:twitter_name]), @group
 
     if !@group.add_user_by_twitter_name?(User.filter_at(user[:twitter_name]),true)
-      @error_messages = "user is alread a VIP"
+      @error_messages = "user is already a VIP"
     else
       @group.save!
-      @vips = @group.get_vips
     end
-    
     render :layout => false
   end
 

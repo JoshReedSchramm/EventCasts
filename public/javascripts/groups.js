@@ -46,7 +46,7 @@ $(document).ready(function() {
                 $('#add_vip_form').submit();
         });
 
-       	$('#add_vip_form').ajaxForm({
+       $('#add_vip_form').ajaxForm({
             success: update_vip
         });
         

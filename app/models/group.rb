@@ -14,12 +14,8 @@ class Group < ActiveRecord::Base
   
   def add_user_by_twitter_name?(twitter_name, create_if_needed = false)
     user = User.find_by_twitter_name(twitter_name)
-    if (create_if_needed)
-      if user.nil?
-        user = User.new()
-        user.twitter_name = twitter_name
-        user.save!
-      end
+    if create_if_needed && user.nil?
+      user = User.create_user(twitter_name)
     end
     if !User.can_edit_group?(self, user.twitter_name)
       self.users << user

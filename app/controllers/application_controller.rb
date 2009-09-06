@@ -1,6 +1,3 @@
-# Filters added to this controller apply to all controllers in the application.
-# Likewise, all the methods added will be available for all controllers.
-
 class ApplicationController < ActionController::Base
   helper :all # include all helpers, all the time
   protect_from_forgery # See ActionController::RequestForgeryProtection for details
@@ -9,14 +6,6 @@ class ApplicationController < ActionController::Base
   # filter_parameter_logging :password
 
   rescue_from Twitter::Unauthorized, :with => :twitter_unauthorized
-    
-  def get_error_descriptions(errors)
-    desc = ""
-    errors.each do |e|
-      desc << e[1]
-    end
-    desc
-  end
   
   def handle_ajax_validation_errors(object)
     if !object.errors.empty? && request.xhr?

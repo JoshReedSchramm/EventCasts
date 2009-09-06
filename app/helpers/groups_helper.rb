@@ -1,4 +1,7 @@
 module GroupsHelper
+  
+  private 
+  
   def get_group_for_display(group_names)
     group = Group.find_group_from_heirarchy(group_names)
     if group.nil?

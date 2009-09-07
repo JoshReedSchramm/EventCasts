@@ -11,6 +11,7 @@ ActionController::Routing::Routes.draw do |map|
   map.connect '/groups/subgroups/:id', :controller=>"groups", :action=>"subgroups", :conditions => { :method => :get}              
   map.connect '/groups/set_data/*group_names', :controller=>"groups", :action=>"set_data", :conditions => { :method => :post}            
   map.connect '/groups/:action/:id', :controller=>"groups"
+  map.connect '/group_data/:action/:id', :controller=>"group_data"  
   map.connect '/user/groups/:twitter_name', :controller=>"user", :action=>"groups"  
   map.connect '/user/:action/:id', :controller=>"user"  
   map.connect '/home/:action/:id', :controller=>"home"  

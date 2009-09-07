@@ -44,7 +44,7 @@
 
 	<% 
 	if User.can_edit_group?(@group, session[:twitter_name])  
-		form_for :group_datum, :url => "/groups/set_data?format=json", :html => { :id => "title_form", :class=>"group_data_form" } do |p| %>
+		form_for :group_datum, :url => "/group_data/set_data?format=json", :html => { :id => "title_form", :class=>"group_data_form" } do |p| %>
 		<%= p.text_field :description, :size=>30, :maxlength=>140, :id=>'title_box', :value=>@group.title %>
 		<%= p.hidden_field :group_id, :value=>@group.id %>
 		<%= p.hidden_field :group_data_type_id, :value=>GroupDataType.title.id %>
@@ -63,7 +63,7 @@
 	</h4>
 	<% 
  	if User.can_edit_group?(@group, session[:twitter_name])  	
-		form_for :group_datum, :url => "/groups/set_data?format=json", :html => { :id => "description_form", :class=>"group_data_form" } do |p| %>
+		form_for :group_datum, :url => "/group_data/set_data?format=json", :html => { :id => "description_form", :class=>"group_data_form" } do |p| %>
 			<%= p.text_area :description, :rows=>6, :cols=>30, :maxlength=>140, :id=>'description_box', :value=>@group.description %>
 			<%= p.hidden_field :group_id, :value=>@group.id %>
 			<%= p.hidden_field :group_data_type_id, :value=>GroupDataType.description.id %>

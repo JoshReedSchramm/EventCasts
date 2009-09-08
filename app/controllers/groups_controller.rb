@@ -22,8 +22,7 @@ class GroupsController < ApplicationController
 
   def add_group_vip
     user = params[:user]
-
-    @group = Group.find_by_id(user[:group_id])
+    @group = Group.find(user[:group_id])
     return if @group.nil?
     @group.last_updated_by = session[:twitter_name]
 

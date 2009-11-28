@@ -4,6 +4,7 @@ class CreateGroupData < ActiveRecord::Migration
       i.integer :group_data_type_id
       i.integer :group_id
       i.string :description
+      i.string :last_updated_by
       i.timestamps
     end
   end

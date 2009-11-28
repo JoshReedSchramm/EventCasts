@@ -7,9 +7,7 @@ class AddDefaultGroupData < ActiveRecord::Migration
     gd.group_data_type = description
     gd.group = group
     gd.description = "Sample Description"
-    
-    gd.save!
-    
+    puts gd.nil?    
   end
 
   def self.down

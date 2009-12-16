@@ -1,15 +1,15 @@
-$(document).ready(function() {
-	if ($('#search_box').val() != "Search for conversations") {
+/*$(document).ready(function() {
+	if ($('#search_box').val() != "Find an event or group") {
 		$('#search_box').css('color', 'black');
 	}	
   	$('#search_button').click(function(){
-		if ($('#search_box').val() == "Search for conversations") {
+		if ($('#search_box').val() == "Find an event or group") {
 			$('#search_box').val("");
 		}
 		$('#search_form').submit();
 	});
 	$('#search_box').focus(function() {
-		if ($('#search_box').val() == "Search for conversations") {
+		if ($('#search_box').val() == "Find an event or group") {
 			$('#search_box').css('color', 'black');
 			$('#search_box').val("");
 		}	
@@ -17,7 +17,7 @@ $(document).ready(function() {
 	$('#search_box').blur(function() {
 		if ($('#search_box').val() == "") {
 			$('#search_box').css('color', 'gray');		
-			$('#search_box').val("Search for conversations");
+			$('#search_box').val("Find an event or group");
 		}	
 	});
 	$('#search_form').ajaxForm({
@@ -44,7 +44,7 @@ $(document).ready(function() {
 	    success: update_sub_events,
 		error: display_error
 	});
-});
+});*/
 
 function display_error(request, textStatus, errorThrown)
 {

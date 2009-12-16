@@ -12,7 +12,6 @@ class HomeController < ApplicationController
   
   def search
     @results = Search.search(params[:search])
-    render :partial=> "search", :layout => false
   end
   
   def about_us

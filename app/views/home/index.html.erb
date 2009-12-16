@@ -1,10 +1,6 @@
 <%= javascript_include_tag "jquery.form.js" %>
 <%= javascript_include_tag "index.js" %>
 <div id='search_container'>
-        <% form_for :search, :url => {:action=>"search"}, :html => { :id => "search_form" } do |p| %>
-            <%= p.text_field :query, :size=>30, :maxlength=>140, :id=>'search_box', :value=>'Search for conversations' %>
-            <a id='search_button' href='#' type='submit' class='submit'></a>
-        <% end %>
 
   <% if !@auto_search %>
     <div id='description_text'>

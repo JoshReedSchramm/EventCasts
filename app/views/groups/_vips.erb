@@ -1,5 +1,0 @@
-<% if !@group.users.nil? %>
-	<% @group.users.each do |user| %>
-		<a href='http://twitter.com/<%= user.twitter_name %>' target='_blank'><img src='<%= user.profile_image_url %>' alt='<%= user.twitter_name %>' title='<%= user.twitter_name %>' class='vip_image' /></a>		
-	<% end %>
-<% end %>

@@ -11,22 +11,22 @@
 
 ActiveRecord::Schema.define(:version => 20090905233240) do
 
-  create_table "group_data", :force => true do |t|
-    t.integer  "group_data_type_id"
-    t.integer  "group_id"
+  create_table "event_data", :force => true do |t|
+    t.integer  "event_data_type_id"
+    t.integer  "event_id"
     t.string   "description"
     t.string   "last_updated_by"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "group_data_types", :force => true do |t|
+  create_table "event_data_types", :force => true do |t|
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "groups", :force => true do |t|
+  create_table "events", :force => true do |t|
     t.string   "name"
     t.integer  "parent_id"
     t.string   "last_updated_by"
@@ -35,8 +35,8 @@ ActiveRecord::Schema.define(:version => 20090905233240) do
     t.integer  "creator_id",      :default => 0
   end
 
-  create_table "groups_users", :id => false, :force => true do |t|
-    t.integer  "group_id"
+  create_table "events_users", :id => false, :force => true do |t|
+    t.integer  "event_id"
     t.integer  "user_id"
     t.string   "last_updated_by"
     t.datetime "created_at"

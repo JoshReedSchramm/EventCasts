@@ -1,10 +1,10 @@
 class User < ActiveRecord::Base
-  has_and_belongs_to_many :groups
+  has_and_belongs_to_many :events
   validates_presence_of :twitter_name, :on => :create, :message => "can't be blank"
 
   def authorized?
     !atoken.blank? && !asecret.blank?
-  end 
+  end
   
   def User.create_user(twitter_name)
     user = User.find_by_twitter_name(twitter_name)
@@ -19,7 +19,7 @@ class User < ActiveRecord::Base
     user
   end
   
-  def User.can_edit_group?(group, twitter_name)
+  def User.can_edit_event?(event, twitter_name)
     if (twitter_name.nil? || twitter_name.empty?)
       return false;
     end
@@ -30,8 +30,8 @@ class User < ActiveRecord::Base
       return false
     end
     
-    user.groups.select do |g|
-      g.id == group.id
+    user.events.select do |g|
+      g.id == event.id
     end.length > 0    
   end
   

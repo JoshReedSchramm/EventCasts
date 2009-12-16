@@ -19,17 +19,17 @@
 <div>
 <h4>Welcome @<%= @user.twitter_name%>!</h4>
 <br />
-<%= link_to "Add a group", :controller=>"groups", :action=>"new" %>
+<%= link_to "Add a event", :controller=>"events", :action=>"new" %>
 </div>
-<h4>Manage your groups</h4>
-<ul id="user_groups">
-<% for group in @user.groups %>
-  <% if group.parent_id == 0 %>
-    <li><a href='/groups/<%= group.get_full_path %>'><%= group.name %></a></li>
-    <% if !group.sub_groups.nil? %>
-    <li><ul id="user_groups_sub_groups">
-      <% group.sub_groups.each do |sg| %>
-        <li><a href='/groups/<%= sg.get_full_path %>'><%= sg.name %></a>
+<h4>Manage your events</h4>
+<ul id="user_events">
+<% for event in @user.events %>
+  <% if event.parent_id == 0 %>
+    <li><a href='/events/<%= event.get_full_path %>'><%= event.name %></a></li>
+    <% if !event.sub_events.nil? %>
+    <li><ul id="user_events_sub_events">
+      <% event.sub_events.each do |sg| %>
+        <li><a href='/events/<%= sg.get_full_path %>'><%= sg.name %></a>
       <% end %>
     </li></ul>
     <% end %>

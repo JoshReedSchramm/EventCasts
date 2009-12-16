@@ -1,0 +1,16 @@
+<%= javascript_include_tag "events" %>
+<h1>Add a event</h1>
+
+<% form_for :event, :url => {:action=>"new"} do |p| %>
+	<%= p.error_messages %>
+	<fieldset>
+		<div>
+			<%= p.label :name %>
+			<%= p.text_field :name, :size=>30, :maxlength=>140 %>
+		</div>
+		<div>
+			<%= p.hidden_field :parent_id, :value=>params[:parent_id] %>
+			<%= p.submit "Create Event", :class => "submit" %>
+		</div>
+	</fieldset>
+<% end %>

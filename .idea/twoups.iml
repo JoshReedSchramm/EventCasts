@@ -3,12 +3,79 @@
   <component name="FacetManager">
     <facet type="RailsFacetType" name="Ruby on Rails">
       <configuration>
-        <RAILS_FACET_CONFIG_ID NAME="SHOULD_USE_RSPEC_PLUGIN" VALUE="false" />
         <RAILS_FACET_CONFIG_ID NAME="RAILS_FACET_SUPPORT_REMOVED" VALUE="false" />
         <RAILS_FACET_CONFIG_ID NAME="RAILS_TESTS_SOURCES_PATCHED" VALUE="true" />
         <RAILS_FACET_CONFIG_ID NAME="RAILS_FACET_APPLICATION_ROOT" VALUE="$MODULE_DIR$" />
       </configuration>
     </facet>
+  </component>
+  <component name="GemRequirementsHolder" version="2">
+    <requirement>
+      <requirement>
+        <dependency name="cucumber" version="0.4.4" bound="GREATER_OR_EQUAL" />
+      </requirement>
+      <source from="config/environments/cucumber.rb" />
+    </requirement>
+    <requirement>
+      <requirement>
+        <dependency name="httparty" version="0.4.2" bound="EQUAL" />
+      </requirement>
+      <source from="vendor/gems/twitter-0.6.6/lib/twitter.rb" />
+    </requirement>
+    <requirement>
+      <requirement>
+        <dependency name="json" version="1.1.7" bound="EQUAL" />
+      </requirement>
+      <source from="config/environment.rb" />
+    </requirement>
+    <requirement>
+      <requirement>
+        <dependency name="mash" version="0.0.3" bound="EQUAL" />
+      </requirement>
+      <source from="vendor/gems/twitter-0.6.6/lib/twitter.rb" />
+    </requirement>
+    <requirement>
+      <requirement>
+        <dependency name="mysql" version="0" bound="GREATER_OR_EQUAL" />
+      </requirement>
+      <source from="config/database.yml" />
+    </requirement>
+    <requirement>
+      <requirement>
+        <dependency name="oauth" version="0.3.2" bound="EQUAL" />
+      </requirement>
+      <source from="vendor/gems/twitter-0.6.6/lib/twitter.rb" />
+    </requirement>
+    <requirement>
+      <requirement>
+        <dependency name="rails" version="0" bound="GREATER_OR_EQUAL" />
+      </requirement>
+      <source from="config/boot.rb" />
+    </requirement>
+    <requirement>
+      <requirement>
+        <dependency name="rspec" version="1.2.9" bound="GREATER_OR_EQUAL" />
+      </requirement>
+      <source from="config/environments/cucumber.rb" />
+    </requirement>
+    <requirement>
+      <requirement>
+        <dependency name="rspec-rails" version="1.2.9" bound="GREATER_OR_EQUAL" />
+      </requirement>
+      <source from="config/environments/cucumber.rb" />
+    </requirement>
+    <requirement>
+      <requirement>
+        <dependency name="twitter" version="0.6.6" bound="EQUAL" />
+      </requirement>
+      <source from="config/environment.rb" />
+    </requirement>
+    <requirement>
+      <requirement>
+        <dependency name="webrat" version="0.5.3" bound="GREATER_OR_EQUAL" />
+      </requirement>
+      <source from="config/environments/cucumber.rb" />
+    </requirement>
   </component>
   <component name="NewModuleRootManager">
     <content url="file://$MODULE_DIR$">
@@ -17,32 +84,35 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" name="[gem] rspec-rails (v1.2.7.1, /usr/lib/ruby/gems/1.8/gems/rspec-rails-1.2.7.1)" level="application" />
-    <orderEntry type="library" name="[gem] rack (v1.0.0, /usr/lib/ruby/gems/1.8/gems/rack-1.0.0)" level="application" />
-    <orderEntry type="library" name="[gem] rspec (v1.2.8, /usr/lib/ruby/gems/1.8/gems/rspec-1.2.8)" level="application" />
-    <orderEntry type="library" name="[gem] actionpack (v2.3.3, /usr/lib/ruby/gems/1.8/gems/actionpack-2.3.3)" level="application" />
-    <orderEntry type="library" name="[gem] rake (v0.8.7, /usr/lib/ruby/gems/1.8/gems/rake-0.8.7)" level="application" />
-    <orderEntry type="library" name="[gem] activesupport (v2.3.3, /usr/lib/ruby/gems/1.8/gems/activesupport-2.3.3)" level="application" />
-    <orderEntry type="library" name="[gem] activeresource (v2.3.3, /usr/lib/ruby/gems/1.8/gems/activeresource-2.3.3)" level="application" />
-    <orderEntry type="library" name="[gem] actionmailer (v2.3.3, /usr/lib/ruby/gems/1.8/gems/actionmailer-2.3.3)" level="application" />
-    <orderEntry type="library" name="[gem] rails (v2.3.3, /usr/lib/ruby/gems/1.8/gems/rails-2.3.3)" level="application" />
-    <orderEntry type="library" name="[gem] activerecord (v2.3.3, /usr/lib/ruby/gems/1.8/gems/activerecord-2.3.3)" level="application" />
-    <orderEntry type="library" name="[gem] mysql (v2.8.1, /usr/lib/ruby/gems/1.8/gems/mysql-2.8.1)" level="application" />
-    <orderEntry type="library" name="[gem] ruby-hmac (v0.3.2, /usr/lib/ruby/gems/1.8/gems/ruby-hmac-0.3.2)" level="application" />
-    <orderEntry type="library" name="[gem] mash (v0.0.3, /usr/lib/ruby/gems/1.8/gems/mash-0.0.3)" level="application" />
-    <orderEntry type="library" name="[gem] rubyforge (v1.0.4, /usr/lib/ruby/gems/1.8/gems/rubyforge-1.0.4)" level="application" />
-    <orderEntry type="library" name="[gem] httparty (v0.4.2, /home/john/.gem/ruby/1.8/gems/httparty-0.4.2)" level="application" />
-    <orderEntry type="library" name="[gem] crack (v0.1.4, /usr/lib/ruby/gems/1.8/gems/crack-0.1.4)" level="application" />
-    <orderEntry type="library" name="[gem] twitter (v0.6.6, /home/john/.gem/ruby/1.8/gems/twitter-0.6.6)" level="application" />
-    <orderEntry type="library" name="[gem] hoe (v2.3.3, /usr/lib/ruby/gems/1.8/gems/hoe-2.3.3)" level="application" />
-    <orderEntry type="library" name="[gem] oauth (v0.3.2, /home/john/.gem/ruby/1.8/gems/oauth-0.3.2)" level="application" />
-    <orderEntry type="library" name="[gem] json (v1.1.7, /usr/lib/ruby/gems/1.8/gems/json-1.1.7)" level="application" />
-    <orderEntry type="library" name="[gem] oauth (v0.3.5, /usr/lib/ruby/gems/1.8/gems/oauth-0.3.5)" level="application" />
-    <orderEntry type="library" name="[gem] httparty (v0.4.3, /usr/lib/ruby/gems/1.8/gems/httparty-0.4.3)" level="application" />
-    <orderEntry type="library" name="[gem] twitter (v0.6.14, /usr/lib/ruby/gems/1.8/gems/twitter-0.6.14)" level="application" />
-  </component>
-  <component name="RModuleSettingsStorage">
-    <RMODULE_SETTINGS_STORAGE_ID NAME="NUMBER" VALUE="0" />
+    <orderEntry type="library" name="[gem] mysql (v2.8.1, /Library/Ruby/Gems/1.8/gems/mysql-2.8.1)" level="application" />
+    <orderEntry type="library" name="[gem] oauth (v0.3.2, /Users/joshschramm/.gem/ruby/1.8/gems/oauth-0.3.2)" level="application" />
+    <orderEntry type="library" name="[gem] rubyforge (v2.0.3, /Library/Ruby/Gems/1.8/gems/rubyforge-2.0.3)" level="application" />
+    <orderEntry type="library" name="[gem] actionmailer (v2.3.5, /Users/joshschramm/.gem/ruby/1.8/gems/actionmailer-2.3.5)" level="application" />
+    <orderEntry type="library" name="[gem] crack (v0.1.4, /Library/Ruby/Gems/1.8/gems/crack-0.1.4)" level="application" />
+    <orderEntry type="library" name="[gem] polyglot (v0.2.9, /Library/Ruby/Gems/1.8/gems/polyglot-0.2.9)" level="application" />
+    <orderEntry type="library" name="[gem] twitter (v0.6.6, /Users/joshschramm/.gem/ruby/1.8/gems/twitter-0.6.6)" level="application" />
+    <orderEntry type="library" name="[gem] rake (v0.8.7, /Library/Ruby/Gems/1.8/gems/rake-0.8.7)" level="application" />
+    <orderEntry type="library" name="[gem] actionpack (v2.3.5, /Users/joshschramm/.gem/ruby/1.8/gems/actionpack-2.3.5)" level="application" />
+    <orderEntry type="library" name="[gem] webrat (v0.6.0, /Library/Ruby/Gems/1.8/gems/webrat-0.6.0)" level="application" />
+    <orderEntry type="library" name="[gem] activesupport (v2.3.5, /Users/joshschramm/.gem/ruby/1.8/gems/activesupport-2.3.5)" level="application" />
+    <orderEntry type="library" name="[gem] json (v1.1.7, /Library/Ruby/Gems/1.8/gems/json-1.1.7)" level="application" />
+    <orderEntry type="library" name="[gem] treetop (v1.4.2, /Library/Ruby/Gems/1.8/gems/treetop-1.4.2)" level="application" />
+    <orderEntry type="library" name="[gem] activerecord (v2.3.5, /Library/Ruby/Gems/1.8/gems/activerecord-2.3.5)" level="application" />
+    <orderEntry type="library" name="[gem] json_pure (v1.2.0, /Library/Ruby/Gems/1.8/gems/json_pure-1.2.0)" level="application" />
+    <orderEntry type="library" name="[gem] cucumber (v0.4.4, /Library/Ruby/Gems/1.8/gems/cucumber-0.4.4)" level="application" />
+    <orderEntry type="library" name="[gem] diff-lcs (v1.1.2, /Library/Ruby/Gems/1.8/gems/diff-lcs-1.1.2)" level="application" />
+    <orderEntry type="library" name="[gem] httparty (v0.4.2, /Users/joshschramm/.gem/ruby/1.8/gems/httparty-0.4.2)" level="application" />
+    <orderEntry type="library" name="[gem] hoe (v2.3.3, /Library/Ruby/Gems/1.8/gems/hoe-2.3.3)" level="application" />
+    <orderEntry type="library" name="[gem] builder (v2.1.2, /Library/Ruby/Gems/1.8/gems/builder-2.1.2)" level="application" />
+    <orderEntry type="library" name="[gem] rspec-rails (v1.2.9, /Library/Ruby/Gems/1.8/gems/rspec-rails-1.2.9)" level="application" />
+    <orderEntry type="library" name="[gem] rspec (v1.2.9, /Library/Ruby/Gems/1.8/gems/rspec-1.2.9)" level="application" />
+    <orderEntry type="library" name="[gem] activeresource (v2.3.5, /Library/Ruby/Gems/1.8/gems/activeresource-2.3.5)" level="application" />
+    <orderEntry type="library" name="[gem] ruby-hmac (v0.3.2, /Library/Ruby/Gems/1.8/gems/ruby-hmac-0.3.2)" level="application" />
+    <orderEntry type="library" name="[gem] rack (v1.0.1, /Library/Ruby/Gems/1.8/gems/rack-1.0.1)" level="application" />
+    <orderEntry type="library" name="[gem] mash (v0.0.3, /Library/Ruby/Gems/1.8/gems/mash-0.0.3)" level="application" />
+    <orderEntry type="library" name="[gem] term-ansicolor (v1.0.4, /Library/Ruby/Gems/1.8/gems/term-ansicolor-1.0.4)" level="application" />
+    <orderEntry type="library" name="[gem] nokogiri (v1.4.0, /Library/Ruby/Gems/1.8/gems/nokogiri-1.4.0)" level="application" />
+    <orderEntry type="library" name="[gem] rails (v2.3.5, /Library/Ruby/Gems/1.8/gems/rails-2.3.5)" level="application" />
   </component>
 </module>
 

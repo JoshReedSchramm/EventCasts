@@ -9,9 +9,9 @@ class UserController < ApplicationController
     redirect_to "/"
   end
   
-  def groups
+  def events
     @user = User.find_by_twitter_name(params[:twitter_name])    
-    render :partial=>"group_heirarchy", :layout => false
+    render :partial=>"event_heirarchy", :layout => false
   end
 
   def authorize

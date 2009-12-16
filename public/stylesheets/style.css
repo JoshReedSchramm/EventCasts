@@ -198,17 +198,17 @@ a#login_link:hover {
         background-color: #CCCCCC;
 }
 
-#user_groups {
+#user_events {
     line-height: 18px;
 }
 
-#user_groups_sub_groups li {
+#user_events_sub_events li {
     list-style-image: url('../images/hierarchyTick.gif');
     list-style-position: inside;
     margin-left: 20px;
 }
 
-#add_sub_group {
+#add_sub_event {
 	display: none;
 }
 
@@ -335,8 +335,8 @@ a#login_link:hover {
 	text-decoration: none;
 }
 
-#add_subgroup_link,
-#cancel_add_subgroup_link,
+#add_subevent_link,
+#cancel_add_subevent_link,
 #add_vip_link,
 #cancel_add_vip_link {
 	padding-left: 10px;
@@ -345,7 +345,7 @@ a#login_link:hover {
 	font-size:10px;	
 }
 
-#cancel_add_subgroup_link {
+#cancel_add_subevent_link {
 	display: none;
 }
 
@@ -353,19 +353,19 @@ a#login_link:hover {
 	display: none;
 }
 
-#sub_groups {
+#sub_events {
 	margin-top: 30px;
 }
 
-#sub_groups a {
+#sub_events a {
 	color: blue;
 }
 
-ul.child_groups li {
+ul.child_events li {
 	padding-left: 10px;
 }
 
-.group_data_form {
+.event_data_form {
 	display:none;
 }
 
@@ -381,16 +381,16 @@ ul.child_groups li {
 	color: blue;
 }
 
-#add_sub_group {
+#add_sub_event {
 	margin-top: 10px;
 }
 
-#add_sub_group label {
+#add_sub_event label {
 	font-size:12px;
 }
 
 em #parent_link,
-em .save_subgroup_link,
+em .save_subevent_link,
 {
 	color: blue;
 	padding-left: 10px;
@@ -400,7 +400,7 @@ em .save_subgroup_link,
 	display: none;
 }
 
-#group_header_search {
+#event_header_search {
     background: url('../images/headerSearch.png') no-repeat;
     position: relative;
     top: 16px;
@@ -412,7 +412,7 @@ em .save_subgroup_link,
     padding-left: 4px;
 }
 
-#group_header_search input {
+#event_header_search input {
     height: 16px;
     width: 225px;
     position: absolute;
@@ -421,7 +421,7 @@ em .save_subgroup_link,
 }
 
 
-#group_header_nav {
+#event_header_nav {
     position: relative;
     top: 116px;
     left: 705px;
@@ -429,9 +429,9 @@ em .save_subgroup_link,
     height: 51px;
 }
 
-#group_header_search a {
+#event_header_search a {
     position: absolute;
-    background: url('../images/groupSearchButtonOff.png') no-repeat;
+    background: url('../images/eventSearchButtonOff.png') no-repeat;
     height: 25px;
     width: 80px;
     float: right;
@@ -440,8 +440,8 @@ em .save_subgroup_link,
     left: 225px;
 }
 
-#group_header_search a:hover {
-    background: url('../images/groupSearchButtonOn.png') no-repeat;
+#event_header_search a:hover {
+    background: url('../images/eventSearchButtonOn.png') no-repeat;
 
 }
 
@@ -454,8 +454,8 @@ em .save_subgroup_link,
     width: 98px;
 }
 
-#my_groups_header_link {
-    background: url('../images/headerNavButtonMyGroupsOff.png') no-repeat;
+#my_events_header_link {
+    background: url('../images/headerNavButtonMyeventsOff.png') no-repeat;
     position: absolute;
     top: 21px;
     left: 102px;
@@ -466,8 +466,8 @@ em .save_subgroup_link,
     background: url('../images/headerNavButtonHomeOn.png') no-repeat;
 }
 
-#my_groups_header_link:hover{
-    background: url('../images/headerNavButtonMyGroupsOn.png') no-repeat;
+#my_events_header_link:hover{
+    background: url('../images/headerNavButtonMyeventsOn.png') no-repeat;
 }
 
 .error_message {
@@ -479,20 +479,20 @@ em .save_subgroup_link,
 	padding: 10px;
 }
 
-#add_new_group {
+#add_new_event {
 	margin-bottom:10px;
 }
 
-#cancel_add_group_link {
+#cancel_add_event_link {
 	display: none;
 }
 
-#add_group_form {
+#add_event_form {
 	margin-top:5px;
 	display: none;
 }
 
-#my_groups_container{
+#my_events_container{
 	position: absolute;
     top: 21px;
     left: 102px;
@@ -500,7 +500,7 @@ em .save_subgroup_link,
 	background-color: #ccc;
 }
 
-h1.not_logged_in #group_header_nav #home_header_link {
+h1.not_logged_in #event_header_nav #home_header_link {
     position: absolute;
     top: 80px;
     left:60px;
@@ -514,8 +514,8 @@ h1.not_logged_in #group_header_nav #home_header_link {
 	margin-top: 40px;
 }
 
-#add_subgroup_link,
-#cancel_add_subgroup_link,
+#add_subevent_link,
+#cancel_add_subevent_link,
 #add_vip_link,
 #cancel_add_vip_link {
 	padding-left: 10px;
@@ -542,7 +542,7 @@ h1.not_logged_in #group_header_nav #home_header_link {
 	text-align: center;
 }
 
-#groupRecentTweets {
+#eventRecentTweets {
 	text-align: left;
 }
 

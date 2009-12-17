@@ -54,7 +54,7 @@
 	
 	<h4>
 		<%= "<a href='javascript:void(0)' class='edit_inline_link' id='edit_description_inline_link'>"  if User.can_edit_event?(@event, session[:twitter_name])    %>
-		<%= @event.description == "" ? "No event description set" : @event.description.gsub(/\n/, '<br />') %>
+		<%= @event.description.blank? ? "No event description set" : @event.description.gsub(/\n/, '<br />') %>
 		<%= "</a>"  if User.can_edit_event?(@event, session[:twitter_name])   %>
 	</h4>
 	<% 

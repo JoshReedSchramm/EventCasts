@@ -34,7 +34,6 @@ p {
 #header{
     height: 100px;
     width:990px;
-    border:1px solid blue;
 }
 
 #logo{
@@ -59,7 +58,6 @@ a#login_link:hover {
 }
 
 #menu{
-    border:1px solid blue;
     float:right;
     padding-top:40px;
     position:relative;
@@ -76,7 +74,6 @@ a#login_link:hover {
 	height: 259px;
 	text-indent: -10000px;
 	margin: 0px;
-    border: 1px solid red;
 }
 
 #container h1.logged_in {
@@ -91,7 +88,6 @@ a#login_link:hover {
 
 #header_search_box{
     background-color:#78563B;
-    border:solid 2px #E4BB93;
     color:#fff;
     width:400px;
     padding:10px 20px;

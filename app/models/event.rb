@@ -30,7 +30,7 @@ class Event < ActiveRecord::Base
   end  
   
   def participants
-    tweets = Event.pull_recent_tweets(self.full_path, 200)    
+    tweets = Event.pull_recent_tweets(self.name, 200)    
     results = []
     tweets.each do |t|
       found = false

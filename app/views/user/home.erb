@@ -22,7 +22,7 @@
 	<h4>Manage your events</h4>
 	<ul id="user_events">
 		<% for event in @user.events %>
-	    	<li><a href='/events/<%= event.get_full_path %>'><%= event.name %></a></li>
+	    	<li><a href='/events/<%= event.id %>'><%= event.name %></a></li>
 		<% end %>
 	</ul>
 	<br />

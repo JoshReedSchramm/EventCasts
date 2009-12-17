@@ -37,7 +37,7 @@ describe HomeController do
       Search.should_receive(:search).with("MyQuery").and_return(mock_search_result)
       post :search, :search=>"MyQuery"
       assigns[:results].should equal(mock_search_result)
-      response.should render_template("home/_search")      
+      response.should render_template("home/search")      
     end
   end
   describe "when viewing the about us page" do

@@ -27,20 +27,20 @@
             <div id="header_search_box">
                 <strong>Follow a Conversation That's Already Happening!</strong> <br /><br />
                 <% form_for :search, :url => {:controller=>"home", :action=>"search"}, :html => { :id => "search_form" } do |p| %>
-                    <%= p.text_field :query, :size=>30, :maxlength=>140, :id=>'search_box', :value=>'Find an event or group' %>
-                    <a onclick="$('#search_form').submit();" class="submit" type="submit"><img src="../images/groupSearchButtonOff.png"/></a>
+                    <%= p.text_field :query, :size=>30, :maxlength=>140, :id=>'search_box', :value=>'Find an event or event' %>
+                    <a onclick="$('#search_form').submit();" class="submit" type="submit"><img src="../images/eventSearchButtonOff.png"/></a>
                 <% end %>
             </div>
-            <% if controller.controller_name == "groups" %>
+            <% if controller.controller_name == "events" %>
             <h1 class="logged_in">Twoups
-            <div id="group_header_nav">
+            <div id="event_header_nav">
               <a href="/" id="home_header_link"><span>&nbsp;</span></a>
               <%  if session[:twitter_name] %>
-                <a href="/user/groups/<%= session[:twitter_name] %>" rel="/user/groups/<%= session[:twitter_name] %>" id="my_groups_header_link" title="My Groups"><span>&nbsp;</span></a>
+                <a href="/user/events/<%= session[:twitter_name] %>" rel="/user/events/<%= session[:twitter_name] %>" id="my_events_header_link" title="My Groups"><span>&nbsp;</span></a>
               <% end %>
             </div>
             </h1>
-            <div id='my_groups_container'></div>
+            <div id='my_events_container'></div>
             <% end %>
             <div id='body'>
                 <%= yield  %>

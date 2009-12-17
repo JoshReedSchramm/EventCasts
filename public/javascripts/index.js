@@ -23,25 +23,25 @@
 	$('#search_form').ajaxForm({
 	    success: show_search_results
 	});
-	$("#add_group_link").click(function(){
-		$("#cancel_add_group_link").show();
-		$("#add_group_link").hide();
-		$("#add_group_form").show();
-		$("#add_group_box").focus();
+	$("#add_event_link").click(function(){
+		$("#cancel_add_event_link").show();
+		$("#add_event_link").hide();
+		$("#add_event_form").show();
+		$("#add_event_box").focus();
 	});
-	$("#cancel_add_group_link").click(function(){
+	$("#cancel_add_event_link").click(function(){
 		$(".error_message").remove();
         
-		$("#cancel_add_group_link").hide();
-		$("#add_group_link").show();
-		$("#add_group_form").hide();
+		$("#cancel_add_event_link").hide();
+		$("#add_event_link").show();
+		$("#add_event_form").hide();
 	});
-	$("#save_group_link").click(function(){
-		$('#add_group_form').submit();
+	$("#save_event_link").click(function(){
+		$('#add_event_form').submit();
 	});
 
-	$('#add_group_form').ajaxForm({
-	    success: update_sub_groups,
+	$('#add_event_form').ajaxForm({
+	    success: update_sub_events,
 		error: display_error
 	});
 });*/
@@ -50,15 +50,15 @@ function display_error(request, textStatus, errorThrown)
 {
 	errors = eval(request.getResponseHeader("X-JSON"));
 	if (errors[0][0] == "name")
-		display_error_on("group", errors[0][0], errors[0][1]);	
+		display_error_on("event", errors[0][0], errors[0][1]);	
 }
 
-function update_sub_groups(result, status) {
+function update_sub_events(result, status) {
 	$(".error_message").remove();		
-	$("#user_groups").html(result);
-	$("#add_group_form").hide();	
-	$('#add_group_link').show();						
-	$('#cancel_add_group_link').hide();				
+	$("#user_events").html(result);
+	$("#add_event_form").hide();	
+	$('#add_event_link').show();						
+	$('#cancel_add_event_link').hide();				
 }
 
 function display_error_on(model, field_name, error) {

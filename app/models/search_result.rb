@@ -1,3 +1,3 @@
 class SearchResult
-  attr_accessor :group, :user, :property_name, :query
+  attr_accessor :event, :user, :property_name, :query
 end

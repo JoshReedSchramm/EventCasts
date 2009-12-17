@@ -3,21 +3,20 @@
 	    <a href='/user/login' id='login_link'></a><br/>
 	    <span>Logging in will automatically create a user account on twoups that is tied to your twitter account.</span>
 	<% else %>
-		<div id='add_new_group'>
+		<div id='add_new_event'>
 			<h4>Welcome @<%= @user.twitter_name%>!</h4>
 			<br />
-			<a href='javascript:void(0);' id='add_group_link'>Add a group</a>
-			<a href='javascript:void(0);' id='cancel_add_group_link'>cancel</a>
+			<a href='javascript:void(0);' id='add_event_link'>Add a event</a>
+			<a href='javascript:void(0);' id='cancel_add_event_link'>cancel</a>
 		
-			<% form_for :group, :url => {:controller=>"groups", :action=>"new"}, :html => { :id => "add_group_form" } do |p| %>
+			<% form_for :event, :url => {:controller=>"events", :action=>"new"}, :html => { :id => "add_event_form" } do |p| %>
 				<%= p.label :name, "hashtag: " %>
-				<%= p.text_field :name, :size=>20, :maxlength=>140, :id=>'add_group_box' %>
-				<%= p.hidden_field :parent_id, :value=>0 %>
-				<a href='javascript:void(0)' id='save_group_link'>save</a>
-				<%= p.submit "Create Group", :class => "submit, submit_button" %>				
+				<%= p.text_field :name, :size=>20, :maxlength=>140, :id=>'add_event_box' %>
+				<a href='javascript:void(0)' id='save_event_link'>save</a>
+				<%= p.submit "Create event", :class => "submit, submit_button" %>				
 			<% end %>
 		</div>
-		<h4>Manage your groups</h4>
-		<%= render :partial => "user/group_heirarchy" %>	
+		<h4>Manage your events</h4>
+		<%= render :partial => "user/event_heirarchy" %>	
 	<% end %>	
 </div>

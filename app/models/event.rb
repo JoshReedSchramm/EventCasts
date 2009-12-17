@@ -1,6 +1,5 @@
 class Event < ActiveRecord::Base
   has_and_belongs_to_many :users  
-  has_many :event_data
   belongs_to :creator, :class_name => "User", :foreign_key => "creator_id"
 
   validates_presence_of :name, :on => :create, :message => "hashtag can't be blank"
@@ -20,14 +19,6 @@ class Event < ActiveRecord::Base
       nil
     end 
   end
-  
-  def title
-    get_data_item('title')
-  end
-
-  def description
-    get_data_item('description')
-  end  
   
   def participants
     tweets = Event.pull_recent_tweets(self.name, 200)    
@@ -49,26 +40,25 @@ class Event < ActiveRecord::Base
     event_name
   end
   
-  def Event.find_by_description description
-    Event.find(:all,
-               :joins => :event_data,
-               :conditions => ["event_data.event_data_type_id = ? and event_data.description like ?", 2, "%" + description + "%"])
-  end
-
-  def Event.find_by_title title
-    Event.find(:all,
-               :joins => :event_data,
-               :conditions => ["event_data.event_data_type_id = ? and event_data.description like ?", 1, "%" + title + "%" ])
-  end
-  
-  def Event.create_event(event_data, twitter_name)
-    event = Event.new(event_data)
+  def Event.create_event(data, twitter_name)
+    event = Event.new(data)
     user = User.find_by_twitter_name(twitter_name)    
     event.last_updated_by = twitter_name
     event.users << user
     event.name = Event.filter_hash(event.name)    
     event.creator = user
     event.save
+    event
+  end
+  
+  def Event.create_or_update(data, user)    
+    event = Event.find(:first, :conditions=>["id=?", data[:id]])
+    if event.nil?
+      event = Event.create_event(data, user.twitter_name)
+    else
+      event.last_updated_by = user                    
+      event.update_attributes(data)
+    end
     event
   end
   
@@ -102,18 +92,7 @@ class Event < ActiveRecord::Base
   end
   
   private
-  
-  def get_data_item(name)    
-    items = self.event_data.select do |data|
-      data.event_data_type.name == name
-    end
-    if (!items.nil? && items.length > 0)
-      return items[0].description
-    else
-      return ""
-    end
-  end
-    
+      
   def user_can_edit_event?
     user = User.find_by_twitter_name(self.last_updated_by)    
     return true

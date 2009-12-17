@@ -8,9 +8,8 @@ ActionController::Routing::Routes.draw do |map|
   map.connect '/events/new', :controller=>"events", :action=>"new", :conditions => { :method => :get}          
   map.connect '/events/add_event_vip', :controller=>"events", :action=>"add_event_vip"
   map.connect '/events/new', :controller=>"events", :action=>"new"
-  map.connect '/events/set_data/*event_names', :controller=>"events", :action=>"set_data", :conditions => { :method => :post}            
+  map.connect '/events/set_data', :controller=>"events", :action=>"set_data", :conditions => { :method => :post}            
   map.connect '/events/:action/:id', :controller=>"events"
-  map.connect '/event_data/:action/:id', :controller=>"event_data"  
   map.connect '/user/events/:twitter_name', :controller=>"user", :action=>"events"  
   map.connect '/user/:action/:id', :controller=>"user"  
   map.connect '/home/:action/:id', :controller=>"home"  

@@ -41,10 +41,9 @@
 
 	<% 
 	if User.can_edit_event?(@event, session[:twitter_name])  
-		form_for :event_datum, :url => "/event_data/set_data?format=json", :html => { :id => "title_form", :class=>"event_data_form" } do |p| %>
-		<%= p.text_field :description, :size=>30, :maxlength=>140, :id=>'title_box', :value=>@event.title %>
-		<%= p.hidden_field :event_id, :value=>@event.id %>
-		<%= p.hidden_field :event_data_type_id, :value=>EventDataType.title.id %>
+		form_for :event, :url => "/event/set_data?format=json", :html => { :id => "title_form", :class=>"event_data_form" } do |p| %>
+		<%= p.text_field :title, :size=>30, :maxlength=>140, :id=>'title_box', :value=>@event.title %>
+		<%= p.hidden_field :id, :value=>@event.id %>
 		<%= p.submit "save", :class => "submit, submit_button" %>	
 		<% end
 	 end %>
@@ -60,10 +59,9 @@
 	</h4>
 	<% 
  	if User.can_edit_event?(@event, session[:twitter_name])  	
-		form_for :event_datum, :url => "/event_data/set_data?format=json", :html => { :id => "description_form", :class=>"event_data_form" } do |p| %>
+		form_for :event, :url => "/event/set_data?format=json", :html => { :id => "description_form", :class=>"event_data_form" } do |p| %>
 			<%= p.text_area :description, :rows=>6, :cols=>30, :maxlength=>140, :id=>'description_box', :value=>@event.description %>
-			<%= p.hidden_field :event_id, :value=>@event.id %>
-			<%= p.hidden_field :event_data_type_id, :value=>EventDataType.description.id %>
+			<%= p.hidden_field :id, :value=>@event.id %>
 			<%= p.submit "save", :class => "submit, submit_button" %>	
 		<% end 
 	end %>	

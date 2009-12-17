@@ -47,4 +47,12 @@ class EventsController < ApplicationController
       format.js { render :partial=> "results" }
     end
   end
+  
+  def set_data
+    event = Event.create_or_update(params[:event], session[:twitter_name])   
+    event.save
+    respond_to do |format|
+      format.json  { render :json => event.to_json }
+    end unless handle_ajax_validation_errors(event)    
+  end
 end

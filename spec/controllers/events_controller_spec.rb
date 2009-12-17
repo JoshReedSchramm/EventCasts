@@ -6,9 +6,6 @@ describe EventsController do
   def mock_user(stubs={})
     @mock_user ||= mock(User, stubs)
   end
-  def mock_event_data(stubs={})
-    @mock_event_data ||= mock(EventDatum, stubs)
-  end
   
   it "should use EventsController" do
     controller.should be_an_instance_of(EventsController)

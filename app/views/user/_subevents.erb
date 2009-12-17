@@ -1,16 +1,7 @@
 <% if !@user.nil? && !@user.events.nil? && !@user.events.empty?  %>
 	<ul id="user_events">
 		<% for event in @user.events %>
-			<% if event.parent_id == 0 %>
 		    	<li><a href='/<%= event.get_full_path %>'>#<%= event.name %></a>
-		    	<% if !event.sub_events.nil? %>
-						<ul id="user_events_sub_events">
-		      				<% event.sub_events.each do |sg| %>
-								<li><a href='/<%= sg.get_full_path %>'>#<%= sg.name %></a></li>
-							<% end %>
-						</ul>
-					</li>
-		    	<% end %>
 		  	<% end %>
 		<% end %>
 	</ul>	

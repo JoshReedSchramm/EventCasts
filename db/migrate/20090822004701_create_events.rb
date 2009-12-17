@@ -2,7 +2,6 @@ class CreateEvents  < ActiveRecord::Migration
   def self.up
     create_table :events do |i| 
       i.string :name
-      i.integer :parent_id
       i.string :last_updated_by
       i.timestamps
     end

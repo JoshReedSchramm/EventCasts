@@ -30,10 +30,7 @@
 	<h2>#<%=@event.name%></h2>
 	<em>
 		hashtag 
-		<% if !@event.parent.nil? %>
-			<a href='/<%=@event.parent.full_path %>' id='parent_link'>child of #<%= @event.parent.name %></a>		
-		<% end %>
-		</em>
+	</em>
 	<br /><br />
 	
 	<h3>
@@ -114,7 +111,6 @@
 				<% form_for :event, :url => {:action=>"new"}, :html => { :id => "add_sub_event_form" } do |p| %>
 					<%= p.label :name, "hashtag: " %>
 					<%= p.text_field :name, :size=>20, :maxlength=>140, :id=>'add_subevent_box' %>
-					<%= p.hidden_field :parent_id, :value=>@event.id %>
 					<a href='javascript:void(0)' id='save_subevent_link'>save</a>
 					<%= p.submit "Create event", :class => "submit, submit_button" %>				
 				<% end %>

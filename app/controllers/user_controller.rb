@@ -11,7 +11,7 @@ class UserController < ApplicationController
   
   def events
     @user = User.find_by_twitter_name(params[:twitter_name])    
-    render :partial=>"event_heirarchy", :layout => false
+    render :partial=>"user_events", :layout => false
   end
 
   def authorize

@@ -28,7 +28,6 @@ ActiveRecord::Schema.define(:version => 20090905233240) do
 
   create_table "events", :force => true do |t|
     t.string   "name"
-    t.integer  "parent_id"
     t.string   "last_updated_by"
     t.datetime "created_at"
     t.datetime "updated_at"

@@ -1,12 +1,9 @@
 class Event < ActiveRecord::Base
   has_and_belongs_to_many :users  
   has_many :event_data
-  belongs_to :parent, :class_name => "Event", :foreign_key => "parent_id"
   belongs_to :creator, :class_name => "User", :foreign_key => "creator_id"
-  has_many :events, :class_name => "Event", :foreign_key => "parent_id"
 
   validates_presence_of :name, :on => :create, :message => "hashtag can't be blank"
-  validates_uniqueness_of :name, :scope => "parent_id", :message => "hashtag is already registered"   
   validates_format_of :name, :with => /^[A-Za-z0-9_]+$/, :on => :create, :message => "hashtag can only contain letters and numbers"
   validate :user_can_edit_event?
   
@@ -14,14 +11,6 @@ class Event < ActiveRecord::Base
     user = User.find_by_twitter_name(User.filter_at(twitter_name))
     user ||= User.create_user(twitter_name)
     self.users << user unless self.users.include? user
-  end
-  
-  def full_path
-    @full_path ||= get_full_path
-    @full_path
-  end
-  def full_path=(path)
-    @full_path = path
   end
   
   def owner
@@ -54,32 +43,12 @@ class Event < ActiveRecord::Base
     end
     results
   end
-  
-  def Event.search_by_name(query)    
-    if !query.nil?          
-      words = query.split(" ")      
-      words.each_with_index do |word, index|
-        words[index] = Event.filter_hash(word)        
-      end
-      return Event.find_event_from_heirarchy(words, 0, "like")
-    end
-  end
-    
+      
   def Event.filter_hash(event_name)
     event_name.slice!(0) if event_name[0,1] == '#'    
     event_name
   end
   
-  def Event.find_event_from_heirarchy(event_names, parent_id=0, conditional="=")
-    event = Event.find(:first, :conditions =>["name "+conditional+" ? and parent_id=?", event_names[0], parent_id])
-    if (event.nil? || event_names.length == 1)
-      return event
-    else
-      event_names.shift
-      Event.find_event_from_heirarchy(event_names, event.id)
-    end
-  end
-
   def Event.find_by_description description
     Event.find(:all,
                :joins => :event_data,
@@ -105,18 +74,8 @@ class Event < ActiveRecord::Base
   
   def Event.pull_recent_tweets(tag,num = nil,since = nil)
     html = ""
-    logger.debug("Got #{tag}")
-    @terms = tag.split('/')
-    @search = ""
-    @match = ""
-    @terms.each do |t|
-      @search << "+##{t}"
-      @match << "##{t} "
-    end
-    @match.chop!
-
     twitter = Net::HTTP.start('search.twitter.com')
-    command = "/search.json?" + "q=" + URI.escape("#{@search}")
+    command = "/search.json?" + "q=" + URI.escape("#{tag}")
     command << "&" + "per_page=" + num.to_s if !num.nil?
     command << "&" + "since_id=" + since.to_s if !since.nil?
     if !num.nil?
@@ -134,28 +93,12 @@ class Event < ActiveRecord::Base
 
     result = JSON.parse(res.body)
     
-    regex_to_build = @match.split(' ')
-    regex_match = ""
-    regex_to_build.each do |r|
-      regex_match << r
-      regex_match << "\\s*"
-    end
-
     json_result = Array.new()
     result["results"].each do |j|
-      if j["text"] =~ /#{regex_match}/
         json_result.push(j)
-      end
     end
 
     json_result
-  end
-  
-  protected
-  
-  def get_full_path
-    return self.name if self.parent.nil?
-    return parent.get_full_path + "/" + self.name
   end
   
   private
@@ -173,7 +116,6 @@ class Event < ActiveRecord::Base
     
   def user_can_edit_event?
     user = User.find_by_twitter_name(self.last_updated_by)    
-    return Security.can_edit_event?(user, self.parent) unless self.parent.nil?
     return true
   end
 end

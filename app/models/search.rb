@@ -11,7 +11,7 @@ class Search
   end
 
   def Search.search_by_name search_term
-    Event.search_by_name(search_term)
+    Event.find_by_name(search_term)
   end
 
   def Search.search_by_description search_term

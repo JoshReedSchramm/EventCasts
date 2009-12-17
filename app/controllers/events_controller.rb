@@ -1,25 +1,14 @@
 class EventsController < ApplicationController
   include EventsHelper
   
-  before_filter :authorize, :except=>[:vips, :participants, :show, :recent_tweets, :event_heirarchy]
+  before_filter :authorize, :except=>[:vips, :participants, :show, :recent_tweets]
   
   def create
       @event = Event.create_event(params[:event], session[:twitter_name])    
       return if handle_ajax_validation_errors(@event)
-      if (@event.parent.nil?)
-        redirect_to :controller=>"user", :action=>"events", :twitter_name=>session[:twitter_name]
-      else
-        redirect_to :controller=>"events", :action=>"event_heirarchy", :id=>@event.parent.id
-      end
-    end
+      redirect_to :controller=>"user", :action=>"events", :twitter_name=>session[:twitter_name]
+  end
 
-    def event_heirarchy
-      @event = Event.find(params[:id])
-      respond_to do |format|
-        format.html  { render :partial=>'event_heirarchy', :layout=>false }
-      end
-    end
-  
   def add_event_vip
     user = params[:user]
     @event = Event.find(user[:event_id])
@@ -51,10 +40,10 @@ class EventsController < ApplicationController
   
   def show
     @vip_user = User.new()
-    @event = get_event_for_display(params[:event_names])
+    @event = Event.find_by_id(params[:id])
     respond_to do |format|
       format.html
-      format.json { render :json =>  Event.pull_recent_tweets(@event.full_path,params[:num],params[:since_id]).to_json }
+      format.json { render :json =>  Event.pull_recent_tweets(@event.name,params[:num],params[:since_id]).to_json }
       format.js { render :partial=> "results" }
     end
   end

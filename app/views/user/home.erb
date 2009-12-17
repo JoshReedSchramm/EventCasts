@@ -1,40 +1,29 @@
 <%= javascript_include_tag "index.js" %>
 <%= javascript_include_tag "jquery.form.js" %>
 <div id='search_container'>
-        <% form_for :search, :url => {:action=>"search"}, :html => { :id => "search_form" } do |p| %>
-            <%= p.text_field :query, :size=>30, :maxlength=>140, :id=>'search_box', :value=>'Search for conversations' %>
-            <a id='search_button' href='#' type='submit' class='submit'></a>
-        <% end %>
+	<% form_for :search, :url => {:action=>"search"}, :html => { :id => "search_form" } do |p| %>
+		<%= p.text_field :query, :size=>30, :maxlength=>140, :id=>'search_box', :value=>'Search for conversations' %>
+		<a id='search_button' href='#' type='submit' class='submit'></a>
+	<% end %>
     <div id='description_text'>
-        <span id='examples'>examples: #twoups #railsrumble @twoupsinfo</span>
-<br />
-<p>
-  Welcome to twoups.  We give you some tools to help better track and organize conversations over twitter using hashtags.  We tell you who's participating and allow you to set up information about the conversation too.  To get started, either search from some conversations and join in, or log in using your twitter account and create your own!
-</p>
-</div>
+		<span id='examples'>examples: #twoups #railsrumble @twoupsinfo</span>
+		<br />
+		<p>Welcome to twoups.  We give you some tools to help better track and organize conversations over twitter using hashtags.  We tell you who's participating and allow you to set up information about the conversation too.  To get started, either search from some conversations and join in, or log in using your twitter account and create your own!</p>
+	</div>
     <div id='search_results'>
     </div>
 </div>
 <div id='login_user_section'>
-<div>
-<h4>Welcome @<%= @user.twitter_name%>!</h4>
-<br />
-<%= link_to "Add a event", :controller=>"events", :action=>"new" %>
-</div>
-<h4>Manage your events</h4>
-<ul id="user_events">
-<% for event in @user.events %>
-  <% if event.parent_id == 0 %>
-    <li><a href='/events/<%= event.get_full_path %>'><%= event.name %></a></li>
-    <% if !event.sub_events.nil? %>
-    <li><ul id="user_events_sub_events">
-      <% event.sub_events.each do |sg| %>
-        <li><a href='/events/<%= sg.get_full_path %>'><%= sg.name %></a>
-      <% end %>
-    </li></ul>
-    <% end %>
-  <% end %>
-<% end %>
-</ul>
-<br />
+	<div>
+		<h4>Welcome @<%= @user.twitter_name%>!</h4>
+		<br />
+		<%= link_to "Add a event", :controller=>"events", :action=>"new" %>
+	</div>
+	<h4>Manage your events</h4>
+	<ul id="user_events">
+		<% for event in @user.events %>
+	    	<li><a href='/events/<%= event.get_full_path %>'><%= event.name %></a></li>
+		<% end %>
+	</ul>
+	<br />
 </div>

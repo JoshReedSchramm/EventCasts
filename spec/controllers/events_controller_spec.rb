@@ -3,9 +3,6 @@ describe EventsController do
   def mock_event(stubs={})
     @mock_event ||= mock(Event, stubs)
   end
-  def mock_parent_event(stubs={})
-    @mock_parent_event ||= mock(Event, stubs)
-  end
   def mock_user(stubs={})
     @mock_user ||= mock(User, stubs)
   end
@@ -32,26 +29,12 @@ describe EventsController do
       Security.stub!(:is_authenticated?).and_return true       
     end
     
-    context "and there is no parent event" do
-      it "should render all the events a user owns" do
+    it "should render all the events a user owns" do
         Event.should_receive(:create_event).with({}, session[:twitter_name]).and_return(mock_event)
         mock_event.should_receive(:errors).and_return({})
-        mock_event.should_receive(:parent).and_return(nil)
     
         post :create, :event=>{}
         response.should redirect_to(:controller=>"user", :action=>"events", :twitter_name=>session[:twitter_name])
-      end
-    end
-    context "and there is a parent event" do
-      it "should render all the children of the parent event" do
-        Event.should_receive(:create_event).with({}, session[:twitter_name]).and_return(mock_event)
-        mock_event.should_receive(:errors).and_return({})
-        mock_event.should_receive(:parent).twice.and_return(mock_parent_event)
-        mock_parent_event.should_receive(:id).and_return(1)
-    
-        post :create, :event=>{}
-        response.should redirect_to(:controller=>"events", :action=>"event_heirarchy", :id=>1)
-      end
     end
     context "and there is a validation error" do
       it "should render an empty response, with a error http status and X-JSON header" do
@@ -65,17 +48,7 @@ describe EventsController do
       end
     end
   end
-  
-  describe "when requesting the events heirarchy" do
-    it "should render the heirarchy" do      
-      Event.should_receive(:find).with("1").and_return(mock_event)
-
-      get :event_heirarchy, :id=>1
     
-      response.should render_template('events/_event_heirarchy')
-    end
-  end
-  
   describe "when adding a event vip" do
    before(:each) do 
       Security.stub!(:is_authenticated?).and_return true       
@@ -145,9 +118,9 @@ describe EventsController do
     context "and the html format is requested" do
       it "should render the event" do      
         User.should_receive(:new).and_return(mock_user)
-        Event.should_receive(:find_event_from_heirarchy).with("/test/event").and_return(mock_event)
+        Event.should_receive(:find_by_id).with("1").and_return(mock_event)
         
-        get :show, :format=>"html", :event_names=>"/test/event"
+        get :show, :format=>"html", :id=>1
     
         response.should render_template('events/show')
       end
@@ -155,11 +128,11 @@ describe EventsController do
     context "and the json format is requested" do
       it "should render the event" do      
         User.should_receive(:new).and_return(mock_user)
-        Event.should_receive(:find_event_from_heirarchy).with("/test/event").and_return(mock_event)
-        mock_event.should_receive(:full_path).and_return("/test/event")
+        Event.should_receive(:find_by_id).with("1").and_return(mock_event)
+        mock_event.should_receive(:name).and_return("myname")
         Event.should_receive(:pull_recent_tweets).and_return("testdata")
         
-        get :show, :format=>"json", :event_names=>"/test/event"
+        get :show, :format=>"json", :id=>1
     
         response.body.should =="testdata".to_json
       end
@@ -167,9 +140,9 @@ describe EventsController do
     context "and the js format is requested" do
       it "should render the event" do      
         User.should_receive(:new).and_return(mock_user)
-        Event.should_receive(:find_event_from_heirarchy).with("/test/event").and_return(mock_event)
+        Event.should_receive(:find_by_id).with("1").and_return(mock_event)
         
-        get :show, :format=>"js", :event_names=>"/test/event"
+        get :show, :format=>"js", :id=>1
     
         response.should render_template('events/_results')
       end

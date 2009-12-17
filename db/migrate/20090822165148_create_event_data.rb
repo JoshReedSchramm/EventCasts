@@ -11,6 +11,5 @@ class CreateEventData < ActiveRecord::Migration
 
   def self.down
     drop_table :event_data
-    drop_table :group_data    
   end
 end

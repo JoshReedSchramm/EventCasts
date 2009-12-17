@@ -12,7 +12,6 @@
 			<% form_for :event, :url => {:controller=>"events", :action=>"new"}, :html => { :id => "add_event_form" } do |p| %>
 				<%= p.label :name, "hashtag: " %>
 				<%= p.text_field :name, :size=>20, :maxlength=>140, :id=>'add_event_box' %>
-				<%= p.hidden_field :parent_id, :value=>0 %>
 				<a href='javascript:void(0)' id='save_event_link'>save</a>
 				<%= p.submit "Create event", :class => "submit, submit_button" %>				
 			<% end %>

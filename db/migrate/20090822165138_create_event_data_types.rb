@@ -8,7 +8,6 @@ class CreateEventDataTypes < ActiveRecord::Migration
 
   def self.down
     drop_table :event_data_types
-    drop_table :group_data_types    
   end
 
 end

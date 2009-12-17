@@ -1,5 +1,5 @@
 ActionController::Routing::Routes.draw do |map|
-  map.root :controller=>'home'
+  map.connect '/', :controller=>'home'
   
   map.connect '/about_us', :controller=>"home", :action=>"about_us"
   map.connect '/events/new', :controller=>"events", :action=>"create", :conditions => { :method => :post}      
@@ -15,5 +15,5 @@ ActionController::Routing::Routes.draw do |map|
   map.connect '/user/:action/:id', :controller=>"user"  
   map.connect '/home/:action/:id', :controller=>"home"  
   map.connect '/events/*event_names', :controller=>"events", :action=>"show"  
-  map.connect '/*event_names', :controller=>"events", :action=>"show"    
+  map.connect '/:id', :controller=>"events", :action=>"show"    
 end

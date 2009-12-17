@@ -96,26 +96,6 @@
 		<%= render :partial => "participants" %>
 		<br />		
 		<em>participants</em>
-	</div>
-	
-	<div id='sub_events'>
-		<div id='subevent_list'>
-			<%= render :partial => "event_heirarchy" %>
-		</div>
-		
-		<em>related events</em> 
-		<% if User.can_edit_event?(@event, session[:twitter_name])   %>
-			<a id='add_subevent_link' href='javascript:void(0);'>Add sub-event</a>
-			<a id='cancel_add_subevent_link' href='javascript:void(0);'>cancel</a>
-			<div id='add_sub_event'>
-				<% form_for :event, :url => {:action=>"new"}, :html => { :id => "add_sub_event_form" } do |p| %>
-					<%= p.label :name, "hashtag: " %>
-					<%= p.text_field :name, :size=>20, :maxlength=>140, :id=>'add_subevent_box' %>
-					<a href='javascript:void(0)' id='save_subevent_link'>save</a>
-					<%= p.submit "Create event", :class => "submit, submit_button" %>				
-				<% end %>
-			</div>
-		<% end %>
-	</div>
+	</div>	
 </div>
 

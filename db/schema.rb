@@ -42,8 +42,6 @@ ActiveRecord::Schema.define(:version => 20090905233240) do
     t.string   "twitter_name"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "atoken"
-    t.string   "asecret"
     t.string   "profile_image_url"
   end
 

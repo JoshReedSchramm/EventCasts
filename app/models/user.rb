@@ -25,10 +25,6 @@ class User < ActiveRecord::Base
     end
     user
   end
-
-  def authorized?
-    !atoken.blank? && !asecret.blank?
-  end
   
   def User.create_user(twitter_name)
     user = User.find_by_twitter_name(twitter_name)
@@ -44,15 +40,11 @@ class User < ActiveRecord::Base
   end
   
   def User.can_edit_event?(event, twitter_name)
-    if (twitter_name.nil? || twitter_name.empty?)
-      return false;
-    end
+    return false if twitter_name.blank?
     
     user = User.find_by_twitter_name(twitter_name)    
     
-    if (user.nil?)
-      return false
-    end
+    return false if user.nil?
     
     user.events.select do |g|
       g.id == event.id

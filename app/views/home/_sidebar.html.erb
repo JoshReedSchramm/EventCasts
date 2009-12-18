@@ -1,7 +1,7 @@
 <div id='user_section'>
-	<% if !session[:username].blank? %>
+	<% if !session[:id].blank? %>
 		<div id='add_new_event'>
-			<h4>Welcome @<%= @user.twitter_name%>!</h4>
+			<h4>Welcome @<%= @user.username%>!</h4>
 			<br />
 			<a href='javascript:void(0);' id='add_event_link'>Add a event</a>
 			<a href='javascript:void(0);' id='cancel_add_event_link'>cancel</a>

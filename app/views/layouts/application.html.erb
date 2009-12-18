@@ -19,8 +19,8 @@
                 <%= link_to image_tag("logo.png", :border=>0, :alt => 'EventCasts'), {:controller => 'home', :action => 'index'}, :id => 'logo' %>
 
                 <div id="menu">
-                <% if session[:twitter_name].nil? || session[:twitter_name].empty? %>
-                      <a href='/user/login' id='login_link'></a>
+                <% if session[:username].nil? || session[:username].empty? %>
+                      <a href='/user/login'>Login</a> | <a href='/user/register'>Join EventCasts</a>
                 <% end %>
                 </div>
             </div>

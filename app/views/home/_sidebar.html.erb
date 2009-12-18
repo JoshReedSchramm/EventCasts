@@ -1,8 +1,5 @@
 <div id='user_section'>
-	<% if session[:twitter_name].nil? || session[:twitter_name].empty?%>
-	    <a href='/user/login' id='login_link'></a><br/>
-	    <span>Logging in will automatically create a user account on twoups that is tied to your twitter account.</span>
-	<% else %>
+	<% if !session[:username].blank? %>
 		<div id='add_new_event'>
 			<h4>Welcome @<%= @user.twitter_name%>!</h4>
 			<br />

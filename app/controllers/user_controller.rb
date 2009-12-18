@@ -1,10 +1,20 @@
 class UserController < ApplicationController
   def login
+    if request.post?
+      user = User.authenticate(params[:user][:username], params[:user][:password])
+      if user.nil?
+        flash[:notice] = "Unable to find a user with that username and password."
+      else
+        redirect_to :controller=>"user", :action=>"home"
+      end
+    end
   end
   
   def register
-    @user = User.new(params[:user])
-    @user.save
+    if !params[:user].nil?
+      @user = User.new(params[:user])
+      @user.save
+    end
   end
 
   def logout
@@ -15,13 +25,5 @@ class UserController < ApplicationController
   def events
     @user = User.find_by_twitter_name(params[:twitter_name])    
     render :partial=>"user_events", :layout => false
-  end
-
-  def authorize
-  end
-
-  def handle_failed_authorization
-    flash[:notice] = "Authentication failed"
-    redirect_to :controller => :home, :action => :index
   end
  end

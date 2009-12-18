@@ -5,10 +5,19 @@ class UserController < ApplicationController
       if user.nil?
         flash[:notice] = "Unable to find a user with that username and password."
       else
-        session[:username] = user.username
+        session[:id] = user.id
         redirect_to :controller=>"user", :action=>"home"
       end
     end
+  end
+  
+  def home
+    if !session[:id].nil?
+      @user = User.find_by_id(session[:id])
+    else
+      flash[:notice] = "You must be logged in to view that page."
+      redirect_to :controller=>"home", :action=>"index"
+    end        
   end
   
   def register

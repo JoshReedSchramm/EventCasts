@@ -25,7 +25,9 @@ describe UserController do
     context "and the username and password is valid" do
       it "should return the user account" do
         User.should_receive(:authenticate).with("username", "password").and_return(mock_user)
-        post :login, :user=>{:username=>"username", :password=>"password"}      
+        mock_user.should_receive(:username).and_return("username")
+        post :login, :user=>{:username=>"username", :password=>"password"}   
+        session[:username].should=="username"   
         response.should redirect_to(:controller=>"user", :action=>"home")        
       end
     end

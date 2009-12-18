@@ -43,6 +43,7 @@
             <div id='my_events_container'></div>
             <% end %>
             <div id='body'>
+			    <div id="flash"><%= flash[:notice] %></div>	
                 <%= yield  %>
                 <div class='clear'></div>
             </div>

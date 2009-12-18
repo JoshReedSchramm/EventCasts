@@ -5,6 +5,7 @@ class UserController < ApplicationController
       if user.nil?
         flash[:notice] = "Unable to find a user with that username and password."
       else
+        session[:username] = user.username
         redirect_to :controller=>"user", :action=>"home"
       end
     end
@@ -18,7 +19,7 @@ class UserController < ApplicationController
   end
 
   def logout
-    session[:twitter_name] = nil
+    session[:username] = nil
     redirect_to "/"
   end
   
@@ -26,4 +27,4 @@ class UserController < ApplicationController
     @user = User.find_by_twitter_name(params[:twitter_name])    
     render :partial=>"user_events", :layout => false
   end
- end
+end

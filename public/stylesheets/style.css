@@ -1,16 +1,91 @@
-@import url("reset.css");
+html, body {
+	margin: 0;
+	padding: 0;
+	height: 100%;
 
-* {
-	vertical-align:top;
-}
-
-body {
-	background: #ffffff url('../images/bg.gif') repeat-x scroll 0 0;
 	font-size: 14px;
 	font-family:Arial,Verdana,sans-serif;
 	color: #012142;
 }
 
+div#container {
+	position: relative;
+	margin: 0 auto;
+	width: 100%;
+	
+	height: auto !important;
+	height: 100%;
+	
+	min-height: 100%;
+}
+
+div#header {
+	padding: 1em;
+	height: 140px;	
+	background: #ffffff url('../images/bg.gif') repeat-x scroll 0 0;
+	
+}
+
+div#body {
+	margin: 0px auto;
+	width: 100%;
+}
+
+div#footer {
+	position: absolute;
+	width: 100%;
+	bottom: 0;	
+	background-color:#3D2F28;    
+}
+
+#homepage_container {
+	padding-top: 10px;
+	
+	border: solid 1px red;
+	padding-left: 10px;
+	width: 78%;
+	height: auto !important;
+	height: 100%;
+	
+	min-height: 100%;
+}
+
+#sidebar {
+	width: 20%;
+	border: solid 1px green;
+	height: auto !important;
+	height: 100%;
+	min-height: 100%;
+	
+}
+
+img.homepage_image {
+	height: 100px;
+	width: 100px;
+	background-color: white;
+	border: solid 2px black;
+	padding: 5px;
+	margin: 0 5px 5px 0;
+	float: left;
+}
+
+p.image_description {
+	margin-top: 0px;
+	padding-top: 0px;
+	float: left;
+	width: 300px;
+}
+
+.clearfix:after {
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+}
+
+
+/*
 p {
     color: #344D68;
     padding-bottom: 15px;
@@ -27,34 +102,17 @@ p {
 #page {
     clear:both;
     margin:0 auto;
-    padding-bottom:108px;
     width:990px;
 }
 
 #header{
-    height: 100px;
+    height: 150px;
     width:990px;
 }
 
 #logo{
     float:left;
     margin-top:20px;    
-}
-
-a#login_link {
-	display:block;
-	background: url('../images/loginWithTwitter.png');
-	border: 0px;
-	height: 24px;
-	width: 151px;
-}
-
-a#login_link:hover {
-	display:block;
-	background: url('../images/loginWithTwitterLight.png');
-	border: 0px;
-	height: 24px;
-	width: 151px;
 }
 
 #menu{
@@ -64,9 +122,6 @@ a#login_link:hover {
 }
 
 #container {
-    clear:both;
-    margin:0 auto;
-    padding-bottom:108px;
     width:990px;
 }
 
@@ -80,10 +135,8 @@ a#login_link:hover {
 }
 
 #body {
-    float:left;
-    height:inherit;
-    padding-bottom:40px;
-    width:990px;
+	clear: both;
+    width:990px;	
 }
 
 #header_search_box{
@@ -260,17 +313,6 @@ a#login_link:hover {
 #add_vip {
         display: none;
 }
-
-/*
-#footer {
-	clear: both;
-	background: url('../images/footerBG.png') no-repeat;
-	height: 89px;
-	padding: 7px 110px 6px 100px;		
-	text-align:left;
-	color: white;
-}
-*/
 
 #footer {
     clear:both;
@@ -645,4 +687,4 @@ h1.not_logged_in #event_header_nav #home_header_link {
 
 #about_us p {
 	margin-bottom: 20px;
-}
+}*/

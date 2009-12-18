@@ -1,12 +1,9 @@
 class EventsController < ApplicationController
   include EventsHelper
   
-  before_filter :authorize, :except=>[:vips, :participants, :show, :recent_tweets]
+  before_filter :authorize, :except=>[:create, :vips, :participants, :show, :recent_tweets]
   
   def create
-      @event = Event.create_event(params[:event], session[:twitter_name])    
-      return if handle_ajax_validation_errors(@event)
-      redirect_to :controller=>"user", :action=>"events", :twitter_name=>session[:twitter_name]
   end
 
   def add_event_vip

@@ -1,2 +1,19 @@
-<%= render :partial => "event_heirarchy" %>
-<%= @error_messages %>
+<h1>Create an Event</h1>
+
+<% form_for :event, :url => {:action=>"create"} do |p| %>
+	<%= p.error_messages %>
+	<fieldset>
+		<div>
+			<%= p.label :name, "Event Name:"  %>
+			<%= p.text_field :name, :size=>30, :maxlength=>140 %>
+		</div>
+		<div>
+			<label for="tag_0">Tag:</label>
+			<input type="text" id="tags" name="tags" size="20" />
+			<input type="hidden" id="tag" name="post[tag]" />
+		</div>
+		<div>
+			<%= p.submit "Create Event", :class => "submit" %>
+		</div>
+	</fieldset>
+<% end %>

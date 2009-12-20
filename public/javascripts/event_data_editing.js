@@ -46,33 +46,22 @@ $(document).ready(function() {
 	});	
 });
 function update_description(result) {	
-	if (result.event_datum.description == "")
-		result.event_datum.description = "Set a event description"
-	$("#edit_description_inline_link").html(result.event_datum.description);
-	$("#description_box").val(result.event_datum.description)
+	if (result.event.description == "")
+		result.event.description = "Set a event description"
+	$("#edit_description_inline_link").html(result.event.description);
+	$("#description_box").val(result.event.description)
 	$("#edit_description_inline_link").show();
 	$("#edit_description_link").show();
 	$("#save_description_link").hide();		
 	$("#description_form").hide();
 }
 function update_title(result) {	
-	if (result.event_datum.description == "")
-		result.event_datum.description = "Set a event short name"
-	$("#edit_title_inline_link").html(result.event_datum.description);
-	$("#title_box").val(result.event_datum.description)
+	if (result.event.title == "")
+		result.event.title = "Set a event short name"
+	$("#edit_title_inline_link").html(result.event.title);
+	$("#title_box").val(result.event.title)
 	$("#edit_title_inline_link").show();
 	$("#edit_title_link").show();
 	$("#save_title_link").hide();		
 	$("#title_form").hide();
-}
-
-function update_name(result) {	
-	if (result.event_datum.description == "")
-		result.event_datum.description = "Set a hashtag name"
-	$("#edit_name_inline_link").html(result.event_datum.description);
-	$("#event_box").val(result.event_datum.description)
-	$("#edit_name_inline_link").show();
-	$("#edit_name_link").show();
-	$("#save_name_link").hide();		
-	$("#event_edit_form").hide();
 }

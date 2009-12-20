@@ -41,9 +41,4 @@ $(document).ready(function() {
 	$("#save_group_link").click(function(){
 		$('#add_group_form').submit();
 	});
-
-	$('#add_group_form').ajaxForm({
-	    success: update_sub_groups,
-		error: display_error
-	});
 });

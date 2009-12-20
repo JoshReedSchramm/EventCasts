@@ -11,23 +11,11 @@
 
 ActiveRecord::Schema.define(:version => 20090905233240) do
 
-  create_table "event_data", :force => true do |t|
-    t.integer  "event_data_type_id"
-    t.integer  "event_id"
-    t.string   "description"
-    t.string   "last_updated_by"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "event_data_types", :force => true do |t|
-    t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "events", :force => true do |t|
     t.string   "name"
+    t.string   "title"
+    t.string   "description"
+    t.string   "url"
     t.string   "last_updated_by"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -48,11 +36,12 @@ ActiveRecord::Schema.define(:version => 20090905233240) do
   end
 
   create_table "users", :force => true do |t|
+    t.string   "username"
+    t.string   "hashed_password"
+    t.string   "salt"
     t.string   "twitter_name"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "atoken"
-    t.string   "asecret"
     t.string   "profile_image_url"
   end
 

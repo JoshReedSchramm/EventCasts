@@ -1,75 +1,41 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <html>
 <head>
-  <title>Twoups - Organizes your twitter conversations</title>
+	<title>EventCasts - Follow the Conversation</title>
 	<%= stylesheet_link_tag 'style' %>
-	<%= stylesheet_link_tag 'jquery.cluetip' %>
-    <%= javascript_include_tag "jquery.min.js" %>
-	<%= javascript_include_tag "jquery.hoverIntent.js" %>
-	<%= javascript_include_tag "jquery.cluetip.js" %>	
-    <%= javascript_include_tag "header.js" %>
- <!-- <%= javascript_include_tag "jquery.form.js" %>-->
-  <%= javascript_include_tag "application.js" %>           
-
 </head>
 <body>
-    <div id="page">
-        <div id='container' class="clear_fix">
-            <div id="header">
-                <%= link_to image_tag("logo.png", :border=>0, :alt => 'EventCasts'), {:controller => 'home', :action => 'index'}, :id => 'logo' %>
+    <div id="container">
+	    <div id="header">
+            <%= link_to image_tag("logo.png", :border=>0, :alt => 'EventCasts'), {:controller => 'home', :action => 'index'}, :id => 'logo' %>
 
-                <div id="menu">
-                <% if session[:twitter_name].nil? || session[:twitter_name].empty? %>
-                      <a href='/user/login' id='login_link'></a>
+            <ul id="menu">
+                <% if session[:user].blank? %>
+					<li><a href='/user/login'>Login</a></li>
+					<li><a href='/user/register'>Join EventCasts</a></li>
                 <% end %>
-                </div>
-            </div>
-            <div id="header_search_box">
-                <strong>Follow a Conversation That's Already Happening!</strong> <br /><br />
-                <% form_for :search, :url => {:controller=>"home", :action=>"search"}, :html => { :id => "search_form" } do |p| %>
-                    <%= p.text_field :query, :size=>30, :maxlength=>140, :id=>'search_box', :value=>'Find an event or event' %>
-                    <a onclick="$('#search_form').submit();" class="submit" type="submit"><img src="../images/eventSearchButtonOff.png"/></a>
-                <% end %>
-            </div>
-            <% if controller.controller_name == "events" %>
-            <h1 class="logged_in">Twoups
-            <div id="event_header_nav">
-              <a href="/" id="home_header_link"><span>&nbsp;</span></a>
-              <%  if session[:twitter_name] %>
-                <a href="/user/events/<%= session[:twitter_name] %>" rel="/user/events/<%= session[:twitter_name] %>" id="my_events_header_link" title="My Groups"><span>&nbsp;</span></a>
-              <% end %>
-            </div>
-            </h1>
-            <div id='my_events_container'></div>
-            <% end %>
-            <div id='body'>
-                <%= yield  %>
-                <div class='clear'></div>
-            </div>
-        </div>
-    </div>
-    <div id="footer">
-        <div id="footer-border"></div>
-
-        <div id="footer-content">
-            <div>
-                <a href='/about_us' id='about_link'>about twoups</a>
-                email: <a href='mailto:info@twoups.com' id='email_link'>info@twoups.com</a>
-                twitter: <a href='http://twitter.com/asktwoups' id='twitter_link' target='_blank'>@asktwoups</a>
-            </div>
-        </div>
+            </ul>
+        </div>    
+		<div id='body'>
+			<div id="flash"><%= flash[:notice] %></div>	
+			<%= yield  %>
+		</div>
+		<div id="footer">
+	        <div id="footer-content">
+		FOOTER
+	        </div>
+	    </div>	    
     </div>
 	<!-- google analytics -->
-  <script type="text/javascript">
-    var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
-    document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
-  </script>
-  <script type="text/javascript">
-    try {
-      var pageTracker = _gat._getTracker("UA-10353595-1");
-      pageTracker._trackPageview();
-    } catch(err) {}
-  </script>
-  
+	<script type="text/javascript">
+		var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+		document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+	</script>
+	<script type="text/javascript">
+		try {
+		var pageTracker = _gat._getTracker("UA-10353595-1");
+		pageTracker._trackPageview();
+		} catch(err) {}
+	</script>
 </body>
 </html>

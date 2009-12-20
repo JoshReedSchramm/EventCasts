@@ -3,28 +3,40 @@
 <head>
 	<title>EventCasts - Follow the Conversation</title>
 	<%= stylesheet_link_tag 'style' %>
+    <%= stylesheet_link_tag 'style' %>
 </head>
 <body>
-    <div id="container">
-	    <div id="header">
-            <%= link_to image_tag("logo.png", :border=>0, :alt => 'EventCasts'), {:controller => 'home', :action => 'index'}, :id => 'logo' %>
+    <div id="page">
+        <div id="container" class="clear_fix">
+            <div id="header">
+                <%= link_to image_tag("logo.png", :border=>0, :alt => 'EventCasts'), {:controller => 'home', :action => 'index'}, :id => 'logo' %>
 
-            <ul id="menu">
-                <% if session[:user].blank? %>
-					<li><a href='/user/login'>Login</a></li>
-					<li><a href='/user/register'>Join EventCasts</a></li>
+                <ul id="menu">
+                    <% if session[:user].blank? %>
+                        <li><a href='/user/login'>Login</a></li>
+                        <li><a href='/user/register'>Create an Account</a></li>
+                    <% end %>
+                </ul>
+            </div>
+            <div id="header_search_box">
+                <strong>Follow a Conversation That's Already Happening!</strong> <br /><br />
+                <% form_for :search, :url => {:controller=>"home", :action=>"search"}, :html => { :id => "search_form" } do |p| %>
+                    <%= p.text_field :query, :size=>30, :maxlength=>140, :id=>'search_box', :value=>'Find an event or group' %>
+                    <a onclick="$('#search_form').submit();" class="submit" type="submit"><img src="../images/groupSearchButtonOff.png"/></a>
                 <% end %>
-            </ul>
-        </div>    
-		<div id='body'>
-			<div id="flash"><%= flash[:notice] %></div>	
-			<%= yield  %>
-		</div>
-		<div id="footer">
-	        <div id="footer-content">
-		FOOTER
-	        </div>
-	    </div>	    
+            </div>
+            <div id='body'>
+                <div id="flash"><%= flash[:notice] %></div>
+                <%= yield  %>
+                <div class="clear"></div>
+            </div>
+        </div>
+    </div>
+    <div id="footer">
+        <div id="footer-border">test</div>
+        <div id="footer-content">
+            <div>FOOTER</div>
+        </div>
     </div>
 	<!-- google analytics -->
 	<script type="text/javascript">

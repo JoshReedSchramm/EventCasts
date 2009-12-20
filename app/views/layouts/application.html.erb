@@ -3,11 +3,8 @@
 <head>
 	<title>EventCasts - Follow the Conversation</title>
 	<%= stylesheet_link_tag 'style' %>
-<<<<<<< HEAD:app/views/layouts/application.html.erb
-    <%= stylesheet_link_tag 'style' %>
-=======
 	<%= javascript_include_tag "jquery.min.js" %>
->>>>>>> f351adf5ffdb1ed0703858235536e3c71c86bccf:app/views/layouts/application.html.erb
+</head>
 </head>
 <body>
     <div id="page">
@@ -23,13 +20,12 @@
                 </ul>
             </div>
             <div id="header_search_box">
-                <strong>Follow a Conversation That's Already Happening!</strong> <br /><br />
                 <% form_for :search, :url => {:controller=>"home", :action=>"search"}, :html => { :id => "search_form" } do |p| %>
                     <%= p.text_field :query, :size=>30, :maxlength=>140, :id=>'search_box', :value=>'Find an event or group' %>
                     <a onclick="$('#search_form').submit();" class="submit" type="submit"><img src="../images/groupSearchButtonOff.png"/></a>
                 <% end %>
             </div>
-            <div id='body'>
+            <div id='body'>    
                 <div id="flash"><%= flash[:notice] %></div>
                 <%= yield  %>
                 <div class="clear"></div>
@@ -37,7 +33,7 @@
         </div>
     </div>
     <div id="footer">
-        <div id="footer-border">test</div>
+        <div id="footer-border"></div>
         <div id="footer-content">
             <div>FOOTER</div>
         </div>

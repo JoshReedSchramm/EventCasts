@@ -12,7 +12,7 @@ describe EventsController do
   end
 
   context "When an anonymous user visit a secure section of the site" do
-    %w[set_data create add_event_vip].each do |action|
+    %w[set_data add_event_vip].each do |action|
       it "#{action} should redirect the user to the home page" do
         Security.stub!(:is_authenticated?).and_return false        
         get action
@@ -22,28 +22,6 @@ describe EventsController do
   end
   
   describe "when creating a new event" do
-    before(:each) do 
-      Security.stub!(:is_authenticated?).and_return true       
-    end
-    
-    it "should render all the events a user owns" do
-        Event.should_receive(:create_event).with({}, session[:twitter_name]).and_return(mock_event)
-        mock_event.should_receive(:errors).and_return({})
-    
-        post :create, :event=>{}
-        response.should redirect_to(:controller=>"user", :action=>"events", :twitter_name=>session[:twitter_name])
-    end
-    context "and there is a validation error" do
-      it "should render an empty response, with a error http status and X-JSON header" do
-        Event.should_receive(:create_event).with({}, session[:twitter_name]).and_return(mock_event)
-        mock_event.should_receive(:errors).twice.and_return([["error1", "there is an error"]])
-        request.should_receive(:xhr?).at_least(:once).and_return(true)        
-        
-        post :create, :event=>{}
-        response.headers.include?("X-JSON").should == true
-        response.status.should == "444"
-      end
-    end
   end
     
   describe "when adding a event vip" do

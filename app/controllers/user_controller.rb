@@ -36,4 +36,12 @@ class UserController < ApplicationController
     @user = User.find_by_twitter_name(params[:twitter_name])    
     render :partial=>"user_events", :layout => false
   end
+  
+  def verify_login
+    if session[:user].nil?
+      render :partial=>"login", :layout=>false
+    else
+      render :text => "true", :layout=>false
+    end
+  end
 end

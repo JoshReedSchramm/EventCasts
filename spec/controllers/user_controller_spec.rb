@@ -25,9 +25,8 @@ describe UserController do
     context "and the username and password is valid" do
       it "should return the user account" do
         User.should_receive(:authenticate).with("username", "password").and_return(mock_user)
-        mock_user.should_receive(:id).and_return(1)
         post :login, :user=>{:username=>"username", :password=>"password"}   
-        session[:id].should==1   
+        session[:user].should==mock_user   
         response.should redirect_to(:controller=>"user", :action=>"home")        
       end
     end
@@ -55,6 +54,23 @@ describe UserController do
         get :home
         response.should redirect_to(:controller=>"home", :action=>"index")        
         flash[:notice].should have_text("You must be logged in to view that page.")        
+      end
+    end
+  end
+  
+  describe "when verifying if the user is logged in" do
+    context "and the user is logged in" do
+      it "should return the phrase 'true' and no further markup" do
+        session[:user]=mock_user
+        get :verify_login
+        response.body.should == "true"
+      end
+    end
+    context "and the user is not logged in" do
+      it "should render the login element" do
+        session[:user]=nil
+        get :verify_login        
+        response.should render_template("user/_login")                
       end
     end
   end

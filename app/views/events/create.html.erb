@@ -1,7 +1,8 @@
 <%= javascript_include_tag "jquery.watermark.min.js" %>
 <%= javascript_include_tag "create_event.js" %>
+<%= stylesheet_link_tag 'create_event' %>
 <div id='main_content'>
-	<% form_for :event, :url => {:action=>"create"} do |p| %>
+	<% form_for :event, :url => "/events/create", :id=>"createEventForm" do |p| %>
 		<%= p.error_messages %>
 		<fieldset>
 			<legend>Create an Event</legend>
@@ -9,7 +10,7 @@
 				<%= p.text_field :name, :size=>30, :maxlength=>140, :class=>"fill" %>
 			</div>
 			<div class='row'>
-				<div class='field_description'><label for="search_terms_0">Search Terms</label></div>
+				<div class='field_description'><label for="search_terms_0"><img src='/images/view.png' />Search Terms</label></div>
 				<div id='search_terms'>
 					<input type="text" id="search_terms_0" name="post[search_terms][0]" size="20" class='search_terms active_search_term' />
 				</div>
@@ -43,97 +44,3 @@
 		<p>You might consider including a summary of the content of the event as well as where in the real world the event takes place.</p>
 	</div>	
 </div>
-
-<style>
-
-	h2 {
-		margin: 0px;
-		padding: 0px;
-	}
-		
-	fieldset {
-		margin-left: 10px;
-		border: 0px;
-	}
-	
-	legend {
-		font-size: 3em;
-		margin-bottom: 10px;
-		margin-left: -10px;
-		letter-spacing: .05em;
-	}
-	
-	input, textarea { 
-		border: solid 1px black;
-		padding: 3px;
-	}
-
-	input.fill {
-		height: 40px;
-		width: 100%;
-		font-size: 2.5em;
-	}
-	
-	input.search_terms {
-		width: 99%;
-		height: 30px;
-		font-size:1.7em;
-		margin-bottom: 5px;
-		margin-left:10px;
-	}
-	
-	div#addLink {
-		display:none;
-		width: 100%;
-		text-align: center;
-		font-size: 1.5em;
-		margin-left: 10px;
-	}
-	
-	div#addLink a{
-		color: black;
-		text-decoration: none;
-	}
-	div#addLink a:hover {
-		color: black;
-		text-decoration: underline;
-	}
-	
-	div.row {
-		margin-bottom: 15px;
-	}
-	
-	#event_description {
-		width: 100%;
-		font-size: 1.3em;
-	}
-	
-	#sidebar .help_box {
-		position: absolute;
-		display:none;
-		border: solid 1px #997744;
-		width: 250px;
-		padding: 2px 5px 2px 5px;
-		
-	}
-	
-	#sidebar .help_box p {
-		margin: 0px;
-		padding: 5px 0px;
-	}
-	
-	#sidebar #event_name_help {
-		top: 20px;
-		left: 2px;
-	}
-	
-	#sidebar #search_term_help {
-		top: 100px;
-		left: 2px;
-	}
-	
-	#sidebar #description_help {
-		top: 217px;
-		left: 2px;
-	}
-</style>

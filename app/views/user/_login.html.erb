@@ -1,0 +1,38 @@
+<h1>You have to Log In</h1>
+<div id="login_form_popup">
+	<% form_for :user, :url => {:action=>"login"} do |p| %>
+		<%= p.error_messages %>
+		<fieldset>
+			<div>
+				<%= p.label :username %>
+				<%= p.text_field :username, :size=>30, :maxlength=>140 %>
+			</div>
+			<div>
+				<%= p.label :password %>
+				<%= p.password_field :password, :size=>30, :maxlength=>140 %>
+			</div>
+			<div>
+				<%= p.submit "Login", :class => "submit" %>
+			</div>
+		</fieldset>
+	<% end %>
+</div>
+<a href='javascript:void(0);' id="prompt_create_account">Or, create an account...</a>
+<div id="create_account_popup">
+	<% form_for :user, :url => {:action=>"register"} do |p| %>
+		<%= p.error_messages %>
+		<fieldset>
+			<div>
+				<%= p.label :username %>
+				<%= p.text_field :username, :size=>30, :maxlength=>140 %>
+			</div>
+			<div>
+				<%= p.label :password %>
+				<%= p.password_field :password, :size=>30, :maxlength=>140 %>
+			</div>
+			<div>
+				<%= p.submit "Create User", :class => "submit" %>
+			</div>
+		</fieldset>
+	<% end %>
+</div>

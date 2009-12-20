@@ -15,7 +15,7 @@ $(document).ready(function(){
 		$("#search_terms").append(newTerm);
 		BindSearchTermDefaults();		
 		newTerm.focus();
-		$("#addLink").fadeOut();		
+		$("#addLink").hide();		
 	});
 	$("#event_name").focus(function(){
 		$("#event_name_help").show();
@@ -29,13 +29,29 @@ $(document).ready(function(){
 	$("#event_description").blur(function(){
 		$("#description_help").hide();		
 	});
+	
+	$("#main_content form").submit(function(){
+		var submitForm = false;
+		$.ajax({
+			url: "/user/verify_login",
+			success: function(html) {
+				if (html == "true") {
+					submitForm = true;
+				} else {
+					alert(html);
+					//popup login form.
+				}
+			}			
+		});
+		return submitForm;
+	});
 });
 
 function BindSearchTermDefaults() {
 	$('.active_search_term').watermark('#myevent');	
 	$(".active_search_term").keyup(function(){
 		if ($(this).val() != ""){
-			$("#addLink").fadeIn();
+			$("#addLink").show();
 		}
 	});	
 	$(".search_terms").focus(function(){
@@ -43,9 +59,14 @@ function BindSearchTermDefaults() {
 	});
 	$(".active_search_term").blur(function(){
 		$("#search_term_help").hide();
+			
+		if ($(this).hasClass("watermark") && $(".search_terms").length > 1) {
+			$(this).remove();
+			$(".search_terms:last").addClass("active_search_term");			
+			$("#addLink").show();
+		}			
 		
-		if ($("#addLink").is(":visible")) {
-			$("#add_search_term").focus(); 
-		}
+		$("#description_help").css("top", $("#event_description").offset().top-$("#main_content").offset().top-2);		
+				
 	});	
 }

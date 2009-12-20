@@ -16,9 +16,18 @@ legend {
 	letter-spacing: .05em;
 }
 
-input, textarea { 
+input[type='text'], input[type='password'], textarea { 
 	border: solid 1px black;
+}
+
+input, textarea { 
 	padding: 3px;
+}
+
+input[type='button'],
+input[type='submit'] {
+	margin: 5px 0px 5px 0px;
+	font-size: .8em;
 }
 
 input.fill {
@@ -98,4 +107,8 @@ div.row {
 #sidebar #description_help {
 	top: 218px;
 	left: 2px;
+}
+
+.hidden { 
+	display: none;
 }

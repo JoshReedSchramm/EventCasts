@@ -38,8 +38,19 @@ $(document).ready(function(){
 				if (html == "true") {
 					submitForm = true;
 				} else {
-					alert(html);
-					//popup login form.
+					$("#loginPopup").html(html);					
+					$("#loginPopup").dialog({
+						closeOnEscape: false,
+						open: function(event, ui) { $(".ui-dialog-titlebar-close").hide(); }, //This removes the close button.						
+						dialogClass: 'requiredDialog',
+						draggable: false,
+						modal: true,
+						position: 'center',
+						resizable: false,
+						title: 'Please log in',
+						width: 640
+					});
+					BindLoginPopupEvents();
 				}
 			}			
 		});

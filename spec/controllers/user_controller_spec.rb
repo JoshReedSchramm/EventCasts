@@ -37,6 +37,26 @@ describe UserController do
         flash[:notice].should have_text("Unable to find a user with that username and password.")
       end
     end
+    context "and the request is an ajax login request" do
+      context "and the username or password are invalid" do
+        it "should have an error collection in the response and a 444 status code" do
+          User.should_receive(:authenticate).with("username", "").and_return(nil)
+          request.should_receive(:xhr?).twice().and_return(true)          
+          post :login, :user=>{:username=>"username", :password=>""}    
+          response.status.should == "444"
+          response.headers['X-JSON'].should=={:username=>"The username or password entered did not match a valid user."}.to_json
+        end
+      end
+      context "and the username or password are valid" do
+        it "should not redirect" do
+          User.should_receive(:authenticate).with("username", "password").and_return(mock_user)
+          request.should_receive(:xhr?).twice().and_return(true)                    
+          post :login, :user=>{:username=>"username", :password=>"password"}   
+          session[:user].should==mock_user   
+          response.should_not redirect_to(:controller=>"user", :action=>"home")        
+        end
+      end
+    end
   end
   
   describe "when viewing the user home page" do

@@ -2,11 +2,14 @@ class UserController < ApplicationController
   def login
     if request.post?
       user = User.authenticate(params[:user][:username], params[:user][:password])
-      if user.nil?
+      if user.nil?        
         flash[:notice] = "Unable to find a user with that username and password."
+        ajax_authentication_failure()
       else
         session[:user] = user
-        redirect_to :controller=>"user", :action=>"home"
+        if !request.xhr?
+          redirect_to :controller=>"user", :action=>"home"
+        end
       end
     end
   end
@@ -43,5 +46,14 @@ class UserController < ApplicationController
     else
       render :text => "true", :layout=>false
     end
+  end
+  
+  def ajax_authentication_failure()
+    if request.xhr?
+      response.headers['X-JSON'] = {:username=>"The username or password entered did not match a valid user."}.to_json
+      render :nothing => true, :status=>444   
+      return true     
+    end
+    return false
   end
 end

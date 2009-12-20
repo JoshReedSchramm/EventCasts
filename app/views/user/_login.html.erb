@@ -1,38 +1,62 @@
-<h1>You have to Log In</h1>
+<%= javascript_include_tag "login_form_popup.js" %>
+<%= javascript_include_tag "jquery.form.js" %>
+<%= stylesheet_link_tag 'login_form_popup' %>
 <div id="login_form_popup">
 	<% form_for :user, :url => {:action=>"login"} do |p| %>
 		<%= p.error_messages %>
 		<fieldset>
 			<div>
-				<%= p.label :username %>
+				<%= p.label :username, "EventCasts username" %><br />
 				<%= p.text_field :username, :size=>30, :maxlength=>140 %>
 			</div>
 			<div>
-				<%= p.label :password %>
+				<%= p.label :password, "EventCasts password" %><br />
 				<%= p.password_field :password, :size=>30, :maxlength=>140 %>
-			</div>
+				<a href='javascript:void(0)' id='forgot_password'>Forgot username or password?</a>
+			</div>			
 			<div>
 				<%= p.submit "Login", :class => "submit" %>
 			</div>
+				
 		</fieldset>
 	<% end %>
+	<div id='forgot_password_container' class='hidden'>
+		<fieldset>
+			<legend>Forgot your username or password?</legend>			
+			<label id='forgot_password_label' for='forgot_password_email'>Enter your email address</label><br />		
+			<input type='text' id='forgot_password_email' name='forgot_password_email' />
+			<input type='button' id='forgot_password_submit' value='Retrieve Password' />
+		</fieldset>
+	</div>
 </div>
-<a href='javascript:void(0);' id="prompt_create_account">Or, create an account...</a>
-<div id="create_account_popup">
+<div id="create_account_link">
+	<a href='javascript:void(0);' id="prompt_create_account">Or, create an account...</a>
+</div>
+<div id="create_account_popup" class='hidden'>
 	<% form_for :user, :url => {:action=>"register"} do |p| %>
 		<%= p.error_messages %>
 		<fieldset>
 			<div>
-				<%= p.label :username %>
+				<%= p.label :username, "EventCasts username" %><br />
 				<%= p.text_field :username, :size=>30, :maxlength=>140 %>
 			</div>
 			<div>
-				<%= p.label :password %>
+				<%= p.label :password, "EventCasts password" %><br />
 				<%= p.password_field :password, :size=>30, :maxlength=>140 %>
 			</div>
 			<div>
-				<%= p.submit "Create User", :class => "submit" %>
+				<%= p.label :email, "Email Address" %><br />
+				<%= p.text_field :email, :size=>30, :maxlength=>255 %>
+			</div>
+			<div>
+				<%= p.submit "Create Account", :class => "submit" %>
 			</div>
 		</fieldset>
 	<% end %>
 </div>
+
+<div id='password_reset_content' class='hidden'></div>
+
+<div id='return_to_login_link' class='hidden'>
+	<a href='javascript:void(0);' class='return_to_login'>Go back to Login</a>	
+</div>	

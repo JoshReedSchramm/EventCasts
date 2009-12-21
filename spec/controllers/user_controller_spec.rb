@@ -6,21 +6,50 @@ describe UserController do
   end
   
   describe "when creating a new user" do
-    it "should save the user" do
-      User.should_receive(:new).with({"username"=>"User", "password"=>"password"}).and_return(mock_user)
-      mock_user.should_receive(:save).and_return(true)
-      post :register, :user=>{:username=>"User", :password=>"password"}
-    end
-      
-    context "and there is a validation error" do
-      it "should render an empty response, with a error http status and X-JSON header" do
-        User.should_receive(:new).with({"username"=>"User", "password"=>""}).and_return(mock_user)
-        mock_user.should_receive(:save).and_return(false)
-        post :register, :user=>{:username=>"User", :password=>""}
+    context "and it is not an ajax request" do
+      context "and the user is valid" do
+        it "should save the user and redirect to user home" do
+          User.should_receive(:new).with({"username"=>"User", "password"=>"password", "email"=>"text.email@email.com"}).and_return(mock_user)
+          mock_user.should_receive(:save).and_return(true)
+          request.should_receive(:xhr?).and_return(false)
+          post :register, :user=>{:username=>"User", :password=>"password", :email=>"text.email@email.com"}
+          response.should redirect_to(:controller=>"user", :action=>"home")        
+          session[:user].should == mock_user
+        end
+      end
+      context "and there is a validation error" do
+        it "should return error messages and render the create view" do
+          User.should_receive(:new).with({"username"=>"User", "password"=>"password", "email"=>"text.email@email.com"}).and_return(mock_user)
+          mock_user.should_receive(:save).and_return(false)
+          request.should_receive(:xhr?).at_least(:once).and_return(false)
+          post :register, :user=>{:username=>"User", :password=>"password", :email=>"text.email@email.com"}          
+        end
       end
     end
-  end  
-  
+    context "and it is an ajax request" do
+      context "and the user is valid" do
+        it "should save the user and return a 'true' response" do
+          User.should_receive(:new).with({"username"=>"User", "password"=>"password", "email"=>"text.email@email.com"}).and_return(mock_user)
+          mock_user.should_receive(:save).and_return(true)
+          request.should_receive(:xhr?).and_return(true)
+          post :register, :user=>{:username=>"User", :password=>"password", :email=>"text.email@email.com"}
+          response.body.should == "true"
+          session[:user].should == mock_user          
+        end
+      end
+      context "and there is a validation error" do 
+        it "should render an empty response, with a error http status and X-JSON header" do
+          User.should_receive(:new).with({"username"=>"User", "password"=>"password", "email"=>"text.email@email.com"}).and_return(mock_user)
+          mock_user.should_receive(:save).and_return(false)
+          request.should_receive(:xhr?).at_least(:once).and_return(true)
+          mock_user.should_receive(:errors).at_least(:once).and_return({:username=>"This is a test validation message"})
+          post :register, :user=>{:username=>"User", :password=>"password", :email=>"text.email@email.com"}
+          response.status.should == "444"
+          response.headers['X-JSON'].should=={:username=>"This is a test validation message"}.to_json
+        end
+      end
+    end
+  end
   describe "when logging in" do
     context "and the username and password is valid" do
       it "should return the user account" do
@@ -44,7 +73,7 @@ describe UserController do
           request.should_receive(:xhr?).twice().and_return(true)          
           post :login, :user=>{:username=>"username", :password=>""}    
           response.status.should == "444"
-          response.headers['X-JSON'].should=={:username=>"The username or password entered did not match a valid user."}.to_json
+          response.headers['X-JSON'].should=="[[\"username\",\"The username or password entered did not match a valid user\"]]";
         end
       end
       context "and the username or password are valid" do

@@ -1,5 +1,6 @@
 <%= javascript_include_tag "login_form_popup.js" %>
 <%= javascript_include_tag "jquery.form.js" %>
+<%= javascript_include_tag "json2.js" %>
 <%= stylesheet_link_tag 'login_form_popup' %>
 <div id="login_form_popup">
 	<% form_for :user, :url => {:action=>"login"} do |p| %>

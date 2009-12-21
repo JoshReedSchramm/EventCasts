@@ -25,8 +25,19 @@ class UserController < ApplicationController
   
   def register
     if !params[:user].nil?
-      @user = User.new(params[:user])
-      @user.save
+      user = User.new(params[:user])
+      result = user.save
+      
+      if result
+        session[:user] = user        
+        if request.xhr?
+          render :text => "true", :layout=>false          
+        else
+          redirect_to :controller=>"user", :action=>"home"
+        end
+      elsif request.xhr?
+        handle_ajax_validation_errors(user)
+      end
     end
   end
 
@@ -50,7 +61,7 @@ class UserController < ApplicationController
   
   def ajax_authentication_failure()
     if request.xhr?
-      response.headers['X-JSON'] = {:username=>"The username or password entered did not match a valid user."}.to_json
+      response.headers['X-JSON'] = "[[\"username\",\"The username or password entered did not match a valid user\"]]";
       render :nothing => true, :status=>444   
       return true     
     end

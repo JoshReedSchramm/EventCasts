@@ -24,7 +24,9 @@ function BindLoginPopupEvents() {
 	
 	$("#login_form_popup form").ajaxForm({
 		success: function(response){
-			alert('logged in');
+			$("#flash").text("You have been logged in");			
+			$("#main_content form").unbind('submit', SubmitForm);			
+			$("#main_content form").submit();			
 		},
 		error: function(xhr, status, error) {
 			RenderValidationErrors(xhr, DisplayErrorAsFlash);
@@ -33,7 +35,9 @@ function BindLoginPopupEvents() {
 	
 	$("#create_account_popup form").ajaxForm({
 		success: function(response){
-			alert('account created and logged in.');
+			$("#flash").text("Account created and logged in");
+			$("#main_content form").unbind('submit', SubmitForm);			
+			$("#main_content form").submit();			
 		},
 		error: function(xhr, status, error) {
 			RenderValidationErrors(xhr, HandleErrorInline);

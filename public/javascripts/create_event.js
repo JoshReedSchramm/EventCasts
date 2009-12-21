@@ -30,33 +30,34 @@ $(document).ready(function(){
 		$("#description_help").hide();		
 	});
 	
-	$("#main_content form").submit(function(){
-		var submitForm = false;
-		$.ajax({
-			url: "/user/verify_login",
-			success: function(html) {
-				if (html == "true") {
-					submitForm = true;
-				} else {
-					$("#loginPopup").html(html);					
-					$("#loginPopup").dialog({
-						closeOnEscape: false,
-						open: function(event, ui) { $(".ui-dialog-titlebar-close").hide(); }, //This removes the close button.						
-						dialogClass: 'requiredDialog',
-						draggable: false,
-						modal: true,
-						position: 'center',
-						resizable: false,
-						title: 'Please log in',
-						width: 640
-					});
-					BindLoginPopupEvents();
-				}
-			}			
-		});
-		return submitForm;
-	});
+	$("#main_content form").submit(SubmitForm);
 });
+
+function SubmitForm() {
+	$.ajax({
+		url: "/user/verify_login",
+		success: function(html) {
+			if (html == "true") {
+				$("#main_content form").unbind('submit', SubmitForm);			
+				$("#main_content form").submit();			
+			} else {
+				$("#loginPopup").html(html);					
+				$("#loginPopup").dialog({
+					closeOnEscape: false,
+					open: function(event, ui) { $(".ui-dialog-titlebar-close").hide(); }, //This removes the close button.						
+					dialogClass: 'requiredDialog',
+					draggable: false,
+					modal: true,
+					position: 'center',
+					resizable: false,
+					title: 'Please log in',
+					width: 640
+				});
+				BindLoginPopupEvents();
+			}
+		}			
+	});
+}
 
 function BindSearchTermDefaults() {
 	$('.active_search_term').watermark('#myevent');	

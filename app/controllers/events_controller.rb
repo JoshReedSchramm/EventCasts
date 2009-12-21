@@ -4,6 +4,13 @@ class EventsController < ApplicationController
   before_filter :authorize, :except=>[:create, :vips, :participants, :show, :recent_tweets]
   
   def create
+    if request.post?
+      @event = Event.new(params[:event])
+      result = @event.save
+      if result      
+        redirect_to :controller=>"event", :action=>"show", :id=>event.id
+      end
+    end
   end
 
   def add_event_vip

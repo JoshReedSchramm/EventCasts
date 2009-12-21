@@ -3,7 +3,7 @@ class Event < ActiveRecord::Base
   belongs_to :creator, :class_name => "User", :foreign_key => "creator_id"
 
   validates_presence_of :name, :on => :create, :message => "hashtag can't be blank"
-  validates_format_of :name, :with => /^[A-Za-z0-9_]+$/, :on => :create, :message => "hashtag can only contain letters and numbers"
+  validates_format_of :name, :with => /^[A-Za-z0-9_ ]+$/, :on => :create, :message => "hashtag can only contain letters and numbers"
   validate :user_can_edit_event?
   
   def add_user_by_twitter_name(twitter_name)

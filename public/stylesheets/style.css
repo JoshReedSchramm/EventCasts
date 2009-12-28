@@ -1,12 +1,15 @@
 @import url("reset.css");
 * {vertical-align:top;}
-html, body{margin: 0; padding: 0; height: 100%; font-size: 14px; font-family: Arial,Verdana,sans-serif; color: #012142; }
+html, body{margin: 0; padding: 0; height: 100%;}
 body{background: #ffffff url('../images/bg.gif') repeat-x scroll 0 0; }
-input, textarea{color:#666;}
-div#container{position: relative; margin: 0 auto; width: 100%; height: auto !important; height: 100%; min-height: 100%; }
-div#body{margin: 0px auto; width: 100%; border: solid 1px red;}
 
-#main_content {width: 75%; float: left;border:solid 1px blue;}
+div#container{position: relative; margin: 0 auto; width: 100%; height: auto !important; height: 100%; min-height: 100%; }
+div#body{margin: 0px auto; width: 100%; /*border: solid 1px red;*/}
+
+#main_content {width: 75%; float: left;/*border:solid 1px blue;*/}
+body, ul, ol, dl, h1, h2, h3, h4, h5, h6, td, th, caption, pre, p, blockquote, input, textarea {
+    color:#323232; font-family:Verdana,Arial,sans-serif; font-size:12px; font-weight:normal; line-height:18px; }
+h2 {font-size:25px; line-height:32px; padding-bottom:40px; padding-top:15px; color:#163E6A;}
 
 /* home */
 #homepage_container{padding-top: 10px; border: solid 1px red; padding-left: 0px; width: 78%; height: auto !important; height: 100%; min-height: 100%; }
@@ -14,7 +17,7 @@ img.homepage_image{background-color: white; border: solid 2px black; padding: 5p
 
 p.image_description{margin-top: 0px; padding-top: 0px; clear: left; float: left; width: 300px; }
 .clearfix:after{content: "."; display: block; height: 0; clear: both; visibility: hidden; }
-p{color: #344D68; padding-bottom: 15px; }
+p{/*color: #344D68;*/ padding-bottom: 15px; }
 .clear{clear: both; }
 .clear_fix{display: inline-block; }
 #page{height: auto; min-height: 100%; margin: 0 auto; width: 990px; }
@@ -27,16 +30,8 @@ p{color: #344D68; padding-bottom: 15px; }
 #menu a{color:#9D7554;text-decoration:none;}
 #menu a:hover{color:#765539;}
 
-#search_box{-moz-background-clip:border;
--moz-background-inline-policy:continuous;
--moz-background-origin:padding;
-border: solid 1px black;
-padding: 3px;
-float:left;
-font-size:14px;
-height:20px;
-margin:3px 5px 5px 25px !important;
-width:260px !important;}
+#search_box{-moz-background-clip:border; -moz-background-inline-policy:continuous; -moz-background-origin:padding; border: solid 1px black;
+            padding: 3px; float:left; font-size:14px; height:20px; margin:3px 5px 5px 25px !important; width:260px !important;}
 #header_search_box{float: right; margin:0 30px 30px 0; }
 
 #container{moz-background-clip: border; moz-background-inline-policy: continuous; clear: both; margin: 0 auto; padding-bottom: 108px; width: 990px; }

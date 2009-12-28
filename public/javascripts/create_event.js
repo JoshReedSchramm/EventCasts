@@ -8,7 +8,7 @@ $(document).ready(function(){
 		$(".active_search_term").removeClass("active_search_term");
 		
 		newTerm.attr("id", "search_terms_"+index);
-		newTerm.attr("name", "post[search_terms]["+index+"]");
+		newTerm.attr("name", "search_terms[]");
 		newTerm.addClass("active_search_term");
 		newTerm.val("");		
 		
@@ -34,10 +34,10 @@ $(document).ready(function(){
 });
 
 function SubmitForm() {
-	$.ajax({
+    $.ajax({
 		url: "/user/verify_login",
 		success: function(html) {
-			if (html == "true") {
+            if (html == "true") {
 				$("#main_content form").unbind('submit', SubmitForm);			
 				$("#main_content form").submit();			
 			} else {
@@ -57,6 +57,7 @@ function SubmitForm() {
 			}
 		}			
 	});
+    return false;
 }
 
 function BindSearchTermDefaults() {

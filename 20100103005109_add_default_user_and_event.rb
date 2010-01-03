@@ -2,9 +2,9 @@ class AddDefaultUserAndEvent < ActiveRecord::Migration
   def self.up
     default_account = User.create(:username=>'asktwoups', :password=>'password')
     default_account.save!
-    
+        
     event = Event.create(:name=>'twoups')
-    event.save!
+    event.save
     
     default_account.events << event
     default_account.save!

@@ -6,9 +6,11 @@ class EventsController < ApplicationController
   def create
     if request.post?
       @event = Event.new(params[:event])
-      result = @event.save
-      if result      
-        redirect_to :controller=>"event", :action=>"show", :id=>event.id
+      params[:search_terms].each do |term|
+        @event.search_terms << SearchTerm.new({:term=>term})
+      end unless params[:search_terms].nil?
+      if @event.save
+        redirect_to :controller=>"events", :action=>"show", :id=>@event.id
       end
     end
   end
@@ -31,7 +33,7 @@ class EventsController < ApplicationController
     @event = Event.find(params[:event_id])
     @vips = @event.get_vips
     respond_to do |format|
-       format.html { render :partial=>"vips", :layout => false }       
+       format.html { render :partial=>"vips", :layout => false }
      end
   end
   

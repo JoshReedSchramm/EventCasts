@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/twoups.iml" filepath="$PROJECT_DIR$/.idea/twoups.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/EventCasts.iml" filepath="$PROJECT_DIR$/.idea/EventCasts.iml" />
     </modules>
   </component>
 </project>

@@ -1,10 +1,20 @@
 class Event < ActiveRecord::Base
-  has_and_belongs_to_many :users  
+  has_and_belongs_to_many :users
+  has_and_belongs_to_many :search_terms
   belongs_to :creator, :class_name => "User", :foreign_key => "creator_id"
 
-  validates_presence_of :name, :on => :create, :message => "hashtag can't be blank"
-  validates_format_of :name, :with => /^[A-Za-z0-9_ ]+$/, :on => :create, :message => "hashtag can only contain letters and numbers"
+  validates_presence_of :name, :on => :create, :message => "can't be blank"
+  validates_format_of :name, :with => /^[A-Za-z0-9_ ]+$/, :on => :create, :message => "can only contain letters and numbers"
   validate :user_can_edit_event?
+  validate :at_least_one_search_term?, :message=>"At lease one search terms is required"
+
+  HUMANIZED_ATTRIBUTES = {
+    :name => "Event Name"
+  }
+
+  def self.human_attribute_name(attr)
+    HUMANIZED_ATTRIBUTES[attr.to_sym] || super
+  end
   
   def add_user_by_twitter_name(twitter_name)
     user = User.find_by_twitter_name(User.filter_at(twitter_name))
@@ -96,5 +106,9 @@ class Event < ActiveRecord::Base
   def user_can_edit_event?
     user = User.find_by_twitter_name(self.last_updated_by)    
     return true
+  end
+
+  def at_least_one_search_term?
+    errors.add_to_base("At least one search term must be provided") if self.search_terms.empty?      
   end
 end

@@ -4,11 +4,10 @@
     <option name="SKIP_IMPORT_STATEMENTS" value="false" />
   </component>
   <component name="ProjectDetails">
-    <option name="projectName" value="twoups" />
+    <option name="projectName" value="EventCasts" />
   </component>
   <component name="ProjectRootManager" version="2" project-jdk-name="Ruby SDK 1.8.7 (/usr/bin/ruby)" project-jdk-type="RUBY_SDK" />
   <component name="SvnBranchConfigurationManager">
-    <option name="myVersion" value="124" />
     <option name="mySupportsUserInfoFilter" value="true" />
   </component>
 </project>

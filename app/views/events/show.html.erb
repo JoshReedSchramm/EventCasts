@@ -5,26 +5,28 @@
 <% if @event.nil? %>
 	Unable to find event
 <% end %>
-
-<div id="live_feed">
-	<img id='loading_graphic' src='images/ajax-loader.gif'>	
-	<div id="eventRecentTweets">
-		<ul>
-	    	<li id="tweetTemplate" class='tweet'>
-				<hr class='tweet_rule' />
-				<img src='/images/fakeAvatar.jpg' alt='' class='profile_image' height="48px" width="48px"/>
-				<div class='tweet_info'>
-	        		<span class="tweeter"><a href='#'></a></span>				
-	        		<span class="update_stamp"></span>					
-				</div>
-				<div class='tweet'></div>
-				<div class='clear'></div>
-	      	</li>
-		</ul>
-	</div>
-	<form>
-		<input type="hidden" id="sinceTweetId" value="0" />
-	</form>
+<div id='main_content'>
+    <h2><%= @event.name %></h2>
+    <div id="live_feed">
+        <img id='loading_graphic' src='images/ajax-loader.gif'>
+        <div id="eventRecentTweets">
+            <ul>
+                <li id="tweetTemplate" class='tweet'>
+                    <hr class='tweet_rule' />
+                    <img src='/images/fakeAvatar.jpg' alt='' class='profile_image' height="48px" width="48px"/>
+                    <div class='tweet_info'>
+                        <span class="tweeter"><a href='#'></a></span>
+                        <span class="update_stamp"></span>
+                    </div>
+                    <div class='tweet'></div>
+                    <div class='clear'></div>
+                </li>
+            </ul>
+        </div>
+        <form>
+            <input type="hidden" id="sinceTweetId" value="0" />
+        </form>
+    </div>
 </div>
 <div id="sidebar">
 	<h2>#<%=@event.name%></h2>

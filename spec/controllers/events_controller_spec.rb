@@ -9,6 +9,9 @@ describe EventsController do
   def mock_user(stubs={})
     @mock_user ||= mock(User, stubs)
   end
+  def mock_url_generator(stubs={})
+    @mock_url_generator ||= mock(TwitterURLGenerator, stubs)
+  end
   
   it "should use EventsController" do
     controller.should be_an_instance_of(EventsController)
@@ -97,32 +100,17 @@ describe EventsController do
       it "should render the event" do      
         User.should_receive(:new).and_return(mock_user)
         Event.should_receive(:find_by_id).with("1").and_return(mock_event)
+
+        mock_event.should_receive(:search_terms).and_return([])
+        
+        TwitterURLGenerator.should_receive(:new).and_return(mock_url_generator)  
+        fake_url = "fakeurl"      
+        mock_url_generator.should_receive(:generate_url).and_return(fake_url)
         
         get :show, :format=>"html", :id=>1
     
+        assigns[:twitter_search_url].should == fake_url
         response.should render_template('events/show')
-      end
-    end
-    context "and the json format is requested" do
-      it "should render the event" do      
-        User.should_receive(:new).and_return(mock_user)
-        Event.should_receive(:find_by_id).with("1").and_return(mock_event)
-        mock_event.should_receive(:name).and_return("myname")
-        Event.should_receive(:pull_recent_tweets).and_return("testdata")
-        
-        get :show, :format=>"json", :id=>1
-    
-        response.body.should =="testdata".to_json
-      end
-    end
-    context "and the js format is requested" do
-      it "should render the event" do      
-        User.should_receive(:new).and_return(mock_user)
-        Event.should_receive(:find_by_id).with("1").and_return(mock_event)
-        
-        get :show, :format=>"js", :id=>1
-    
-        response.should render_template('events/_results')
       end
     end
   end

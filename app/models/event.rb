@@ -6,7 +6,7 @@ class Event < ActiveRecord::Base
   validates_presence_of :name, :on => :create, :message => "can't be blank"
   validates_format_of :name, :with => /^[A-Za-z0-9_ ]+$/, :on => :create, :message => "can only contain letters and numbers"
   validate :user_can_edit_event?
-  validate :at_least_one_search_term?, :message=>"At lease one search terms is required"
+  validate :at_least_one_search_term?, :message=>"At least one search terms is required"
 
   HUMANIZED_ATTRIBUTES = {
     :name => "Event Name"
@@ -29,22 +29,7 @@ class Event < ActiveRecord::Base
       nil
     end 
   end
-  
-  def participants
-    tweets = Event.pull_recent_tweets(self.name, 200)    
-    results = []
-    tweets.each do |t|
-      found = false
-      results.each do |r| 
-        if t["from_user"] == r["from_user"]
-          found = true
-        end
-      end      
-      results << t unless found
-    end
-    results
-  end
-      
+        
   def Event.filter_hash(event_name)
     event_name.slice!(0) if event_name[0,1] == '#'    
     event_name

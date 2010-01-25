@@ -1,5 +1,6 @@
 class EventsController < ApplicationController
   include EventsHelper
+  require File.expand_path(File.dirname(__FILE__) + '/../models/lib/twitter_url_generator.rb')
   
   before_filter :authorize, :except=>[:create, :vips, :participants, :show, :recent_tweets]
   
@@ -47,10 +48,10 @@ class EventsController < ApplicationController
   def show
     @vip_user = User.new()
     @event = Event.find_by_id(params[:id])
+    url_generator = TwitterURLGenerator.new(@event.search_terms)
+    @twitter_search_url = url_generator.generate_url
     respond_to do |format|
       format.html
-      format.json { render :json =>  Event.pull_recent_tweets(@event.name,params[:num],params[:since_id]).to_json }
-      format.js { render :partial=> "results" }
     end
   end
   

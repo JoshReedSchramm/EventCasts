@@ -2,22 +2,22 @@
 var tweet_refresh_intval = 15
 
 $(document).ready(function() {
-        $.getJSON("?format=json", function(res){
-            update_tweet_results(res,true);
-        });
+        //$.getJSON("?format=json", function(res){
+        //    update_tweet_results(res,true);
+        //});
 
-        setInterval(function() {
+        //setInterval(function() {
             //get the last tweet vlaue
-            var since = $("#sinceTweetId").val();
-            var path = "?format=json";
-            if(parseInt(since,10) > 0) {
-                path += "&since_id=" + since;
-            }
+            //var since = $("#sinceTweetId").val();
+            //var path = "?format=json";
+            //if(parseInt(since,10) > 0) {
+            //    path += "&since_id=" + since;
+            //}
 
-            $.getJSON(path, function(res) {
-                update_tweet_results(res);
-            });
-        }, tweet_refresh_intval * 1000);
+            //$.getJSON(path, function(res) {
+            //    update_tweet_results(res);
+            //});
+        //}, tweet_refresh_intval * 1000);
 
         $("#save_subevent_link").click(function(){
                 $('#add_sub_event_form').submit();

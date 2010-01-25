@@ -16,7 +16,7 @@ class TwitterURLGenerator
     querystring << file_type
     querystring << "?ors="
     search_terms.each do |term|
-      querystring << URI.escape("#{term}")
+      querystring << term.term
       querystring << "+"
     end
     querystring << "&rpp=" + results_per_page.to_s unless results_per_page.nil?

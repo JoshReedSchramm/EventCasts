@@ -10,7 +10,7 @@ function TweetPuller(url) {
 	}
 	
 	TweetPuller.process_tweets = function(jsonData, textStatus) {
-		alert('process');
-		alert(jsonData);
+//		alert('process');
+//		alert(jsonData);
 	}
 }

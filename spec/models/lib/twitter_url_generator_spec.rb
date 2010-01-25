@@ -17,7 +17,8 @@ describe TwitterURLGenerator do
   
   context "when generating a url" do
      before(:each) do
-        @url_generator = TwitterURLGenerator.new(['eventcasts'])
+        @search_term = SearchTerm.new({:term=>'eventcasts'})
+        @url_generator = TwitterURLGenerator.new([@search_term])
       end    
     it "should begin with the twitter search url and file type" do
       url = @url_generator.generate_url
@@ -33,9 +34,10 @@ describe TwitterURLGenerator do
     end    
     context "and there are multiple search terms" do
       it "should return all search terms seperated with a plus" do
-        @url_generator.search_terms = ['eventcasts', 'is', 'the', 'new', 'name']
+        search_term2 = SearchTerm.new({:term=>'test'})        
+        @url_generator.search_terms = [@search_term, search_term2]
         url = @url_generator.generate_url
-        result = url.ends_with? "ors=eventcasts+is+the+new+name+"
+        result = url.ends_with? "ors=eventcasts+test+"
         result.should == true        
       end
     end

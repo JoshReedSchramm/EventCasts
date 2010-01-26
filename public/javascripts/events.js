@@ -95,27 +95,6 @@ function display_error_on(fieldId, error) {
 	$("#"+fieldId).parent().after("<div class='error_message' id='error_"+fieldId+"'>"+error+"</div>");
 	var parent_pos = $("#"+fieldId).position();
 }
-function update_tweet_results(tweets, first) {
-    var tmp;
-    var cssObj = {'display' : 'visible'};
-	$("#loading_graphic").hide();
-    if(tweets.length > 0) {
-        $("#sinceTweetId").val(tweets[0].id)
-    }
-    $.each(tweets, function(count, tweet){
-        tmp = $("#tweetTemplate").clone()
-		tmp.attr("id", "tweet_"+tweet.id);
-        $(".tweeter", tmp).html("<a href='http://twitter.com/" + tweet.from_user + "' target='_blank'>@"+ tweet.from_user + "</a>");
-        $(".tweet", tmp).html(tweet.text);
-		$(".profile_image", tmp).attr("src", tweet.profile_image_url);
-		$(".update_stamp", tmp).html(distanceOfTimeInWords(new Date(), new Date(tweet.created_at), false)+" ago from "+html_entity_decode(tweet.source));
-        if (first) {
-            $("#tweetTemplate").parent().append(tmp);
-        } else {
-            $("#tweetTemplate").parent().prepend(tmp);
-        }
-    });
-}
 
 function html_entity_decode(str) {
   var ta=document.createElement("textarea");

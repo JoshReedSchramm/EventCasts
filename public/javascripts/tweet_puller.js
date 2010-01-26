@@ -1,3 +1,13 @@
+function Message() {
+	this.id = null;
+	this.from_user = null;
+	this.origin_url = null;
+	this.text = null;
+	this.profile_image_url = null;
+	this.created = null;
+	this.source = null;
+}
+
 function TweetPuller(url) {
 	this.url = url;
 	
@@ -10,25 +20,48 @@ function TweetPuller(url) {
 	}
 	
 	TweetPuller.process_tweets = function(jsonData, textStatus) {
-		var tmp;
-	    var cssObj = {'display' : 'visible'};
-		var tweets = jsonData.results;
-		var first = true; //not sure what this does quite yet, copied from old code
-		
+		var twitter_convertor = new TwitterConvertor(jsonData);
+		var converted_messages = twitter_convertor.convert();		
+		var message_renderer = new MessageRenderer(converted_messages);
+		message_renderer.render();
+	}
+}
+
+function TwitterConvertor(messages) {
+	this.messages = messages;
+	
+	this.convert = function() {
+		var result = new Array();
+		$.each(this.messages.results, function(count, message) {
+			var new_message = new Message();
+			new_message.id = message.id;
+			new_message.from_user = message.from_user;
+			new_message.origin_url = "http://www.twitter.com/";
+			new_message.text = message.text;
+			new_message.profile_image_url = message.profile_image_url;
+			new_message.created = message.created_at;
+			new_message.source = message.source;
+			result.push(new_message);
+		});
+		return result;
+	}
+}
+
+function MessageRenderer(messages) {
+	this.messages = messages;
+	
+	this.render = function() {
 		$("#loading_graphic").hide();
-		
-	    $.each(tweets, function(count, tweet){
-	        tmp = $("#tweetTemplate").clone()
-			tmp.attr("id", "tweet_"+tweet.id);
-	        $(".tweeter", tmp).html("<a href='http://twitter.com/" + tweet.from_user + "' target='_blank'>@"+ tweet.from_user + "</a>");
-	        $(".tweet", tmp).html(tweet.text);
-			$(".profile_image", tmp).attr("src", tweet.profile_image_url);
-			$(".update_stamp", tmp).html(distanceOfTimeInWords(new Date(), new Date(tweet.created_at), false)+" ago from "+html_entity_decode(tweet.source));
-	        if (first) {
-	            $("#tweetTemplate").parent().append(tmp);
-	        } else {
-	            $("#tweetTemplate").parent().prepend(tmp);
-	        }
-	    });	    
+	    $.each(this.messages, this.render_message);
+	}
+	
+	this.render_message = function(count, message) {
+        var message_list_item = $("#messageTemplate").clone();
+		message_list_item.attr("id", "message_"+message.id);
+        $(".tweeter", message_list_item).html("<a href='" + message.origin_url + message.from_user + "' target='_blank'>@"+ message.from_user + "</a>");
+        $(".tweet", message_list_item).html(message.text);
+		$(".profile_image", message_list_item).attr("src", message.profile_image_url);
+		$(".update_stamp", message_list_item).html(distanceOfTimeInWords(new Date(), new Date(message.created), false)+" ago from "+html_entity_decode(message.source));
+        $("#messageTemplate").parent().append(message_list_item);		
 	}
 }

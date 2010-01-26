@@ -112,7 +112,6 @@ ul.child_events li{padding-left: 10px; }
 #add_sub_event{margin-top: 10px; }
 #add_sub_event label{font-size: 12px; }
 em #parent_link, em .save_subevent_link,{color: blue; padding-left: 10px; }
-#tweetTemplate{display: none; }
 #event_header_search{background: url('../images/headerSearch.png') no-repeat; position: relative; top: 16px; left: 729px; width: 329px; height: 51px; padding-top: 4px; padding-bottom: 4px; padding-left: 4px; }
 #event_header_search input{height: 16px; width: 225px; position: absolute; top: 5px; left: 4px; }
 #event_header_nav{position: relative; top: 116px; left: 705px; width: 341px; height: 51px; }
@@ -136,7 +135,7 @@ h1.not_logged_in #event_header_nav #home_header_link{position: absolute; top: 80
 #cluetip a:hover{text-decoration: underline; }
 #live_feed{text-align: center; }
 #eventRecentTweets{text-align: left; }
-#tweetTemplate{margin: 0px auto; }
+#messageTemplate{margin: 0px auto; display: none; }
 
 /* about us */
 #about_us{float: left; width: 490px; padding: 20px 20px 50px 20px; margin-left: 125px; }

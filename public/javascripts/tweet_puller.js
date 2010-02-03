@@ -1,5 +1,6 @@
 function Message() {
 	this.id = null;
+	this.original_id = null;
 	this.from_user = null;
 	this.origin_url = null;
 	this.text = null;
@@ -34,7 +35,7 @@ function TwitterConvertor(messages) {
 		var result = new Array();
 		$.each(this.messages.results, function(count, message) {
 			var new_message = new Message();
-			new_message.id = message.id;
+			new_message.original_id = message.id;
 			new_message.from_user = message.from_user;
 			new_message.origin_url = "http://www.twitter.com/";
 			new_message.text = message.text;

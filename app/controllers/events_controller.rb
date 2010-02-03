@@ -16,20 +16,6 @@ class EventsController < ApplicationController
     end
   end
 
-  def add_event_vip
-    user = params[:user]
-    @event = Event.find(user[:event_id])
-    return if @event.nil?
-    @event.last_updated_by = session[:twitter_name]
-
-    @event.add_user_by_twitter_name(user[:twitter_name])
-    @event.save!
-    
-    respond_to do |format|
-      format.html { render :partial=>"vips", :layout => false }       
-    end unless handle_ajax_validation_errors(@event)
-  end
-
   def vips
     @event = Event.find(params[:event_id])
     @vips = @event.get_vips
@@ -57,13 +43,5 @@ class EventsController < ApplicationController
     respond_to do |format|
       format.html
     end
-  end
-  
-  def set_data
-    event = Event.create_or_update(params[:event], session[:twitter_name])   
-    event.save
-    respond_to do |format|
-      format.json  { render :json => event.to_json }
-    end unless handle_ajax_validation_errors(event)    
   end
 end

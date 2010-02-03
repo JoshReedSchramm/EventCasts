@@ -44,14 +44,6 @@
 		<%= @event.description.blank? ? "No event description set" : @event.description.gsub(/\n/, '<br />') %>
 		<%= "</a>"  if User.can_edit_event?(@event, session[:twitter_name])   %>
 	</h4>
-	<% 
- 	if User.can_edit_event?(@event, session[:twitter_name])  	
-		form_for :event, :url => "/event/set_data?format=json", :html => { :id => "description_form", :class=>"event_data_form" } do |p| %>
-			<%= p.text_area :description, :rows=>6, :cols=>30, :maxlength=>140, :id=>'description_box', :value=>@event.description %>
-			<%= p.hidden_field :id, :value=>@event.id %>
-			<%= p.submit "save", :class => "submit, submit_button" %>	
-		<% end 
-	end %>	
 	<em>description 
 		<%= "<a href='javascript:void(0)' class='edit_data_link' id='edit_description_link'>edit</a><a href='javascript:void(0)' class='save_data_link' id='save_description_link'>save</a>"  if User.can_edit_event?(@event, session[:twitter_name])    %>
 	</em>	

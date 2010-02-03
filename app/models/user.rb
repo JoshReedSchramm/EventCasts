@@ -26,19 +26,7 @@ class User < ActiveRecord::Base
     user
   end
   
-  def User.create_user(twitter_name)
-    user = User.find_by_twitter_name(twitter_name)
-    if (user.nil?)
-      user = User.new()
-      user.twitter_name = twitter_name
-      if !user.twitter_profile.nil?
-        user.profile_image_url = user.twitter_profile["profile_image_url"]
-      end
-      user.save!
-    end
-    user
-  end
-  
+
   def User.can_edit_event?(event, twitter_name)
     return false if twitter_name.blank?
     

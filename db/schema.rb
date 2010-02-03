@@ -13,7 +13,6 @@ ActiveRecord::Schema.define(:version => 20100103005109) do
 
   create_table "events", :force => true do |t|
     t.string   "name"
-    t.string   "title"
     t.string   "description"
     t.string   "url"
     t.string   "last_updated_by"

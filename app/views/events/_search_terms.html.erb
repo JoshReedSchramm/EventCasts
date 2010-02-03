@@ -1,0 +1,7 @@
+<% unless @event.nil? || @event.search_terms.nil? %>
+	<ul id='search_terms'>
+		<% @event.search_terms.each do |term| %>
+			<li><%=term.term %></li>
+		<% end %>
+	</ul>
+<% end %>

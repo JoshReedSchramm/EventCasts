@@ -38,30 +38,9 @@
     </div>
 </div>
 <div id="sidebar">
-	<h2>#<%=@event.name%></h2>
-	<em>
-		hashtag 
-	</em>
-	<br /><br />
-	
-	<h3>
-		<%= "<a href='javascript:void(0)' class='edit_inline_link' id='edit_title_inline_link'>" if User.can_edit_event?(@event, session[:twitter_name])  %>
-		<%= @event.title == "" ? 'No event short name set' : @event.title %>
-		<%= "</a>"  if User.can_edit_event?(@event, session[:twitter_name])  %>
-	</h3>
-
-	<% 
-	if User.can_edit_event?(@event, session[:twitter_name])  
-		form_for :event, :url => "/event/set_data?format=json", :html => { :id => "title_form", :class=>"event_data_form" } do |p| %>
-		<%= p.text_field :title, :size=>30, :maxlength=>140, :id=>'title_box', :value=>@event.title %>
-		<%= p.hidden_field :id, :value=>@event.id %>
-		<%= p.submit "save", :class => "submit, submit_button" %>	
-		<% end
-	 end %>
-	<em>short name 
-		<%= "<a href='javascript:void(0)' class='edit_data_link' id='edit_title_link'>edit</a><a href='javascript:void(0)' class='save_data_link' id='save_title_link'>save</a>"  if User.can_edit_event?(@event, session[:twitter_name])  %>
-	</em>	
-	<br/><br/>
+	<%= render :partial => "search_terms" %>
+	<em>search terms</em>
+	<br /><br />	
 	
 	<h4>
 		<%= "<a href='javascript:void(0)' class='edit_inline_link' id='edit_description_inline_link'>"  if User.can_edit_event?(@event, session[:twitter_name])    %>

@@ -3,14 +3,11 @@
 <%= javascript_include_tag "jquery.form.js" %>
 <%= javascript_include_tag "tweet_puller.js" %>
 
-
 <script>
 	var tweet_puller = new TweetPuller("<%= @twitter_search_url %>");
 	tweet_puller.get_tweets();
 </script>
 	
-
-</script>
 <% if @event.nil? %>
 	Unable to find event
 <% end %>

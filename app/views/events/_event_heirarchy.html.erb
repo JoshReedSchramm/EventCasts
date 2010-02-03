@@ -1,7 +1,0 @@
-<% if !@event.nil? %>
-	<ul id="user_events">
-		<% for event in @event.events %>
-		    <li><a href='/<%= event.id %>'>#<%= event.name %></a></li>		
-		<% end %>
-	</ul>	
-<% end %>

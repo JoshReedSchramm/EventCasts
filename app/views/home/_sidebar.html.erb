@@ -1,19 +1,8 @@
-<%= javascript_include_tag "create_event.js" %>
 <div id='sidebar'>
-	<a href='/events/create' id='create_event'>Create an Event</a>
 	<% if !session[:user].nil? %>
 		<div id='add_new_event'>
 			<h4>Welcome <%= session[:user].username %>!</h4>
-			<br />
-			<a href='javascript:void(0);' id='add_event_link'>Add a event</a>
-			<a href='javascript:void(0);' id='cancel_add_event_link'>cancel</a>
-		
-			<% form_for :event, :url => {:controller=>"events", :action=>"new"}, :html => { :id => "add_event_form" } do |p| %>
-				<%= p.label :name, "hashtag: " %>
-				<%= p.text_field :name, :size=>20, :maxlength=>140, :id=>'add_event_box' %>
-				<a href='javascript:void(0)' id='save_event_link'>save</a>
-				<%= p.submit "Create event", :class => "submit, submit_button" %>				
-			<% end %>
 		</div>
-	<% end %>	
+	<% end %>		
+	<a href='/events/create' id='create_event'>Create an Event</a>
 </div>

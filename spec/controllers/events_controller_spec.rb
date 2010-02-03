@@ -113,6 +113,22 @@ describe EventsController do
         response.should render_template('events/show')
       end
     end
+    context "and no event name is passed" do
+      it "should render a 404" do
+        get :show, :format=>"html"
+        response.response_code.should == 404
+      end
+    end
+    context "and the event is not found" do
+      it "should render a 404" do
+        User.should_receive(:new).and_return(mock_user)
+        Event.should_receive(:find_by_id).with("1").and_return(nil)
+        
+        get :show, :format=>"html", :id=>1
+        
+        response.response_code.should == 404
+      end
+    end
   end
   describe "when saving an event" do
     context "and the passed in data is valid" do

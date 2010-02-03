@@ -22,6 +22,10 @@ class ApplicationController < ActionController::Base
       false
     end
   end
+  
+  def render_404
+    render :file => "#{RAILS_ROOT}/public/404.html",  :status => 404
+  end
 
   private
     def twitter_unauthorized(exception)

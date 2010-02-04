@@ -9,26 +9,35 @@ function Message() {
 	this.source = null;
 }
 
-function TweetPuller(url) {
+function TweetPuller(url, message_persister, process_callback) {
 	this.url = url;
-	
+	this.message_persister = message_persister;
+	this.process_callback = process_callback;
+
 	this.get_tweets = function(){
 		$.ajax({ 
-			url: this.url, 
+			url: url, 
 			dataType: "jsonp",
-			success: TweetPuller.process_tweets
+			success: this.process_tweets
 		});		
 	}
 	
-	TweetPuller.process_tweets = function(jsonData, textStatus) {
-		var twitter_convertor = new TwitterConvertor(jsonData);
-		var converted_messages = twitter_convertor.convert();		
+	this.process_tweets = function(jsonData, textStatus) {
+		var twitter_converter = new TwitterConverter(jsonData);
+		var converted_messages = twitter_converter.convert();		
+		
+		if (message_persister) 
+			message_persister.add(converted_messages);
+			
 		var message_renderer = new MessageRenderer(converted_messages);
 		message_renderer.render();
+		
+		if (process_callback)
+			process_callback();
 	}
 }
 
-function TwitterConvertor(messages) {
+function TwitterConverter(messages) {
 	this.messages = messages;
 	
 	this.convert = function() {

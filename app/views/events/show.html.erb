@@ -1,11 +1,18 @@
 <%= javascript_include_tag "events" %>
 <%= javascript_include_tag "event_data_editing.js" %>
 <%= javascript_include_tag "jquery.form.js" %>
+<%= javascript_include_tag "message_persister.js" %>
 <%= javascript_include_tag "tweet_puller.js" %>
 
 <script>
-	var tweet_puller = new TweetPuller("<%= @twitter_search_url %>");
+	var message_persister = new MessagePersister();
+	
+	var tweet_puller = new TweetPuller("<%= @twitter_search_url %>", message_persister, process_callback);
 	tweet_puller.get_tweets();
+	
+	function process_callback() {
+		message_persister.save();
+	}
 </script>
 	
 <% if @event.nil? %>

@@ -1,7 +1,13 @@
 //interval to refresh in seconds
-var tweet_refresh_intval = 15
+var tweet_refresh_intval = 15;
+var message_persister = new MessagePersister();
 
-$(document).ready(function() {
+$(document).ready(function() {		
+		if (autoload)
+			refresh_display();
+		else
+			setTimeout('refresh_display();', tweet_refresh_intval);
+		
         $("#save_vip_link").click(function(){
                 $('#add_vip_form').submit();
         });
@@ -24,6 +30,16 @@ $(document).ready(function() {
                 $('#cancel_add_vip_link').hide();
         });
 });
+
+function refresh_display() {
+	var tweet_puller = new TweetPuller(search_url, message_persister, process_callback);
+	tweet_puller.get_tweets();
+	setTimeout('refresh_display();', tweet_refresh_intval);	
+}
+
+function process_callback() {
+	message_persister.save();
+}
 
 function update_vip(result) {
 	if (result.indexOf("Error: ")>-1) {

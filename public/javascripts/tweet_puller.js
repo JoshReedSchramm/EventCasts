@@ -13,7 +13,7 @@ function TweetPuller(url, message_persister, process_callback) {
 	this.url = url;
 	this.message_persister = message_persister;
 	this.process_callback = process_callback;
-
+	
 	this.get_tweets = function(){
 		$.ajax({ 
 			url: url, 

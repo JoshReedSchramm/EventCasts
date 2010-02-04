@@ -20,6 +20,15 @@ class Event < ActiveRecord::Base
     event_name.slice!(0) if event_name[0,1] == '#'    
     event_name
   end
+  
+  def Event.create_event(params, user)
+    event = Event.new(params[:event])
+    event.creator_id = user.id
+    params[:search_terms].each do |term|
+      event.search_terms << SearchTerm.new({:term=>term})
+    end unless params[:search_terms].nil?
+    event   
+  end
 
   private
       

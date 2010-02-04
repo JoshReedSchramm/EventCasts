@@ -5,13 +5,14 @@ class EventsController < ApplicationController
   before_filter :authorize, :except=>[:create, :vips, :participants, :show, :recent_tweets]
   
   def create
-    if request.post?
-      @event = Event.new(params[:event])
-      params[:search_terms].each do |term|
-        @event.search_terms << SearchTerm.new({:term=>term})
-      end unless params[:search_terms].nil?
-      if @event.save
-        redirect_to :controller=>"events", :action=>"show", :id=>@event.id
+    if request.post? 
+      if !authorized?
+        redirect_to :controller => :home, :action => :index
+      else
+        event = Event.create_event(params, logged_in_user)
+        if event.save
+          redirect_to :controller=>"events", :action=>"show", :id=>event.id
+        end
       end
     end
   end

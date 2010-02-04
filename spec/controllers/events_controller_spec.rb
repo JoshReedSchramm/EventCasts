@@ -16,16 +16,6 @@ describe EventsController do
   it "should use EventsController" do
     controller.should be_an_instance_of(EventsController)
   end
-
-  context "When an anonymous user visit a secure section of the site" do
-    %w[set_data add_event_vip].each do |action|
-      it "#{action} should redirect the user to the home page" do
-        Security.stub!(:is_authenticated?).and_return false        
-        get action
-        response.should redirect_to(:controller => "home", :action => "index")
-      end
-    end
-  end
     
   describe "when requesting the vip list" do
     it "should render the vip list" do      
@@ -84,13 +74,23 @@ describe EventsController do
     end
   end
   describe "when saving an event" do
+    context "and the user is not logged in" do
+      it "should redirect to the login page" do        
+        params = { :event => {"name"=>"Test Event", "description"=>"My Test Event"}, :search_terms=>["The Phrase", "Phrase Two"]}
+        session[:user] = nil
+        
+        post :create, params
+        
+        response.should redirect_to(:controller => "home", :action => "index") 
+      end
+    end
     context "and the passed in data is valid" do
       it "should save the event and redirect to the show event page" do
         params = { :event => {"name"=>"Test Event", "description"=>"My Test Event"}, :search_terms=>["The Phrase", "Phrase Two"]}
+        session[:user] = mock_user
+        
 
-        Event.should_receive(:new).with(params[:event]).and_return mock_event        
-
-        mock_search_term_creation                
+        Event.should_receive(:create_event).and_return(mock_event)
         
         mock_event.should_receive(:save).and_return true
         mock_event.should_receive(:id).and_return(1)
@@ -102,30 +102,14 @@ describe EventsController do
     context "and the passed in data is invalid" do
       it "should render the create page with validation errors" do
         params = { :event => {"name"=>"Test Event", "description"=>"My Test Event"}, :search_terms=>["The Phrase", "Phrase Two"]}
+        session[:user] = mock_user
 
-        Event.should_receive(:new).with(params[:event]).and_return mock_event
-
-        mock_search_term_creation
+        Event.should_receive(:create_event).and_return(mock_event)       
 
         mock_event.should_receive(:save).and_return false
         post :create, params
         response.should render_template('events/create') 
       end
     end
-  end
-
-  def mock_search_term_creation
-    st1 = SearchTerm.new({:term=>"The Phrase"})
-    st2 = SearchTerm.new({:term=>"Phrase Two"})
-
-    SearchTerm.should_receive(:new).with({:term=>"The Phrase"}).and_return(st1)
-    SearchTerm.should_receive(:new).with({:term=>"Phrase Two"}).and_return(st2)
-        
-
-    mock_search_term_array = [mock_search_term]
-    mock_event.should_receive(:search_terms).and_return(mock_search_term_array)
-    mock_search_term_array.should_receive(:<<).with(st1)
-    mock_event.should_receive(:search_terms).and_return(mock_search_term_array)
-    mock_search_term_array.should_receive(:<<).with(st2)
   end
 end

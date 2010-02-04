@@ -16,11 +16,15 @@ class ApplicationController < ActionController::Base
     return false
   end
   
-  def authorize
-    unless Security.is_authenticated?(session[:twitter_name])
-      redirect_to(:controller=>"home", :action=>"index")
-      false
-    end
+  def authorize 
+    redirect_to :controller => :home, :action => :index unless Security.authorized?
+  end
+  
+  def logged_in_user
+    return session[:user]
+  end
+  def authorized?
+    return !logged_in_user.nil?
   end
   
   def render_404

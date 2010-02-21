@@ -12,6 +12,7 @@ ActionController::Routing::Routes.draw do |map|
   map.connect '/user/events/:twitter_name', :controller=>"user", :action=>"events"  
   map.connect '/user/:action/:id', :controller=>"user"  
   map.connect '/home/:action/:id', :controller=>"home"  
+  map.connect '/messages/:action/:id', :controller=>"messages"    
   map.connect '/events/*event_names', :controller=>"events", :action=>"show"  
   map.connect '/:id', :controller=>"events", :action=>"show"    
 end

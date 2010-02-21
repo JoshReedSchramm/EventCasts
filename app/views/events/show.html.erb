@@ -1,3 +1,4 @@
+<%= javascript_include_tag "jquery.json.js" %>
 <%= javascript_include_tag "message_persister.js" %>
 <%= javascript_include_tag "tweet_puller.js" %>
 <%= javascript_include_tag "event_data_editing.js" %>
@@ -9,7 +10,8 @@
 </script>
 <%= javascript_include_tag "events" %>
 
-	
+<div id='json'></div>
+
 <% if @event.nil? %>
 	Unable to find event
 <% end %>
@@ -77,4 +79,3 @@
 		<em>participants</em>
 	</div>	
 </div>
-

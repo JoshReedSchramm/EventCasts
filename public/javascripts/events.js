@@ -1,5 +1,5 @@
 //interval to refresh in seconds
-var tweet_refresh_intval = 15000;
+var tweet_refresh_intval = 150000;
 var message_persister = new MessagePersister();
 var tweet_puller = new TweetPuller(search_url, message_persister, process_callback);
 

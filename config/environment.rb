@@ -48,7 +48,7 @@ Rails::Initializer.run do |config|
     :version => '0.6.6'
   config.gem 'json',
     :lib => 'json',
-    :version => '1.1.7'
+    :version => '1.2.0'
 end
 
 ConsumerConfig = YAML.load(File.read(Rails.root + 'config' + 'consumer.yml'))

@@ -12,6 +12,9 @@ describe EventsController do
   def mock_url_generator(stubs={})
     @mock_url_generator ||= mock(TwitterURLGenerator, stubs)
   end
+  def mock_message(stubs={})
+    @mock_message ||= mock(Message, stubs)
+  end
   
   it "should use EventsController" do
     controller.should be_an_instance_of(EventsController)
@@ -40,11 +43,14 @@ describe EventsController do
   
   describe "when requesting a event" do
     context "and the html format is requested" do
-      it "should render the event" do      
-        User.should_receive(:new).and_return(mock_user)
+      it "should render the event" do         
+        expected_messages = [mock_message]
+             
         Event.should_receive(:find_by_id).with("1").and_return(mock_event)
-
         mock_event.should_receive(:search_terms).and_return([])
+        
+        mock_event.should_receive(:id).and_return(1)
+        Message.should_receive(:find_last_message_id_for_event).with(1).and_return(1)
         
         TwitterURLGenerator.should_receive(:new).and_return(mock_url_generator)  
         fake_url = "fakeurl"      
@@ -53,6 +59,7 @@ describe EventsController do
         get :show, :format=>"html", :id=>1
     
         assigns[:twitter_search_url].should == fake_url
+        assigns[:twitter_last_message_id].should == 1        
         response.should render_template('events/show')
       end
     end
@@ -64,7 +71,6 @@ describe EventsController do
     end
     context "and the event is not found" do
       it "should render a 404" do
-        User.should_receive(:new).and_return(mock_user)
         Event.should_receive(:find_by_id).with("1").and_return(nil)
         
         get :show, :format=>"html", :id=>1

@@ -6,10 +6,10 @@ describe MessagesController do
   
   describe "when persisting a new message" do
     it "should convert the message from json and save" do
-      params = {:messages => "{\"message\":[{\"name\":\"test\", \"original_id\":\"1\"},{\"name\":\"test\", \"original_id\":\"2\"}]};" }
+      params = {:_json => "{\"message\":[{\"name\":\"test\", \"original_id\":\"1\"},{\"name\":\"test\", \"original_id\":\"2\"}]};" }
       
       messages = [mock_message, mock_message]
-      Message.should_receive(:from_json).with(params[:messages]).and_return(messages)      
+      Message.should_receive(:from_json).with(params[:_json]).and_return(messages)      
       mock_message.should_receive(:save).twice.and_return true
       
       post :persist, params
@@ -18,10 +18,10 @@ describe MessagesController do
     
     context "and there is no json payload" do
       it "should return a json error" do
-        params = {:messages=>"{\"message\":[]};"}
+        params = {:_json=>"{\"message\":[]};"}
         
         messages = []
-        Message.should_receive(:from_json).with(params[:messages]).and_return(messages)      
+        Message.should_receive(:from_json).with(params[:_json]).and_return(messages)      
         mock_message.should_not_receive(:save)
       
         post :persist, params

@@ -1,6 +1,7 @@
 class Event < ActiveRecord::Base
   has_and_belongs_to_many :users
   has_and_belongs_to_many :search_terms
+  has_many :messages, :limit=>10, :order=>"created desc"
   belongs_to :creator, :class_name => "User", :foreign_key => "creator_id"
 
   validates_presence_of :name, :on => :create, :message => "can't be blank"

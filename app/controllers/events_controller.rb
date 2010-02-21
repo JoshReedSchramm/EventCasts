@@ -35,10 +35,12 @@ class EventsController < ApplicationController
   def show
     return render_404 if params.empty?
     
-    @vip_user = User.new()
     @event = Event.find_by_id(params[:id])
     return render_404 if @event.nil?
     
+    @twitter_last_message_id = Message.find_last_message_id_for_event(@event.id)
+    @twitter_last_message_id ||= "null";
+        
     url_generator = TwitterURLGenerator.new(@event.search_terms)
     @twitter_search_url = url_generator.generate_url
     respond_to do |format|

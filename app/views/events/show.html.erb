@@ -6,7 +6,9 @@
 
 <script>
 	var autoload = true;
-	var search_url = "<%= @twitter_search_url %>";
+	var twitter_search_url = "<%= @twitter_search_url %>";
+	var event_id = <%= @event.id %>;
+	var twitter_last_message_id = <%= @twitter_last_message_id %>;
 </script>
 <%= javascript_include_tag "events" %>
 
@@ -31,8 +33,20 @@
                     <div class='tweet'></div>
                     <div class='clear'></div>
                 </li>
+				<%  @event.messages.each do |message| %>
+					<li class='tweet'>
+	                    <hr class='tweet_rule' />
+	                    <img src='<%= message.profile_image_url %>' alt='' class='profile_image' height="48px" width="48px"/>
+	                    <div class='tweet_info'>
+	                        <span class="tweeter"><a href='<%= message.origin_url %><%= message.from_user %>>'>@<%=message.from_user %></a></span>
+	                        <span class="update_stamp"><%= distance_of_time_in_words(message.created, Time.now) %> ago</span>
+	                    </div>
+	                    <div class='tweet'><%= message.text %></div>
+	                    <div class='clear'></div>
+	                </li>
+				<% end unless @event.messages.nil? %>
             </ul>
-        </div>
+        </div>		
         <form>
             <input type="hidden" id="sinceTweetId" value="0" />
         </form>

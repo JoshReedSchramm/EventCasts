@@ -14,20 +14,28 @@ describe Message do
   describe "when converting from json" do
     context "and multiple messages are passed in" do
       it "should create and return an array of message objects" do
-        json = '[{"id":null,"original_id":9436657930,"from_user":"nicoshoney","origin_url":"http://www.twitter.com/","text":"@nickybyrneoiffic Nicky if you are tweeting or can see your twitter please say hello to all the Byrnettes who are listening to you!!!","profile_image_url":"http://a1.twimg.com/profile_images/701960264/8997302766a11149888758o_normal.jpg","created":"Sun, 21 Feb 2010 17:21:20 +0000","source":"&lt;a href=&quot;http://twitter.com/&quot;&gt;web&lt;/a&gt;"},{"id":null,"original_id":9436614460,"from_user":"adean3","origin_url":"http://www.twitter.com/","text":"RT @timgier: The smartest person in the world could well be behind a plow in China or India. - Hal Varian http://bit.ly/a0ae2K via @rww","profile_image_url":"http://a3.twimg.com/profile_images/684081239/vietnamtrain_normal.jpg","created":"Sun, 21 Feb 2010 17:20:05 +0000","source":"&lt;a href=&quot;http://twitter.com/&quot;&gt;web&lt;/a&gt;"}]'
+        json = '[{"id":null,"original_id":9436657930,"from_user":"nicoshoney","origin_url":"http://www.twitter.com/","text":"@nickybyrneoiffic Nicky if you are tweeting or can see your twitter please say hello to all the Byrnettes who are listening to you!!!","profile_image_url":"http://a1.twimg.com/profile_images/701960264/8997302766a11149888758o_normal.jpg","created":"Sun, 21 Feb 2010 17:21:20 +0000","source":"&lt;a href=&quot;http://twitter.com/&quot;&gt;web&lt;/a&gt;"},{"id":null,"original_id":9436614460,"from_user":"adean3","origin_url":"http://www.twitter.com/","text":"RT @timgier: The smartest person in the world could well be behind a plow in China or India. - Hal Varian http://bit.ly/a0ae2K via @rww","profile_image_url":"http://a3.twimg.com/profile_images/684081239/vietnamtrain_normal.jpg","created":"Sun, 21 Feb 2010 17:20:05 +0000","source":"&lt;a href=&quot;http://twitter.com/&quot;&gt;web&lt;/a&gt;"}]'        
+        object = JSON.parse(json)
         
-        messages = Message.from_json(json)
+        messages = Message.from_json(object)
         messages.length.should == 2
         
         messages.each do |message| 
           message.class.should == Message
         end        
       end
-    end    
+    end 
+    context "and there is no json passed" do
+      it "should return an empty array" do
+        messages = Message.from_json(nil)
+        messages.should == []
+      end
+    end   
     it "should convert the json fields to active record fields" do
       json = '[{"id":null,"original_id":1,"from_user":"asktwoups","origin_url":"http://www.twitter.com/","text":"An update message","profile_image_url":"http://a1.twimg.com/profile_images/701960264/8997302766a11149888758o_normal.jpg","created":"Sun, 21 Feb 2010 17:21:20 +0000","source":"&lt;a href=&quot;http://twitter.com/&quot;&gt;web&lt;/a&gt;"}]'
+      object = JSON.parse(json)
       
-      messages = Message.from_json(json)
+      messages = Message.from_json(object)
       
       expected_date = DateTime.parse("Sun, 21 Feb 2010 17:21:20 +0000")
 
@@ -39,4 +47,23 @@ describe Message do
       messages[0].created.should == expected_date
     end    
   end
+  describe "when calculating the last id for an event" do
+    context "and there are no messages for that event" do
+      it "should return nil" do
+        Message.should_receive(:find_by_event_id).with(1, :order=>"created desc", :limit=>1).and_return(nil)
+        result = Message.find_last_message_id_for_event(1)
+        result.should == nil
+      end
+    end
+    context "and there are messages for that event" do
+      it "should return the original_id of the most recent message for the event" do
+        expected_message = Message.new({:original_id=>1234})
+        
+        Message.should_receive(:find_by_event_id).with(1, :order=>"created desc", :limit=>1).and_return(expected_message)
+        
+        result = Message.find_last_message_id_for_event(1)
+        result.should ==  1234       
+      end
+    end
+  end  
 end

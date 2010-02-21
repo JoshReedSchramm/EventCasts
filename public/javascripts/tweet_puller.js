@@ -27,14 +27,15 @@ function TweetPuller(url, message_persister, process_callback, last_id) {
 		
 	this.process_tweets = function(jsonData, textStatus) {
 		var twitter_converter = new TwitterConverter(jsonData);
-		var converted_messages = twitter_converter.convert();	
+		var converted_messages = twitter_converter.convert();			
 		
 		if (converted_messages && converted_messages[0]) {
 			last_id = converted_messages[0].original_id;
 		}
 				
-		if (message_persister) 
+		if (message_persister) {
 			message_persister.add(converted_messages);
+		}
 			
 		var message_renderer = new MessageRenderer(converted_messages);
 		message_renderer.render();
@@ -51,6 +52,7 @@ function TwitterConverter(messages) {
 		var result = new Array();
 		$.each(this.messages.results, function(count, message) {
 			var new_message = new Message();
+			new_message.event_id = event_id;
 			new_message.original_id = message.id;
 			new_message.from_user = message.from_user;
 			new_message.origin_url = "http://www.twitter.com/";

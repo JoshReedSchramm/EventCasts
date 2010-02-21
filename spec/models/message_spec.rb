@@ -47,23 +47,4 @@ describe Message do
       messages[0].created.should == expected_date
     end    
   end
-  describe "when calculating the last id for an event" do
-    context "and there are no messages for that event" do
-      it "should return nil" do
-        Message.should_receive(:find_by_event_id).with(1, :order=>"created desc", :limit=>1).and_return(nil)
-        result = Message.find_last_message_id_for_event(1)
-        result.should == nil
-      end
-    end
-    context "and there are messages for that event" do
-      it "should return the original_id of the most recent message for the event" do
-        expected_message = Message.new({:original_id=>1234})
-        
-        Message.should_receive(:find_by_event_id).with(1, :order=>"created desc", :limit=>1).and_return(expected_message)
-        
-        result = Message.find_last_message_id_for_event(1)
-        result.should ==  1234       
-      end
-    end
-  end  
 end

@@ -49,8 +49,9 @@ describe EventsController do
         Event.should_receive(:find_by_id).with("1").and_return(mock_event)
         mock_event.should_receive(:search_terms).and_return([])
         
-        mock_event.should_receive(:id).and_return(1)
-        Message.should_receive(:find_last_message_id_for_event).with(1).and_return(1)
+        mock_event.should_receive(:messages).at_least(4).times.and_return([mock_message])
+        mock_message.should_receive(:original_id).and_return(1)
+        mock_message.should_receive(:created).and_return(Time.now)        
         
         TwitterURLGenerator.should_receive(:new).and_return(mock_url_generator)  
         fake_url = "fakeurl"      
@@ -61,6 +62,52 @@ describe EventsController do
         assigns[:twitter_search_url].should == fake_url
         assigns[:twitter_last_message_id].should == 1        
         response.should render_template('events/show')
+      end
+      context "and there is a previous message" do
+        before(:each) do
+          Event.should_receive(:find_by_id).with("1").and_return(mock_event)
+          mock_event.should_receive(:search_terms).and_return([])
+
+          mock_event.should_receive(:messages).at_least(2).times.and_return([mock_message])
+          mock_message.should_receive(:original_id).and_return(1)
+        end
+        it "should set set the last message id" do          
+          mock_message.should_receive(:created).and_return(45.seconds.ago)                              
+          get :show, :format=>"html", :id=>1                                
+          assigns[:twitter_last_message_id].should == 1
+        end        
+        context "and last updated message is older than 30 seconds" do
+          before(:each) do
+            mock_message.should_receive(:created).and_return(45.seconds.ago)                    
+            get :show, :format=>"html", :id=>1                      
+          end
+          it "should set autoload true" do                      
+            assigns[:autoload].should == true
+          end
+        end
+        context "and last updated message is younger than 30 seconds" do
+          before(:each) do
+            mock_message.should_receive(:created).and_return(15.seconds.ago)                    
+            get :show, :format=>"html", :id=>1                      
+          end
+          it "should set autoload false" do                      
+            assigns[:autoload].should == false
+          end
+        end
+      end
+      context "and there is no previous message" do
+        before(:each) do
+          Event.should_receive(:find_by_id).with("1").and_return(mock_event)
+          mock_event.should_receive(:search_terms).and_return([])
+          mock_event.should_receive(:messages).at_least(2).times.and_return([])
+          get :show, :format=>"html", :id=>1                                          
+        end
+        it "should set set the last message id to null" do          
+          assigns[:twitter_last_message_id].should == "null"
+        end        
+        it "should set autoload true" do                      
+          assigns[:autoload].should == true
+        end
       end
     end
     context "and no event name is passed" do

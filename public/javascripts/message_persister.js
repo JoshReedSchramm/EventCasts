@@ -5,7 +5,6 @@ function MessagePersister() {
 		this.messages.push(data);
 	}
 	
-	this.save = function() {
-		alert(this.messages);
+	this.save = function() {		
 	}
 }

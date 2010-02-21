@@ -1,6 +1,7 @@
 //interval to refresh in seconds
-var tweet_refresh_intval = 15;
+var tweet_refresh_intval = 15000;
 var message_persister = new MessagePersister();
+var tweet_puller = new TweetPuller(search_url, message_persister, process_callback);
 
 $(document).ready(function() {		
 		if (autoload)
@@ -32,7 +33,6 @@ $(document).ready(function() {
 });
 
 function refresh_display() {
-	var tweet_puller = new TweetPuller(search_url, message_persister, process_callback);
 	tweet_puller.get_tweets();
 	setTimeout('refresh_display();', tweet_refresh_intval);	
 }

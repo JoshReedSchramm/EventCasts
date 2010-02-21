@@ -9,23 +9,30 @@ function Message() {
 	this.source = null;
 }
 
-function TweetPuller(url, message_persister, process_callback) {
+function TweetPuller(url, message_persister, process_callback, last_id) {
 	this.url = url;
 	this.message_persister = message_persister;
 	this.process_callback = process_callback;
 	
 	this.get_tweets = function(){
+		if (last_id) {
+			url = this.url + "&since_id="+last_id;
+		}
 		$.ajax({ 
 			url: url, 
 			dataType: "jsonp",
 			success: this.process_tweets
 		});		
 	}
-	
+		
 	this.process_tweets = function(jsonData, textStatus) {
 		var twitter_converter = new TwitterConverter(jsonData);
-		var converted_messages = twitter_converter.convert();		
+		var converted_messages = twitter_converter.convert();	
 		
+		if (converted_messages && converted_messages[0]) {
+			last_id = converted_messages[0].original_id;
+		}
+				
 		if (message_persister) 
 			message_persister.add(converted_messages);
 			
@@ -62,16 +69,16 @@ function MessageRenderer(messages) {
 	
 	this.render = function() {
 		$("#loading_graphic").hide();
-	    $.each(this.messages, this.render_message);
+	    $.each(this.messages.reverse(), this.render_message);
 	}
 	
 	this.render_message = function(count, message) {
-        var message_list_item = $("#messageTemplate").clone();
+        var message_list_item = $("#messageTemplate").clone();		
 		message_list_item.attr("id", "message_"+message.id);
         $(".tweeter", message_list_item).html("<a href='" + message.origin_url + message.from_user + "' target='_blank'>@"+ message.from_user + "</a>");
         $(".tweet", message_list_item).html(message.text);
 		$(".profile_image", message_list_item).attr("src", message.profile_image_url);
 		$(".update_stamp", message_list_item).html(distanceOfTimeInWords(new Date(), new Date(message.created), false)+" ago from "+html_entity_decode(message.source));
-        $("#messageTemplate").parent().append(message_list_item);		
+        $("#messageTemplate").parent().prepend(message_list_item);		
 	}
 }

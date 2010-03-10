@@ -5,32 +5,10 @@ var tweet_puller = new TweetPuller(twitter_search_url, message_persister, proces
 //var message_puller = new MessagePuller('/messages/get_messages', null, ec_last_message_id);
 
 $(document).ready(function() {		
-		if (autoload)
-			refresh_display(false);
-		else
-			setTimeout('refresh_display(false);', tweet_refresh_intval);
-		
-        $("#save_vip_link").click(function(){
-                $('#add_vip_form').submit();
-        });
-
-       $('#add_vip_form').ajaxForm({
-            success: update_vip
-        });
-        
-        $('#add_vip_link').click(function(){
-                $("#add_vip").show();
-                $('#cancel_add_vip_link').show();
-                $('#add_vip_link').hide();
-                $('#add_vip_box').focus();
-                $('#add_vip_box').val('');
-        });
-
-        $('#cancel_add_vip_link').click(function(){
-                $("#add_vip").hide();
-                $('#add_vip_link').show();
-                $('#cancel_add_vip_link').hide();
-        });
+	if (autoload)
+		refresh_display(false);
+	else
+		setTimeout('refresh_display(false);', tweet_refresh_intval);
 });
 
 function refresh_display(check_ec_first) {
@@ -53,19 +31,6 @@ function process_callback() {
 			}
 		}
 	);
-}
-
-
-function update_vip(result) {
-	if (result.indexOf("Error: ")>-1) {
- 		display_error_on('add_vip_box', result.substr(result.indexOf("Error: ")+7));
-	} else {
-		$(".error_message").remove();
-		$("#vip_content").html(result);		
-		$("#add_vip").hide();
-		$('#add_vip_link').show();
-		$('#cancel_add_vip_link').hide();
-	}
 }
 
 

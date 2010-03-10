@@ -2,11 +2,8 @@ require 'json'
 
 class MessagesController < ApplicationController
   def persist
-    @js = params[:_json]
-    messages = Message.from_json(params[:_json])
-    @m = messages
-
-    messages.each do |message| 
+    @messages = Message.from_json(params[:_json])
+    @messages.each do |message| 
       message.save
     end
 

@@ -1,2 +1,3 @@
-<%= @js.inspect %>
-<%= @m.inspect %>
+<% if !@messages.empty? %>
+	<%= @messages.last.id %>
+<% end %>

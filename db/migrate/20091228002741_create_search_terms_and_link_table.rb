@@ -5,7 +5,7 @@ class CreateSearchTermsAndLinkTable < ActiveRecord::Migration
       t.timestamps
     end
 
-    create_table :events_search_terms do |e|
+    create_table :events_search_terms, :id=>false do |e|
       e.integer :event_id
       e.integer :search_term_id
       e.timestamps

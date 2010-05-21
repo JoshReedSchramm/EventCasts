@@ -21,7 +21,7 @@ ActiveRecord::Schema.define(:version => 20100203231051) do
     t.integer  "creator_id",      :default => 0
   end
 
-  create_table "events_search_terms", :force => true do |t|
+  create_table "events_search_terms", :id => false, :force => true do |t|
     t.integer  "event_id"
     t.integer  "search_term_id"
     t.datetime "created_at"

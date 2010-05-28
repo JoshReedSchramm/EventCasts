@@ -1,5 +1,4 @@
-nbproject/
-tmp/
-log/*
-.idea/
-.idea/*
+.bundle
+db/*.sqlite3
+log/*.log
+tmp/**/*

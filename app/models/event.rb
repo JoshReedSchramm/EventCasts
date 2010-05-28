@@ -39,6 +39,6 @@ class Event < ActiveRecord::Base
   end
 
   def at_least_one_search_term?
-    errors.add_to_base("At least one search term must be provided") if self.search_terms.empty?      
+    errors[:base] << "At least one search term must be provided" if self.search_terms.empty?      
   end
 end

@@ -27,9 +27,8 @@ class UserController < ApplicationController
     if !params[:user].nil?
       user = User.new(params[:user])
       result = user.save
-      
       if result
-        session[:user] = user        
+        session[:user] = user  
         if request.xhr?
           render :text => "true", :layout=>false          
         else

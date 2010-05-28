@@ -11,7 +11,6 @@ describe UserController do
         it "should save the user and redirect to user home" do
           User.should_receive(:new).with({"username"=>"User", "password"=>"password", "email"=>"text.email@email.com"}).and_return(mock_user)
           mock_user.should_receive(:save).and_return(true)
-          request.should_receive(:xhr?).and_return(false)
           post :register, :user=>{:username=>"User", :password=>"password", :email=>"text.email@email.com"}
           response.should redirect_to(:controller=>"user", :action=>"home")        
           session[:user].should == mock_user
@@ -21,7 +20,6 @@ describe UserController do
         it "should return error messages and render the create view" do
           User.should_receive(:new).with({"username"=>"User", "password"=>"password", "email"=>"text.email@email.com"}).and_return(mock_user)
           mock_user.should_receive(:save).and_return(false)
-          request.should_receive(:xhr?).at_least(:once).and_return(false)
           post :register, :user=>{:username=>"User", :password=>"password", :email=>"text.email@email.com"}          
         end
       end
@@ -31,8 +29,7 @@ describe UserController do
         it "should save the user and return a 'true' response" do
           User.should_receive(:new).with({"username"=>"User", "password"=>"password", "email"=>"text.email@email.com"}).and_return(mock_user)
           mock_user.should_receive(:save).and_return(true)
-          request.should_receive(:xhr?).and_return(true)
-          post :register, :user=>{:username=>"User", :password=>"password", :email=>"text.email@email.com"}
+          xhr :post, :register, :user=>{:username=>"User", :password=>"password", :email=>"text.email@email.com"}
           response.body.should == "true"
           session[:user].should == mock_user          
         end
@@ -41,10 +38,9 @@ describe UserController do
         it "should render an empty response, with a error http status and X-JSON header" do
           User.should_receive(:new).with({"username"=>"User", "password"=>"password", "email"=>"text.email@email.com"}).and_return(mock_user)
           mock_user.should_receive(:save).and_return(false)
-          request.should_receive(:xhr?).at_least(:once).and_return(true)
           mock_user.should_receive(:errors).at_least(:once).and_return({:username=>"This is a test validation message"})
-          post :register, :user=>{:username=>"User", :password=>"password", :email=>"text.email@email.com"}
-          response.status.should == "444"
+          xhr :post, :register, :user=>{:username=>"User", :password=>"password", :email=>"text.email@email.com"}
+          response.status.should == 444
           response.headers['X-JSON'].should=={:username=>"This is a test validation message"}.to_json
         end
       end
@@ -63,26 +59,16 @@ describe UserController do
       it "should display a flash message to the user" do
         User.should_receive(:authenticate).with("username", "").and_return(nil)
         post :login, :user=>{:username=>"username", :password=>""}      
-        flash[:notice].should have_text("Unable to find a user with that username and password.")
+        flash[:notice].should include("Unable to find a user with that username and password.")
       end
     end
     context "and the request is an ajax login request" do
       context "and the username or password are invalid" do
         it "should have an error collection in the response and a 444 status code" do
           User.should_receive(:authenticate).with("username", "").and_return(nil)
-          request.should_receive(:xhr?).twice().and_return(true)          
-          post :login, :user=>{:username=>"username", :password=>""}    
-          response.status.should == "444"
+          xhr :post, :login, :user=>{:username=>"username", :password=>""}    
+          response.status.should == 444
           response.headers['X-JSON'].should=="[[\"username\",\"The username or password entered did not match a valid user\"]]";
-        end
-      end
-      context "and the username or password are valid" do
-        it "should not redirect" do
-          User.should_receive(:authenticate).with("username", "password").and_return(mock_user)
-          request.should_receive(:xhr?).twice().and_return(true)                    
-          post :login, :user=>{:username=>"username", :password=>"password"}   
-          session[:user].should==mock_user   
-          response.should_not redirect_to(:controller=>"user", :action=>"home")        
         end
       end
     end
@@ -102,7 +88,7 @@ describe UserController do
         session[:id] = nil
         get :home
         response.should redirect_to(:controller=>"home", :action=>"index")        
-        flash[:notice].should have_text("You must be logged in to view that page.")        
+        flash[:notice].should include("You must be logged in to view that page.")        
       end
     end
   end

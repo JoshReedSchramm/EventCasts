@@ -22,7 +22,7 @@ describe EventsController do
     
   describe "when requesting the vip list" do
     it "should render the vip list" do      
-      Event.should_receive(:find).with("1").and_return(mock_event)
+      Event.should_receive(:find).with(1).and_return(mock_event)
       mock_event.should_receive(:get_vips).and_return([mock_user])
 
       get :vips, :event_id=>1
@@ -33,7 +33,7 @@ describe EventsController do
   
   describe "when requesting the participants" do
     it "should render the participant list" do      
-      Event.should_receive(:find).with("1").and_return(mock_event)
+      Event.should_receive(:find).with(1).and_return(mock_event)
 
       get :participants, :event_id=>1
     
@@ -46,7 +46,7 @@ describe EventsController do
       it "should render the event" do         
         expected_messages = [mock_message]
              
-        Event.should_receive(:find_by_id).with("1").and_return(mock_event)
+        Event.should_receive(:find_by_id).with(1).and_return(mock_event)
         mock_event.should_receive(:search_terms).and_return([])
         
         mock_event.should_receive(:messages).at_least(4).times.and_return([mock_message])
@@ -59,13 +59,13 @@ describe EventsController do
         
         get :show, :format=>"html", :id=>1
     
-        assigns[:twitter_search_url].should == fake_url
-        assigns[:twitter_last_message_id].should == 1        
+        assigns(:twitter_search_url).should == fake_url
+        assigns(:twitter_last_message_id).should == 1        
         response.should render_template('events/show')
       end
       context "and there is a previous message" do
         before(:each) do
-          Event.should_receive(:find_by_id).with("1").and_return(mock_event)
+          Event.should_receive(:find_by_id).with(1).and_return(mock_event)
           mock_event.should_receive(:search_terms).and_return([])
 
           mock_event.should_receive(:messages).at_least(2).times.and_return([mock_message])
@@ -74,7 +74,7 @@ describe EventsController do
         it "should set set the last message id" do          
           mock_message.should_receive(:created).and_return(45.seconds.ago)                              
           get :show, :format=>"html", :id=>1                                
-          assigns[:twitter_last_message_id].should == 1
+          assigns(:twitter_last_message_id).should == 1
         end        
         context "and last updated message is older than 30 seconds" do
           before(:each) do
@@ -82,7 +82,7 @@ describe EventsController do
             get :show, :format=>"html", :id=>1                      
           end
           it "should set autoload true" do                      
-            assigns[:autoload].should == true
+            assigns(:autoload).should == true
           end
         end
         context "and last updated message is younger than 30 seconds" do
@@ -91,22 +91,22 @@ describe EventsController do
             get :show, :format=>"html", :id=>1                      
           end
           it "should set autoload false" do                      
-            assigns[:autoload].should == false
+            assigns(:autoload).should == false
           end
         end
       end
       context "and there is no previous message" do
         before(:each) do
-          Event.should_receive(:find_by_id).with("1").and_return(mock_event)
+          Event.should_receive(:find_by_id).with(1).and_return(mock_event)
           mock_event.should_receive(:search_terms).and_return([])
           mock_event.should_receive(:messages).at_least(2).times.and_return([])
           get :show, :format=>"html", :id=>1                                          
         end
         it "should set set the last message id to null" do          
-          assigns[:twitter_last_message_id].should == "null"
+          assigns(:twitter_last_message_id).should == "null"
         end        
         it "should set autoload true" do                      
-          assigns[:autoload].should == true
+          assigns(:autoload).should == true
         end
       end
     end
@@ -118,7 +118,7 @@ describe EventsController do
     end
     context "and the event is not found" do
       it "should render a 404" do
-        Event.should_receive(:find_by_id).with("1").and_return(nil)
+        Event.should_receive(:find_by_id).with(1).and_return(nil)
         
         get :show, :format=>"html", :id=>1
         

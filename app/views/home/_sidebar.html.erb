@@ -1,8 +1,0 @@
-<div id='sidebar'>
-	<% if !session[:user].nil? %>
-		<div id='add_new_event'>
-			<h4>Welcome <%= session[:user].username %>!</h4>
-		</div>
-	<% end %>		
-	<a href='/events/create' id='create_event'>Create an Event</a>
-</div>

@@ -1,5 +1,4 @@
 class EventsController < ApplicationController
-  include EventsHelper
   require File.expand_path(File.dirname(__FILE__) + '/../models/lib/twitter_url_generator.rb')
   
   before_filter :authorize, :except=>[:create, :vips, :participants, :show, :recent_tweets]

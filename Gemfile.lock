@@ -1,8 +1,31 @@
 --- 
-hash: 334269d5ced033d9784014eab502edd75506eb36
-sources: 
-- Rubygems: 
-    uri: http://rubygems.org
+dependencies: 
+  rails: 
+    group: 
+    - :default
+    version: = 3.0.0.beta3
+  sqlite3-ruby: 
+    group: 
+    - :default
+    version: ">= 0"
+    require: 
+    - sqlite3
+  mysql: 
+    group: 
+    - :default
+    version: = 2.8.1
+  rspec: 
+    group: 
+    - :default
+    version: = 2.0.0.beta.9
+  rspec-rails: 
+    group: 
+    - :default
+    version: ">= 2.0.0.beta.8"
+  json: 
+    group: 
+    - :default
+    version: = 1.4.3
 specs: 
 - rake: 
     version: 0.8.7
@@ -54,6 +77,8 @@ specs:
     version: 0.9.25
 - diff-lcs: 
     version: 1.1.2
+- json: 
+    version: 1.4.3
 - mysql: 
     version: 2.8.1
 - nokogiri: 
@@ -78,26 +103,7 @@ specs:
     version: 2.0.0.beta.9.1
 - sqlite3-ruby: 
     version: 1.2.5
-dependencies: 
-  rails: 
-    version: = 3.0.0.beta3
-    group: 
-    - :default
-  mysql: 
-    version: = 2.8.1
-    group: 
-    - :default
-  sqlite3-ruby: 
-    version: ">= 0"
-    group: 
-    - :default
-    require: 
-    - sqlite3
-  rspec: 
-    version: = 2.0.0.beta.9
-    group: 
-    - :default
-  rspec-rails: 
-    version: ">= 2.0.0.beta.8"
-    group: 
-    - :default
+hash: 65182998bfb6d6cd0dc0873a17f83c84cf92db61
+sources: 
+- Rubygems: 
+    uri: http://rubygems.org

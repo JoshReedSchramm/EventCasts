@@ -41,7 +41,7 @@ class User < ActiveRecord::Base
   
   def twitter_profile
     if @twitter_profile.nil?
-      ha = Twitter::HTTPAuth.new('asktwoups', '1rumbleapp!')
+      ha = Twitter::HTTPAuth.new('eventcasts', 'StartupsFTW!')
       base = Twitter::Base.new(ha)    
       @twitter_profile = base.user(self.twitter_name)    
     end

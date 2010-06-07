@@ -32,14 +32,14 @@ describe Message do
       end
     end   
     it "should convert the json fields to active record fields" do
-      json = '[{"id":null,"original_id":1,"from_user":"asktwoups","origin_url":"http://www.twitter.com/","text":"An update message","profile_image_url":"http://a1.twimg.com/profile_images/701960264/8997302766a11149888758o_normal.jpg","created":"Sun, 21 Feb 2010 17:21:20 +0000","source":"&lt;a href=&quot;http://twitter.com/&quot;&gt;web&lt;/a&gt;"}]'
+      json = '[{"id":null,"original_id":1,"from_user":"eventcasts","origin_url":"http://www.twitter.com/","text":"An update message","profile_image_url":"http://a1.twimg.com/profile_images/701960264/8997302766a11149888758o_normal.jpg","created":"Sun, 21 Feb 2010 17:21:20 +0000","source":"&lt;a href=&quot;http://twitter.com/&quot;&gt;web&lt;/a&gt;"}]'
       object = JSON.parse(json)
       
       messages = Message.from_json(object)
       
       expected_date = DateTime.parse("Sun, 21 Feb 2010 17:21:20 +0000")
 
-      messages[0].from_user.should == "asktwoups"
+      messages[0].from_user.should == "eventcasts"
       messages[0].original_id.should == 1
       messages[0].origin_url.should == "http://www.twitter.com/"      
       messages[0].text.should == "An update message"      

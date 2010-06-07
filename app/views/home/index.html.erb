@@ -1,31 +1,3 @@
 <div id='homepage_container'>
-  <% if !@auto_search %>
-    <div class='clearfix description_text'>
-        <%=image_tag "home1.png", :class=>"homepage_image", :alt=>"Live conferences" %>
-		<p class='image_description'>
-		  Perfect for live events....
-		</p>
-    </div>
-    <div class='clearfix description_text'>
-        <%=image_tag "home2.png", :class=>"homepage_image", :alt=>"Virtual events" %>
-		<p class='image_description'>
-		  ...or virtual get-togethers!
-		</p>
-    </div>
-  <% end %>
+	This is where the home page will go.
 </div>
-<%= render :partial => "sidebar" %>
-<% if @auto_search %>
-	<script type="text/javascript">
-		$(document).ready(function() {
-  			$('#search_box').val('<%=@search_term%>');
-  			$('#search_button').submit();
-		});
-	</script>
-<% end %>
-
-
-
-
-
-

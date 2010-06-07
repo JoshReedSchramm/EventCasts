@@ -19,12 +19,6 @@
                     <% end %>
                 </ul>
             </div>
-            <div id="header_search_box">
-                <% form_for :search, :url => {:controller=>"home", :action=>"search"}, :html => { :id => "search_form" } do |p| %>
-                    <%= p.text_field :query, :size=>30, :maxlength=>140, :id=>'search_box', :value=>'Find an event or group' %>
-                    <a onclick="$('#search_form').submit();" class="submit" type="submit">Search</a>
-                <% end %>
-            </div>
             <div id='body'>    
                 <div id="flash"><%= flash[:notice] %></div>
                 <%= yield  %>

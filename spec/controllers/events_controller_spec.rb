@@ -19,28 +19,7 @@ describe EventsController do
   it "should use EventsController" do
     controller.should be_an_instance_of(EventsController)
   end
-    
-  describe "when requesting the vip list" do
-    it "should render the vip list" do      
-      Event.should_receive(:find).with(1).and_return(mock_event)
-      mock_event.should_receive(:get_vips).and_return([mock_user])
-
-      get :vips, :event_id=>1
-    
-      response.should render_template('events/_vips')
-    end
-  end
-  
-  describe "when requesting the participants" do
-    it "should render the participant list" do      
-      Event.should_receive(:find).with(1).and_return(mock_event)
-
-      get :participants, :event_id=>1
-    
-      response.should render_template('events/_participants')
-    end
-  end
-  
+      
   describe "when requesting a event" do
     context "and the html format is requested" do
       it "should render the event" do         

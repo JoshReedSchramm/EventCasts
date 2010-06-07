@@ -67,30 +67,4 @@
 		<%= "<a href='javascript:void(0)' class='edit_data_link' id='edit_description_link'>edit</a><a href='javascript:void(0)' class='save_data_link' id='save_description_link'>save</a>"  if User.can_edit_event?(@event, session[:twitter_name])    %>
 	</em>	
 	<br/><br/>
-	
-	<div id='vips'>
-		<div id='vip_content'>
-			<%= render :partial => "vips" %>
-		</div>
-		<em>organizers / VIPs</em>
-		<% if User.can_edit_event?(@event, session[:twitter_name])   %>
-			<a id='add_vip_link' href='javascript:void(0);'>Add event VIP</a>
-			<a id='cancel_add_vip_link' href='javascript:void(0);'>cancel</a>
-			<div id='add_vip'>
-				<% form_for [:event,@vip_user], :url => {:action=>"add_event_vip"}, :html => { :id => "add_vip_form" } do |p| %>
-					<%= p.label :name, "twitter user: " %>
-					<%= p.text_field :twitter_name, :size=>20, :maxlength=>140, :id=>'add_vip_box' %>
-					<%= p.hidden_field :event_id, :value=>@event.id %>
-					<a href='javascript:void(0)' id='save_vip_link'>save</a>
-					<%= p.submit "Create VIP", :class => "submit, submit_button" %>
-				<% end %>
-			</div>
-		<% end %>
-		
-	</div>	
-	<div id='participants'>
-		<% #render :partial => "participants" %>
-		<br />		
-		<em>participants</em>
-	</div>	
 </div>

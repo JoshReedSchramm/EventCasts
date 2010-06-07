@@ -1,7 +1,7 @@
 class EventsController < ApplicationController
   require File.expand_path(File.dirname(__FILE__) + '/../models/lib/twitter_url_generator.rb')
   
-  before_filter :authorize, :except=>[:create, :vips, :participants, :show, :recent_tweets]
+  before_filter :authorize, :except=>[:create, :show]
   
   def create
     if request.post? 
@@ -14,21 +14,6 @@ class EventsController < ApplicationController
         end
       end
     end
-  end
-
-  def vips
-    @event = Event.find(params[:event_id])
-    @vips = @event.get_vips
-    respond_to do |format|
-       format.html { render :partial=>"vips", :layout => false }
-     end
-  end
-  
-  def participants
-    @event = Event.find(params[:event_id])
-    respond_to do |format|
-       format.html { render :partial=>"participants", :layout => false }       
-     end 
   end
   
   def show

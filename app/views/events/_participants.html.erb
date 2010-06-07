@@ -1,5 +1,0 @@
-<% if !@event.nil? && !@event.participants.nil? %>
-	<% @event.participants.each do |p| %>
-		<a href='http://twitter.com/<%= p["from_user"] %>' target='_blank'><img src='<%= p["profile_image_url"] %>' alt='<%= p["from_user"] %>' title='<%= p["from_user"] %>'/></a>
-	<% end %>
-<% end %>

@@ -16,19 +16,19 @@ describe EventsController do
     @mock_message ||= mock(Message, stubs)
   end
   
-  it "should use EventsController" do
-    controller.should be_an_instance_of(EventsController)
-  end
-      
+  specify { controller.should be_an_instance_of(EventsController) }
+  
+  # context "when requesting an event" do
+  #   context "and the html format is request" do
+  #     before { }
+        
   describe "when requesting a event" do
     context "and the html format is requested" do
       it "should render the event" do         
         expected_messages = [mock_message]
-             
-        Event.should_receive(:find_by_id).with(1).and_return(mock_event)
-        mock_event.should_receive(:search_terms).and_return([])
         
-        mock_event.should_receive(:messages).at_least(4).times.and_return([mock_message])
+        Event.stub(:find_by_id).and_return(mock_event({:search_terms=>[], :messages=>[mock_message]}))     
+        
         mock_message.should_receive(:original_id).and_return(1)
         mock_message.should_receive(:created).and_return(Time.now)        
         
@@ -113,7 +113,7 @@ describe EventsController do
         
         post :create, params
         
-        response.should redirect_to(:controller => "home", :action => "index") 
+        response.should redirect_to(:controller => "user", :action => "login") 
       end
     end
     context "and the passed in data is valid" do

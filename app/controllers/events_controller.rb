@@ -1,17 +1,13 @@
 class EventsController < ApplicationController
   require File.expand_path(File.dirname(__FILE__) + '/../models/lib/twitter_url_generator.rb')
   
-  before_filter :authorize, :except=>[:create, :show]
+  before_filter :authorize, :except=>[:show]
   
   def create
     if request.post? 
-      if !authorized?
-        redirect_to :controller => :home, :action => :index
-      else
-        event = Event.create_event(params, logged_in_user)
-        if event.save
-          redirect_to :controller=>"events", :action=>"show", :id=>event.id
-        end
+      event = Event.create_event(params, logged_in_user)
+      if event.save
+        redirect_to :controller=>"events", :action=>"show", :id=>event.id
       end
     end
   end

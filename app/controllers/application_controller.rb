@@ -12,14 +12,15 @@ class ApplicationController < ActionController::Base
   end
 
   def authorize 
-    redirect_to :controller => :home, :action => :index unless Security.authorized?
+    redirect_to :controller => :user, :action => :login unless authorized?
+  end
+  
+  def authorized?
+    return !logged_in_user.nil?
   end
 
   def logged_in_user
     return session[:user]
-  end
-  def authorized?
-    return !logged_in_user.nil?
   end
 
   def render_404

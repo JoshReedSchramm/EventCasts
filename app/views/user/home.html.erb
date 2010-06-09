@@ -1,8 +1,4 @@
 <div id='search_container'>
-	<% form_for :search, :url => {:action=>"search"}, :html => { :id => "search_form" } do |p| %>
-		<%= p.text_field :query, :size=>30, :maxlength=>140, :id=>'search_box', :value=>'Search for conversations' %>
-		<a id='search_button' href='#' type='submit' class='submit'></a>
-	<% end %>
     <div id='description_text'>
 		<span id='examples'>examples: #eventcasts #railsrumble @eventcasts</span>
 		<br />
@@ -13,13 +9,13 @@
 </div>
 <div id='login_user_section'>
 	<div>
-		<h4>Welcome @<%= @user.username %>!</h4>
+		<h4>Welcome @<%= logged_in_user.ec_username %>!</h4>
 		<br />
 		<%= link_to "Add a event", :controller=>"events", :action=>"new" %>
 	</div>
 	<h4>Manage your events</h4>
 	<ul id="user_events">
-		<% for event in @user.events %>
+		<% for event in logged_in_user.events %>
 	    	<li><a href='/events/<%= event.id %>'><%= event.name %></a></li>
 		<% end %>
 	</ul>

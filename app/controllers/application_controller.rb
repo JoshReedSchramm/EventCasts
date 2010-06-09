@@ -8,15 +8,22 @@ class ApplicationController < ActionController::Base
   
   def handle_ajax_validation_errors(object)
     if !object.errors.empty? && request.xhr?
-      response.headers['X-JSON'] = object.errors.to_json
-      render :nothing => true, :status=>444   
+      set_ajax_validation_errors(object.errors.to_json)
       return true     
     end
     return false
   end
 
+  def set_ajax_validation_errors(errors)
+    response.headers['X-JSON'] = errors
+    render :nothing => true, :status=>444       
+  end  
+
   def authorize 
-    redirect_to :controller => :user, :action => :login unless authorized?
+    if !authorized?
+      flash[:notice] = "You must be logged in to view that page."        
+      redirect_to :controller => :user, :action => :login
+    end
   end
   
   def authorized?
@@ -24,7 +31,7 @@ class ApplicationController < ActionController::Base
   end
 
   def logged_in_user
-    return session[:user]
+    session[:user]
   end
 
   def render_404

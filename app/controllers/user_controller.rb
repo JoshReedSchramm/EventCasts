@@ -1,26 +1,20 @@
 class UserController < ApplicationController
+  include UserHelper
+  before_filter :authorize, :except=>[:login, :register, :verify_login]
+  
   def login
     if request.post?
-      user = User.authenticate(params[:user][:username], params[:user][:password])
-      if user.nil?        
-        flash[:notice] = "Unable to find a user with that username and password."
-        ajax_authentication_failure()
+      session[:user] = User.authenticate(params[:user][:ec_username], params[:user][:password])
+      if session[:user].nil?        
+        authentication_failure()
       else
-        session[:user] = user
-        if !request.xhr?
-          redirect_to :controller=>"user", :action=>"home"
-        end
+        redirect_to :controller=>"user", :action=>"home" if !request.xhr?
       end
     end
   end
   
   def home
-    if !session[:id].nil?
-      @user = User.find_by_id(session[:id])
-    else
-      flash[:notice] = "You must be logged in to view that page."
-      redirect_to :controller=>"home", :action=>"index"
-    end        
+    @user = session[:user]
   end
   
   def register
@@ -80,12 +74,8 @@ class UserController < ApplicationController
   end
   
   
-  def ajax_authentication_failure()
-    if request.xhr?
-      response.headers['X-JSON'] = "[[\"username\",\"The username or password entered did not match a valid user\"]]";
-      render :nothing => true, :status=>444   
-      return true     
-    end
-    return false
+  def authentication_failure()
+    flash[:notice] = "Unable to find a user with that username and password."    
+    set_ajax_validation_errors("[[\"username\",\"The username or password entered did not match a valid user\"]]") if request.xhr?
   end
 end

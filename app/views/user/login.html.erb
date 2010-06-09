@@ -1,14 +1,14 @@
 <h1>Login</h1>
 
-<% form_for :user, :url => {:action=>"login"} do |p| %>
+<%= form_for :user, :url => {:action=>"login"} do |p| %>
 	<%= p.error_messages %>
 	<fieldset>
 		<div>
-			<%= p.label :username %>
-			<%= p.text_field :username, :size=>30, :maxlength=>140 %>
+			<%= p.label :ec_username, "EventCasts username" %>
+			<%= p.text_field :ec_username, :size=>30, :maxlength=>140 %>
 		</div>
 		<div>
-			<%= p.label :password %>
+			<%= p.label :password, "EventCasts password" %>
 			<%= p.password_field :password, :size=>30, :maxlength=>140 %>
 		</div>
 		<div>

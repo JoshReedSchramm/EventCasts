@@ -50,7 +50,7 @@ describe UserController do
     context "and the username and password is valid" do
       it "should return the user account" do
         User.should_receive(:authenticate).with("username", "password").and_return(mock_user)
-        post :login, :user=>{:username=>"username", :password=>"password"}   
+        post :login, :user=>{:ec_username=>"username", :password=>"password"}   
         session[:user].should==mock_user   
         response.should redirect_to(:controller=>"user", :action=>"home")        
       end
@@ -58,7 +58,7 @@ describe UserController do
     context "and the username or password is invalid" do
       it "should display a flash message to the user" do
         User.should_receive(:authenticate).with("username", "").and_return(nil)
-        post :login, :user=>{:username=>"username", :password=>""}      
+        post :login, :user=>{:ec_username=>"username", :password=>""}      
         flash[:notice].should include("Unable to find a user with that username and password.")
       end
     end
@@ -66,7 +66,7 @@ describe UserController do
       context "and the username or password are invalid" do
         it "should have an error collection in the response and a 444 status code" do
           User.should_receive(:authenticate).with("username", "").and_return(nil)
-          xhr :post, :login, :user=>{:username=>"username", :password=>""}    
+          xhr :post, :login, :user=>{:ec_username=>"username", :password=>""}    
           response.status.should == 444
           response.headers['X-JSON'].should=="[[\"username\",\"The username or password entered did not match a valid user\"]]";
         end
@@ -76,18 +76,16 @@ describe UserController do
   
   describe "when viewing the user home page" do
     context "and the user is logged in" do
-      it "should retrieve the user and render the template" do
-        session[:id] = 1
-        User.should_receive(:find_by_id).and_return(mock_user)
+      it "should render the template" do
+        session[:user] = mock_user
         get :home
         response.should render_template("user/home")        
       end
     end
     context "and the user is logged out" do
       it "should set the flash message and redirect the user to the homepage" do
-        session[:id] = nil
         get :home
-        response.should redirect_to(:controller=>"home", :action=>"index")        
+        response.should redirect_to(:controller=>"user", :action=>"login")        
         flash[:notice].should include("You must be logged in to view that page.")        
       end
     end

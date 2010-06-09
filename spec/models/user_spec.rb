@@ -3,7 +3,7 @@ require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
 describe User do
   before(:each) do
     @valid_attributes = {
-      :username => "TwoupsInfo",
+      :ec_username => "TwoupsInfo",
       :password => "password"
     }
     @valid_user = User.new(@valid_attributes)
@@ -16,7 +16,7 @@ describe User do
   context "when creating a new user" do
     context "and the username is blank" do
       before(:each) do
-        @invalid_user = User.new({:username=>"", :password=>"password"})
+        @invalid_user = User.new({:ec_username=>"", :password=>"password"})
       end      
       it "should return a validation error" do
         @invalid_user.save.should == false
@@ -26,7 +26,7 @@ describe User do
     end 
     context "and the password is blank" do
       before(:each) do
-        @invalid_user = User.new({:username=>"username", :password=>""})
+        @invalid_user = User.new({:ec_username=>"username", :password=>""})
       end      
       it "should return a validation error" do
         @invalid_user.save.should == false

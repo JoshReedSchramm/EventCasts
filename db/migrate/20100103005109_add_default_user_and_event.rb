@@ -1,6 +1,6 @@
 class AddDefaultUserAndEvent < ActiveRecord::Migration
   def self.up
-    default_account = User.create(:username=>'eventcasts', :password=>'password')
+    default_account = User.create(:ec_username=>'eventcasts', :password=>'password')
     default_account.save!
     
     search_term = SearchTerm.create(:term=>'ruby')

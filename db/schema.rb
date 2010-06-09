@@ -9,16 +9,24 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100203231051) do
+ActiveRecord::Schema.define(:version => 20100609215035) do
+
+  create_table "associated_accounts", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "username"
+    t.string   "service",    :default => "TW"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "events", :force => true do |t|
     t.string   "name"
     t.string   "description"
     t.string   "url"
     t.string   "last_updated_by"
+    t.integer  "creator_id",      :default => 0
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "creator_id",      :default => 0
   end
 
   create_table "events_search_terms", :id => false, :force => true do |t|
@@ -55,20 +63,14 @@ ActiveRecord::Schema.define(:version => 20100203231051) do
     t.datetime "updated_at"
   end
 
-  create_table "searches", :force => true do |t|
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "users", :force => true do |t|
-    t.string   "username"
+    t.string   "ec_username"
     t.string   "hashed_password"
     t.string   "salt"
-    t.string   "twitter_name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
     t.string   "profile_image_url"
     t.string   "email"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
 end

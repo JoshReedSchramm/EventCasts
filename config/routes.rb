@@ -8,4 +8,6 @@ EventCasts::Application.routes.draw do |map|
   
   match ':controller(/:action(/:id(.:format)))'
   match '/:id', :to=>"events#show/:id"    
+  
+  match 'user/finalize_twitter', :to => 'user#finalize_twitter', :as => 'finalize_twitter_session'
 end

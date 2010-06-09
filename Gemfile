@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.0.0.beta3'
+gem 'rails', '3.0.0.beta4'
 gem 'json', '1.4.3'
 gem 'mysql', '2.8.1'
 
@@ -10,6 +10,8 @@ gem 'mysql', '2.8.1'
 gem 'sqlite3-ruby', :require => 'sqlite3'
 gem "rspec", "2.0.0.beta.9"
 gem "rspec-rails", ">= 2.0.0.beta.8"
+gem 'twitter', '0.9.7'
+#gem 'twitter-text-rb'
 
 # Use unicorn as the web server
 # gem 'unicorn'

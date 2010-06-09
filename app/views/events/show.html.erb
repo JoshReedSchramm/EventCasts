@@ -52,15 +52,10 @@
 <div id="sidebar">
 	<%= render :partial => "search_terms" %>
 	<em>search terms</em>
-	<br /><br />	
-	
+	<br /><br />		
 	<h4>
-		<%= "<a href='javascript:void(0)' class='edit_inline_link' id='edit_description_inline_link'>"  if User.can_edit_event?(@event, session[:twitter_name])    %>
 		<%= @event.description.blank? ? "No event description set" : @event.description.gsub(/\n/, '<br />') %>
-		<%= "</a>"  if User.can_edit_event?(@event, session[:twitter_name])   %>
 	</h4>
-	<em>description 
-		<%= "<a href='javascript:void(0)' class='edit_data_link' id='edit_description_link'>edit</a><a href='javascript:void(0)' class='save_data_link' id='save_description_link'>save</a>"  if User.can_edit_event?(@event, session[:twitter_name])    %>
-	</em>	
+	<em>description</em>	
 	<br/><br/>
 </div>

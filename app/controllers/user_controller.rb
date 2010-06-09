@@ -46,7 +46,7 @@ class UserController < ApplicationController
   end
   
   def events
-    @user = User.find_by_twitter_name(params[:twitter_name])    
+    @user = User.find_by_ec_username(params[:ec_username])    
     render :partial=>"user_events", :layout => false
   end
   
@@ -57,6 +57,28 @@ class UserController < ApplicationController
       render :text => "true", :layout=>false
     end
   end
+  
+  def attach_twitter
+      oauth.set_callback_url(finalize_twitter_session_url)
+
+      session['rtoken']  = oauth.request_token.token
+      session['rsecret'] = oauth.request_token.secret
+
+      redirect_to oauth.request_token.authorize_url
+  end
+  
+  def finalize_twitter
+    oauth.authorize_from_request(session['rtoken'], session['rsecret'], params[:oauth_verifier])
+
+    profile = Twitter::Base.new(oauth).verify_credentials
+    session['rtoken'] = session['rsecret'] = nil
+    session[:atoken] = oauth.access_token.token
+    session[:asecret] = oauth.access_token.secret
+
+    session[:user] = profile.screen_name if profile
+    redirect_back_or root_path
+  end
+  
   
   def ajax_authentication_failure()
     if request.xhr?

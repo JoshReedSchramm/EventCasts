@@ -6,7 +6,6 @@ class Event < ActiveRecord::Base
 
   validates_presence_of :name, :on => :create, :message => "can't be blank"
   validates_format_of :name, :with => /^[A-Za-z0-9_ ]+$/, :on => :create, :message => "can only contain letters and numbers"
-  validate :user_can_edit_event?
   validate :at_least_one_search_term?, :message=>"At least one search terms is required"
 
   HUMANIZED_ATTRIBUTES = {
@@ -33,11 +32,6 @@ class Event < ActiveRecord::Base
 
   private
       
-  def user_can_edit_event?
-    user = User.find_by_twitter_name(self.last_updated_by)    
-    return true
-  end
-
   def at_least_one_search_term?
     errors[:base] << "At least one search term must be provided" if self.search_terms.empty?      
   end

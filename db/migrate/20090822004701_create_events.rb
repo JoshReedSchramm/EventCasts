@@ -5,6 +5,7 @@ class CreateEvents  < ActiveRecord::Migration
       i.string :description
       i.string :url
       i.string :last_updated_by
+      i.integer :creator_id, :default=>0      
       i.timestamps
     end
   end

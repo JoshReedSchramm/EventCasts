@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
   has_and_belongs_to_many :events
-  validates_presence_of :username
-  validates_uniqueness_of :username
+  validates_presence_of :ec_username
+  validates_uniqueness_of :ec_username
   
   validate :password_non_blank
   
@@ -25,20 +25,7 @@ class User < ActiveRecord::Base
     end
     user
   end
-  
-
-  def User.can_edit_event?(event, twitter_name)
-    return false if twitter_name.blank?
     
-    user = User.find_by_twitter_name(twitter_name)    
-    
-    return false if user.nil?
-    
-    user.events.select do |g|
-      g.id == event.id
-    end.length > 0    
-  end
-  
   def twitter_profile
     if @twitter_profile.nil?
       ha = Twitter::HTTPAuth.new('eventcasts', 'StartupsFTW!')

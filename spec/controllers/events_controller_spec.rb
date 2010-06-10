@@ -107,13 +107,13 @@ describe EventsController do
   end
   describe "when saving an event" do
     context "and the user is not logged in" do
-      it "should redirect to the login page" do        
+      it "should render the login template" do        
         params = { :event => {"name"=>"Test Event", "description"=>"My Test Event"}, :search_terms=>["The Phrase", "Phrase Two"]}
         session[:user] = nil
         
         post :create, params
         
-        response.should redirect_to(:controller => "user", :action => "login") 
+        response.should render_template(:controller => "user", :action => "login") 
       end
     end
     context "and the passed in data is valid" do

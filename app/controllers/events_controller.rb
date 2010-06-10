@@ -1,7 +1,7 @@
 class EventsController < ApplicationController
   require File.expand_path(File.dirname(__FILE__) + '/../models/lib/twitter_url_generator.rb')
   
-  before_filter :authorize, :except=>[:show]
+  before_filter :authenticate, :except=>[:show]
   
   def create
     if request.post? 

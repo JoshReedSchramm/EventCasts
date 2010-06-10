@@ -83,9 +83,9 @@ describe UserController do
       end
     end
     context "and the user is logged out" do
-      it "should set the flash message and redirect the user to the homepage" do
+      it "should set the flash message and tender the login page" do
         get :home
-        response.should redirect_to(:controller=>"user", :action=>"login")        
+        response.should render_template(:controller=>"user", :action=>"login")        
         flash[:notice].should include("You must be logged in to view that page.")        
       end
     end

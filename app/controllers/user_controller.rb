@@ -1,6 +1,6 @@
 class UserController < ApplicationController
   include UserHelper
-  before_filter :authorize, :except=>[:login, :register, :verify_login, :start_twitter, :finalize_twitter]
+  before_filter :authenticate, :except=>[:login, :register, :verify_login, :start_twitter, :finalize_twitter]
   
   def login
     if request.post?

@@ -1,6 +1,6 @@
 class UserController < ApplicationController
   include UserHelper
-  before_filter :authorize, :except=>[:login, :register, :verify_login]
+  before_filter :authorize, :except=>[:login, :register, :verify_login, :start_twitter, :finalize_twitter]
   
   def login
     if request.post?
@@ -52,11 +52,13 @@ class UserController < ApplicationController
     end
   end
   
-  def attach_twitter
+  def start_twitter
       oauth.set_callback_url(finalize_twitter_session_url)
 
       session['rtoken']  = oauth.request_token.token
       session['rsecret'] = oauth.request_token.secret
+      
+      puts session.inspect
 
       redirect_to oauth.request_token.authorize_url
   end
@@ -70,7 +72,7 @@ class UserController < ApplicationController
     session[:asecret] = oauth.access_token.secret
 
     session[:user] = profile.screen_name if profile
-    redirect_back_or root_path
+    redirect_to :controller=>"user", :action=>"home"
   end
   
   

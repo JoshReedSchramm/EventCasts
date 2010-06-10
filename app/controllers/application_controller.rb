@@ -26,19 +26,30 @@ class ApplicationController < ActionController::Base
     end
   end
   
-  def authorized?
-    return !logged_in_user.nil?
-  end
+  private
+    def oauth
+      @oauth ||= Twitter::OAuth.new(ConsumerToken, ConsumerSecret, :sign_in => true)
+    end
 
-  def logged_in_user
-    session[:user]
-  end
-
-  def render_404
-    render :file => "#{Rails.root}/public/404.html",  :status => 404
-  end
+    def client
+      oauth.authorize_from_access(session[:atoken], session[:asecret])
+      Twitter::Base.new(oauth)
+    end
+    helper_method :client  
   
-  def force_sign_in(exception)
-    flash[:error] = 'You must be signed into twitter to use this feature. Please sign in again.'
-  end
+    def authorized?
+      return !logged_in_user.nil?
+    end
+
+    def logged_in_user
+      session[:user]
+    end
+
+    def render_404
+      render :file => "#{Rails.root}/public/404.html",  :status => 404
+    end
+  
+    def force_sign_in(exception)
+      flash[:error] = 'You must be signed into twitter to use this feature. Please sign in again.'
+    end
 end

@@ -1,59 +1,34 @@
 require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
 
 describe User do
-  before(:each) do
-    @valid_attributes = {
-      :ec_username => "TwoupsInfo",
-      :password => "password"
-    }
-    @valid_user = User.new(@valid_attributes)
-  end
-
-  it "should create a new instance given valid attributes" do
-    User.create!(@valid_attributes)
-  end
-  
-  context "when creating a new user" do
-    context "and the username is blank" do
-      before(:each) do
-        @invalid_user = User.new({:ec_username=>"", :password=>"password"})
-      end      
-      it "should return a validation error" do
-        @invalid_user.save.should == false
-        @invalid_user.errors.count.should == 1
-        @invalid_user.errors["username"].nil?.should == false
-      end
-    end 
-    context "and the password is blank" do
-      before(:each) do
-        @invalid_user = User.new({:ec_username=>"username", :password=>""})
-      end      
-      it "should return a validation error" do
-        @invalid_user.save.should == false
-        @invalid_user.errors.count.should == 1
-        @invalid_user.errors["password"].nil?.should == false
-      end      
+  subject do
+    User.new({:ec_username=>"Eventcasts", :password=>"password"}).tap do |s|
+      s.save
     end
-    context "and the username is repeated" do
-      it "should return a validation error" do
-        user_one = User.new(@valid_attributes)
-        user_two = User.new(@valid_attributes)        
-        user_one.save.should == true                  
-        user_two.save.should == false          
-        user_two.errors.count.should == 1
-        user_two.errors["username"].nil?.should == false
-      end
-    end
-    context "and valid attributes are provided" do  
-      it "should save correctly" do
-        @valid_user.save.should == true
-      end
-      it "should have a hashed password" do
-        @valid_user.save
-        user = User.find(@valid_user.id)
-        user.hashed_password.nil?.should == false
-      end 
-    end
+  end    
+  it { should be_valid } 
+  its(:errors) { should be_empty }
+  its(:hashed_password) { should_not be_nil}
+  it "requires username" do
+    lambda do
+      p = User.create(:ec_username=>nil, :password=>"password")
+      p.errors[:ec_username].should_not be_empty
+      p.errors[:password].should be_empty
+    end.should_not change { User.count }
   end
-    
+  it "requires a unique username" do
+    lambda do
+      p1 = User.create(:ec_username=>"testusername", :password=>"password")
+      p2 = User.create(:ec_username=>"testusername", :password=>"password")
+      p1.errors[:ec_username].should be_empty
+      p2.errors[:ec_username].should_not be_empty
+    end.should change { User.count }.by(1)
+  end
+  it "requires password" do
+    lambda do
+      p = User.create(:ec_username=>"username", :password=>nil)
+      p.errors[:ec_username].should be_empty
+      p.errors[:password].should_not be_empty
+    end.should_not change { User.count }
+  end
 end

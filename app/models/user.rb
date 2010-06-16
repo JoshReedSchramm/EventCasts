@@ -1,18 +1,15 @@
 class User < ActiveRecord::Base
   has_and_belongs_to_many :events
-  validates_presence_of :ec_username
-  validates_uniqueness_of :ec_username
-  
-  validate :password_non_blank
-  
-  def password
-    @password
-  end
-  def password=(pwd)
-    @password = pwd
-    return if pwd.blank?
-    create_new_salt
-    self.hashed_password = User.encrypted_password(self.password, self.salt)
+  has_many :associated_accounts
+
+  validates :ec_username, :uniqueness => true
+    
+  scope :twitter_account, lambda { |username| joins(:associated_accounts) & AssociatedAccount.twitter & AssociatedAccount.has_username(username) }
+    
+  def self.get_from_twitter(profile)
+    user = User.twitter_account(profile.screen_name).first
+    user = create_user_from_twitter(profile) if user.nil?
+    user
   end
   
   def self.authenticate(name, password)
@@ -22,6 +19,16 @@ class User < ActiveRecord::Base
       user = nil if user.hashed_password != expected_password
     end
     user
+  end
+  
+  def password
+    @password
+  end
+  def password=(pwd)
+    @password = pwd
+    return if pwd.blank?
+    create_new_salt
+    self.hashed_password = User.encrypted_password(self.password, self.salt)
   end
     
   def twitter_profile
@@ -35,17 +42,8 @@ class User < ActiveRecord::Base
     return nil
   end
   
-  def User.filter_at(user_name)
-    user_name.slice!(0) if user_name[0,1] == '@'    
-    user_name
-  end
-  
   private 
-  
-  def password_non_blank
-    errors.add(:password, "Missing password") if hashed_password.blank?
-  end
-    
+      
   def create_new_salt
     self.salt = self.object_id.to_s + rand.to_s
   end
@@ -53,5 +51,12 @@ class User < ActiveRecord::Base
   def self.encrypted_password(password, salt)
     string_to_hash = password + "eventcasts" + salt
     Digest::SHA1.hexdigest(string_to_hash)
+  end  
+  
+  def self.create_user_from_twitter(profile)
+    user = User.new(:ec_username=>nil, :password=>nil)
+    user.associated_accounts << AssociatedAccount.new(:username => profile.screen_name, :service=>"TW")
+    user.save!
+    user
   end
 end

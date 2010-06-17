@@ -4,16 +4,16 @@ dependencies:
     group: 
     - :default
     version: = 3.0.0.beta4
-  mysql: 
-    group: 
-    - :default
-    version: = 2.8.1
   sqlite3-ruby: 
     group: 
     - :default
     version: ">= 0"
     require: 
     - sqlite3
+  mysql: 
+    group: 
+    - :default
+    version: = 2.8.1
   rspec: 
     group: 
     - :default
@@ -26,6 +26,10 @@ dependencies:
     group: 
     - :default
     version: = 1.4.3
+  rcov: 
+    group: 
+    - :default
+    version: = 0.9.8
   twitter: 
     group: 
     - :default
@@ -88,13 +92,15 @@ specs:
 - nokogiri: 
     version: 1.4.2
 - oauth: 
-    version: 0.4.0
+    version: 0.4.1
 - thor: 
     version: 0.13.6
 - railties: 
     version: 3.0.0.beta4
 - rails: 
     version: 3.0.0.beta4
+- rcov: 
+    version: 0.9.8
 - rspec-core: 
     version: 2.0.0.beta.9
 - rspec-expectations: 
@@ -113,7 +119,7 @@ specs:
     version: 0.7.6
 - twitter: 
     version: 0.9.7
-hash: cf43ed41523750f46f79db30e8b26c13f205e1df
+hash: 59e5cf6ebd8b205b0d8a7375fc720cfcac2a4354
 sources: 
 - Rubygems: 
     uri: http://rubygems.org

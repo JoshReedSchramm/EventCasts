@@ -10,6 +10,7 @@ gem 'mysql', '2.8.1'
 gem 'sqlite3-ruby', :require => 'sqlite3'
 gem "rspec", "2.0.0.beta.9"
 gem "rspec-rails", ">= 2.0.0.beta.8"
+gem "rcov", "0.9.8"
 gem 'twitter', '0.9.7'
 #gem 'twitter-text-rb'
 

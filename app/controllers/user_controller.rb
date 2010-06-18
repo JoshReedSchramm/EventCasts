@@ -35,13 +35,8 @@ class UserController < ApplicationController
   end
 
   def logout
-    session[:username] = nil
+    session[:user] = nil
     redirect_to "/"
-  end
-  
-  def events
-    @user = User.find_by_ec_username(params[:ec_username])    
-    render :partial=>"user_events", :layout => false
   end
   
   def verify_login
@@ -51,14 +46,12 @@ class UserController < ApplicationController
       render :text => "true", :layout=>false
     end
   end
-  
+    
   def start_twitter
       oauth.set_callback_url(finalize_twitter_session_url)
 
       session['rtoken']  = oauth.request_token.token
       session['rsecret'] = oauth.request_token.secret
-      
-      puts session.inspect
 
       redirect_to oauth.request_token.authorize_url
   end
@@ -71,7 +64,7 @@ class UserController < ApplicationController
     session[:atoken] = oauth.access_token.token
     session[:asecret] = oauth.access_token.secret
 
-    session[:user] = profile.screen_name if profile
+    session[:user] = User.get_from_twitter(profile) if profile
     redirect_to :controller=>"user", :action=>"home"
   end
   

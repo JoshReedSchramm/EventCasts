@@ -1,0 +1,651 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang='en' xml:lang='en' xmlns='http://www.w3.org/1999/xhtml'>
+  <head>
+    <title>/Users/joshschramm/.rvm/gems/ruby-1.8.7-p249/gems/i18n-0.4.1/lib/i18n/backend/transliterator.rb</title>
+    <link href="screen.css" media="all" rel="stylesheet" type="text/css" />
+    <link href="print.css" media="print" rel="stylesheet" type="text/css" />
+    
+    <meta http-equiv="Content-type" content="text/html;charset=UTF-8" />
+    <script type="text/javascript" src="rcov.js"></script>
+  </head>
+  <body>
+    <h1>Eventcasts C0 Coverage Information - RCov</h1>
+    <h2>/Users/joshschramm/.rvm/gems/ruby-1.8.7-p249/gems/i18n-0.4.1/lib/i18n/backend/transliterator.rb</h2>
+
+    
+
+    <div class="report_table_wrapper">
+      <table class='report' id='report_table'>
+        <thead>
+          <tr>
+            <th class="left_align">Name</th>
+            <th class="right_align">Total Lines</th>
+            <th class="right_align">Lines of Code</th>
+            <th class="left_align">Total Coverage</th>
+            <th class="left_align">Code Coverage</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="left_align"><a href="-Users-joshschramm-_rvm-gems-ruby-1_8_7-p249-gems-i18n-0_4_1-lib-i18n-backend-transliterator_rb.html">/Users/joshschramm/.rvm/gems/ruby-1.8.7-p249/gems/i18n-0.4.1/lib/i18n/backend/transliterator.rb</a></td>
+            <td class='right_align'><tt>98</tt></td>
+            <td class='right_align'><tt>80</tt></td>
+            <td class="left_align"><div class="percent_graph_legend"><tt class=''>64.29%</tt></div>
+          <div class="percent_graph">
+            <div class="covered" style="width:64px"></div>
+            <div class="uncovered" style="width:36px"></div>
+          </div></td>
+            <td class="left_align"><div class="percent_graph_legend"><tt class=''>56.25%</tt></div>
+          <div class="percent_graph">
+            <div class="covered" style="width:56px"></div>
+            <div class="uncovered" style="width:44px"></div>
+          </div></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    
+    <h3>Key</h3>
+    
+    <div class="key"><pre><span class='marked'>Code reported as executed by Ruby looks like this...</span><span class='marked1'>and this: this line is also marked as covered.</span><span class='inferred'>Lines considered as run by rcov, but not reported by Ruby, look like this,</span><span class='inferred1'>and this: these lines were inferred by rcov (using simple heuristics).</span><span class='uncovered'>Finally, here's a line marked as not executed.</span></pre></div>
+
+    <h3>Coverage Details</h3>
+
+    <table class="details">
+      <tbody>
+        
+          
+          
+          <tr class="inferred">
+            <td><pre><a name="line1">1</a> # encoding: utf-8</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line2">2</a> module I18n</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line3">3</a>   module Backend</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line4">4</a>     module Transliterator</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line5">5</a>       DEFAULT_REPLACEMENT_CHAR = &quot;?&quot;</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="inferred">
+            <td><pre><a name="line6">6</a> </pre></td>
+          </tr>
+        
+          
+          
+          <tr class="inferred">
+            <td><pre><a name="line7">7</a>       # Given a locale and a UTF-8 string, return the locale's ASCII</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="inferred">
+            <td><pre><a name="line8">8</a>       # approximation for the string.</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line9">9</a>       def transliterate(locale, string, replacement = nil)</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="uncovered">
+            <td><pre><a name="line10">10</a>         @transliterators ||= {}</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="uncovered">
+            <td><pre><a name="line11">11</a>         @transliterators[locale] ||= Transliterator.get I18n.t(:'i18n.transliterate.rule',</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="uncovered">
+            <td><pre><a name="line12">12</a>           :locale =&gt; locale, :resolve =&gt; false, :default =&gt; {})</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="uncovered">
+            <td><pre><a name="line13">13</a>         @transliterators[locale].transliterate(string, replacement)</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="uncovered">
+            <td><pre><a name="line14">14</a>       end</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="inferred">
+            <td><pre><a name="line15">15</a> </pre></td>
+          </tr>
+        
+          
+          
+          <tr class="inferred">
+            <td><pre><a name="line16">16</a>       # Get a transliterator instance.</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line17">17</a>       def self.get(rule = nil)</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="uncovered">
+            <td><pre><a name="line18">18</a>         if !rule || rule.kind_of?(Hash)</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="uncovered">
+            <td><pre><a name="line19">19</a>           HashTransliterator.new(rule)</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="uncovered">
+            <td><pre><a name="line20">20</a>         elsif rule.kind_of? Proc</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="uncovered">
+            <td><pre><a name="line21">21</a>           ProcTransliterator.new(rule)</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="uncovered">
+            <td><pre><a name="line22">22</a>         else</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="uncovered">
+            <td><pre><a name="line23">23</a>           raise I18n::ArgumentError, &quot;Transliteration rule must be a proc or a hash.&quot;</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="uncovered">
+            <td><pre><a name="line24">24</a>         end</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="uncovered">
+            <td><pre><a name="line25">25</a>       end</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="inferred">
+            <td><pre><a name="line26">26</a> </pre></td>
+          </tr>
+        
+          
+          
+          <tr class="inferred">
+            <td><pre><a name="line27">27</a>       # A transliterator which accepts a Proc as its transliteration rule.</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line28">28</a>       class ProcTransliterator</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line29">29</a>         def initialize(rule)</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="uncovered">
+            <td><pre><a name="line30">30</a>           @rule = rule</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="uncovered">
+            <td><pre><a name="line31">31</a>         end</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="inferred">
+            <td><pre><a name="line32">32</a> </pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line33">33</a>         def transliterate(string, replacement = nil)</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="uncovered">
+            <td><pre><a name="line34">34</a>           @rule.call(string)</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="uncovered">
+            <td><pre><a name="line35">35</a>         end</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="uncovered">
+            <td><pre><a name="line36">36</a>       end</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="inferred">
+            <td><pre><a name="line37">37</a> </pre></td>
+          </tr>
+        
+          
+          
+          <tr class="inferred">
+            <td><pre><a name="line38">38</a>       # A transliterator which accepts a Hash of characters as its translation</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="inferred">
+            <td><pre><a name="line39">39</a>       # rule.</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line40">40</a>       class HashTransliterator</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line41">41</a>         DEFAULT_APPROXIMATIONS = {</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="inferred">
+            <td><pre><a name="line42">42</a>           &quot;À&quot;=&gt;&quot;A&quot;, &quot;Á&quot;=&gt;&quot;A&quot;, &quot;Â&quot;=&gt;&quot;A&quot;, &quot;Ã&quot;=&gt;&quot;A&quot;, &quot;Ä&quot;=&gt;&quot;A&quot;, &quot;Å&quot;=&gt;&quot;A&quot;, &quot;Æ&quot;=&gt;&quot;AE&quot;,</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="inferred">
+            <td><pre><a name="line43">43</a>           &quot;Ç&quot;=&gt;&quot;C&quot;, &quot;È&quot;=&gt;&quot;E&quot;, &quot;É&quot;=&gt;&quot;E&quot;, &quot;Ê&quot;=&gt;&quot;E&quot;, &quot;Ë&quot;=&gt;&quot;E&quot;, &quot;Ì&quot;=&gt;&quot;I&quot;, &quot;Í&quot;=&gt;&quot;I&quot;,</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="inferred">
+            <td><pre><a name="line44">44</a>           &quot;Î&quot;=&gt;&quot;I&quot;, &quot;Ï&quot;=&gt;&quot;I&quot;, &quot;Ð&quot;=&gt;&quot;D&quot;, &quot;Ñ&quot;=&gt;&quot;N&quot;, &quot;Ò&quot;=&gt;&quot;O&quot;, &quot;Ó&quot;=&gt;&quot;O&quot;, &quot;Ô&quot;=&gt;&quot;O&quot;,</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="inferred">
+            <td><pre><a name="line45">45</a>           &quot;Õ&quot;=&gt;&quot;O&quot;, &quot;Ö&quot;=&gt;&quot;O&quot;, &quot;×&quot;=&gt;&quot;x&quot;, &quot;Ø&quot;=&gt;&quot;O&quot;, &quot;Ù&quot;=&gt;&quot;U&quot;, &quot;Ú&quot;=&gt;&quot;U&quot;, &quot;Û&quot;=&gt;&quot;U&quot;,</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="inferred">
+            <td><pre><a name="line46">46</a>           &quot;Ü&quot;=&gt;&quot;U&quot;, &quot;Ý&quot;=&gt;&quot;Y&quot;, &quot;Þ&quot;=&gt;&quot;Th&quot;, &quot;ß&quot;=&gt;&quot;ss&quot;, &quot;à&quot;=&gt;&quot;a&quot;, &quot;á&quot;=&gt;&quot;a&quot;, &quot;â&quot;=&gt;&quot;a&quot;,</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="inferred">
+            <td><pre><a name="line47">47</a>           &quot;ã&quot;=&gt;&quot;a&quot;, &quot;ä&quot;=&gt;&quot;a&quot;, &quot;å&quot;=&gt;&quot;a&quot;, &quot;æ&quot;=&gt;&quot;ae&quot;, &quot;ç&quot;=&gt;&quot;c&quot;, &quot;è&quot;=&gt;&quot;e&quot;, &quot;é&quot;=&gt;&quot;e&quot;,</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="inferred">
+            <td><pre><a name="line48">48</a>           &quot;ê&quot;=&gt;&quot;e&quot;, &quot;ë&quot;=&gt;&quot;e&quot;, &quot;ì&quot;=&gt;&quot;i&quot;, &quot;í&quot;=&gt;&quot;i&quot;, &quot;î&quot;=&gt;&quot;i&quot;, &quot;ï&quot;=&gt;&quot;i&quot;, &quot;ð&quot;=&gt;&quot;d&quot;,</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="inferred">
+            <td><pre><a name="line49">49</a>           &quot;ñ&quot;=&gt;&quot;n&quot;, &quot;ò&quot;=&gt;&quot;o&quot;, &quot;ó&quot;=&gt;&quot;o&quot;, &quot;ô&quot;=&gt;&quot;o&quot;, &quot;õ&quot;=&gt;&quot;o&quot;, &quot;ö&quot;=&gt;&quot;o&quot;, &quot;ø&quot;=&gt;&quot;o&quot;,</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="inferred">
+            <td><pre><a name="line50">50</a>           &quot;ù&quot;=&gt;&quot;u&quot;, &quot;ú&quot;=&gt;&quot;u&quot;, &quot;û&quot;=&gt;&quot;u&quot;, &quot;ü&quot;=&gt;&quot;u&quot;, &quot;ý&quot;=&gt;&quot;y&quot;, &quot;þ&quot;=&gt;&quot;th&quot;, &quot;ÿ&quot;=&gt;&quot;y&quot;,</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="inferred">
+            <td><pre><a name="line51">51</a>           &quot;Ā&quot;=&gt;&quot;A&quot;, &quot;ā&quot;=&gt;&quot;a&quot;, &quot;Ă&quot;=&gt;&quot;A&quot;, &quot;ă&quot;=&gt;&quot;a&quot;, &quot;Ą&quot;=&gt;&quot;A&quot;, &quot;ą&quot;=&gt;&quot;a&quot;, &quot;Ć&quot;=&gt;&quot;C&quot;,</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="inferred">
+            <td><pre><a name="line52">52</a>           &quot;ć&quot;=&gt;&quot;c&quot;, &quot;Ĉ&quot;=&gt;&quot;C&quot;, &quot;ĉ&quot;=&gt;&quot;c&quot;, &quot;Ċ&quot;=&gt;&quot;C&quot;, &quot;ċ&quot;=&gt;&quot;c&quot;, &quot;Č&quot;=&gt;&quot;C&quot;, &quot;č&quot;=&gt;&quot;c&quot;,</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="inferred">
+            <td><pre><a name="line53">53</a>           &quot;Ď&quot;=&gt;&quot;D&quot;, &quot;ď&quot;=&gt;&quot;d&quot;, &quot;Đ&quot;=&gt;&quot;D&quot;, &quot;đ&quot;=&gt;&quot;d&quot;, &quot;Ē&quot;=&gt;&quot;E&quot;, &quot;ē&quot;=&gt;&quot;e&quot;, &quot;Ĕ&quot;=&gt;&quot;E&quot;,</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="inferred">
+            <td><pre><a name="line54">54</a>           &quot;ĕ&quot;=&gt;&quot;e&quot;, &quot;Ė&quot;=&gt;&quot;E&quot;, &quot;ė&quot;=&gt;&quot;e&quot;, &quot;Ę&quot;=&gt;&quot;E&quot;, &quot;ę&quot;=&gt;&quot;e&quot;, &quot;Ě&quot;=&gt;&quot;E&quot;, &quot;ě&quot;=&gt;&quot;e&quot;,</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="inferred">
+            <td><pre><a name="line55">55</a>           &quot;Ĝ&quot;=&gt;&quot;G&quot;, &quot;ĝ&quot;=&gt;&quot;g&quot;, &quot;Ğ&quot;=&gt;&quot;G&quot;, &quot;ğ&quot;=&gt;&quot;g&quot;, &quot;Ġ&quot;=&gt;&quot;G&quot;, &quot;ġ&quot;=&gt;&quot;g&quot;, &quot;Ģ&quot;=&gt;&quot;G&quot;,</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="inferred">
+            <td><pre><a name="line56">56</a>           &quot;ģ&quot;=&gt;&quot;g&quot;, &quot;Ĥ&quot;=&gt;&quot;H&quot;, &quot;ĥ&quot;=&gt;&quot;h&quot;, &quot;Ħ&quot;=&gt;&quot;H&quot;, &quot;ħ&quot;=&gt;&quot;h&quot;, &quot;Ĩ&quot;=&gt;&quot;I&quot;, &quot;ĩ&quot;=&gt;&quot;i&quot;,</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="inferred">
+            <td><pre><a name="line57">57</a>           &quot;Ī&quot;=&gt;&quot;I&quot;, &quot;ī&quot;=&gt;&quot;i&quot;, &quot;Ĭ&quot;=&gt;&quot;I&quot;, &quot;ĭ&quot;=&gt;&quot;i&quot;, &quot;Į&quot;=&gt;&quot;I&quot;, &quot;į&quot;=&gt;&quot;i&quot;, &quot;İ&quot;=&gt;&quot;I&quot;,</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="inferred">
+            <td><pre><a name="line58">58</a>           &quot;ı&quot;=&gt;&quot;i&quot;, &quot;Ĳ&quot;=&gt;&quot;IJ&quot;, &quot;ĳ&quot;=&gt;&quot;ij&quot;, &quot;Ĵ&quot;=&gt;&quot;J&quot;, &quot;ĵ&quot;=&gt;&quot;j&quot;, &quot;Ķ&quot;=&gt;&quot;K&quot;, &quot;ķ&quot;=&gt;&quot;k&quot;,</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="inferred">
+            <td><pre><a name="line59">59</a>           &quot;ĸ&quot;=&gt;&quot;k&quot;, &quot;Ĺ&quot;=&gt;&quot;L&quot;, &quot;ĺ&quot;=&gt;&quot;l&quot;, &quot;Ļ&quot;=&gt;&quot;L&quot;, &quot;ļ&quot;=&gt;&quot;l&quot;, &quot;Ľ&quot;=&gt;&quot;L&quot;, &quot;ľ&quot;=&gt;&quot;l&quot;,</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="inferred">
+            <td><pre><a name="line60">60</a>           &quot;Ŀ&quot;=&gt;&quot;L&quot;, &quot;ŀ&quot;=&gt;&quot;l&quot;, &quot;Ł&quot;=&gt;&quot;L&quot;, &quot;ł&quot;=&gt;&quot;l&quot;, &quot;Ń&quot;=&gt;&quot;N&quot;, &quot;ń&quot;=&gt;&quot;n&quot;, &quot;Ņ&quot;=&gt;&quot;N&quot;,</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="inferred">
+            <td><pre><a name="line61">61</a>           &quot;ņ&quot;=&gt;&quot;n&quot;, &quot;Ň&quot;=&gt;&quot;N&quot;, &quot;ň&quot;=&gt;&quot;n&quot;, &quot;ŉ&quot;=&gt;&quot;'n&quot;, &quot;Ŋ&quot;=&gt;&quot;NG&quot;, &quot;ŋ&quot;=&gt;&quot;ng&quot;,</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="inferred">
+            <td><pre><a name="line62">62</a>           &quot;Ō&quot;=&gt;&quot;O&quot;, &quot;ō&quot;=&gt;&quot;o&quot;, &quot;Ŏ&quot;=&gt;&quot;O&quot;, &quot;ŏ&quot;=&gt;&quot;o&quot;, &quot;Ő&quot;=&gt;&quot;O&quot;, &quot;ő&quot;=&gt;&quot;o&quot;, &quot;Œ&quot;=&gt;&quot;OE&quot;,</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="inferred">
+            <td><pre><a name="line63">63</a>           &quot;œ&quot;=&gt;&quot;oe&quot;, &quot;Ŕ&quot;=&gt;&quot;R&quot;, &quot;ŕ&quot;=&gt;&quot;r&quot;, &quot;Ŗ&quot;=&gt;&quot;R&quot;, &quot;ŗ&quot;=&gt;&quot;r&quot;, &quot;Ř&quot;=&gt;&quot;R&quot;, &quot;ř&quot;=&gt;&quot;r&quot;,</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="inferred">
+            <td><pre><a name="line64">64</a>           &quot;Ś&quot;=&gt;&quot;S&quot;, &quot;ś&quot;=&gt;&quot;s&quot;, &quot;Ŝ&quot;=&gt;&quot;S&quot;, &quot;ŝ&quot;=&gt;&quot;s&quot;, &quot;Ş&quot;=&gt;&quot;S&quot;, &quot;ş&quot;=&gt;&quot;s&quot;, &quot;Š&quot;=&gt;&quot;S&quot;,</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="inferred">
+            <td><pre><a name="line65">65</a>           &quot;š&quot;=&gt;&quot;s&quot;, &quot;Ţ&quot;=&gt;&quot;T&quot;, &quot;ţ&quot;=&gt;&quot;t&quot;, &quot;Ť&quot;=&gt;&quot;T&quot;, &quot;ť&quot;=&gt;&quot;t&quot;, &quot;Ŧ&quot;=&gt;&quot;T&quot;, &quot;ŧ&quot;=&gt;&quot;t&quot;,</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="inferred">
+            <td><pre><a name="line66">66</a>           &quot;Ũ&quot;=&gt;&quot;U&quot;, &quot;ũ&quot;=&gt;&quot;u&quot;, &quot;Ū&quot;=&gt;&quot;U&quot;, &quot;ū&quot;=&gt;&quot;u&quot;, &quot;Ŭ&quot;=&gt;&quot;U&quot;, &quot;ŭ&quot;=&gt;&quot;u&quot;, &quot;Ů&quot;=&gt;&quot;U&quot;,</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="inferred">
+            <td><pre><a name="line67">67</a>           &quot;ů&quot;=&gt;&quot;u&quot;, &quot;Ű&quot;=&gt;&quot;U&quot;, &quot;ű&quot;=&gt;&quot;u&quot;, &quot;Ų&quot;=&gt;&quot;U&quot;, &quot;ų&quot;=&gt;&quot;u&quot;, &quot;Ŵ&quot;=&gt;&quot;W&quot;, &quot;ŵ&quot;=&gt;&quot;w&quot;,</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="inferred">
+            <td><pre><a name="line68">68</a>           &quot;Ŷ&quot;=&gt;&quot;Y&quot;, &quot;ŷ&quot;=&gt;&quot;y&quot;, &quot;Ÿ&quot;=&gt;&quot;Y&quot;, &quot;Ź&quot;=&gt;&quot;Z&quot;, &quot;ź&quot;=&gt;&quot;z&quot;, &quot;Ż&quot;=&gt;&quot;Z&quot;, &quot;ż&quot;=&gt;&quot;z&quot;,</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="inferred">
+            <td><pre><a name="line69">69</a>           &quot;Ž&quot;=&gt;&quot;Z&quot;, &quot;ž&quot;=&gt;&quot;z&quot;</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="inferred">
+            <td><pre><a name="line70">70</a>         }</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="inferred">
+            <td><pre><a name="line71">71</a> </pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line72">72</a>         def initialize(rule = nil)</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="uncovered">
+            <td><pre><a name="line73">73</a>           @rule = rule</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="uncovered">
+            <td><pre><a name="line74">74</a>           add DEFAULT_APPROXIMATIONS</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="uncovered">
+            <td><pre><a name="line75">75</a>           add rule if rule</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="uncovered">
+            <td><pre><a name="line76">76</a>         end</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="inferred">
+            <td><pre><a name="line77">77</a> </pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line78">78</a>         def transliterate(string, replacement = nil)</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="uncovered">
+            <td><pre><a name="line79">79</a>           string.gsub(/[^\x00-\x7f]/u) do |char|</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="uncovered">
+            <td><pre><a name="line80">80</a>             approximations[char] || replacement || DEFAULT_REPLACEMENT_CHAR</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="uncovered">
+            <td><pre><a name="line81">81</a>           end</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="uncovered">
+            <td><pre><a name="line82">82</a>         end</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="inferred">
+            <td><pre><a name="line83">83</a> </pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line84">84</a>         private</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="inferred">
+            <td><pre><a name="line85">85</a> </pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line86">86</a>           def approximations</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="uncovered">
+            <td><pre><a name="line87">87</a>             @approximations ||= {}</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="uncovered">
+            <td><pre><a name="line88">88</a>           end</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="inferred">
+            <td><pre><a name="line89">89</a> </pre></td>
+          </tr>
+        
+          
+          
+          <tr class="inferred">
+            <td><pre><a name="line90">90</a>           # Add transliteration rules to the approximations hash.</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line91">91</a>           def add(hash)</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="uncovered">
+            <td><pre><a name="line92">92</a>             hash.keys.each {|key| hash[key.to_s] = hash.delete(key).to_s}</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="uncovered">
+            <td><pre><a name="line93">93</a>             approximations.merge! hash</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="uncovered">
+            <td><pre><a name="line94">94</a>           end</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="uncovered">
+            <td><pre><a name="line95">95</a>       end</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="uncovered">
+            <td><pre><a name="line96">96</a>     end</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="uncovered">
+            <td><pre><a name="line97">97</a>   end</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="uncovered">
+            <td><pre><a name="line98">98</a> end</pre></td>
+          </tr>
+        
+      </tbody>
+    </table>
+
+    <p>Generated on Thu Jun 17 20:55:43 -0400 2010 with <a href="http://github.com/relevance/rcov">rcov 0.9.8</a></p>
+
+  </body>
+</html>

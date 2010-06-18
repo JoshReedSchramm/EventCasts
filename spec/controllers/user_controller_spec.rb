@@ -1,6 +1,9 @@
 require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
 
 describe UserController do
+  def mock_oauth(stubs={})
+    @mock_oauth ||= mock(Twitter::OAuth, stubs)
+  end
   def mock_user(stubs={})
     @mock_user ||= mock(User, stubs)
   end
@@ -105,6 +108,58 @@ describe UserController do
         get :verify_login        
         response.should render_template("user/_login")                
       end
+    end
+  end
+  describe "when logging out" do
+    it "should clear session" do
+      session[:user]=mock_user
+      get :logout
+      session[:user].should == nil
+    end
+    it "should redirect to home page" do
+      session[:user]=mock_user
+      get :logout
+      response.should redirect_to("/")
+    end
+  end
+  
+  describe "when logging in through twitter" do
+    it "should redirect to twitter" do      
+      mock_request_token = mock(Twitter::Request, {:token=>"testtoken", :secret=>"testsecret", :authorize_url=>"http://localhost:3000"})
+      Twitter::OAuth.should_receive(:new).and_return(mock_oauth({:request_token=>mock_request_token}))    
+      mock_oauth.should_receive(:set_callback_url)
+      get :start_twitter
+      response.should redirect_to("http://localhost:3000")    
+    end
+  end
+  
+  describe "when returning from a twitter login" do
+    before(:each) do
+      @mock_token = mock(Twitter::Response, {:token=>"testtoken", :secret=>"testsecret"}) 
+      Twitter::OAuth.should_receive(:new).and_return(mock_oauth({:access_token=>@mock_token}))          
+      mock_oauth.should_receive(:authorize_from_request)      
+      @mock_profile = mock(Twitter::Request, {:screen_name=>"Eventcasts"})
+      Twitter::Base.should_receive(:new).with(mock_oauth).and_return(mock(Twitter::Base, {:verify_credentials=>@mock_profile}))      
+    end    
+    
+    it "should add oauth info to session" do      
+      post :finalize_twitter, :oauth_verifier=>"TEST"
+      
+      session[:atoken].should == "testtoken"
+      session[:asecret].should == "testsecret"
+    end
+    
+    it "adds the user to session" do    
+      User.should_receive(:get_from_twitter).with(@mock_profile).and_return(mock_user)
+      post :finalize_twitter, :oauth_verifier=>"TEST"
+      
+      session[:user].should == mock_user
+    end
+    
+    it "redirects to user home" do            
+      post :finalize_twitter, :oauth_verifier=>"TEST"
+      
+      response.should redirect_to(:controller=>"user", :action=>"home")
     end
   end
 end

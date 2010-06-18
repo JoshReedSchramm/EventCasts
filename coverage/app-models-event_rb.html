@@ -28,14 +28,14 @@
         <tbody>
           <tr>
             <td class="left_align"><a href="app-models-event_rb.html">app/models/event.rb</a></td>
-            <td class='right_align'><tt>44</tt></td>
-            <td class='right_align'><tt>36</tt></td>
-            <td class="left_align"><div class="percent_graph_legend"><tt class=''>95.45%</tt></div>
+            <td class='right_align'><tt>38</tt></td>
+            <td class='right_align'><tt>31</tt></td>
+            <td class="left_align"><div class="percent_graph_legend"><tt class=''>94.74%</tt></div>
           <div class="percent_graph">
             <div class="covered" style="width:95px"></div>
             <div class="uncovered" style="width:5px"></div>
           </div></td>
-            <td class="left_align"><div class="percent_graph_legend"><tt class=''>94.44%</tt></div>
+            <td class="left_align"><div class="percent_graph_legend"><tt class=''>93.55%</tt></div>
           <div class="percent_graph">
             <div class="covered" style="width:94px"></div>
             <div class="uncovered" style="width:6px"></div>
@@ -105,223 +105,187 @@
           
           
           <tr class="marked">
-            <td><pre><a name="line9">9</a>   validate :user_can_edit_event?</pre></td>
+            <td><pre><a name="line9">9</a>   validate :at_least_one_search_term?, :message=&gt;&quot;At least one search terms is required&quot;</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="inferred">
+            <td><pre><a name="line10">10</a> </pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line10">10</a>   validate :at_least_one_search_term?, :message=&gt;&quot;At least one search terms is required&quot;</pre></td>
+            <td><pre><a name="line11">11</a>   HUMANIZED_ATTRIBUTES = {</pre></td>
           </tr>
         
           
           
           <tr class="inferred">
-            <td><pre><a name="line11">11</a> </pre></td>
+            <td><pre><a name="line12">12</a>     :name =&gt; &quot;Event Name&quot;</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="inferred">
+            <td><pre><a name="line13">13</a>   }</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="inferred">
+            <td><pre><a name="line14">14</a> </pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line12">12</a>   HUMANIZED_ATTRIBUTES = {</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="inferred">
-            <td><pre><a name="line13">13</a>     :name =&gt; &quot;Event Name&quot;</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="inferred">
-            <td><pre><a name="line14">14</a>   }</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="inferred">
-            <td><pre><a name="line15">15</a> </pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line16">16</a>   def self.human_attribute_name(attr)</pre></td>
+            <td><pre><a name="line15">15</a>   def self.human_attribute_name(attr)</pre></td>
           </tr>
         
           
           
           <tr class="uncovered">
-            <td><pre><a name="line17">17</a>     HUMANIZED_ATTRIBUTES[attr.to_sym] || super</pre></td>
+            <td><pre><a name="line16">16</a>     HUMANIZED_ATTRIBUTES[attr.to_sym] || super</pre></td>
           </tr>
         
           
           
           <tr class="uncovered">
-            <td><pre><a name="line18">18</a>   end</pre></td>
+            <td><pre><a name="line17">17</a>   end</pre></td>
           </tr>
         
           
           
           <tr class="inferred">
-            <td><pre><a name="line19">19</a>  </pre></td>
+            <td><pre><a name="line18">18</a>  </pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line20">20</a>   def Event.filter_hash(event_name)</pre></td>
+            <td><pre><a name="line19">19</a>   def Event.filter_hash(event_name)</pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line21">21</a>     event_name.slice!(0) if event_name[0,1] == '#'    </pre></td>
+            <td><pre><a name="line20">20</a>     event_name.slice!(0) if event_name[0,1] == '#'    </pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line22">22</a>     event_name</pre></td>
+            <td><pre><a name="line21">21</a>     event_name</pre></td>
           </tr>
         
           
           
           <tr class="inferred">
-            <td><pre><a name="line23">23</a>   end</pre></td>
+            <td><pre><a name="line22">22</a>   end</pre></td>
           </tr>
         
           
           
           <tr class="inferred">
-            <td><pre><a name="line24">24</a>   </pre></td>
+            <td><pre><a name="line23">23</a>   </pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line25">25</a>   def Event.create_event(params, user)</pre></td>
+            <td><pre><a name="line24">24</a>   def Event.create_event(params, user)</pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line26">26</a>     event = Event.new(params[:event])</pre></td>
+            <td><pre><a name="line25">25</a>     event = Event.new(params[:event])</pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line27">27</a>     event.creator_id = user.id</pre></td>
+            <td><pre><a name="line26">26</a>     event.creator_id = user.id</pre></td>
           </tr>
         
           
           
           <tr class="inferred">
-            <td><pre><a name="line28">28</a>     params[:search_terms].each do |term|</pre></td>
+            <td><pre><a name="line27">27</a>     params[:search_terms].each do |term|</pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line29">29</a>       event.search_terms &lt;&lt; SearchTerm.new({:term=&gt;term})</pre></td>
+            <td><pre><a name="line28">28</a>       event.search_terms &lt;&lt; SearchTerm.new({:term=&gt;term})</pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line30">30</a>     end unless params[:search_terms].nil?</pre></td>
+            <td><pre><a name="line29">29</a>     end unless params[:search_terms].nil?</pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line31">31</a>     event   </pre></td>
+            <td><pre><a name="line30">30</a>     event   </pre></td>
           </tr>
         
           
           
           <tr class="inferred">
-            <td><pre><a name="line32">32</a>   end</pre></td>
+            <td><pre><a name="line31">31</a>   end</pre></td>
           </tr>
         
           
           
           <tr class="inferred">
-            <td><pre><a name="line33">33</a> </pre></td>
+            <td><pre><a name="line32">32</a> </pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line34">34</a>   private</pre></td>
+            <td><pre><a name="line33">33</a>   private</pre></td>
           </tr>
         
           
           
           <tr class="inferred">
-            <td><pre><a name="line35">35</a>       </pre></td>
+            <td><pre><a name="line34">34</a>       </pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line36">36</a>   def user_can_edit_event?</pre></td>
+            <td><pre><a name="line35">35</a>   def at_least_one_search_term?</pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line37">37</a>     user = User.find_by_twitter_name(self.last_updated_by)    </pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line38">38</a>     return true</pre></td>
+            <td><pre><a name="line36">36</a>     errors[:base] &lt;&lt; &quot;At least one search term must be provided&quot; if self.search_terms.empty?      </pre></td>
           </tr>
         
           
           
           <tr class="inferred">
-            <td><pre><a name="line39">39</a>   end</pre></td>
+            <td><pre><a name="line37">37</a>   end</pre></td>
           </tr>
         
           
           
           <tr class="inferred">
-            <td><pre><a name="line40">40</a> </pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line41">41</a>   def at_least_one_search_term?</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line42">42</a>     errors.add_to_base(&quot;At least one search term must be provided&quot;) if self.search_terms.empty?      </pre></td>
-          </tr>
-        
-          
-          
-          <tr class="inferred">
-            <td><pre><a name="line43">43</a>   end</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="inferred">
-            <td><pre><a name="line44">44</a> end</pre></td>
+            <td><pre><a name="line38">38</a> end</pre></td>
           </tr>
         
       </tbody>
     </table>
 
-    <p>Generated on Sat May 22 15:05:26 -0400 2010 with <a href="http://github.com/relevance/rcov">rcov 0.9.8</a></p>
+    <p>Generated on Thu Jun 17 20:55:46 -0400 2010 with <a href="http://github.com/relevance/rcov">rcov 0.9.8</a></p>
 
   </body>
 </html>

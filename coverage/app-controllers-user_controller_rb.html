@@ -28,17 +28,17 @@
         <tbody>
           <tr>
             <td class="left_align"><a href="app-controllers-user_controller_rb.html">app/controllers/user_controller.rb</a></td>
-            <td class='right_align'><tt>70</tt></td>
+            <td class='right_align'><tt>76</tt></td>
             <td class='right_align'><tt>63</tt></td>
-            <td class="left_align"><div class="percent_graph_legend"><tt class=''>91.43%</tt></div>
+            <td class="left_align"><div class="percent_graph_legend"><tt class=''>86.84%</tt></div>
           <div class="percent_graph">
-            <div class="covered" style="width:91px"></div>
-            <div class="uncovered" style="width:9px"></div>
+            <div class="covered" style="width:87px"></div>
+            <div class="uncovered" style="width:13px"></div>
           </div></td>
-            <td class="left_align"><div class="percent_graph_legend"><tt class=''>90.48%</tt></div>
+            <td class="left_align"><div class="percent_graph_legend"><tt class=''>87.30%</tt></div>
           <div class="percent_graph">
-            <div class="covered" style="width:90px"></div>
-            <div class="uncovered" style="width:10px"></div>
+            <div class="covered" style="width:87px"></div>
+            <div class="uncovered" style="width:13px"></div>
           </div></td>
           </tr>
         </tbody>
@@ -63,421 +63,457 @@
           
           
           <tr class="marked">
-            <td><pre><a name="line2">2</a>   def login</pre></td>
+            <td><pre><a name="line2">2</a>   include UserHelper</pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line3">3</a>     if request.post?</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line4">4</a>       user = User.authenticate(params[:user][:username], params[:user][:password])</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line5">5</a>       if user.nil?        </pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line6">6</a>         flash[:notice] = &quot;Unable to find a user with that username and password.&quot;</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line7">7</a>         ajax_authentication_failure()</pre></td>
+            <td><pre><a name="line3">3</a>   before_filter :authenticate, :except=&gt;[:login, :register, :verify_login, :start_twitter, :finalize_twitter]</pre></td>
           </tr>
         
           
           
           <tr class="inferred">
-            <td><pre><a name="line8">8</a>       else</pre></td>
+            <td><pre><a name="line4">4</a>   </pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line9">9</a>         session[:user] = user</pre></td>
+            <td><pre><a name="line5">5</a>   def login</pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line10">10</a>         if !request.xhr?</pre></td>
+            <td><pre><a name="line6">6</a>     if request.post?</pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line11">11</a>           redirect_to :controller=&gt;&quot;user&quot;, :action=&gt;&quot;home&quot;</pre></td>
+            <td><pre><a name="line7">7</a>       session[:user] = User.authenticate(params[:user][:ec_username], params[:user][:password])</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line8">8</a>       if session[:user].nil?        </pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line9">9</a>         authentication_failure()</pre></td>
           </tr>
         
           
           
           <tr class="inferred">
-            <td><pre><a name="line12">12</a>         end</pre></td>
+            <td><pre><a name="line10">10</a>       else</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line11">11</a>         redirect_to :controller=&gt;&quot;user&quot;, :action=&gt;&quot;home&quot; if !request.xhr?</pre></td>
           </tr>
         
           
           
           <tr class="inferred">
-            <td><pre><a name="line13">13</a>       end</pre></td>
+            <td><pre><a name="line12">12</a>       end</pre></td>
           </tr>
         
           
           
           <tr class="inferred">
-            <td><pre><a name="line14">14</a>     end</pre></td>
+            <td><pre><a name="line13">13</a>     end</pre></td>
           </tr>
         
           
           
           <tr class="inferred">
-            <td><pre><a name="line15">15</a>   end</pre></td>
+            <td><pre><a name="line14">14</a>   end</pre></td>
           </tr>
         
           
           
           <tr class="inferred">
-            <td><pre><a name="line16">16</a>   </pre></td>
+            <td><pre><a name="line15">15</a>   </pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line17">17</a>   def home</pre></td>
+            <td><pre><a name="line16">16</a>   def home</pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line18">18</a>     if !session[:id].nil?</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line19">19</a>       @user = User.find_by_id(session[:id])</pre></td>
+            <td><pre><a name="line17">17</a>     @user = session[:user]</pre></td>
           </tr>
         
           
           
           <tr class="inferred">
-            <td><pre><a name="line20">20</a>     else</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line21">21</a>       flash[:notice] = &quot;You must be logged in to view that page.&quot;</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line22">22</a>       redirect_to :controller=&gt;&quot;home&quot;, :action=&gt;&quot;index&quot;</pre></td>
+            <td><pre><a name="line18">18</a>   end</pre></td>
           </tr>
         
           
           
           <tr class="inferred">
-            <td><pre><a name="line23">23</a>     end        </pre></td>
+            <td><pre><a name="line19">19</a>   </pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line20">20</a>   def register</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line21">21</a>     if !params[:user].nil?</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line22">22</a>       user = User.new(params[:user])</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line23">23</a>       result = user.save</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line24">24</a>       if result</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line25">25</a>         session[:user] = user  </pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line26">26</a>         if request.xhr?</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line27">27</a>           render :text =&gt; &quot;true&quot;, :layout=&gt;false          </pre></td>
           </tr>
         
           
           
           <tr class="inferred">
-            <td><pre><a name="line24">24</a>   end</pre></td>
+            <td><pre><a name="line28">28</a>         else</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line29">29</a>           redirect_to :controller=&gt;&quot;user&quot;, :action=&gt;&quot;home&quot;</pre></td>
           </tr>
         
           
           
           <tr class="inferred">
-            <td><pre><a name="line25">25</a>   </pre></td>
+            <td><pre><a name="line30">30</a>         end</pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line26">26</a>   def register</pre></td>
+            <td><pre><a name="line31">31</a>       elsif request.xhr?</pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line27">27</a>     if !params[:user].nil?</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line28">28</a>       user = User.new(params[:user])</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line29">29</a>       result = user.save</pre></td>
+            <td><pre><a name="line32">32</a>         handle_ajax_validation_errors(user)</pre></td>
           </tr>
         
           
           
           <tr class="inferred">
-            <td><pre><a name="line30">30</a>       </pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line31">31</a>       if result</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line32">32</a>         session[:user] = user        </pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line33">33</a>         if request.xhr?</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line34">34</a>           render :text =&gt; &quot;true&quot;, :layout=&gt;false          </pre></td>
+            <td><pre><a name="line33">33</a>       end</pre></td>
           </tr>
         
           
           
           <tr class="inferred">
-            <td><pre><a name="line35">35</a>         else</pre></td>
+            <td><pre><a name="line34">34</a>     end</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="inferred">
+            <td><pre><a name="line35">35</a>   end</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="inferred">
+            <td><pre><a name="line36">36</a> </pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line36">36</a>           redirect_to :controller=&gt;&quot;user&quot;, :action=&gt;&quot;home&quot;</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="inferred">
-            <td><pre><a name="line37">37</a>         end</pre></td>
+            <td><pre><a name="line37">37</a>   def logout</pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line38">38</a>       elsif request.xhr?</pre></td>
+            <td><pre><a name="line38">38</a>     session[:user] = nil</pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line39">39</a>         handle_ajax_validation_errors(user)</pre></td>
+            <td><pre><a name="line39">39</a>     redirect_to &quot;/&quot;</pre></td>
           </tr>
         
           
           
           <tr class="inferred">
-            <td><pre><a name="line40">40</a>       end</pre></td>
+            <td><pre><a name="line40">40</a>   end</pre></td>
           </tr>
         
           
           
           <tr class="inferred">
-            <td><pre><a name="line41">41</a>     end</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="inferred">
-            <td><pre><a name="line42">42</a>   end</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="inferred">
-            <td><pre><a name="line43">43</a> </pre></td>
+            <td><pre><a name="line41">41</a>   </pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line44">44</a>   def logout</pre></td>
+            <td><pre><a name="line42">42</a>   def verify_login</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line43">43</a>     if session[:user].nil?</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line44">44</a>       render :partial=&gt;&quot;login&quot;, :layout=&gt;false</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="inferred">
+            <td><pre><a name="line45">45</a>     else</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line46">46</a>       render :text =&gt; &quot;true&quot;, :layout=&gt;false</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="inferred">
+            <td><pre><a name="line47">47</a>     end</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="inferred">
+            <td><pre><a name="line48">48</a>   end</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="inferred">
+            <td><pre><a name="line49">49</a>     </pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line50">50</a>   def start_twitter</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line51">51</a>       oauth.set_callback_url(finalize_twitter_session_url)</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="inferred">
+            <td><pre><a name="line52">52</a> </pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line53">53</a>       session['rtoken']  = oauth.request_token.token</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line54">54</a>       session['rsecret'] = oauth.request_token.secret</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="inferred">
+            <td><pre><a name="line55">55</a> </pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line56">56</a>       redirect_to oauth.request_token.authorize_url</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="inferred">
+            <td><pre><a name="line57">57</a>   end</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="inferred">
+            <td><pre><a name="line58">58</a>   </pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line59">59</a>   def finalize_twitter</pre></td>
           </tr>
         
           
           
           <tr class="uncovered">
-            <td><pre><a name="line45">45</a>     session[:username] = nil</pre></td>
+            <td><pre><a name="line60">60</a>     oauth.authorize_from_request(session['rtoken'], session['rsecret'], params[:oauth_verifier])</pre></td>
           </tr>
         
           
           
           <tr class="uncovered">
-            <td><pre><a name="line46">46</a>     redirect_to &quot;/&quot;</pre></td>
+            <td><pre><a name="line61">61</a> </pre></td>
           </tr>
         
           
           
           <tr class="uncovered">
-            <td><pre><a name="line47">47</a>   end</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="inferred">
-            <td><pre><a name="line48">48</a>   </pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line49">49</a>   def events</pre></td>
+            <td><pre><a name="line62">62</a>     profile = Twitter::Base.new(oauth).verify_credentials</pre></td>
           </tr>
         
           
           
           <tr class="uncovered">
-            <td><pre><a name="line50">50</a>     @user = User.find_by_twitter_name(params[:twitter_name])    </pre></td>
+            <td><pre><a name="line63">63</a>     session['rtoken'] = session['rsecret'] = nil</pre></td>
           </tr>
         
           
           
           <tr class="uncovered">
-            <td><pre><a name="line51">51</a>     render :partial=&gt;&quot;user_events&quot;, :layout =&gt; false</pre></td>
+            <td><pre><a name="line64">64</a>     session[:atoken] = oauth.access_token.token</pre></td>
           </tr>
         
           
           
           <tr class="uncovered">
-            <td><pre><a name="line52">52</a>   end</pre></td>
+            <td><pre><a name="line65">65</a>     session[:asecret] = oauth.access_token.secret</pre></td>
           </tr>
         
           
           
-          <tr class="inferred">
-            <td><pre><a name="line53">53</a>   </pre></td>
+          <tr class="uncovered">
+            <td><pre><a name="line66">66</a> </pre></td>
           </tr>
         
           
           
-          <tr class="marked">
-            <td><pre><a name="line54">54</a>   def verify_login</pre></td>
+          <tr class="uncovered">
+            <td><pre><a name="line67">67</a>     session[:user] = profile.screen_name if profile</pre></td>
           </tr>
         
           
           
-          <tr class="marked">
-            <td><pre><a name="line55">55</a>     if session[:user].nil?</pre></td>
+          <tr class="uncovered">
+            <td><pre><a name="line68">68</a>     redirect_to :controller=&gt;&quot;user&quot;, :action=&gt;&quot;home&quot;</pre></td>
           </tr>
         
           
           
-          <tr class="marked">
-            <td><pre><a name="line56">56</a>       render :partial=&gt;&quot;login&quot;, :layout=&gt;false</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="inferred">
-            <td><pre><a name="line57">57</a>     else</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line58">58</a>       render :text =&gt; &quot;true&quot;, :layout=&gt;false</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="inferred">
-            <td><pre><a name="line59">59</a>     end</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="inferred">
-            <td><pre><a name="line60">60</a>   end</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="inferred">
-            <td><pre><a name="line61">61</a>   </pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line62">62</a>   def ajax_authentication_failure()</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line63">63</a>     if request.xhr?</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line64">64</a>       response.headers['X-JSON'] = &quot;[[\&quot;username\&quot;,\&quot;The username or password entered did not match a valid user\&quot;]]&quot;;</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line65">65</a>       render :nothing =&gt; true, :status=&gt;444   </pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line66">66</a>       return true     </pre></td>
-          </tr>
-        
-          
-          
-          <tr class="inferred">
-            <td><pre><a name="line67">67</a>     end</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line68">68</a>     return false</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="inferred">
+          <tr class="uncovered">
             <td><pre><a name="line69">69</a>   end</pre></td>
           </tr>
         
           
           
           <tr class="inferred">
-            <td><pre><a name="line70">70</a> end</pre></td>
+            <td><pre><a name="line70">70</a>   </pre></td>
+          </tr>
+        
+          
+          
+          <tr class="inferred">
+            <td><pre><a name="line71">71</a>   </pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line72">72</a>   def authentication_failure()</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line73">73</a>     flash[:notice] = &quot;Unable to find a user with that username and password.&quot;    </pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line74">74</a>     set_ajax_validation_errors(&quot;[[\&quot;username\&quot;,\&quot;The username or password entered did not match a valid user\&quot;]]&quot;) if request.xhr?</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="inferred">
+            <td><pre><a name="line75">75</a>   end</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="inferred">
+            <td><pre><a name="line76">76</a> end</pre></td>
           </tr>
         
       </tbody>
     </table>
 
-    <p>Generated on Sat May 22 15:05:26 -0400 2010 with <a href="http://github.com/relevance/rcov">rcov 0.9.8</a></p>
+    <p>Generated on Thu Jun 17 20:55:46 -0400 2010 with <a href="http://github.com/relevance/rcov">rcov 0.9.8</a></p>
 
   </body>
 </html>

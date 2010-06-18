@@ -28,8 +28,8 @@
         <tbody>
           <tr>
             <td class="left_align"><a href="app-controllers-events_controller_rb.html">app/controllers/events_controller.rb</a></td>
-            <td class='right_align'><tt>50</tt></td>
-            <td class='right_align'><tt>42</tt></td>
+            <td class='right_align'><tt>31</tt></td>
+            <td class='right_align'><tt>24</tt></td>
             <td class="left_align"><div class="percent_graph_legend"><tt class=''>100.00%</tt></div>
           <div class="percent_graph">
             <div class="covered" style="width:100px"></div>
@@ -63,301 +63,187 @@
           
           
           <tr class="marked">
-            <td><pre><a name="line2">2</a>   include EventsHelper</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line3">3</a>   require File.expand_path(File.dirname(__FILE__) + '/../models/lib/twitter_url_generator.rb')</pre></td>
+            <td><pre><a name="line2">2</a>   require File.expand_path(File.dirname(__FILE__) + '/../models/lib/twitter_url_generator.rb')</pre></td>
           </tr>
         
           
           
           <tr class="inferred">
-            <td><pre><a name="line4">4</a>   </pre></td>
+            <td><pre><a name="line3">3</a>   </pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line5">5</a>   before_filter :authorize, :except=&gt;[:create, :vips, :participants, :show, :recent_tweets]</pre></td>
+            <td><pre><a name="line4">4</a>   before_filter :authenticate, :except=&gt;[:show]</pre></td>
           </tr>
         
           
           
           <tr class="inferred">
-            <td><pre><a name="line6">6</a>   </pre></td>
+            <td><pre><a name="line5">5</a>   </pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line7">7</a>   def create</pre></td>
+            <td><pre><a name="line6">6</a>   def create</pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line8">8</a>     if request.post? </pre></td>
+            <td><pre><a name="line7">7</a>     if request.post? </pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line9">9</a>       if !authorized?</pre></td>
+            <td><pre><a name="line8">8</a>       event = Event.create_event(params, logged_in_user)</pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line10">10</a>         redirect_to :controller =&gt; :home, :action =&gt; :index</pre></td>
+            <td><pre><a name="line9">9</a>       if event.save</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line10">10</a>         redirect_to :controller=&gt;&quot;events&quot;, :action=&gt;&quot;show&quot;, :id=&gt;event.id</pre></td>
           </tr>
         
           
           
           <tr class="inferred">
-            <td><pre><a name="line11">11</a>       else</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line12">12</a>         event = Event.create_event(params, logged_in_user)</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line13">13</a>         if event.save</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line14">14</a>           redirect_to :controller=&gt;&quot;events&quot;, :action=&gt;&quot;show&quot;, :id=&gt;event.id</pre></td>
+            <td><pre><a name="line11">11</a>       end</pre></td>
           </tr>
         
           
           
           <tr class="inferred">
-            <td><pre><a name="line15">15</a>         end</pre></td>
+            <td><pre><a name="line12">12</a>     end</pre></td>
           </tr>
         
           
           
           <tr class="inferred">
-            <td><pre><a name="line16">16</a>       end</pre></td>
+            <td><pre><a name="line13">13</a>   end</pre></td>
           </tr>
         
           
           
           <tr class="inferred">
-            <td><pre><a name="line17">17</a>     end</pre></td>
+            <td><pre><a name="line14">14</a>   </pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line15">15</a>   def show</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line16">16</a>     return render_404 if params.empty?</pre></td>
           </tr>
         
           
           
           <tr class="inferred">
-            <td><pre><a name="line18">18</a>   end</pre></td>
+            <td><pre><a name="line17">17</a> </pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line18">18</a>     @event = Event.find_by_id(params[:id])</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line19">19</a>     return render_404 if @event.nil?        </pre></td>
           </tr>
         
           
           
           <tr class="inferred">
-            <td><pre><a name="line19">19</a> </pre></td>
+            <td><pre><a name="line20">20</a>     </pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line20">20</a>   def vips</pre></td>
+            <td><pre><a name="line21">21</a>     @twitter_last_message_id = @event.messages.empty? ? &quot;null&quot; :  (@event.messages[0].original_id ||= &quot;null&quot;)</pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line21">21</a>     @event = Event.find(params[:event_id])</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line22">22</a>     @vips = @event.get_vips</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line23">23</a>     respond_to do |format|</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line24">24</a>        format.html { render :partial=&gt;&quot;vips&quot;, :layout =&gt; false }</pre></td>
+            <td><pre><a name="line22">22</a>     @autoload = @event.messages.empty? ? true : (@event.messages[0].created &lt;= 30.seconds.ago)</pre></td>
           </tr>
         
           
           
           <tr class="inferred">
-            <td><pre><a name="line25">25</a>      end</pre></td>
+            <td><pre><a name="line23">23</a>         </pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line24">24</a>     url_generator = TwitterURLGenerator.new(@event.search_terms)</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line25">25</a>     @twitter_search_url = url_generator.generate_url</pre></td>
           </tr>
         
           
           
           <tr class="inferred">
-            <td><pre><a name="line26">26</a>   end</pre></td>
+            <td><pre><a name="line26">26</a>     </pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line27">27</a>     respond_to do |format|</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line28">28</a>       format.html</pre></td>
           </tr>
         
           
           
           <tr class="inferred">
-            <td><pre><a name="line27">27</a>   </pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line28">28</a>   def participants</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line29">29</a>     @event = Event.find(params[:event_id])</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line30">30</a>     respond_to do |format|</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line31">31</a>        format.html { render :partial=&gt;&quot;participants&quot;, :layout =&gt; false }       </pre></td>
+            <td><pre><a name="line29">29</a>     end</pre></td>
           </tr>
         
           
           
           <tr class="inferred">
-            <td><pre><a name="line32">32</a>      end </pre></td>
+            <td><pre><a name="line30">30</a>   end</pre></td>
           </tr>
         
           
           
           <tr class="inferred">
-            <td><pre><a name="line33">33</a>   end</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="inferred">
-            <td><pre><a name="line34">34</a>   </pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line35">35</a>   def show</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line36">36</a>     return render_404 if params.empty?</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="inferred">
-            <td><pre><a name="line37">37</a>     </pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line38">38</a>     @event = Event.find_by_id(params[:id])</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line39">39</a>     return render_404 if @event.nil?        </pre></td>
-          </tr>
-        
-          
-          
-          <tr class="inferred">
-            <td><pre><a name="line40">40</a>     </pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line41">41</a>     @twitter_last_message_id = @event.messages.empty? ? &quot;null&quot; :  (@event.messages[0].original_id ||= &quot;null&quot;)</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line42">42</a>     @autoload = @event.messages.empty? ? true : (@event.messages[0].created &lt;= 30.seconds.ago)</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="inferred">
-            <td><pre><a name="line43">43</a>         </pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line44">44</a>     url_generator = TwitterURLGenerator.new(@event.search_terms)</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line45">45</a>     @twitter_search_url = url_generator.generate_url</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line46">46</a>     respond_to do |format|</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line47">47</a>       format.html</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="inferred">
-            <td><pre><a name="line48">48</a>     end</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="inferred">
-            <td><pre><a name="line49">49</a>   end</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="inferred">
-            <td><pre><a name="line50">50</a> end</pre></td>
+            <td><pre><a name="line31">31</a> end</pre></td>
           </tr>
         
       </tbody>
     </table>
 
-    <p>Generated on Sat May 22 15:05:26 -0400 2010 with <a href="http://github.com/relevance/rcov">rcov 0.9.8</a></p>
+    <p>Generated on Thu Jun 17 20:55:46 -0400 2010 with <a href="http://github.com/relevance/rcov">rcov 0.9.8</a></p>
 
   </body>
 </html>

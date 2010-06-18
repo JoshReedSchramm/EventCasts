@@ -30,15 +30,15 @@
             <td class="left_align"><a href="app-controllers-user_controller_rb.html">app/controllers/user_controller.rb</a></td>
             <td class='right_align'><tt>76</tt></td>
             <td class='right_align'><tt>63</tt></td>
-            <td class="left_align"><div class="percent_graph_legend"><tt class=''>86.84%</tt></div>
+            <td class="left_align"><div class="percent_graph_legend"><tt class=''>100.00%</tt></div>
           <div class="percent_graph">
-            <div class="covered" style="width:87px"></div>
-            <div class="uncovered" style="width:13px"></div>
+            <div class="covered" style="width:100px"></div>
+            <div class="uncovered" style="width:0px"></div>
           </div></td>
-            <td class="left_align"><div class="percent_graph_legend"><tt class=''>87.30%</tt></div>
+            <td class="left_align"><div class="percent_graph_legend"><tt class=''>100.00%</tt></div>
           <div class="percent_graph">
-            <div class="covered" style="width:87px"></div>
-            <div class="uncovered" style="width:13px"></div>
+            <div class="covered" style="width:100px"></div>
+            <div class="uncovered" style="width:0px"></div>
           </div></td>
           </tr>
         </tbody>
@@ -410,61 +410,61 @@
         
           
           
-          <tr class="uncovered">
+          <tr class="marked">
             <td><pre><a name="line60">60</a>     oauth.authorize_from_request(session['rtoken'], session['rsecret'], params[:oauth_verifier])</pre></td>
           </tr>
         
           
           
-          <tr class="uncovered">
+          <tr class="inferred">
             <td><pre><a name="line61">61</a> </pre></td>
           </tr>
         
           
           
-          <tr class="uncovered">
+          <tr class="marked">
             <td><pre><a name="line62">62</a>     profile = Twitter::Base.new(oauth).verify_credentials</pre></td>
           </tr>
         
           
           
-          <tr class="uncovered">
+          <tr class="marked">
             <td><pre><a name="line63">63</a>     session['rtoken'] = session['rsecret'] = nil</pre></td>
           </tr>
         
           
           
-          <tr class="uncovered">
+          <tr class="marked">
             <td><pre><a name="line64">64</a>     session[:atoken] = oauth.access_token.token</pre></td>
           </tr>
         
           
           
-          <tr class="uncovered">
+          <tr class="marked">
             <td><pre><a name="line65">65</a>     session[:asecret] = oauth.access_token.secret</pre></td>
           </tr>
         
           
           
-          <tr class="uncovered">
+          <tr class="inferred">
             <td><pre><a name="line66">66</a> </pre></td>
           </tr>
         
           
           
-          <tr class="uncovered">
-            <td><pre><a name="line67">67</a>     session[:user] = profile.screen_name if profile</pre></td>
+          <tr class="marked">
+            <td><pre><a name="line67">67</a>     session[:user] = User.get_from_twitter(profile) if profile</pre></td>
           </tr>
         
           
           
-          <tr class="uncovered">
+          <tr class="marked">
             <td><pre><a name="line68">68</a>     redirect_to :controller=&gt;&quot;user&quot;, :action=&gt;&quot;home&quot;</pre></td>
           </tr>
         
           
           
-          <tr class="uncovered">
+          <tr class="inferred">
             <td><pre><a name="line69">69</a>   end</pre></td>
           </tr>
         
@@ -513,7 +513,7 @@
       </tbody>
     </table>
 
-    <p>Generated on Thu Jun 17 20:55:46 -0400 2010 with <a href="http://github.com/relevance/rcov">rcov 0.9.8</a></p>
+    <p>Generated on Thu Jun 17 21:46:50 -0400 2010 with <a href="http://github.com/relevance/rcov">rcov 0.9.8</a></p>
 
   </body>
 </html>

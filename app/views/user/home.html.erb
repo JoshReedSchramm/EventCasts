@@ -9,7 +9,7 @@
 </div>
 <div id='login_user_section'>
 	<div>
-		<h4>Welcome @<%= logged_in_user.ec_username %>!</h4>
+		<h4>Welcome @<%= logged_in_user.display_name %>!</h4>
 		<br />
 		<%= link_to "Add a event", :controller=>"events", :action=>"new" %>
 	</div>

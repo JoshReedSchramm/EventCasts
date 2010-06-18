@@ -30,18 +30,15 @@ class User < ActiveRecord::Base
     create_new_salt
     self.hashed_password = User.encrypted_password(self.password, self.salt)
   end
-    
-  def twitter_profile
-    if @twitter_profile.nil?
-      ha = Twitter::HTTPAuth.new('eventcasts', 'StartupsFTW!')
-      base = Twitter::Base.new(ha)    
-      @twitter_profile = base.user(self.twitter_name)    
-    end
-    @twitter_profile
-  rescue
-    return nil
+  
+  def display_name    
+    ec_username || twitter_account.username || ""
   end
   
+  def twitter_account
+    associated_accounts.select { |x| x.service == "TW"}.first
+  end
+    
   private 
       
   def create_new_salt

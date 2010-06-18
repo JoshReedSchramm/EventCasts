@@ -28,8 +28,8 @@
         <tbody>
           <tr>
             <td class="left_align"><a href="spec-models-user_spec_rb.html">spec/models/user_spec.rb</a></td>
-            <td class='right_align'><tt>50</tt></td>
-            <td class='right_align'><tt>46</tt></td>
+            <td class='right_align'><tt>54</tt></td>
+            <td class='right_align'><tt>49</tt></td>
             <td class="left_align"><div class="percent_graph_legend"><tt class=''>100.00%</tt></div>
           <div class="percent_graph">
             <div class="covered" style="width:100px"></div>
@@ -123,241 +123,265 @@
           
           
           <tr class="marked">
-            <td><pre><a name="line12">12</a>   it &quot;has many associated accounts&quot; do</pre></td>
+            <td><pre><a name="line12">12</a>   its(:display_name) { should == &quot;Eventcasts&quot; }</pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line13">13</a>     association = User.reflect_on_association(:associated_accounts)</pre></td>
+            <td><pre><a name="line13">13</a>   it &quot;has many associated accounts&quot; do</pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line14">14</a>     association.should_not be_nil</pre></td>
+            <td><pre><a name="line14">14</a>     association = User.reflect_on_association(:associated_accounts)</pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line15">15</a>     association.macro.should == :has_many</pre></td>
+            <td><pre><a name="line15">15</a>     association.should_not be_nil</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line16">16</a>     association.macro.should == :has_many</pre></td>
           </tr>
         
           
           
           <tr class="inferred">
-            <td><pre><a name="line16">16</a>   end</pre></td>
+            <td><pre><a name="line17">17</a>   end</pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line17">17</a>   it &quot;requires a unique username&quot; do</pre></td>
+            <td><pre><a name="line18">18</a>   it &quot;requires a unique username&quot; do</pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line18">18</a>     lambda do</pre></td>
+            <td><pre><a name="line19">19</a>     lambda do</pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line19">19</a>       p1 = User.create(:ec_username=&gt;&quot;testusername&quot;, :password=&gt;&quot;password&quot;)</pre></td>
+            <td><pre><a name="line20">20</a>       p1 = User.create(:ec_username=&gt;&quot;testusername&quot;, :password=&gt;&quot;password&quot;)</pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line20">20</a>       p2 = User.create(:ec_username=&gt;&quot;testusername&quot;, :password=&gt;&quot;password&quot;)</pre></td>
+            <td><pre><a name="line21">21</a>       p2 = User.create(:ec_username=&gt;&quot;testusername&quot;, :password=&gt;&quot;password&quot;)</pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line21">21</a>       p1.errors[:ec_username].should be_empty</pre></td>
+            <td><pre><a name="line22">22</a>       p1.errors[:ec_username].should be_empty</pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line22">22</a>       p2.errors[:ec_username].should_not be_empty</pre></td>
+            <td><pre><a name="line23">23</a>       p2.errors[:ec_username].should_not be_empty</pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line23">23</a>     end.should change { User.count }.by(1)</pre></td>
+            <td><pre><a name="line24">24</a>     end.should change { User.count }.by(1)</pre></td>
           </tr>
         
           
           
           <tr class="inferred">
-            <td><pre><a name="line24">24</a>   end</pre></td>
+            <td><pre><a name="line25">25</a>   end</pre></td>
           </tr>
         
           
           
           <tr class="inferred">
-            <td><pre><a name="line25">25</a> end</pre></td>
+            <td><pre><a name="line26">26</a> end</pre></td>
           </tr>
         
           
           
           <tr class="inferred">
-            <td><pre><a name="line26">26</a> </pre></td>
+            <td><pre><a name="line27">27</a> </pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line27">27</a> describe User do</pre></td>
+            <td><pre><a name="line28">28</a> describe User do</pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line28">28</a>   context &quot;when logging in through Twitter&quot; do</pre></td>
+            <td><pre><a name="line29">29</a>   context &quot;when logging in through Twitter&quot; do</pre></td>
           </tr>
         
           
           
           <tr class="inferred">
-            <td><pre><a name="line29">29</a> </pre></td>
+            <td><pre><a name="line30">30</a> </pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line30">30</a>     let (:mock_twitter_profile) { mock(Twitter::Request, {:screen_name=&gt;&quot;Eventcasts&quot;})}</pre></td>
+            <td><pre><a name="line31">31</a>     let (:mock_twitter_profile) { mock(Twitter::Request, {:screen_name=&gt;&quot;EventcastsTwitter&quot;})}</pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line31">31</a>     subject { User.get_from_twitter(mock_twitter_profile) }    </pre></td>
+            <td><pre><a name="line32">32</a>     subject { User.get_from_twitter(mock_twitter_profile) }   </pre></td>
           </tr>
         
           
           
           <tr class="inferred">
-            <td><pre><a name="line32">32</a> </pre></td>
+            <td><pre><a name="line33">33</a>     </pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line33">33</a>     context &quot;and it is the first time&quot; do</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line34">34</a>       it &quot;should create an account&quot; do</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line35">35</a>         User.should_receive(:twitter_account).and_return([])</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line36">36</a>         subject.associated_accounts.count.should == 1</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line37">37</a>         subject.associated_accounts.twitter.first.username.should == &quot;Eventcasts&quot;</pre></td>
+            <td><pre><a name="line34">34</a>     its(:display_name) { should == &quot;EventcastsTwitter&quot; }</pre></td>
           </tr>
         
           
           
           <tr class="inferred">
-            <td><pre><a name="line38">38</a>       end</pre></td>
+            <td><pre><a name="line35">35</a>     </pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line36">36</a>     context &quot;and it is the first time&quot; do</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line37">37</a>       it &quot;should create an account&quot; do</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line38">38</a>         User.should_receive(:twitter_account).and_return([])</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line39">39</a>         subject.associated_accounts.count.should == 1</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line40">40</a>         subject.twitter_account.username.should == &quot;EventcastsTwitter&quot;</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line41">41</a>         subject.display_name.should == &quot;EventcastsTwitter&quot;</pre></td>
           </tr>
         
           
           
           <tr class="inferred">
-            <td><pre><a name="line39">39</a>     end  </pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line40">40</a>     context &quot;and they have an existing twitter account&quot; do      </pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line41">41</a>       it &quot;return the existing account&quot; do</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line42">42</a>         mock_associated_account = mock_model(AssociatedAccount, :username=&gt;&quot;Eventcasts&quot;, :service=&gt;&quot;TW&quot;)</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line43">43</a>         mock_user = mock_model(User, {:associated_accounts=&gt;[mock_associated_account]})</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line44">44</a>         User.should_receive(:twitter_account).and_return([mock_user])</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line45">45</a>         User.should_not_receive(:save!)</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line46">46</a>         subject.associated_accounts.count.should == 1</pre></td>
+            <td><pre><a name="line42">42</a>       end</pre></td>
           </tr>
         
           
           
           <tr class="inferred">
-            <td><pre><a name="line47">47</a>       end</pre></td>
+            <td><pre><a name="line43">43</a>     end  </pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line44">44</a>     context &quot;and they have an existing twitter account&quot; do      </pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line45">45</a>       it &quot;return the existing account&quot; do</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line46">46</a>         mock_associated_account = mock_model(AssociatedAccount, :username=&gt;&quot;EventcastsTwitter&quot;, :service=&gt;&quot;TW&quot;)</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line47">47</a>         mock_user = mock_model(User, {:associated_accounts=&gt;[mock_associated_account]})</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line48">48</a>         User.should_receive(:twitter_account).and_return([mock_user])</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line49">49</a>         User.should_not_receive(:save!)</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line50">50</a>         subject.associated_accounts.count.should == 1</pre></td>
           </tr>
         
           
           
           <tr class="inferred">
-            <td><pre><a name="line48">48</a>     end          </pre></td>
+            <td><pre><a name="line51">51</a>       end</pre></td>
           </tr>
         
           
           
           <tr class="inferred">
-            <td><pre><a name="line49">49</a>   end</pre></td>
+            <td><pre><a name="line52">52</a>     end    </pre></td>
           </tr>
         
           
           
           <tr class="inferred">
-            <td><pre><a name="line50">50</a> end</pre></td>
+            <td><pre><a name="line53">53</a>   end</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="inferred">
+            <td><pre><a name="line54">54</a> end</pre></td>
           </tr>
         
       </tbody>
     </table>
 
-    <p>Generated on Thu Jun 17 20:55:46 -0400 2010 with <a href="http://github.com/relevance/rcov">rcov 0.9.8</a></p>
+    <p>Generated on Thu Jun 17 21:46:50 -0400 2010 with <a href="http://github.com/relevance/rcov">rcov 0.9.8</a></p>
 
   </body>
 </html>

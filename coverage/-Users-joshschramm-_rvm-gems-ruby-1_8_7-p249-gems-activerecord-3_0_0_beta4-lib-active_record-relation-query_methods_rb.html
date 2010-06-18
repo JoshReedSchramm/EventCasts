@@ -30,15 +30,15 @@
             <td class="left_align"><a href="-Users-joshschramm-_rvm-gems-ruby-1_8_7-p249-gems-activerecord-3_0_0_beta4-lib-active_record-relation-query_methods_rb.html">/Users/joshschramm/.rvm/gems/ruby-1.8.7-p249/gems/activerecord-3.0.0.beta4/lib/active_record/relation/query_methods.rb</a></td>
             <td class='right_align'><tt>247</tt></td>
             <td class='right_align'><tt>199</tt></td>
-            <td class="left_align"><div class="percent_graph_legend"><tt class=''>68.02%</tt></div>
+            <td class="left_align"><div class="percent_graph_legend"><tt class=''>74.90%</tt></div>
           <div class="percent_graph">
-            <div class="covered" style="width:68px"></div>
-            <div class="uncovered" style="width:32px"></div>
+            <div class="covered" style="width:75px"></div>
+            <div class="uncovered" style="width:25px"></div>
           </div></td>
-            <td class="left_align"><div class="percent_graph_legend"><tt class=''>63.32%</tt></div>
+            <td class="left_align"><div class="percent_graph_legend"><tt class=''>71.36%</tt></div>
           <div class="percent_graph">
-            <div class="covered" style="width:63px"></div>
-            <div class="uncovered" style="width:37px"></div>
+            <div class="covered" style="width:71px"></div>
+            <div class="uncovered" style="width:29px"></div>
           </div></td>
           </tr>
         </tbody>
@@ -800,13 +800,13 @@
         
           
           
-          <tr class="uncovered">
+          <tr class="marked">
             <td><pre><a name="line125">125</a>         association_joins &lt;&lt; join if [Hash, Array, Symbol].include?(join.class) &amp;&amp; !array_of_strings?(join)</pre></td>
           </tr>
         
           
           
-          <tr class="uncovered">
+          <tr class="inferred">
             <td><pre><a name="line126">126</a>       end</pre></td>
           </tr>
         
@@ -902,7 +902,7 @@
         
           
           
-          <tr class="uncovered">
+          <tr class="marked">
             <td><pre><a name="line142">142</a>         if (association_relation = association.relation).is_a?(Array)</pre></td>
           </tr>
         
@@ -920,25 +920,25 @@
         
           
           
-          <tr class="uncovered">
+          <tr class="inferred">
             <td><pre><a name="line145">145</a>         else</pre></td>
           </tr>
         
           
           
-          <tr class="uncovered">
+          <tr class="marked">
             <td><pre><a name="line146">146</a>           to_join &lt;&lt; [association_relation, association.join_class, association.association_join]</pre></td>
           </tr>
         
           
           
-          <tr class="uncovered">
+          <tr class="inferred">
             <td><pre><a name="line147">147</a>         end</pre></td>
           </tr>
         
           
           
-          <tr class="uncovered">
+          <tr class="inferred">
             <td><pre><a name="line148">148</a>       end</pre></td>
           </tr>
         
@@ -956,31 +956,31 @@
         
           
           
-          <tr class="uncovered">
+          <tr class="marked">
             <td><pre><a name="line151">151</a>         unless joined_associations.detect {|ja| ja[0] == tj[0] &amp;&amp; ja[1] == tj[1] &amp;&amp; ja[2] == tj[2] }</pre></td>
           </tr>
         
           
           
-          <tr class="uncovered">
+          <tr class="marked">
             <td><pre><a name="line152">152</a>           joined_associations &lt;&lt; tj</pre></td>
           </tr>
         
           
           
-          <tr class="uncovered">
+          <tr class="marked">
             <td><pre><a name="line153">153</a>           arel = arel.join(tj[0], tj[1]).on(*tj[2])</pre></td>
           </tr>
         
           
           
-          <tr class="uncovered">
+          <tr class="inferred">
             <td><pre><a name="line154">154</a>         end</pre></td>
           </tr>
         
           
           
-          <tr class="uncovered">
+          <tr class="inferred">
             <td><pre><a name="line155">155</a>       end</pre></td>
           </tr>
         
@@ -1508,38 +1508,38 @@
         
           
           
-          <tr class="uncovered">
+          <tr class="marked">
             <td><pre><a name="line243">243</a>       o.is_a?(Array) &amp;&amp; o.all?{|obj| obj.is_a?(String)}</pre></td>
           </tr>
         
           
           
-          <tr class="uncovered">
+          <tr class="inferred">
             <td><pre><a name="line244">244</a>     end</pre></td>
           </tr>
         
           
           
-          <tr class="uncovered">
+          <tr class="inferred">
             <td><pre><a name="line245">245</a> </pre></td>
           </tr>
         
           
           
-          <tr class="uncovered">
+          <tr class="inferred">
             <td><pre><a name="line246">246</a>   end</pre></td>
           </tr>
         
           
           
-          <tr class="uncovered">
+          <tr class="inferred">
             <td><pre><a name="line247">247</a> end</pre></td>
           </tr>
         
       </tbody>
     </table>
 
-    <p>Generated on Thu Jun 17 20:55:41 -0400 2010 with <a href="http://github.com/relevance/rcov">rcov 0.9.8</a></p>
+    <p>Generated on Thu Jun 17 21:46:47 -0400 2010 with <a href="http://github.com/relevance/rcov">rcov 0.9.8</a></p>
 
   </body>
 </html>

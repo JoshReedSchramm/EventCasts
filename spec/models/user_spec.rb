@@ -9,6 +9,7 @@ describe User do
   it { should be_valid } 
   its(:errors) { should be_empty }
   its(:hashed_password) { should_not be_nil}
+  its(:display_name) { should == "Eventcasts" }
   it "has many associated accounts" do
     association = User.reflect_on_association(:associated_accounts)
     association.should_not be_nil
@@ -27,24 +28,27 @@ end
 describe User do
   context "when logging in through Twitter" do
 
-    let (:mock_twitter_profile) { mock(Twitter::Request, {:screen_name=>"Eventcasts"})}
-    subject { User.get_from_twitter(mock_twitter_profile) }    
-
+    let (:mock_twitter_profile) { mock(Twitter::Request, {:screen_name=>"EventcastsTwitter"})}
+    subject { User.get_from_twitter(mock_twitter_profile) }   
+    
+    its(:display_name) { should == "EventcastsTwitter" }
+    
     context "and it is the first time" do
       it "should create an account" do
         User.should_receive(:twitter_account).and_return([])
         subject.associated_accounts.count.should == 1
-        subject.associated_accounts.twitter.first.username.should == "Eventcasts"
+        subject.twitter_account.username.should == "EventcastsTwitter"
+        subject.display_name.should == "EventcastsTwitter"
       end
     end  
     context "and they have an existing twitter account" do      
       it "return the existing account" do
-        mock_associated_account = mock_model(AssociatedAccount, :username=>"Eventcasts", :service=>"TW")
+        mock_associated_account = mock_model(AssociatedAccount, :username=>"EventcastsTwitter", :service=>"TW")
         mock_user = mock_model(User, {:associated_accounts=>[mock_associated_account]})
         User.should_receive(:twitter_account).and_return([mock_user])
         User.should_not_receive(:save!)
         subject.associated_accounts.count.should == 1
       end
-    end          
+    end    
   end
 end

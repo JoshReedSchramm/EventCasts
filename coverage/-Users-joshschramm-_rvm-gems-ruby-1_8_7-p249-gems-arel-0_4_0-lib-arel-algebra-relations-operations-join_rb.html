@@ -30,15 +30,15 @@
             <td class="left_align"><a href="-Users-joshschramm-_rvm-gems-ruby-1_8_7-p249-gems-arel-0_4_0-lib-arel-algebra-relations-operations-join_rb.html">/Users/joshschramm/.rvm/gems/ruby-1.8.7-p249/gems/arel-0.4.0/lib/arel/algebra/relations/operations/join.rb</a></td>
             <td class='right_align'><tt>69</tt></td>
             <td class='right_align'><tt>53</tt></td>
-            <td class="left_align"><div class="percent_graph_legend"><tt class=''>60.87%</tt></div>
+            <td class="left_align"><div class="percent_graph_legend"><tt class=''>81.16%</tt></div>
           <div class="percent_graph">
-            <div class="covered" style="width:61px"></div>
-            <div class="uncovered" style="width:39px"></div>
+            <div class="covered" style="width:81px"></div>
+            <div class="uncovered" style="width:19px"></div>
           </div></td>
-            <td class="left_align"><div class="percent_graph_legend"><tt class=''>50.94%</tt></div>
+            <td class="left_align"><div class="percent_graph_legend"><tt class=''>75.47%</tt></div>
           <div class="percent_graph">
-            <div class="covered" style="width:51px"></div>
-            <div class="uncovered" style="width:49px"></div>
+            <div class="covered" style="width:75px"></div>
+            <div class="uncovered" style="width:25px"></div>
           </div></td>
           </tr>
         </tbody>
@@ -110,13 +110,13 @@
         
           
           
-          <tr class="uncovered">
+          <tr class="marked">
             <td><pre><a name="line10">10</a>       @relation1, @relation2, @predicates = relation1, relation2, predicates</pre></td>
           </tr>
         
           
           
-          <tr class="uncovered">
+          <tr class="inferred">
             <td><pre><a name="line11">11</a>     end</pre></td>
           </tr>
         
@@ -182,13 +182,13 @@
         
           
           
-          <tr class="uncovered">
+          <tr class="marked">
             <td><pre><a name="line22">22</a>       @attributes ||= (relation1.externalize.attributes | relation2.externalize.attributes).bind(self)</pre></td>
           </tr>
         
           
           
-          <tr class="uncovered">
+          <tr class="inferred">
             <td><pre><a name="line23">23</a>     end</pre></td>
           </tr>
         
@@ -206,19 +206,19 @@
         
           
           
-          <tr class="uncovered">
+          <tr class="inferred">
             <td><pre><a name="line26">26</a>       # TESTME bind to self?</pre></td>
           </tr>
         
           
           
-          <tr class="uncovered">
+          <tr class="marked">
             <td><pre><a name="line27">27</a>       relation1.externalize.wheres</pre></td>
           </tr>
         
           
           
-          <tr class="uncovered">
+          <tr class="inferred">
             <td><pre><a name="line28">28</a>     end</pre></td>
           </tr>
         
@@ -236,13 +236,13 @@
         
           
           
-          <tr class="uncovered">
+          <tr class="marked">
             <td><pre><a name="line31">31</a>       @ons ||= @predicates.collect { |p| p.bind(self) }</pre></td>
           </tr>
         
           
           
-          <tr class="uncovered">
+          <tr class="inferred">
             <td><pre><a name="line32">32</a>     end</pre></td>
           </tr>
         
@@ -290,13 +290,13 @@
         
           
           
-          <tr class="uncovered">
+          <tr class="marked">
             <td><pre><a name="line40">40</a>       true</pre></td>
           </tr>
         
           
           
-          <tr class="uncovered">
+          <tr class="inferred">
             <td><pre><a name="line41">41</a>     end</pre></td>
           </tr>
         
@@ -314,19 +314,19 @@
         
           
           
-          <tr class="uncovered">
+          <tr class="marked">
             <td><pre><a name="line44">44</a>       relation1.engine != relation2.engine ? Memory::Engine.new : relation1.engine</pre></td>
           </tr>
         
           
           
-          <tr class="uncovered">
+          <tr class="inferred">
             <td><pre><a name="line45">45</a>     end</pre></td>
           </tr>
         
           
           
-          <tr class="uncovered">
+          <tr class="inferred">
             <td><pre><a name="line46">46</a>   end</pre></td>
           </tr>
         
@@ -471,7 +471,7 @@
       </tbody>
     </table>
 
-    <p>Generated on Thu Jun 17 20:55:43 -0400 2010 with <a href="http://github.com/relevance/rcov">rcov 0.9.8</a></p>
+    <p>Generated on Thu Jun 17 21:46:48 -0400 2010 with <a href="http://github.com/relevance/rcov">rcov 0.9.8</a></p>
 
   </body>
 </html>

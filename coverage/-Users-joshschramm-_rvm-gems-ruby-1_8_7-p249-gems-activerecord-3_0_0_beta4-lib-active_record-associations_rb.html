@@ -30,15 +30,15 @@
             <td class="left_align"><a href="-Users-joshschramm-_rvm-gems-ruby-1_8_7-p249-gems-activerecord-3_0_0_beta4-lib-active_record-associations_rb.html">/Users/joshschramm/.rvm/gems/ruby-1.8.7-p249/gems/activerecord-3.0.0.beta4/lib/active_record/associations.rb</a></td>
             <td class='right_align'><tt>2141</tt></td>
             <td class='right_align'><tt>830</tt></td>
-            <td class="left_align"><div class="percent_graph_legend"><tt class=''>72.16%</tt></div>
+            <td class="left_align"><div class="percent_graph_legend"><tt class=''>75.76%</tt></div>
           <div class="percent_graph">
-            <div class="covered" style="width:72px"></div>
-            <div class="uncovered" style="width:28px"></div>
+            <div class="covered" style="width:76px"></div>
+            <div class="uncovered" style="width:24px"></div>
           </div></td>
-            <td class="left_align"><div class="percent_graph_legend"><tt class=''>33.73%</tt></div>
+            <td class="left_align"><div class="percent_graph_legend"><tt class=''>41.57%</tt></div>
           <div class="percent_graph">
-            <div class="covered" style="width:34px"></div>
-            <div class="uncovered" style="width:66px"></div>
+            <div class="covered" style="width:42px"></div>
+            <div class="uncovered" style="width:58px"></div>
           </div></td>
           </tr>
         </tbody>
@@ -10580,13 +10580,13 @@
         
           
           
-          <tr class="uncovered">
+          <tr class="marked">
             <td><pre><a name="line1755">1755</a>             @joins[0]</pre></td>
           </tr>
         
           
           
-          <tr class="uncovered">
+          <tr class="inferred">
             <td><pre><a name="line1756">1756</a>           end</pre></td>
           </tr>
         
@@ -10604,25 +10604,25 @@
         
           
           
-          <tr class="uncovered">
+          <tr class="inferred">
             <td><pre><a name="line1759">1759</a>             # quoted_name should be downcased as some database adapters (Oracle) return quoted name in uppercase</pre></td>
           </tr>
         
           
           
-          <tr class="uncovered">
+          <tr class="marked">
             <td><pre><a name="line1760">1760</a>             quoted_name = join_base.active_record.connection.quote_table_name(name.downcase).downcase</pre></td>
           </tr>
         
           
           
-          <tr class="uncovered">
+          <tr class="marked">
             <td><pre><a name="line1761">1761</a>             join_sql = join_base.table_joins.to_s.downcase</pre></td>
           </tr>
         
           
           
-          <tr class="uncovered">
+          <tr class="marked">
             <td><pre><a name="line1762">1762</a>             join_sql.blank? ? 0 :</pre></td>
           </tr>
         
@@ -10952,25 +10952,25 @@
         
           
           
-          <tr class="uncovered">
+          <tr class="marked">
             <td><pre><a name="line1817">1817</a>                   reflection = parent.reflections[associations.to_s.intern] or</pre></td>
           </tr>
         
           
           
-          <tr class="uncovered">
+          <tr class="marked">
             <td><pre><a name="line1818">1818</a>                   raise ConfigurationError, &quot;Association named '#{ associations }' was not found; perhaps you misspelled it?&quot;</pre></td>
           </tr>
         
           
           
-          <tr class="uncovered">
+          <tr class="marked">
             <td><pre><a name="line1819">1819</a>                   @reflections &lt;&lt; reflection</pre></td>
           </tr>
         
           
           
-          <tr class="uncovered">
+          <tr class="marked">
             <td><pre><a name="line1820">1820</a>                   @joins &lt;&lt; build_join_association(reflection, parent).with_join_class(join_class)</pre></td>
           </tr>
         
@@ -10988,13 +10988,13 @@
         
           
           
-          <tr class="uncovered">
+          <tr class="marked">
             <td><pre><a name="line1823">1823</a>                     build(association, parent, join_class)</pre></td>
           </tr>
         
           
           
-          <tr class="uncovered">
+          <tr class="inferred">
             <td><pre><a name="line1824">1824</a>                   end</pre></td>
           </tr>
         
@@ -11066,13 +11066,13 @@
         
           
           
-          <tr class="uncovered">
+          <tr class="marked">
             <td><pre><a name="line1836">1836</a>               JoinAssociation.new(reflection, self, parent)</pre></td>
           </tr>
         
           
           
-          <tr class="uncovered">
+          <tr class="inferred">
             <td><pre><a name="line1837">1837</a>             end</pre></td>
           </tr>
         
@@ -11570,13 +11570,13 @@
         
           
           
-          <tr class="uncovered">
+          <tr class="marked">
             <td><pre><a name="line1920">1920</a>               active_record.table_name</pre></td>
           </tr>
         
           
           
-          <tr class="uncovered">
+          <tr class="inferred">
             <td><pre><a name="line1921">1921</a>             end</pre></td>
           </tr>
         
@@ -11768,13 +11768,13 @@
         
           
           
-          <tr class="uncovered">
+          <tr class="marked">
             <td><pre><a name="line1953">1953</a>               reflection.check_validity!</pre></td>
           </tr>
         
           
           
-          <tr class="uncovered">
+          <tr class="marked">
             <td><pre><a name="line1954">1954</a>               if reflection.options[:polymorphic]</pre></td>
           </tr>
         
@@ -11792,67 +11792,67 @@
         
           
           
-          <tr class="uncovered">
+          <tr class="inferred">
             <td><pre><a name="line1957">1957</a> </pre></td>
           </tr>
         
           
           
-          <tr class="uncovered">
+          <tr class="marked">
             <td><pre><a name="line1958">1958</a>               super(reflection.klass)</pre></td>
           </tr>
         
           
           
-          <tr class="uncovered">
+          <tr class="marked">
             <td><pre><a name="line1959">1959</a>               @join_dependency    = join_dependency</pre></td>
           </tr>
         
           
           
-          <tr class="uncovered">
+          <tr class="marked">
             <td><pre><a name="line1960">1960</a>               @parent             = parent</pre></td>
           </tr>
         
           
           
-          <tr class="uncovered">
+          <tr class="marked">
             <td><pre><a name="line1961">1961</a>               @reflection         = reflection</pre></td>
           </tr>
         
           
           
-          <tr class="uncovered">
+          <tr class="marked">
             <td><pre><a name="line1962">1962</a>               @aliased_prefix     = &quot;t#{ join_dependency.joins.size }&quot;</pre></td>
           </tr>
         
           
           
-          <tr class="uncovered">
+          <tr class="marked">
             <td><pre><a name="line1963">1963</a>               @parent_table_name  = parent.active_record.table_name</pre></td>
           </tr>
         
           
           
-          <tr class="uncovered">
+          <tr class="marked">
             <td><pre><a name="line1964">1964</a>               @aliased_table_name = aliased_table_name_for(table_name)</pre></td>
           </tr>
         
           
           
-          <tr class="uncovered">
+          <tr class="marked">
             <td><pre><a name="line1965">1965</a>               @join               = nil</pre></td>
           </tr>
         
           
           
-          <tr class="uncovered">
+          <tr class="inferred">
             <td><pre><a name="line1966">1966</a> </pre></td>
           </tr>
         
           
           
-          <tr class="uncovered">
+          <tr class="marked">
             <td><pre><a name="line1967">1967</a>               if reflection.macro == :has_and_belongs_to_many</pre></td>
           </tr>
         
@@ -11870,13 +11870,13 @@
         
           
           
-          <tr class="uncovered">
+          <tr class="inferred">
             <td><pre><a name="line1970">1970</a> </pre></td>
           </tr>
         
           
           
-          <tr class="uncovered">
+          <tr class="marked">
             <td><pre><a name="line1971">1971</a>               if [:has_many, :has_one].include?(reflection.macro) &amp;&amp; reflection.options[:through]</pre></td>
           </tr>
         
@@ -11984,13 +11984,13 @@
         
           
           
-          <tr class="uncovered">
+          <tr class="marked">
             <td><pre><a name="line1989">1989</a>               @join_class ||= Arel::InnerJoin</pre></td>
           </tr>
         
           
           
-          <tr class="uncovered">
+          <tr class="inferred">
             <td><pre><a name="line1990">1990</a>             end</pre></td>
           </tr>
         
@@ -12008,19 +12008,19 @@
         
           
           
-          <tr class="uncovered">
+          <tr class="marked">
             <td><pre><a name="line1993">1993</a>               @join_class = join_class</pre></td>
           </tr>
         
           
           
-          <tr class="uncovered">
+          <tr class="marked">
             <td><pre><a name="line1994">1994</a>               self</pre></td>
           </tr>
         
           
           
-          <tr class="uncovered">
+          <tr class="inferred">
             <td><pre><a name="line1995">1995</a>             end</pre></td>
           </tr>
         
@@ -12038,43 +12038,43 @@
         
           
           
-          <tr class="uncovered">
+          <tr class="marked">
             <td><pre><a name="line1998">1998</a>               return @join if @join</pre></td>
           </tr>
         
           
           
-          <tr class="uncovered">
+          <tr class="inferred">
             <td><pre><a name="line1999">1999</a> </pre></td>
           </tr>
         
           
           
-          <tr class="uncovered">
+          <tr class="marked">
             <td><pre><a name="line2000">2000</a>               aliased_table = Arel::Table.new(table_name, :as =&gt; @aliased_table_name, :engine =&gt; arel_engine)</pre></td>
           </tr>
         
           
           
-          <tr class="uncovered">
+          <tr class="marked">
             <td><pre><a name="line2001">2001</a>               parent_table = Arel::Table.new(parent.table_name, :as =&gt; parent.aliased_table_name, :engine =&gt; arel_engine)</pre></td>
           </tr>
         
           
           
-          <tr class="uncovered">
+          <tr class="inferred">
             <td><pre><a name="line2002">2002</a> </pre></td>
           </tr>
         
           
           
-          <tr class="uncovered">
+          <tr class="marked">
             <td><pre><a name="line2003">2003</a>               @join = case reflection.macro</pre></td>
           </tr>
         
           
           
-          <tr class="uncovered">
+          <tr class="marked">
             <td><pre><a name="line2004">2004</a>               when :has_and_belongs_to_many</pre></td>
           </tr>
         
@@ -12128,13 +12128,13 @@
         
           
           
-          <tr class="uncovered">
+          <tr class="marked">
             <td><pre><a name="line2013">2013</a>               when :has_many, :has_one</pre></td>
           </tr>
         
           
           
-          <tr class="uncovered">
+          <tr class="marked">
             <td><pre><a name="line2014">2014</a>                 if reflection.options[:through]</pre></td>
           </tr>
         
@@ -12374,7 +12374,7 @@
         
           
           
-          <tr class="uncovered">
+          <tr class="marked">
             <td><pre><a name="line2054">2054</a>                 elsif reflection.options[:as]</pre></td>
           </tr>
         
@@ -12398,25 +12398,25 @@
         
           
           
-          <tr class="uncovered">
+          <tr class="inferred">
             <td><pre><a name="line2058">2058</a>                 else</pre></td>
           </tr>
         
           
           
-          <tr class="uncovered">
+          <tr class="marked">
             <td><pre><a name="line2059">2059</a>                   foreign_key = options[:foreign_key] || reflection.active_record.name.foreign_key</pre></td>
           </tr>
         
           
           
-          <tr class="uncovered">
+          <tr class="marked">
             <td><pre><a name="line2060">2060</a>                   [aliased_table[foreign_key].eq(parent_table[reflection.options[:primary_key] || parent.primary_key])]</pre></td>
           </tr>
         
           
           
-          <tr class="uncovered">
+          <tr class="inferred">
             <td><pre><a name="line2061">2061</a>                 end</pre></td>
           </tr>
         
@@ -12440,13 +12440,13 @@
         
           
           
-          <tr class="uncovered">
+          <tr class="inferred">
             <td><pre><a name="line2065">2065</a> </pre></td>
           </tr>
         
           
           
-          <tr class="uncovered">
+          <tr class="marked">
             <td><pre><a name="line2066">2066</a>               unless klass.descends_from_active_record?</pre></td>
           </tr>
         
@@ -12488,19 +12488,19 @@
         
           
           
-          <tr class="uncovered">
+          <tr class="inferred">
             <td><pre><a name="line2073">2073</a> </pre></td>
           </tr>
         
           
           
-          <tr class="uncovered">
+          <tr class="marked">
             <td><pre><a name="line2074">2074</a>               [through_reflection, reflection].each do |ref|</pre></td>
           </tr>
         
           
           
-          <tr class="uncovered">
+          <tr class="marked">
             <td><pre><a name="line2075">2075</a>                 if ref &amp;&amp; ref.options[:conditions]</pre></td>
           </tr>
         
@@ -12524,19 +12524,19 @@
         
           
           
-          <tr class="uncovered">
+          <tr class="inferred">
             <td><pre><a name="line2079">2079</a> </pre></td>
           </tr>
         
           
           
-          <tr class="uncovered">
+          <tr class="marked">
             <td><pre><a name="line2080">2080</a>               @join</pre></td>
           </tr>
         
           
           
-          <tr class="uncovered">
+          <tr class="inferred">
             <td><pre><a name="line2081">2081</a>             end</pre></td>
           </tr>
         
@@ -12554,19 +12554,19 @@
         
           
           
-          <tr class="uncovered">
+          <tr class="marked">
             <td><pre><a name="line2084">2084</a>               aliased = Arel::Table.new(table_name, :as =&gt; @aliased_table_name, :engine =&gt; arel_engine)</pre></td>
           </tr>
         
           
           
-          <tr class="uncovered">
+          <tr class="inferred">
             <td><pre><a name="line2085">2085</a> </pre></td>
           </tr>
         
           
           
-          <tr class="uncovered">
+          <tr class="marked">
             <td><pre><a name="line2086">2086</a>               if reflection.macro == :has_and_belongs_to_many</pre></td>
           </tr>
         
@@ -12578,7 +12578,7 @@
         
           
           
-          <tr class="uncovered">
+          <tr class="marked">
             <td><pre><a name="line2088">2088</a>               elsif reflection.options[:through]</pre></td>
           </tr>
         
@@ -12590,25 +12590,25 @@
         
           
           
-          <tr class="uncovered">
+          <tr class="inferred">
             <td><pre><a name="line2090">2090</a>               else</pre></td>
           </tr>
         
           
           
-          <tr class="uncovered">
+          <tr class="marked">
             <td><pre><a name="line2091">2091</a>                 aliased</pre></td>
           </tr>
         
           
           
-          <tr class="uncovered">
+          <tr class="inferred">
             <td><pre><a name="line2092">2092</a>               end</pre></td>
           </tr>
         
           
           
-          <tr class="uncovered">
+          <tr class="inferred">
             <td><pre><a name="line2093">2093</a>             end</pre></td>
           </tr>
         
@@ -12662,31 +12662,31 @@
         
           
           
-          <tr class="uncovered">
+          <tr class="marked">
             <td><pre><a name="line2102">2102</a>                 if @join_dependency.table_aliases[name].zero?</pre></td>
           </tr>
         
           
           
-          <tr class="uncovered">
+          <tr class="marked">
             <td><pre><a name="line2103">2103</a>                   @join_dependency.table_aliases[name] = @join_dependency.count_aliases_from_table_joins(name)</pre></td>
           </tr>
         
           
           
-          <tr class="uncovered">
+          <tr class="inferred">
             <td><pre><a name="line2104">2104</a>                 end</pre></td>
           </tr>
         
           
           
-          <tr class="uncovered">
+          <tr class="inferred">
             <td><pre><a name="line2105">2105</a> </pre></td>
           </tr>
         
           
           
-          <tr class="uncovered">
+          <tr class="marked">
             <td><pre><a name="line2106">2106</a>                 if !@join_dependency.table_aliases[name].zero? # We need an alias</pre></td>
           </tr>
         
@@ -12740,37 +12740,37 @@
         
           
           
-          <tr class="uncovered">
+          <tr class="inferred">
             <td><pre><a name="line2115">2115</a>                 else</pre></td>
           </tr>
         
           
           
-          <tr class="uncovered">
+          <tr class="marked">
             <td><pre><a name="line2116">2116</a>                   @join_dependency.table_aliases[name] += 1</pre></td>
           </tr>
         
           
           
-          <tr class="uncovered">
+          <tr class="inferred">
             <td><pre><a name="line2117">2117</a>                 end</pre></td>
           </tr>
         
           
           
-          <tr class="uncovered">
+          <tr class="inferred">
             <td><pre><a name="line2118">2118</a> </pre></td>
           </tr>
         
           
           
-          <tr class="uncovered">
+          <tr class="marked">
             <td><pre><a name="line2119">2119</a>                 name</pre></td>
           </tr>
         
           
           
-          <tr class="uncovered">
+          <tr class="inferred">
             <td><pre><a name="line2120">2120</a>               end</pre></td>
           </tr>
         
@@ -12903,7 +12903,7 @@
       </tbody>
     </table>
 
-    <p>Generated on Thu Jun 17 20:55:41 -0400 2010 with <a href="http://github.com/relevance/rcov">rcov 0.9.8</a></p>
+    <p>Generated on Thu Jun 17 21:46:46 -0400 2010 with <a href="http://github.com/relevance/rcov">rcov 0.9.8</a></p>
 
   </body>
 </html>

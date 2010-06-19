@@ -1,0 +1,15 @@
+<div class='usercard'>
+	<img src='images/profile_image.jpg' alt='profile_image' class='profile_image' />
+	<span class='display_name'><%= session[:user].display_name %></span>
+	<% if !session[:user].associated_accounts.empty? %>
+		<ul class='service_list'>
+			<% session[:user].associated_accounts.each do |account| %>
+				<li>
+					<a href='javascript:void(0)'>
+						<img src='images/service_<%= account.service %>.png' alt='<%= account.username %> on <%= account.service %>' class='service_icon' />
+					</a>
+				</li>
+			<% end %>
+		</ul>
+	<% end %>
+</div>

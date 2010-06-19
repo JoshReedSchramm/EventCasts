@@ -1,1 +1,17 @@
 @import url("reset.css");
+.clearfix:after {
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+}
+
+#page { width: 900px; border: solid 1px black; margin: 0px auto;}
+#logo { width: 300px; height: 75px; float: left; }
+#header .usercard { float: right; }
+#header { margin-bottom: 20px; }
+
+.usercard { border: solid 1px black; padding: 3px; }
+.usercard .profile_image { float: right; width: 75px; height: 75px; margin-left: 15px;}
+.usercard .service_icon { width: 20px; height: 20px; }

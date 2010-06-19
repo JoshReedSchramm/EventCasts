@@ -32,7 +32,7 @@ class User < ActiveRecord::Base
   end
   
   def display_name    
-    ec_username || twitter_account.username || ""
+    ec_username || "@"+twitter_account.username || ""
   end
   
   def twitter_account

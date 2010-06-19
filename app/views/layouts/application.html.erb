@@ -8,16 +8,17 @@
 </head>
 <body>
     <div id="page">
-        <div id="container" class="clear_fix">
-            <div id="header">
-                <ul id="menu">
-                    <% if session[:user].blank? %>
-                        <li><a href='/user/login'>Login</a></li>
-                        <li><a href='/user/register'>Create an Account</a></li>
-						<li><a href='/events/create' id='create_event'>Create an Event</a></li>
-
-                    <% end %>
-                </ul>
+        <div id="container">
+            <div id="header" class="clearfix">
+				<img src='images/logo.png' alt='logo' id='logo' />
+				<% if session[:user].blank? %>
+	                <ul id="menu">
+						<li><a href='/user/login'>Login</a></li>
+						<li><a href='/user/register'>Create an Account</a></li>
+	                </ul>
+				<% else %>
+					<%= render :partial => "shared/usercard" %>								
+                <% end %>             				
             </div>
             <div id='body'>    
                 <div id="flash"><%= flash[:notice] %></div>

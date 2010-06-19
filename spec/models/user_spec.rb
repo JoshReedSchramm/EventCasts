@@ -31,14 +31,14 @@ describe User do
     let (:mock_twitter_profile) { mock(Twitter::Request, {:screen_name=>"EventcastsTwitter"})}
     subject { User.get_from_twitter(mock_twitter_profile) }   
     
-    its(:display_name) { should == "EventcastsTwitter" }
+    its(:display_name) { should == "@EventcastsTwitter" }
     
     context "and it is the first time" do
       it "should create an account" do
         User.should_receive(:twitter_account).and_return([])
         subject.associated_accounts.count.should == 1
         subject.twitter_account.username.should == "EventcastsTwitter"
-        subject.display_name.should == "EventcastsTwitter"
+        subject.display_name.should == "@EventcastsTwitter"
       end
     end  
     context "and they have an existing twitter account" do      

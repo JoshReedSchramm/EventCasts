@@ -28,17 +28,17 @@
         <tbody>
           <tr>
             <td class="left_align"><a href="spec-models-event_spec_rb.html">spec/models/event_spec.rb</a></td>
-            <td class='right_align'><tt>75</tt></td>
-            <td class='right_align'><tt>62</tt></td>
-            <td class="left_align"><div class="percent_graph_legend"><tt class=''>94.67%</tt></div>
+            <td class='right_align'><tt>73</tt></td>
+            <td class='right_align'><tt>60</tt></td>
+            <td class="left_align"><div class="percent_graph_legend"><tt class=''>94.52%</tt></div>
           <div class="percent_graph">
             <div class="covered" style="width:95px"></div>
             <div class="uncovered" style="width:5px"></div>
           </div></td>
-            <td class="left_align"><div class="percent_graph_legend"><tt class=''>93.55%</tt></div>
+            <td class="left_align"><div class="percent_graph_legend"><tt class=''>93.33%</tt></div>
           <div class="percent_graph">
-            <div class="covered" style="width:94px"></div>
-            <div class="uncovered" style="width:6px"></div>
+            <div class="covered" style="width:93px"></div>
+            <div class="uncovered" style="width:7px"></div>
           </div></td>
           </tr>
         </tbody>
@@ -189,325 +189,313 @@
           
           
           <tr class="marked">
-            <td><pre><a name="line23">23</a>   it &quot;should filter the hash tag&quot; do</pre></td>
+            <td><pre><a name="line23">23</a>   context &quot;when creating an event&quot; do</pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line24">24</a>     tag_name = &quot;#eventName&quot;</pre></td>
+            <td><pre><a name="line24">24</a>     it &quot;should return a new event with the data elements set&quot; do</pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line25">25</a>     tag_name = Event.filter_hash(tag_name)</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line26">26</a>     tag_name.should == &quot;eventName&quot;</pre></td>
+            <td><pre><a name="line25">25</a>       params = { :event =&gt; {&quot;name&quot;=&gt;&quot;Test Event&quot;, &quot;description&quot;=&gt;&quot;My Test Event&quot;}, :search_terms=&gt;[&quot;The Phrase&quot;, &quot;Phrase Two&quot;]}</pre></td>
           </tr>
         
           
           
           <tr class="inferred">
-            <td><pre><a name="line27">27</a>   end</pre></td>
+            <td><pre><a name="line26">26</a>       </pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line27">27</a>       mock_logged_in_user_id</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line28">28</a>       mock_search_term_creation                      </pre></td>
           </tr>
         
           
           
           <tr class="inferred">
-            <td><pre><a name="line28">28</a> </pre></td>
+            <td><pre><a name="line29">29</a>       </pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line29">29</a>   context &quot;when creating an event&quot; do</pre></td>
+            <td><pre><a name="line30">30</a>       result = Event.create_event(params, mock_user)      </pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line30">30</a>     it &quot;should return a new event with the data elements set&quot; do</pre></td>
+            <td><pre><a name="line31">31</a>       result.name.should == &quot;Test Event&quot;</pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line31">31</a>       params = { :event =&gt; {&quot;name&quot;=&gt;&quot;Test Event&quot;, &quot;description&quot;=&gt;&quot;My Test Event&quot;}, :search_terms=&gt;[&quot;The Phrase&quot;, &quot;Phrase Two&quot;]}</pre></td>
+            <td><pre><a name="line32">32</a>       result.description.should == &quot;My Test Event&quot;      </pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line33">33</a>       result.search_terms.length.should == 2</pre></td>
           </tr>
         
           
           
           <tr class="inferred">
-            <td><pre><a name="line32">32</a>       </pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line33">33</a>       mock_logged_in_user_id</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line34">34</a>       mock_search_term_creation                      </pre></td>
+            <td><pre><a name="line34">34</a>     end</pre></td>
           </tr>
         
           
           
           <tr class="inferred">
-            <td><pre><a name="line35">35</a>       </pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line36">36</a>       result = Event.create_event(params, mock_user)      </pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line37">37</a>       result.name.should == &quot;Test Event&quot;</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line38">38</a>       result.description.should == &quot;My Test Event&quot;      </pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line39">39</a>       result.search_terms.length.should == 2</pre></td>
+            <td><pre><a name="line35">35</a>     </pre></td>
           </tr>
         
           
           
           <tr class="inferred">
-            <td><pre><a name="line40">40</a>     end</pre></td>
+            <td><pre><a name="line36">36</a>     </pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line37">37</a>     def mock_logged_in_user_id</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line38">38</a>       mock_user.should_receive(:id).and_return(1)</pre></td>
           </tr>
         
           
           
           <tr class="inferred">
-            <td><pre><a name="line41">41</a>     </pre></td>
+            <td><pre><a name="line39">39</a>     end</pre></td>
           </tr>
         
           
           
           <tr class="inferred">
-            <td><pre><a name="line42">42</a>     </pre></td>
+            <td><pre><a name="line40">40</a> </pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line43">43</a>     def mock_logged_in_user_id</pre></td>
+            <td><pre><a name="line41">41</a>     def mock_search_term_creation</pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line44">44</a>       mock_user.should_receive(:id).and_return(1)</pre></td>
+            <td><pre><a name="line42">42</a>       st1 = SearchTerm.new({:term=&gt;&quot;The Phrase&quot;})</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line43">43</a>       st2 = SearchTerm.new({:term=&gt;&quot;Phrase Two&quot;})</pre></td>
           </tr>
         
           
           
           <tr class="inferred">
-            <td><pre><a name="line45">45</a>     end</pre></td>
+            <td><pre><a name="line44">44</a> </pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line45">45</a>       SearchTerm.should_receive(:new).with({:term=&gt;&quot;The Phrase&quot;}).and_return(st1)</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line46">46</a>       SearchTerm.should_receive(:new).with({:term=&gt;&quot;Phrase Two&quot;}).and_return(st2)</pre></td>
           </tr>
         
           
           
           <tr class="inferred">
-            <td><pre><a name="line46">46</a> </pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line47">47</a>     def mock_search_term_creation</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line48">48</a>       st1 = SearchTerm.new({:term=&gt;&quot;The Phrase&quot;})</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line49">49</a>       st2 = SearchTerm.new({:term=&gt;&quot;Phrase Two&quot;})</pre></td>
+            <td><pre><a name="line47">47</a>     end</pre></td>
           </tr>
         
           
           
           <tr class="inferred">
-            <td><pre><a name="line50">50</a> </pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line51">51</a>       SearchTerm.should_receive(:new).with({:term=&gt;&quot;The Phrase&quot;}).and_return(st1)</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line52">52</a>       SearchTerm.should_receive(:new).with({:term=&gt;&quot;Phrase Two&quot;}).and_return(st2)</pre></td>
+            <td><pre><a name="line48">48</a>   end  </pre></td>
           </tr>
         
           
           
           <tr class="inferred">
-            <td><pre><a name="line53">53</a>     end</pre></td>
+            <td><pre><a name="line49">49</a> </pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line50">50</a>   context &quot;when saving an event&quot; do</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line51">51</a>     it &quot;should validate that at least one search term is provided&quot; do</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line52">52</a>       event = Event.new()</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line53">53</a>       event.name = &quot;My Name&quot;</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line54">54</a>       event.description = &quot;Event Description&quot;</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line55">55</a>       event.save.should == false</pre></td>
           </tr>
         
           
           
           <tr class="inferred">
-            <td><pre><a name="line54">54</a>   end  </pre></td>
+            <td><pre><a name="line56">56</a>       # event.errors.length.should == 1</pre></td>
           </tr>
         
           
           
           <tr class="inferred">
-            <td><pre><a name="line55">55</a> </pre></td>
+            <td><pre><a name="line57">57</a>     end</pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line56">56</a>   context &quot;when saving an event&quot; do</pre></td>
+            <td><pre><a name="line58">58</a>     it &quot;should save if all required fields are provided and valid&quot; do</pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line57">57</a>     it &quot;should validate that at least one search term is provided&quot; do</pre></td>
+            <td><pre><a name="line59">59</a>       event = Event.new()</pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line58">58</a>       event = Event.new()</pre></td>
+            <td><pre><a name="line60">60</a>       event.name = &quot;My Name&quot;</pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line59">59</a>       event.name = &quot;My Name&quot;</pre></td>
+            <td><pre><a name="line61">61</a>       event.description = &quot;Event Description&quot;</pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line60">60</a>       event.description = &quot;Event Description&quot;</pre></td>
+            <td><pre><a name="line62">62</a>       st1 = SearchTerm.new()</pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line61">61</a>       event.save.should == false</pre></td>
+            <td><pre><a name="line63">63</a>       st1.term = &quot;the term&quot;</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line64">64</a>       event.search_terms &lt;&lt; st1</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line65">65</a>       event.save.should == true</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line66">66</a>       st1.id.should_not == nil</pre></td>
           </tr>
         
           
           
           <tr class="inferred">
-            <td><pre><a name="line62">62</a>       # event.errors.length.should == 1</pre></td>
+            <td><pre><a name="line67">67</a>     end</pre></td>
           </tr>
         
           
           
           <tr class="inferred">
-            <td><pre><a name="line63">63</a>     end</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line64">64</a>     it &quot;should save if all required fields are provided and valid&quot; do</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line65">65</a>       event = Event.new()</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line66">66</a>       event.name = &quot;My Name&quot;</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line67">67</a>       event.description = &quot;Event Description&quot;</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line68">68</a>       st1 = SearchTerm.new()</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line69">69</a>       st1.term = &quot;the term&quot;</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line70">70</a>       event.search_terms &lt;&lt; st1</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line71">71</a>       event.save.should == true</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line72">72</a>       st1.id.should_not == nil</pre></td>
+            <td><pre><a name="line68">68</a>    end</pre></td>
           </tr>
         
           
           
           <tr class="inferred">
-            <td><pre><a name="line73">73</a>     end</pre></td>
+            <td><pre><a name="line69">69</a>    </pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line70">70</a>    it &quot;should have humanized model names&quot; do</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line71">71</a>      Event.human_attribute_name(:name).should == &quot;Event Name&quot;</pre></td>
           </tr>
         
           
           
           <tr class="inferred">
-            <td><pre><a name="line74">74</a>    end</pre></td>
+            <td><pre><a name="line72">72</a>    end   </pre></td>
           </tr>
         
           
           
           <tr class="inferred">
-            <td><pre><a name="line75">75</a> end</pre></td>
+            <td><pre><a name="line73">73</a> end</pre></td>
           </tr>
         
       </tbody>
     </table>
 
-    <p>Generated on Thu Jun 17 21:46:50 -0400 2010 with <a href="http://github.com/relevance/rcov">rcov 0.9.8</a></p>
+    <p>Generated on Sun Jun 20 13:29:20 -0400 2010 with <a href="http://github.com/relevance/rcov">rcov 0.9.8</a></p>
 
   </body>
 </html>

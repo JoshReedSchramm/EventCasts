@@ -15,12 +15,7 @@ class Event < ActiveRecord::Base
   def self.human_attribute_name(attr)
     HUMANIZED_ATTRIBUTES[attr.to_sym] || super
   end
- 
-  def Event.filter_hash(event_name)
-    event_name.slice!(0) if event_name[0,1] == '#'    
-    event_name
-  end
-  
+   
   def Event.create_event(params, user)
     event = Event.new(params[:event])
     event.creator_id = user.id

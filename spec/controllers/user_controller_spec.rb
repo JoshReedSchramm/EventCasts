@@ -83,6 +83,7 @@ describe UserController do
         session[:user] = mock_user
         get :home
         response.should render_template("user/home")        
+        response.status.should == 200        
       end
     end
     context "and the user is logged out" do
@@ -160,6 +161,15 @@ describe UserController do
       post :finalize_twitter, :oauth_verifier=>"TEST"
       
       response.should redirect_to(:controller=>"user", :action=>"home")
+    end
+  end
+  
+  describe "when viewing a users events" do
+    it "should render the event list template" do
+      session[:user] = mock_user      
+      get :events
+      response.should render_template("user/events")
+      response.status.should == 200
     end
   end
 end

@@ -5,7 +5,7 @@ class AddDefaultUserAndEvent < ActiveRecord::Migration
     
     search_term = SearchTerm.create(:term=>'ruby')
         
-    event = Event.create(:name=>'ruby', :search_terms=>[search_term])
+    event = Event.create(:name=>'ruby', :search_terms=>[search_term], :creator_id=>default_account.id)
     event.save
     
     default_account.events << event

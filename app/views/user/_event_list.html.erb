@@ -1,0 +1,32 @@
+<h1>Your Events</h1>
+<table>
+	<thead>
+		<th>Event Name</th>
+		<th>Description</th>
+		<th>Search Terms</th>
+		<th>Owner</th>
+		<th></th>
+	</thead>
+	<tbody>
+		<tr class='subheading'>
+			<td colspan='5'>
+				Events you have created
+			</td>
+		</tr>
+		<!-- Add Rows for all events owned by the user -->
+		<tr class='subheading'>
+			<td colspan='5'>
+				Events you are following
+			</td>
+		</tr>
+		<% session[:user].events.each do |event| %>
+			<tr>
+				<td><%= event.name %></td>
+				<td><%= event.description %></td>
+				<td><%= "Search Terms go Here" %></td>
+				<td colspan='2'><%= event.creator.display_name %></td>
+			</tr>
+		<% end %>
+	</tbody>
+</table>
+	

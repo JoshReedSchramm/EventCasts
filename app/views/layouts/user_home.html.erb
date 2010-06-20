@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+	<title>EventCasts - Follow the Conversation</title>
+	<%= stylesheet_link_tag 'style' %>
+	<%= stylesheet_link_tag 'jquery-ui/jquery-ui-1.7.2.custom' %>	
+	<%= javascript_include_tag "jquery.min.js" %>
+	<%= javascript_include_tag "application.js" %>
+</head>
+<body>
+    <div id="page">
+        <div id="container">
+            <div id="header" class="clearfix">
+				<a href='/'><img src='/images/logo.png' alt='logo' id='logo' /></a>
+				<% if session[:user].blank? %>
+	                <ul id="menu">
+						<li><a href='/user/login'>Login</a></li>
+						<li><a href='/user/register'>Create an Account</a></li>
+	                </ul>
+				<% else %>
+					<%= render :partial => "shared/usercard" %>								
+                <% end %>             				
+            </div>
+            <div id='body'>    
+                <div id="flash"><%= flash[:notice] %></div>
+				<div id='user_home'>
+					<div id="tabs">
+						<ul>
+							<li><a href="/user/home" title='user_home_content'>Feed</a></li>
+							<li><a href="/user/events" title='user_home_content'>Event List</a></li>
+							<li><a href="/user/accounts" title='user_home_content'>Associated Accounts (<%= session[:user].associated_accounts.count %>)</a></li>
+							<li><a href="/user/settings" title='user_home_content'>Settings</a></li>			
+						</ul>	
+						<div id='user_home_content' title='user_home_content'>		
+							<%= yield  %>
+			            </div>
+					</div>	
+				</div>
+				<%= javascript_include_tag "home.js" %>
+                <div class="clear"></div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

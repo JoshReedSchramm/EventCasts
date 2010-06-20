@@ -20,12 +20,6 @@ describe Event do
      @valid2 = Event.new(@valid_attributes)     
   end
   
-  it "should filter the hash tag" do
-    tag_name = "#eventName"
-    tag_name = Event.filter_hash(tag_name)
-    tag_name.should == "eventName"
-  end
-
   context "when creating an event" do
     it "should return a new event with the data elements set" do
       params = { :event => {"name"=>"Test Event", "description"=>"My Test Event"}, :search_terms=>["The Phrase", "Phrase Two"]}
@@ -72,4 +66,8 @@ describe Event do
       st1.id.should_not == nil
     end
    end
+   
+   it "should have humanized model names" do
+     Event.human_attribute_name(:name).should == "Event Name"
+   end   
 end

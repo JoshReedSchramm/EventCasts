@@ -12,11 +12,7 @@ class UserController < ApplicationController
       end
     end
   end
-  
-  def home
-    @user = session[:user]
-  end
-  
+    
   def register
     if !params[:user].nil?
       user = User.new(params[:user])
@@ -68,6 +64,28 @@ class UserController < ApplicationController
     redirect_to :controller=>"user", :action=>"home"
   end
   
+  def home
+    render_user_home_layout
+  end  
+  
+  def events
+    render_user_home_layout
+  end
+  
+  def accounts
+    render_user_home_layout
+  end
+
+  def settings
+    render_user_home_layout
+  end
+  
+  private
+  
+  def render_user_home_layout
+    displayed_layout = request.xhr? ? false : "user_home"
+    render :layout=>displayed_layout        
+  end
   
   def authentication_failure()
     flash[:notice] = "Unable to find a user with that username and password."    

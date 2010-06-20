@@ -1,4 +1,14 @@
 @import url("reset.css");
+
+body {font-size:62.5%}
+h1 { font-size: 2.0em; }
+h2 { font-size: 1.6em; }
+h3 { font-size: 1.4em; }
+h4 { font-size: 1.2em; }
+h5 { font-size: 1.0em; }
+h6 { font-size: .8em; }
+fieldset label { width: 70px; display: block; float: left; margin-top: 4px; font-weight: bold; }
+
 .clearfix:after {
     content: ".";
     display: block;
@@ -7,14 +17,27 @@
     visibility: hidden;
 }
 
-#page { width: 900px; border: solid 1px black; margin: 0px auto;}
+#page { width: 900px; border: solid 1px black; margin: 0px auto; padding: 5px; font-size: 1.2em; font-family: helvetica;}
 #logo { width: 300px; height: 75px; float: left; }
 #header .usercard { float: right; }
 #header { margin-bottom: 20px; }
+#menu { float: right; font-size: 1.4em; }
+#menu li { float: left; padding-left: 10px;}
+
 #tabs { padding: 0px; }
 #tabs.ui-widget-content { border: 0; padding: 3px; }
 .ui-tabs-vertical .ui-tabs-panel { width: 680px; }
 
+
 .usercard { border: solid 1px black; padding: 3px; }
 .usercard .profile_image { float: right; width: 75px; height: 75px; margin-left: 15px;}
 .usercard .service_icon { width: 20px; height: 20px; }
+
+#register_with_service, 
+#sign_up { 
+	width: 420px; float: left;
+	padding: 5px 0px;
+}
+
+#register_with_service h2, #sign_up h2 { margin-bottom: 10px; }
+#sign_up { border-left: solid 1px gray; padding-left: 20px;}

@@ -1,19 +1,28 @@
-<h1>Login</h1>
+<h1>Sign in to EventCasts</h1>
 
-<%= form_for :user, :url => {:action=>"login"} do |p| %>
-	<%= p.error_messages %>
-	<fieldset>
-		<div>
-			<%= p.label :ec_username, "EventCasts username" %>
-			<%= p.text_field :ec_username, :size=>30, :maxlength=>140 %>
-		</div>
-		<div>
-			<%= p.label :password, "EventCasts password" %>
-			<%= p.password_field :password, :size=>30, :maxlength=>140 %>
-		</div>
-		<div>
-			<%= p.submit "Login", :class => "submit" %>
-		</div>
-	</fieldset>
-<% end %>
-<%= link_to image_tag("twitter-signin.png"), start_twitter_session_url %>
+<div id='register_with_service'>
+	<h2>Login with your Twitter account</h2>
+	<%= link_to image_tag("twitter-signin.png"), start_twitter_session_url %>
+</div>
+
+<div id='sign_up'>
+	<h2>Login with your EventCasts account</h2>	
+	<%= form_for :user, :url => {:action=>"login"} do |p| %>
+		<%= p.error_messages %>
+		<fieldset>
+			<div>
+				<%= p.label :ec_username, "Username: " %>
+				<%= p.text_field :ec_username, :size=>30, :maxlength=>140 %>
+			</div>
+			<div>
+				<%= p.label :password, "Password: " %>
+				<%= p.password_field :password, :size=>30, :maxlength=>140 %>
+			</div>
+			<div>
+				<%= p.submit "Login", :class => "submit" %>
+			</div>
+		</fieldset>
+	<% end %>
+</div>
+
+<div class='clearfix'></div>

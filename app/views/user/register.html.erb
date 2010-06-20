@@ -1,18 +1,26 @@
-<h1>Sign up for EventCasts</h1>
+<h1>Join EventCasts</h1>
+<div id='register_with_service'>
+	<h2>Start by signing in with your Twitter account</h2>
+	<%= link_to image_tag("twitter-signin.png"), start_twitter_session_url %>
+</div>
 
-<% form_for :user, :url => {:action=>"register"} do |p| %>
-	<%= p.error_messages %>
-	<fieldset>
-		<div>
-			<%= p.label :username %>
-			<%= p.text_field :username, :size=>30, :maxlength=>140 %>
-		</div>
-		<div>
-			<%= p.label :password %>
-			<%= p.password_field :password, :size=>30, :maxlength=>140 %>
-		</div>
-		<div>
-			<%= p.submit "Create User", :class => "submit" %>
-		</div>
-	</fieldset>
-<% end %>
+<div id='sign_up'>
+	<h2>Or create an EventCasts Acccount</h2>	
+	<% form_for :user, :url => {:action=>"register"} do |p| %>
+		<%= p.error_messages %>
+		<fieldset>
+			<div>
+				<%= p.label :username, "Username: " %>
+				<%= p.text_field :username, :size=>30, :maxlength=>140 %>
+			</div>
+			<div>
+				<%= p.label :password, "Password:" %>
+				<%= p.password_field :password, :size=>30, :maxlength=>140 %>
+			</div>
+			<div>
+				<%= p.submit "Create User", :class => "submit" %>
+			</div>
+		</fieldset>
+	<% end %>
+</div>
+<div class='clearfix'></div>

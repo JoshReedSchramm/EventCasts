@@ -10,11 +10,26 @@ describe User do
   its(:errors) { should be_empty }
   its(:hashed_password) { should_not be_nil}
   its(:display_name) { should == "Eventcasts" }
+  
   it "has many associated accounts" do
     association = User.reflect_on_association(:associated_accounts)
     association.should_not be_nil
     association.macro.should == :has_many
   end
+  
+  it "has and belongs to many events" do
+    association = User.reflect_on_association(:events)
+    association.should_not be_nil
+    association.macro.should == :has_and_belongs_to_many    
+  end
+  
+  it "owns many events" do
+    association = User.reflect_on_association(:created_events)
+    association.should_not be_nil
+    association.macro.should == :has_many
+    association.class_name.should == "Event"
+  end
+  
   it "requires a unique username" do
     lambda do
       p1 = User.create(:ec_username=>"testusername", :password=>"password")

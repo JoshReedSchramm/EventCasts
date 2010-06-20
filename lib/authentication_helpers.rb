@@ -1,4 +1,4 @@
-module AuthenticationHelpers    
+module AuthenticationHelpers      
   protected
     def authenticate
       deny_access unless authorized?
@@ -7,11 +7,11 @@ module AuthenticationHelpers
     def authorized?
       return !logged_in_user.nil?
     end
-
+    
     def logged_in_user
       session[:user]
-    end
-    
+    end    
+        
     def deny_access
       store_location
       flash[:notice] = 'You must be logged in to view that page.'      

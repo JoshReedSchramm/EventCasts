@@ -1,4 +1,3 @@
-<h1>Your Events</h1>
 <table>
 	<thead>
 		<th>Event Name</th>
@@ -10,23 +9,32 @@
 	<tbody>
 		<tr class='subheading'>
 			<td colspan='5'>
-				Events you have created
+				<h4>Events you have created</h4>
 			</td>
 		</tr>
-		<!-- Add Rows for all events owned by the user -->
-		<tr class='subheading'>
-			<td colspan='5'>
-				Events you are following
-			</td>
-		</tr>
-		<% session[:user].events.each do |event| %>
+		<% logged_in_user.created_events.each do |event| %>
 			<tr>
 				<td><%= event.name %></td>
 				<td><%= event.description %></td>
 				<td><%= "Search Terms go Here" %></td>
-				<td colspan='2'><%= event.creator.display_name %></td>
+				<td><%= event.creator.display_name %></td>
+				<td><a href='javascript:void(0)'>Edit</a> | <a href='javascript:void(0)'>Delete</a></td>
 			</tr>
+		<% end %>
+		<tr class='subheading'>
+			<td colspan='5'>
+				<h4>Events you are following</h4>
+			</td>
+		</tr>
+		<% logged_in_user.events.each do |event| %>
+			<% if !logged_in_user.created_events.include? event %>
+				<tr>
+					<td><%= event.name %></td>
+					<td><%= event.description %></td>
+					<td><%= "Search Terms go Here" %></td>
+					<td colspan='2'><%= event.creator.display_name %></td>
+				</tr>
+			<% end %>
 		<% end %>
 	</tbody>
 </table>
-	

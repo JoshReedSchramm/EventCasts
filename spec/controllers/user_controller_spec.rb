@@ -172,4 +172,22 @@ describe UserController do
       response.status.should == 200
     end
   end
+  
+  describe "when viewing a users accounts" do
+    it "should render the accounts template" do
+      session[:user] = mock_user      
+      get :accounts
+      response.should render_template("user/accounts")
+      response.status.should == 200
+    end
+  end
+  
+  describe "when viewing a users settings" do
+    it "should render the settings template" do
+      session[:user] = mock_user      
+      get :settings
+      response.should render_template("user/settings")
+      response.status.should == 200
+    end
+  end
 end

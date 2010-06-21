@@ -10,7 +10,7 @@ development:
         ['/var/run/mysqld/mysqld.sock',           # ubuntu/debian
          '/tmp/mysql.sock'].select { |f| File.exist? f }.first %>
 
-test:
+test: &test
   adapter: mysql
   encoding: utf8
   reconnect: false
@@ -33,3 +33,5 @@ production:
   socket:  <%=
         ['/var/run/mysqld/mysqld.sock',           # ubuntu/debian
          '/tmp/mysql.sock'].select { |f| File.exist? f }.first %>
+cucumber:
+  <<: *test

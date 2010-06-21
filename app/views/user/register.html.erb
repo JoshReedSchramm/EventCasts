@@ -6,7 +6,7 @@
 
 <div id='sign_up'>
 	<h2>Or create an EventCasts Acccount</h2>	
-	<% form_for :user, :url => {:action=>"register"} do |p| %>
+	<%= form_for :user, :url => {:action=>"register"} do |p| %>
 		<%= p.error_messages %>
 		<fieldset>
 			<div>

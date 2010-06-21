@@ -11,6 +11,17 @@ gem 'sqlite3-ruby', :require => 'sqlite3'
 gem "rspec", "2.0.0.beta.9"
 gem "rspec-rails", ">= 2.0.0.beta.8"
 gem "rcov", "0.9.8"
+gem "gherkin", "2.0.2"
+gem 'capybara'
+gem 'database_cleaner'
+gem 'cucumber-rails'
+gem 'cucumber'
+gem 'rspec-rails'
+gem 'spork'
+gem 'launchy'
+
+gem 'factory_girl_rails'
+
 gem 'twitter', '0.9.7'
 #gem 'twitter-text-rb'
 
@@ -24,9 +35,3 @@ gem 'twitter', '0.9.7'
 # gem 'bj'
 # gem 'nokogiri', '1.4.1'
 # gem 'aws-s3', :require => 'aws/s3'
-
-# Bundle gems for certain environments:
-#gem 'rspec', :group => :test
-#group :test do
-#	gem 'webrat'
-#end

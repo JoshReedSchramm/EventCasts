@@ -7,7 +7,7 @@ class EventController < ApplicationController
     if request.post? 
       event = Event.create_event(params, logged_in_user)
       if event.save
-        redirect_to :controller=>"events", :action=>"show", :id=>event.id
+        redirect_to :controller=>"event", :action=>"show", :id=>event.id
       end
     end
   end

@@ -16,7 +16,7 @@ describe EventController do
     @mock_message ||= mock(Message, stubs)
   end
   
-  specify { controller.should be_an_instance_of(EventsController) }
+  specify { controller.should be_an_instance_of(EventController) }
   
   # context "when requesting an event" do
   #   context "and the html format is request" do
@@ -40,7 +40,7 @@ describe EventController do
     
         assigns(:twitter_search_url).should == fake_url
         assigns(:twitter_last_message_id).should == 1        
-        response.should render_template('events/show')
+        response.should render_template('event/show')
       end
       context "and there is a previous message" do
         before(:each) do
@@ -128,7 +128,7 @@ describe EventController do
         mock_event.should_receive(:id).and_return(1)
         
         post :create, params
-        response.should redirect_to(:controller => "events", :action => "show", :id=>1) 
+        response.should redirect_to(:controller => "event", :action => "show", :id=>1) 
       end
     end
     context "and the passed in data is invalid" do
@@ -140,7 +140,7 @@ describe EventController do
 
         mock_event.should_receive(:save).and_return false
         post :create, params
-        response.should render_template('events/create') 
+        response.should render_template('event/create') 
       end
     end
   end

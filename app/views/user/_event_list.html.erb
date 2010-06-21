@@ -14,9 +14,9 @@
 		</tr>
 		<% logged_in_user.created_events.each do |event| %>
 			<tr>
-				<td><%= event.name %></td>
+				<td><a href='/event/show/<%= event.id %>'><%= event.name %></a></td>
 				<td><%= event.description %></td>
-				<td><%= "Search Terms go Here" %></td>
+				<td><%= event.search_terms.collect{|x| x.term }.join(", ") %></td>
 				<td><%= event.creator.display_name %></td>
 				<td><a href='javascript:void(0)'>Edit</a> | <a href='javascript:void(0)'>Delete</a></td>
 			</tr>
@@ -29,9 +29,9 @@
 		<% logged_in_user.events.each do |event| %>
 			<% if !logged_in_user.created_events.include? event %>
 				<tr>
-					<td><%= event.name %></td>
+					<td><a href='/event/show/<%= event.id %>'><%= event.name %></a></td>
 					<td><%= event.description %></td>
-					<td><%= "Search Terms go Here" %></td>
+					<td><%= event.search_terms.collect{|x| x.term }.join(", ") %></td>
 					<td colspan='2'><%= event.creator.display_name %></td>
 				</tr>
 			<% end %>

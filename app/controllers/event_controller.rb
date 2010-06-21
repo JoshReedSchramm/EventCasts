@@ -1,4 +1,4 @@
-class EventsController < ApplicationController
+class EventController < ApplicationController
   require File.expand_path(File.dirname(__FILE__) + '/../models/lib/twitter_url_generator.rb')
   
   before_filter :authenticate, :except=>[:show]

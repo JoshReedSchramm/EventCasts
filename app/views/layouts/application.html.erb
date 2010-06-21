@@ -18,7 +18,13 @@
 						<li><a href='/user/register'>Create an Account</a></li>
 	                </ul>
 				<% else %>
-					<%= render :partial => "shared/usercard" %>								
+					<div id='logged_in_usercard'>
+						<%= render :partial => "shared/usercard" %>	
+						<ul id="menu">
+							<li><a href='/user/home'>User Home Page</a></li>
+							<li><a href='/user/logout'>Logout</a></li>
+						</ul>						
+					</div>
                 <% end %>             				
             </div>
             <div id='body'>    

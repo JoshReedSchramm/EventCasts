@@ -29,7 +29,7 @@ fieldset label { width: 70px; display: block; float: left; margin-top: 4px; font
 .ui-tabs-vertical .ui-tabs-panel { width: 680px; }
 
 
-.usercard { border: solid 1px black; padding: 3px; }
+.usercard { border: solid 1px black; padding: 3px;  }
 .usercard .profile_image { float: right; width: 75px; height: 75px; margin-left: 15px;}
 .usercard .service_icon { width: 20px; height: 20px; }
 

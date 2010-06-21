@@ -1,5 +1,5 @@
 require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
-describe EventsController do
+describe EventController do
   def mock_event(stubs={})
     @mock_event ||= mock(Event, stubs)
   end

@@ -4,8 +4,9 @@ Feature: The login page should allow a user to login with an EventCasts account
 	I want to be able to login using my EventCasts account
 	
 	Scenario: The user can login with their EventCasts account
-		Given an anonymous user
+		Given a user named "eventcasts"
 		When I am on the login page		
-		Then I should see "Login with your EventCasts account"
-		And I should see the "Username" field
-		And I should see the "Password" field
+		And I fill in "Username" with "eventcasts"
+		And I fill in "Password" with "password"
+		And I press "Login"
+		Then I should be on the user home page

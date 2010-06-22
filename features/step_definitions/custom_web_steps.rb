@@ -1,6 +1,10 @@
 Given /^an anonymous user$/ do
 end
 
+Given /^a user named "([^\"]*)"$/ do |username|
+  Factory.create(username)
+end
+
 Then /^I should see a link to "([^\"]*)" with text "([^\"]*)"$/ do |url, text|
   within(:css, "a[href='#{ url }']") do 
     page.should have_content(text)

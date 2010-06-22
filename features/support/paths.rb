@@ -14,6 +14,9 @@ module NavigationHelpers
       '/user/login'
     when /the sign up page/
       '/user/register'
+    when /the user home page/
+      '/user/home'
+      
     else
       begin
         page_name =~ /the (.*) page/

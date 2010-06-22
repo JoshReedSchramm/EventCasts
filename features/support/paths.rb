@@ -16,8 +16,11 @@ module NavigationHelpers
       '/user/register'
     when /the user home page/
       '/user/home'
-      
-    else
+    when /the twitter oauth page/
+      '/oauth/authenticate'            
+    when /the twitter signin complete page/
+      '/user/finalize_twitter'
+    else      
       begin
         page_name =~ /the (.*) page/
         path_components = $1.split(/\s+/)

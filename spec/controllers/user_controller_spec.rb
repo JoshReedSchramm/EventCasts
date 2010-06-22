@@ -136,31 +136,53 @@ describe UserController do
   
   describe "when returning from a twitter login" do
     before(:each) do
-      @mock_token = mock(Twitter::Response, {:token=>"testtoken", :secret=>"testsecret"}) 
+      @mock_token = mock(Twitter::Response, {:token=>"testtoken", :secret=>"testsecret"})
       Twitter::OAuth.should_receive(:new).and_return(mock_oauth({:access_token=>@mock_token}))          
-      mock_oauth.should_receive(:authorize_from_request)      
-      @mock_profile = mock(Twitter::Request, {:screen_name=>"Eventcasts"})
-      Twitter::Base.should_receive(:new).with(mock_oauth).and_return(mock(Twitter::Base, {:verify_credentials=>@mock_profile}))      
-    end    
-    
-    it "should add oauth info to session" do      
-      post :finalize_twitter, :oauth_verifier=>"TEST"
-      
-      session[:atoken].should == "testtoken"
-      session[:asecret].should == "testsecret"
+      mock_oauth.should_receive(:authorize_from_request)            
     end
+    context "and the credentials are valid" do
+      before(:each) do
+        @mock_profile = mock(Twitter::Request, {:screen_name=>"Eventcasts"})
+        Twitter::Base.should_receive(:new).with(mock_oauth).and_return(mock(Twitter::Base, {:verify_credentials=>@mock_profile}))      
+      end    
     
-    it "adds the user to session" do    
-      User.should_receive(:get_from_twitter).with(@mock_profile).and_return(mock_user)
-      post :finalize_twitter, :oauth_verifier=>"TEST"
+      it "should add oauth info to session" do      
+        post :finalize_twitter, :oauth_verifier=>"TEST"
       
-      session[:user].should == mock_user
+        session[:atoken].should == "testtoken"
+        session[:asecret].should == "testsecret"
+      end
+    
+      it "adds the user to session" do    
+        User.should_receive(:get_from_twitter).with(@mock_profile).and_return(mock_user)
+        post :finalize_twitter, :oauth_verifier=>"TEST"
+      
+        session[:user].should == mock_user
+      end
+    
+      it "redirects to user home" do            
+        post :finalize_twitter, :oauth_verifier=>"TEST"
+      
+        response.should redirect_to(:controller=>"user", :action=>"home")
+      end
     end
+    context "and the credentials are invalid" do
+      before(:each) do
+        @mock_profile = mock(Twitter::Request, {:screen_name=>"Eventcasts"})
+        @mock_twitter_base = mock(Twitter::Base)
+        Twitter::Base.should_receive(:new).with(mock_oauth).and_return(@mock_twitter_base)
+        @mock_twitter_base.should_receive(:verify_credentials).and_raise(Twitter::Unauthorized.new(nil))              
+      end    
     
-    it "redirects to user home" do            
-      post :finalize_twitter, :oauth_verifier=>"TEST"
-      
-      response.should redirect_to(:controller=>"user", :action=>"home")
+      it "set the flash notification" do     
+        post :finalize_twitter, :oauth_verifier=>"TEST"
+        flash[:error].should  == 'You must be signed into twitter to use this feature. Please sign in again.'      
+      end
+    
+      it "redirect to the login page" do    
+        post :finalize_twitter, :oauth_verifier=>"TEST"
+        response.should redirect_to(:controller=>"user", :action=>"login")                     
+      end
     end
   end
   

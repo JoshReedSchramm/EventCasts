@@ -54,14 +54,16 @@ class UserController < ApplicationController
   
   def finalize_twitter
     oauth.authorize_from_request(session['rtoken'], session['rsecret'], params[:oauth_verifier])
+    profile = Twitter::Base.new(oauth).verify_credentials            
+    
+    if profile        
+      session['rtoken'] = session['rsecret'] = nil
+      session[:atoken] = oauth.access_token.token
+      session[:asecret] = oauth.access_token.secret
 
-    profile = Twitter::Base.new(oauth).verify_credentials
-    session['rtoken'] = session['rsecret'] = nil
-    session[:atoken] = oauth.access_token.token
-    session[:asecret] = oauth.access_token.secret
-
-    session[:user] = User.get_from_twitter(profile) if profile
-    redirect_to :controller=>"user", :action=>"home"
+      session[:user] = User.get_from_twitter(profile)
+      redirect_to :controller=>"user", :action=>"home"
+    end
   end
   
   def home

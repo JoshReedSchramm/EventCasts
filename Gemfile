@@ -19,6 +19,7 @@ gem 'cucumber'
 gem 'rspec-rails'
 gem 'spork'
 gem 'launchy'
+gem 'fakeweb'
 
 gem 'factory_girl_rails'
 

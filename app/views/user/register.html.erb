@@ -1,17 +1,17 @@
 <h1>Join EventCasts</h1>
 <div id='register_with_service'>
 	<h2>Start by signing in with your Twitter account</h2>
-	<%= link_to image_tag("twitter-signin.png"), start_twitter_session_url %>
+	<%= link_to image_tag("twitter-signin.png"), start_twitter_session_url, :id=>"twitter_sign_up" %>
 </div>
 
 <div id='sign_up'>
 	<h2>Or create an EventCasts Acccount</h2>	
 	<%= form_for :user, :url => {:action=>"register"} do |p| %>
-		<%= p.error_messages %>
+		<%= render "shared/error_messages", :target => @user %>
 		<fieldset>
 			<div>
-				<%= p.label :username, "Username: " %>
-				<%= p.text_field :username, :size=>30, :maxlength=>140 %>
+				<%= p.label :ec_username, "Username: " %>
+				<%= p.text_field :ec_username, :size=>30, :maxlength=>140 %>
 			</div>
 			<div>
 				<%= p.label :password, "Password:" %>

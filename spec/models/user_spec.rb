@@ -38,6 +38,20 @@ describe User do
       p2.errors[:ec_username].should_not be_empty
     end.should change { User.count }.by(1)
   end
+  
+  it "requires a username" do
+    lambda do
+      user = User.create(:ec_username=>"", :password=>"password")
+      user.errors[:ec_username].should_not be_empty
+    end.should change { User.count }.by(0)
+  end
+  
+  it "requires a password" do
+    lambda do
+      user = User.create(:ec_username=>"testusername", :password=>"")
+      user.errors[:password].should_not be_empty
+    end.should change { User.count }.by(0)
+  end
 end
 
 describe User do

@@ -3,7 +3,8 @@ class User < ActiveRecord::Base
   has_many :associated_accounts
   has_many :created_events, :class_name => "Event", :foreign_key => "creator_id"
 
-  validates :ec_username, :uniqueness => true
+  validates :ec_username, :uniqueness => true, :presence=>true
+  validates :password, :presence=>true  
     
   scope :twitter_account, lambda { |username| joins(:associated_accounts) & AssociatedAccount.twitter & AssociatedAccount.has_username(username) }
     
@@ -54,7 +55,7 @@ class User < ActiveRecord::Base
   def self.create_user_from_twitter(profile)
     user = User.new(:ec_username=>nil, :password=>nil)
     user.associated_accounts << AssociatedAccount.new(:username => profile.screen_name, :service=>"TW")
-    user.save!
+    user.save(:validate=>false)
     user
   end
 end

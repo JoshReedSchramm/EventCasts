@@ -3,6 +3,7 @@ class UserController < ApplicationController
   before_filter :authenticate, :except=>[:login, :register, :verify_login, :start_twitter, :finalize_twitter]
   
   def login
+    store_location
     if request.post?
       session[:user] = User.authenticate(params[:user][:ec_username], params[:user][:password])
       if session[:user].nil?        
@@ -14,18 +15,19 @@ class UserController < ApplicationController
   end
     
   def register
+    store_location
     if !params[:user].nil?
-      user = User.new(params[:user])
-      result = user.save
+      @user = User.new(params[:user])
+      result = @user.save
       if result
-        session[:user] = user  
+        session[:user] = @user  
         if request.xhr?
           render :text => "true", :layout=>false          
         else
           redirect_to :controller=>"user", :action=>"home"
         end
       elsif request.xhr?
-        handle_ajax_validation_errors(user)
+        handle_ajax_validation_errors(@user)
       end
     end
   end

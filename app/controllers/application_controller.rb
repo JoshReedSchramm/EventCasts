@@ -25,6 +25,6 @@ class ApplicationController < ActionController::Base
   
     def force_sign_in(exception)
       flash[:error] = 'You must be signed into twitter to use this feature. Please sign in again.'
-      redirect_to :controller=>"user", :action=>"login"      
+      redirect_back_or('/user/login')
     end
 end

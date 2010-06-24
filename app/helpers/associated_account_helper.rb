@@ -1,0 +1,2 @@
+module AssociatedAccountHelper
+end

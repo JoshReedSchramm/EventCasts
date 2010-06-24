@@ -3,6 +3,9 @@ Feature: The login page should allow a user to login with a Twitter account
 	So that a user can manage their data
 	As a anonymous user
 	I want to be able to login using my Twitter account
+	
+	Background:
+	    Given an associated account type "Twitter"
 			
 	Scenario: The user can login with their Twitter account
 		When I am on the login page		

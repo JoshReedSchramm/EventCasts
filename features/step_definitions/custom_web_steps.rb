@@ -5,6 +5,18 @@ Given /^a user named "([^\"]*)"$/ do |username|
   Factory.create(username)
 end
 
+Given /^an associated account type "([^\"]*)"$/ do |type|
+  Factory.create(type)
+end
+
+
+Given /^"([^\"]*)" is logged in$/ do |usernameAndPassword|
+    visit path_to("the login page")
+    fill_in("Username", :with => usernameAndPassword)
+    fill_in("Password", :with => usernameAndPassword)    
+    click_button("Login")    
+end
+
 Then /^I should see a link to "([^\"]*)" with text "([^\"]*)"$/ do |url, text|
   within(:css, "a[href='#{ url }']") do 
     page.should have_content(text)

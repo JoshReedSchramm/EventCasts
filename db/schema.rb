@@ -9,12 +9,19 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100609215035) do
+ActiveRecord::Schema.define(:version => 20100623233300) do
+
+  create_table "associated_account_types", :force => true do |t|
+    t.string   "name"
+    t.string   "abbreviation"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "associated_accounts", :force => true do |t|
     t.integer  "user_id"
     t.string   "username"
-    t.string   "service",    :default => "TW"
+    t.integer  "associated_account_type_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

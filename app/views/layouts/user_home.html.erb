@@ -31,14 +31,14 @@
             <div id='body'>    
                 <div id="flash"><%= flash[:notice] %></div>
 				<div id='user_home'>
-					<div id="tabs">
+					<div id="tabs" class='clearfix'>
 						<ul>
-							<li><a href="/user/home" title='user_home_content'>Feed</a></li>
-							<li><a href="/user/events" title='user_home_content'>Event List</a></li>
-							<li><a href="/user/accounts" title='user_home_content'>Associated Accounts (<%= session[:user].associated_accounts.count %>)</a></li>
-							<li><a href="/user/settings" title='user_home_content'>Settings</a></li>			
+							<li><a href="/user/home">Feed</a></li>
+							<li><a href="/user/events">Event List</a></li>
+							<li><a href="/user/accounts">Associated Accounts (<%= session[:user].associated_accounts.count %>)</a></li>
+							<li><a href="/user/settings">Settings</a></li>			
 						</ul>	
-						<div id='user_home_content' title='user_home_content'>		
+						<div id='user_home_content'>		
 							<%= yield  %>
 			            </div>
 					</div>	

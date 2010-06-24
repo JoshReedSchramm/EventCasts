@@ -6,7 +6,7 @@
 			<% session[:user].associated_accounts.each do |account| %>
 				<li>
 					<a href='javascript:void(0)'>
-						<img src='/images/service_<%= account.service %>.png' alt='<%= account.username %> on <%= account.service %>' class='service_icon' />
+						<img src='/images/service_<%= account.associated_account_type.abbreviation %>.png' alt='<%= account.username %> on <%= account.associated_account_type.abbreviation %>' class='service_icon' />
 					</a>
 				</li>
 			<% end %>

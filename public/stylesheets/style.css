@@ -24,11 +24,6 @@ fieldset label { width: 70px; display: block; float: left; margin-top: 4px; font
 #menu { float: right; font-size: 1.4em; }
 #menu li { float: left; padding-left: 10px;}
 
-#tabs { padding: 0px; }
-#tabs.ui-widget-content { border: 0; padding: 3px; }
-.ui-tabs-vertical .ui-tabs-panel { width: 680px; }
-
-
 .usercard { border: solid 1px black; padding: 3px;  }
 .usercard .profile_image { float: right; width: 75px; height: 75px; margin-left: 15px;}
 .usercard .service_icon { width: 20px; height: 20px; }
@@ -41,3 +36,6 @@ fieldset label { width: 70px; display: block; float: left; margin-top: 4px; font
 
 #register_with_service h2, #sign_up h2 { margin-bottom: 10px; }
 #sign_up { border-left: solid 1px gray; padding-left: 20px;}
+
+#tabs ul { width: 200px; float: left; margin-right: 20px;}
+#tabs ul li { padding: 10px; background-color: gray;}

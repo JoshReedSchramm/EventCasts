@@ -19,7 +19,9 @@ module NavigationHelpers
     when /the twitter oauth page/
       '/oauth/authenticate'            
     when /the twitter signin complete page/
-      '/user/finalize_twitter'
+      '/associated_account/finalize_twitter'
+    when /the associated accounts page/
+      '/user/accounts'      
     else      
       begin
         page_name =~ /the (.*) page/

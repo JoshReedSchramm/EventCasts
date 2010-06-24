@@ -15,4 +15,4 @@ Feature: The login page should allow multiple ways to login to EventCasts
 		When I am on the login page		
 		Then I should see "Login with your Twitter account"
 		And I should see a link with id "twitter_login"
-		And I should see a link to "/user/start_twitter"		
+		And I should see a link to "/associated_account/start_twitter"		

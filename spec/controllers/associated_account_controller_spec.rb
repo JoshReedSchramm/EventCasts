@@ -1,0 +1,117 @@
+require 'spec_helper'
+
+describe AssociatedAccountController do
+  def mock_user(stubs={})
+    @mock_user ||= mock(User, stubs)
+  end
+  def mock_oauth(stubs={})
+    @mock_oauth ||= mock(Twitter::OAuth, stubs)
+  end
+  
+  describe "when logging in through twitter" do
+    it "should redirect to twitter" do      
+      mock_request_token = mock(Twitter::Request, {:token=>"testtoken", :secret=>"testsecret", :authorize_url=>"http://localhost:3000"})
+      Twitter::OAuth.should_receive(:new).and_return(mock_oauth({:request_token=>mock_request_token}))    
+      mock_oauth.should_receive(:set_callback_url)
+      get :start_twitter
+      response.should redirect_to("http://localhost:3000")    
+    end
+  end
+  
+  describe "when returning from a twitter login" do
+    before(:each) do
+      @mock_token = mock(Twitter::Response, {:token=>"testtoken", :secret=>"testsecret"})
+      Twitter::OAuth.should_receive(:new).and_return(mock_oauth({:access_token=>@mock_token}))          
+      mock_oauth.should_receive(:authorize_from_request)            
+    end
+    context "and the credentials are valid" do
+      before(:each) do
+        @mock_profile = mock(Twitter::Request, {:screen_name=>"Eventcasts"})
+        Twitter::Base.should_receive(:new).with(mock_oauth).and_return(mock(Twitter::Base, {:verify_credentials=>@mock_profile}))      
+      end    
+    
+      it "should add oauth info to session" do      
+        post :finalize_twitter, :oauth_verifier=>"TEST"
+      
+        session[:atoken].should == "testtoken"
+        session[:asecret].should == "testsecret"
+      end
+    
+      it "adds the user to session" do    
+        User.should_receive(:get_from_twitter).with(@mock_profile).and_return(mock_user)
+        post :finalize_twitter, :oauth_verifier=>"TEST"
+      
+        session[:user].should == mock_user
+      end
+    
+      it "redirects to user home" do            
+        post :finalize_twitter, :oauth_verifier=>"TEST"
+      
+        response.should redirect_to(:controller=>"user", :action=>"home")
+      end
+    end
+    context "and the credentials are invalid" do
+      before(:each) do
+        @mock_profile = mock(Twitter::Request, {:screen_name=>"Eventcasts"})
+        @mock_twitter_base = mock(Twitter::Base)
+        Twitter::Base.should_receive(:new).with(mock_oauth).and_return(@mock_twitter_base)
+        @mock_twitter_base.should_receive(:verify_credentials).and_raise(Twitter::Unauthorized.new(nil))              
+      end    
+    
+      it "set the flash notification" do     
+        post :finalize_twitter, :oauth_verifier=>"TEST"
+        flash[:error].should  == 'You must be signed into twitter to use this feature. Please sign in again.'      
+      end
+    
+      it "redirect to the login page" do    
+        post :finalize_twitter, :oauth_verifier=>"TEST"
+        response.should redirect_to(:controller=>"user", :action=>"login")                     
+      end
+    end
+  end
+
+  describe "when associating a new account" do
+    
+    before(:each) do
+      session[:user] = mock_user({:id=>1})
+      
+      @twitter_account = mock_model(AssociatedAccountType, {:name=>"twitter", :abbreviation=>"TW", :id=>1})
+      @ec_account = mock_model(AssociatedAccountType, {:name=>"eventcasts", :abbreviation=>"EC", :id=>0})      
+      
+      AssociatedAccountType.should_receive(:all).and_return([@twitter_account])
+    end
+
+    context "and the user does not have a twitter account" do 
+      before(:each) do 
+        mock_user.should_receive(:ec_username).and_return("test")        
+      end     
+      it "should display twitter as an option" do
+        mock_user.should_receive(:has_account_type).with(1).and_return(false)        
+        get :add
+        assigns[:account_types_to_show].should == [@twitter_account]
+      end
+    end
+    
+    context "and the user does not have an eventcasts account" do
+      before(:each) do        
+        mock_user.should_receive(:ec_username).and_return(nil)        
+        AssociatedAccountType.should_receive(:new).and_return(@ec_account)
+      end      
+      
+      it "should display eventcasts as an option" do        
+        mock_user.should_receive(:has_account_type).with(1).and_return(true)        
+        get :add
+        assigns[:account_types_to_show].should == [@ec_account]
+      end
+    end
+    
+    context "and the user is associating a twitter account" do
+      
+    end    
+    
+    context "and the user is associating an eventcasts account" do
+      
+    end
+    
+  end
+end

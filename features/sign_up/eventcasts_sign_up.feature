@@ -31,7 +31,7 @@ Feature: The sign up page should allow a user to sign up for an EventCasts accou
 		Given a user named "eventcasts"
 		When I am on the sign up page		
 		And I fill in "Username" with "eventcasts"		
-		And I fill in "Password" with "password"		
+		And I fill in "Password" with "eventcasts"		
 		And I press "Create User"
 		Then I should be on the sign up page
 		And I should see "username has already been taken"

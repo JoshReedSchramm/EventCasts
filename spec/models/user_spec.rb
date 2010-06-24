@@ -3,6 +3,7 @@ require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
 describe User do
   subject do
     User.new({:ec_username=>"Eventcasts", :password=>"password"}).tap do |s|
+      s.associated_accounts << AssociatedAccount.create({:username=>"Eventcasts", :associated_account_type_id=>1})
       s.save
     end
   end    
@@ -52,6 +53,14 @@ describe User do
       user.errors[:password].should_not be_empty
     end.should change { User.count }.by(0)
   end
+  
+  it "should have an associated twitter account" do
+    subject.has_account_type(1).should == true
+  end
+  
+  it "should not have an associated non-twitter account" do
+    subject.has_account_type(2).should == false
+  end  
 end
 
 describe User do

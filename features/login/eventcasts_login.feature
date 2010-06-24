@@ -7,7 +7,7 @@ Feature: The login page should allow a user to login with an EventCasts account
 		Given a user named "eventcasts"
 		When I am on the login page		
 		And I fill in "Username" with "eventcasts"
-		And I fill in "Password" with "password"
+		And I fill in "Password" with "eventcasts"
 		And I press "Login"
 		Then I should be on the user home page
 	

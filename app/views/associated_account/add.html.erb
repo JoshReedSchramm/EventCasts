@@ -1,0 +1,7 @@
+<h2>Please choose an account type to associate</h2>
+	<ul id='account_types'>
+		<% @account_types_to_show.each do |account_type| %>
+			<li><%= link_to "Create "+account_type.name+" Account", associate_account_url+"#"+account_type.abbreviation, :id=>"associate_"+account_type.abbreviation %></li>			
+		<% end %>		
+	</ul>
+</h2>

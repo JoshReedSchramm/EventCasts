@@ -38,7 +38,14 @@ class User < ActiveRecord::Base
   end
   
   def twitter_account
-    associated_accounts.select { |x| x.service == "TW"}.first
+    associated_accounts.select { |x| x.associated_account_type_id == 1}.first
+  end
+  
+  def has_account_type(id)
+    associated_accounts.each do |account|
+      return true if account.associated_account_type_id == id
+    end
+    return false
   end
     
   private 
@@ -54,7 +61,7 @@ class User < ActiveRecord::Base
   
   def self.create_user_from_twitter(profile)
     user = User.new(:ec_username=>nil, :password=>nil)
-    user.associated_accounts << AssociatedAccount.new(:username => profile.screen_name, :service=>"TW")
+    user.associated_accounts << AssociatedAccount.new(:username => profile.screen_name, :associated_account_type_id=>1)
     user.save(:validate=>false)
     user
   end

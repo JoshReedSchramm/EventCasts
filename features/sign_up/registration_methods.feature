@@ -14,4 +14,4 @@ Feature: The sign up page should allow multiple ways to sign up for EventCasts
 		Given an anonymous user
 		When I am on the sign up page		
 		Then I should see "signing in with your Twitter account"
-		And I should see a link to "/user/start_twitter"		
+		And I should see a link to "/associated_account/start_twitter"		

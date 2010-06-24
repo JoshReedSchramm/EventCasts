@@ -4,6 +4,9 @@ Feature: The sign up page should allow a user to sign up with a Twitter account
 	And a user does not need another account on the internet
 	As a anonymous user
 	I want to be able to sign up for EventCasts using my Twitter account
+	
+	Background:
+	    Given an associated account type "Twitter"	
 			
 	Scenario: The user can sign up with their Twitter account
 		When I am on the sign up page		

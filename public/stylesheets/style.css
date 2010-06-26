@@ -17,6 +17,8 @@ fieldset label { width: 70px; display: block; float: left; margin-top: 4px; font
     visibility: hidden;
 }
 
+.hidden { display: none; }
+
 #page { width: 900px; border: solid 1px black; margin: 0px auto; padding: 5px; font-size: 1.2em; font-family: helvetica;}
 #logo { width: 300px; height: 75px; float: left; }
 #header .usercard { float: right; }
@@ -39,3 +41,4 @@ fieldset label { width: 70px; display: block; float: left; margin-top: 4px; font
 
 #tabs ul { width: 200px; float: left; margin-right: 20px;}
 #tabs ul li { padding: 10px; background-color: gray;}
+

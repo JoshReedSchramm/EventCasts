@@ -13,6 +13,7 @@ gem "rspec-rails", ">= 2.0.0.beta.8"
 gem "rcov", "0.9.8"
 gem "gherkin", "2.0.2"
 gem 'capybara'
+gem 'selenium-webdriver'
 gem 'database_cleaner'
 gem 'cucumber-rails'
 gem 'cucumber'

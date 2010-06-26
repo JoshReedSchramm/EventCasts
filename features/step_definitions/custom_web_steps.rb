@@ -10,10 +10,10 @@ Given /^an associated account type "([^\"]*)"$/ do |type|
 end
 
 
-Given /^"([^\"]*)" is logged in$/ do |usernameAndPassword|
+Given /^"([^\"]*)" is logged in with password "([^\"]*)"$/ do |username, password|
     visit path_to("the login page")
-    fill_in("Username", :with => usernameAndPassword)
-    fill_in("Password", :with => usernameAndPassword)    
+    fill_in("Username", :with => username)
+    fill_in("Password", :with => password)    
     click_button("Login")    
 end
 

@@ -60,7 +60,11 @@ describe User do
   
   it "should not have an associated non-twitter account" do
     subject.has_account_type(2).should == false
-  end  
+  end
+  
+  it "should have all available associated accounts" do
+    subject.has_all_account_types.should == true
+  end
 end
 
 describe User do
@@ -70,6 +74,10 @@ describe User do
     subject { User.get_from_twitter(mock_twitter_profile) }   
     
     its(:display_name) { should == "@EventcastsTwitter" }
+    
+    it "should not have all available associated accounts" do
+      subject.has_all_account_types.should == false
+    end    
     
     context "and it is the first time" do
       it "should create an account" do

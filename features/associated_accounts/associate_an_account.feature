@@ -1,4 +1,3 @@
-@testing
 Feature: The user should be able to associate multiple accounts	
 	So that a user can use EventCasts data on multiple sites
 	As a registered user
@@ -6,7 +5,15 @@ Feature: The user should be able to associate multiple accounts
 	
 	Background:
 	    Given an associated account type "Twitter"	
-
+	
+	@testing
+	Scenario: A user with every associated account type should not see a link to associate a new account
+		Given a user named "eventcasts"
+		And "eventcasts" is associated to the "TW" account "eventcasts"
+		And "eventcasts" is logged in with password "password"		
+		When I am on the associated accounts page
+		Then I should not see "Associate a new account"
+		
 	Scenario: A user with no twitter account can see an option to add a twitter account
 		Given a user named "eventcasts"
 		And "eventcasts" is logged in with password "password"
@@ -38,7 +45,7 @@ Feature: The user should be able to associate multiple accounts
 		And I follow "show_associate_TW"
 		Then I should see "Click the link below to associate your twitter account"
 
-	@javascript	@testing
+	@javascript
 	Scenario: The user should be able to associate a twitter account
 		Given a user named "eventcasts"
 		And "eventcasts" is logged in with password "password"

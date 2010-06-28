@@ -50,6 +50,10 @@ class User < ActiveRecord::Base
   
   def associate_account(screen_name, account_type_id)
     associated_accounts << AssociatedAccount.new(:username => screen_name, :associated_account_type_id=>account_type_id)
+  end
+  
+  def has_all_account_types
+    return associated_accounts.count >= AssociatedAccountType.all.count && !ec_username.nil?
   end  
     
   private 

@@ -1,1 +1,3 @@
-<a href='/associated_account/add' id='associate_account'>Associate a new account</a>
+<% if !logged_in_user.has_all_account_types %>
+	<a href='/associated_account/add' id='associate_account'>Associate a new account</a>
+<% end %>

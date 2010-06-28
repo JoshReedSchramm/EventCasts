@@ -47,6 +47,10 @@ class User < ActiveRecord::Base
     end
     return false
   end
+  
+  def associate_account(screen_name, account_type_id)
+    associated_accounts << AssociatedAccount.new(:username => screen_name, :associated_account_type_id=>account_type_id)
+  end  
     
   private 
       
@@ -61,7 +65,7 @@ class User < ActiveRecord::Base
   
   def self.create_user_from_twitter(profile)
     user = User.new(:ec_username=>nil, :password=>nil)
-    user.associated_accounts << AssociatedAccount.new(:username => profile.screen_name, :associated_account_type_id=>1)
+    user.associate_account(profile.screen_name, 1)
     user.save(:validate=>false)
     user
   end

@@ -37,4 +37,15 @@ Feature: The user should be able to associate multiple accounts
 		And I follow "Associate a new account"
 		And I follow "show_associate_TW"
 		Then I should see "Click the link below to associate your twitter account"
-		
+
+	@javascript	@testing
+	Scenario: The user should be able to associate a twitter account
+		Given a user named "eventcasts"
+		And "eventcasts" is logged in with password "password"
+		When I am on the associated accounts page
+		And I follow "Associate a new account"
+		And I follow "show_associate_TW"
+		And I follow "associate_TW"
+		And Twitter authorizes me
+		Then I should be on the user home page
+		And I should see "Associated Accounts (1)"

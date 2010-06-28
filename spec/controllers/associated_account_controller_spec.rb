@@ -37,11 +37,20 @@ describe AssociatedAccountController do
         session[:asecret].should == "testsecret"
       end
     
-      it "adds the user to session" do    
+      it "adds the user to session if not already logged in" do    
         User.should_receive(:get_from_twitter).with(@mock_profile).and_return(mock_user)
         post :finalize_twitter, :oauth_verifier=>"TEST"
       
         session[:user].should == mock_user
+      end
+
+      it "associated the twitter account to the current user if already logged in" do    
+        session[:user] = mock_user                        
+
+        mock_user.should_receive(:associate_account).with("Eventcasts", 1)
+        mock_user.should_receive(:save).and_return(true)
+        
+        post :finalize_twitter, :oauth_verifier=>"TEST"      
       end
     
       it "redirects to user home" do            

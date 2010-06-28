@@ -17,7 +17,14 @@ class AssociatedAccountController < ApplicationController
       session[:atoken] = oauth.access_token.token
       session[:asecret] = oauth.access_token.secret
 
-      session[:user] = User.get_from_twitter(profile)
+      if session[:user].nil?
+        session[:user] = User.get_from_twitter(profile)
+      else
+        user = session[:user]
+        user.associate_account(profile.screen_name, 1)
+        user.save
+      end
+      
       redirect_to :controller=>"user", :action=>"home"
     end
   end  

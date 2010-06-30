@@ -1,5 +1,5 @@
 Factory.define :Twitter, :class=>AssociatedAccountType do |u|
-  u.name 'twitter'
+  u.name 'Twitter'
   u.abbreviation 'TW'
   u.id 1
 end

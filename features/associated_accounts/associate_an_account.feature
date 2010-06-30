@@ -6,7 +6,6 @@ Feature: The user should be able to associate multiple accounts
 	Background:
 	    Given an associated account type "Twitter"	
 	
-	@testing
 	Scenario: A user with every associated account type should not see a link to associate a new account
 		Given a user named "eventcasts"
 		And "eventcasts" is associated to the "TW" account "eventcasts"

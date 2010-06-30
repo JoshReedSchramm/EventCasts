@@ -1,3 +1,18 @@
+<h1>Your Associated Accounts</h1>
+<% if !logged_in_user.ec_username.nil? %>
+	<div id='EC_account_container'>
+		<span class='account_title'>EventCasts - <%= logged_in_user.ec_username %></span>
+	</div>
+<% end %>
+
+<% logged_in_user.associated_accounts.each do |account| %>
+	<div id='<%= account.associated_account_type.abbreviation %>_account_container'>
+		<span class='account_title'><%= account.associated_account_type.name %> - @<%= account.username %></span>
+		<a href='/associated_accounts/remove/<%= account.id %>'>(remove)</a>
+	</div>
+<% end %>
+		
+
 <% if !logged_in_user.has_all_account_types %>
 	<a href='/associated_account/add' id='associate_account'>Associate a new account</a>
 <% end %>

@@ -8,8 +8,11 @@ module AuthenticationHelpers
       return !logged_in_user.nil?
     end
     
-    def logged_in_user
-      session[:user]
+    def logged_in_user      
+      User.find(session[:user].id) if !session[:user].nil?
+    end
+    def logged_in_user=(user)
+      session[:user] = User.find(user.id)
     end    
         
     def deny_access

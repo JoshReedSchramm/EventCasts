@@ -1,4 +1,6 @@
 class AssociatedAccountController < ApplicationController  
+  include AssociatedAccountHelpers
+  
   def start_twitter
       oauth.set_callback_url(finalize_twitter_session_url)
 
@@ -30,16 +32,20 @@ class AssociatedAccountController < ApplicationController
   end  
   
   def add
-    @account_types_to_show = []
-    
-    @account_types_to_show << AssociatedAccountType.new(:name=>"eventcasts", :abbreviation=>"EC") if logged_in_user.ec_username.nil?
-
-		AssociatedAccountType.all.each do |account_type| 				
-			@account_types_to_show << account_type if (!logged_in_user.has_account_type(account_type.id))
-		end
-		
+    generate_account_types_to_show
     respond_to do |format|
       format.html
     end
   end
+  
+  def associate_eventcasts
+    user = User.update(session[:user].id, params[:user])    
+    @updated_user = user
+    if (user.errors.blank?)      
+      redirect_to :controller=>"user", :action=>"accounts"
+    else      
+      generate_account_types_to_show
+      render :controller=>"associated_account", :action=>"add"
+    end    
+  end  
 end

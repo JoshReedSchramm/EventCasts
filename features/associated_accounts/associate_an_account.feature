@@ -55,3 +55,25 @@ Feature: The user should be able to associate multiple accounts
 		And Twitter authorizes me
 		Then I should be on the user home page
 		And I should see "Associated Accounts (1)"
+		
+	@javascript	@testing
+	Scenario: The user should see a form to register for eventcasts when they choose to add an eventcasts account
+		Given Twitter authorizes me
+		When I am on the associated accounts page
+		And I follow "Associate a new account"
+		And I follow "show_associate_EC"
+		Then I should see "Enter a username and password to create an EventCasts account"
+		And I should see the "Username" field
+		And I should see the "Password" field
+
+	@javascript @testing
+	Scenario: The user should be able to associate an EventCasts account
+		Given Twitter authorizes me
+		When I am on the associated accounts page
+		And I follow "Associate a new account"
+		And I follow "show_associate_EC"
+		And I fill in "Username" with "eventcasts"
+		And I fill in "Password" with "password"
+		And I press "Create User"
+		Then I should be on the associated accounts page
+		And I should see "EventCasts - eventcasts" within "#EC_account_container"

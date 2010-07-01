@@ -5,6 +5,10 @@ describe UserController do
     @mock_user ||= mock(User, stubs)
   end
   
+  before(:each) do
+    User.stub(:find).with(1).and_return(mock_user({:id=>1}))            
+  end
+  
   describe "when creating a new user" do
     context "and it is not an ajax request" do
       context "and the user is valid" do

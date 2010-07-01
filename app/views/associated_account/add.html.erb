@@ -2,9 +2,30 @@
 <h2>Please choose an account type to associate</h2>
 <ul id='account_types'>
 	<% @account_types_to_show.each do |account_type| %>
-		<li><%= link_to "Create "+account_type.name+" Account", associate_account_url+"#"+account_type.abbreviation, :id=>"show_associate_"+account_type.abbreviation %></li>			
+		<li><%= link_to "Create "+account_type.name+" Account", "#"+account_type.abbreviation, :id=>"show_associate_"+account_type.abbreviation %></li>			
 	<% end %>		
 </ul>
+
+<div id='associate_eventcasts' class='hidden'>
+	<h2>Enter a username and password to create an EventCasts account</h2>
+	<%= render "shared/error_messages", :target => @updated_user %>	
+	<%= form_for :user, :url => {:action=>"associate_eventcasts", :anchor=>"EC"} do |p| %>
+		<%= render "shared/error_messages", :target => @user %>
+		<fieldset>
+			<div>
+				<%= p.label :ec_username, "Username: " %>
+				<%= p.text_field :ec_username, :size=>30, :maxlength=>140 %>
+			</div>
+			<div>
+				<%= p.label :password, "Password:" %>
+				<%= p.password_field :password, :size=>30, :maxlength=>140 %>
+			</div>
+			<div>
+				<%= p.submit "Create User", :class => "submit" %>
+			</div>
+		</fieldset>
+	<% end %>
+</div>
 
 <div id='associate_twitter' class='hidden'>
 	<h2>Click the link below to associate your twitter account</h2>

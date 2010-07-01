@@ -18,10 +18,10 @@ describe EventController do
   
   specify { controller.should be_an_instance_of(EventController) }
   
-  # context "when requesting an event" do
-  #   context "and the html format is request" do
-  #     before { }
-        
+  before(:each) do 
+    User.stub(:find).with(1).and_return(mock_user({:id=>1}))            
+  end
+  
   describe "when requesting a event" do
     context "and the html format is requested" do
       it "should render the event" do         
@@ -107,7 +107,7 @@ describe EventController do
   end
   describe "when saving an event" do
     context "and the user is not logged in" do
-      it "should render the login template" do        
+      it "should render the login template" do 
         params = { :event => {"name"=>"Test Event", "description"=>"My Test Event"}, :search_terms=>["The Phrase", "Phrase Two"]}
         session[:user] = nil
         
@@ -118,10 +118,10 @@ describe EventController do
     end
     context "and the passed in data is valid" do
       it "should save the event and redirect to the show event page" do
-        params = { :event => {"name"=>"Test Event", "description"=>"My Test Event"}, :search_terms=>["The Phrase", "Phrase Two"]}
-        session[:user] = mock_user
+        session[:user] = mock_user({:id=>1})
         
-
+        params = { :event => {"name"=>"Test Event", "description"=>"My Test Event"}, :search_terms=>["The Phrase", "Phrase Two"]}
+        
         Event.should_receive(:create_event).and_return(mock_event)
         
         mock_event.should_receive(:save).and_return true
@@ -133,8 +133,9 @@ describe EventController do
     end
     context "and the passed in data is invalid" do
       it "should render the create page with validation errors" do
+        session[:user] = mock_user({:id=>1})
+
         params = { :event => {"name"=>"Test Event", "description"=>"My Test Event"}, :search_terms=>["The Phrase", "Phrase Two"]}
-        session[:user] = mock_user
 
         Event.should_receive(:create_event).and_return(mock_event)       
 

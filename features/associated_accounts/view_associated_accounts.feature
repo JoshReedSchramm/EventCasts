@@ -6,7 +6,6 @@ Feature: The user should be able to see their associated accounts
 	Background:
 	    Given an associated account type "Twitter"	
 	
-	@testing
 	Scenario: A user with a twitter account should see twitter in their list of associated accounts
 		Given a user named "twitter_user"
 		And "eventcasts" is logged in with password "password"		

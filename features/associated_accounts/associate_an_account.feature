@@ -7,56 +7,48 @@ Feature: The user should be able to associate multiple accounts
 	    Given an associated account type "Twitter"	
 	
 	Scenario: A user with every associated account type should not see a link to associate a new account
-		Given a user named "eventcasts"
-		And "eventcasts" is associated to the "TW" account "eventcasts"
-		And "eventcasts" is logged in with password "password"		
+		Given a logged in user named "eventcasts/password" with "TW" account "EventCasts"
 		When I am on the associated accounts page
-		Then I should not see "Associate a new account"
-		
+		Then I should not see the "Associate a new account" link
+
 	Scenario: A user with no twitter account can see an option to add a twitter account
-		Given a user named "eventcasts"
-		And "eventcasts" is logged in with password "password"
+		Given a logged in user named "eventcasts/password"
 		When I am on the associated accounts page
-		And I follow "Associate a new account"
-		Then I should see "Please choose an account type to associate"
-		And I should see a link with id "show_associate_TW"
-		
+		And I follow the "Associate a new account" link
+		Then I should see the "Add a twitter account" link		
+
 	Scenario: A user with no eventcasts account can see an option to add a twitter account
 		Given twitter authorizes me
 		When I am on the associated accounts page
-		And I follow "Associate a new account"
-		Then I should see "Please choose an account type to associate"
-		And I should see a link with id "show_associate_EC"
+		And I follow the "Associate a new account" link
+		Then I should see the "Add a eventcasts account" link		
 
 	@javascript	
 	Scenario: The various account add forms should be hidden from the user on page load
-		Given a user named "eventcasts"
-		And "eventcasts" is logged in with password "password"
+		Given a logged in user named "eventcasts/password" 
 		When I am on the associated accounts page
 		Then I should not see "Click the link below to associate your twitter account"
 
 	@javascript	
 	Scenario: The user should see a link to twitter when they choose to add a twitter account
-		Given a user named "eventcasts"
-		And "eventcasts" is logged in with password "password"
+		Given a logged in user named "eventcasts/password" 
 		When I am on the associated accounts page
-		And I follow "Associate a new account"
-		And I follow "show_associate_TW"
+		And I follow the "Associate a new account" link
+		And I follow the "Add a twitter account" link		
 		Then I should see "Click the link below to associate your twitter account"
 
 	@javascript
 	Scenario: The user should be able to associate a twitter account
-		Given a user named "eventcasts"
-		And "eventcasts" is logged in with password "password"
+		Given a logged in user named "eventcasts/password" 
 		When I am on the associated accounts page
-		And I follow "Associate a new account"
-		And I follow "show_associate_TW"
+		And I follow the "Associate a new account" link
+		And I follow the "Add a twitter account" link		
 		And I follow "associate_TW"
 		And Twitter authorizes me
 		Then I should be on the user home page
 		And I should see "Associated Accounts (1)"
 		
-	@javascript	@testing
+	@javascript
 	Scenario: The user should see a form to register for eventcasts when they choose to add an eventcasts account
 		Given Twitter authorizes me
 		When I am on the associated accounts page
@@ -66,7 +58,7 @@ Feature: The user should be able to associate multiple accounts
 		And I should see the "Username" field
 		And I should see the "Password" field
 
-	@javascript @testing
+	@javascript
 	Scenario: The user should be able to associate an EventCasts account
 		Given Twitter authorizes me
 		When I am on the associated accounts page

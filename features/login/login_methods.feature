@@ -13,6 +13,4 @@ Feature: The login page should allow multiple ways to login to EventCasts
 	Scenario: The user should see a Twitter login option
 		Given an anonymous user
 		When I am on the login page		
-		Then I should see "Login with your Twitter account"
-		And I should see a link with id "twitter_login"
-		And I should see a link to "/associated_account/start_twitter"		
+		Then I should see the "login with twitter" link

@@ -6,7 +6,10 @@ Feature: The user should be able to remove associated accounts
 	Background:
 	    Given an associated account type "Twitter"	
 	
+	@testing
 	Scenario: A user with a twitter account can disassociate that twitter account
 		Given a logged in user named "eventcasts/password" with "TW" account "EventCasts"
 		When I am on the associated accounts page
-		Then I should see "Twitter - @EventCasts"
+		And I follow the "remove twitter account" link
+		Then I should be on the associated accounts page
+		And I should see "Associated Accounts (0)"

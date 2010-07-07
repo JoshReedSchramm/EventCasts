@@ -41,10 +41,14 @@ module NavigationHelpers
       'associate_account'
     when /Add a twitter account/
       'show_associate_TW'
+    when /register with twitter/
+      'associate_TW'
     when /Add a eventcasts account/
       'show_associate_EC'
     when /login with twitter/
-      'twitter_login'      
+      'twitter_login'
+    when /remove twitter account/
+      'remove_TW'            
     else      
       begin
         link_name =~ /the (.*) link/

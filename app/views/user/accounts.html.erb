@@ -8,7 +8,7 @@
 <% logged_in_user.associated_accounts.each do |account| %>
 	<div id='<%= account.associated_account_type.abbreviation %>_account_container'>
 		<span class='account_title'><%= account.associated_account_type.name %> - @<%= account.username %></span>
-		<a href='/associated_accounts/remove/<%= account.id %>'>(remove)</a>
+		<a href='/associated_account/remove/<%= account.id %>' id='remove_<%= account.associated_account_type.abbreviation %>'>(remove)</a>
 	</div>
 <% end %>
 		

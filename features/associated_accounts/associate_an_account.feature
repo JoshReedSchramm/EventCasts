@@ -35,7 +35,7 @@ Feature: The user should be able to associate multiple accounts
 		When I am on the associated accounts page
 		And I follow the "Associate a new account" link
 		And I follow the "Add a twitter account" link		
-		Then I should see "Click the link below to associate your twitter account"
+		Then I should see the "register with twitter" link
 
 	@javascript
 	Scenario: The user should be able to associate a twitter account
@@ -43,7 +43,7 @@ Feature: The user should be able to associate multiple accounts
 		When I am on the associated accounts page
 		And I follow the "Associate a new account" link
 		And I follow the "Add a twitter account" link		
-		And I follow "associate_TW"
+		And I follow the "register with twitter" link
 		And Twitter authorizes me
 		Then I should be on the user home page
 		And I should see "Associated Accounts (1)"

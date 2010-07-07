@@ -80,7 +80,6 @@ describe AssociatedAccountController do
   end
 
   describe "when associating a new account" do
-
     before(:each) do
       session[:user] = mock_user({:id=>1})
 
@@ -117,7 +116,7 @@ describe AssociatedAccountController do
     end
   end
 
-  describe "When adding an eventcasts account" do    
+  describe "When adding an eventcasts account" do
     before(:each) do
       session[:user] = mock_user({:id=>1, :ec_username=>"Eventcasts"})
       User.stub(:find).with(1).and_return(mock_user)            
@@ -146,6 +145,28 @@ describe AssociatedAccountController do
         assigns[:updated_user].should == mock_user
         response.should render_template(:action=>"add")          
       end
+    end    
+  end
+  
+  describe "when removing an associated account" do    
+    it "should remove the account from the user" do      
+      AssociatedAccount.should_receive(:delete).with(1).and_return(true)      
+      post :remove, {:id=>1}
+    end
+    
+    context "and the request is not an ajax request" do
+      it "redirects to the accounts page" do 
+        post :remove, {:id=>1}
+        
+        response.should redirect_to(:controller=>"user", :action=>"accounts")
+      end    
+    end
+    context "and the request is an ajax request" do
+      it "render the user accounts template" do 
+        xhr :post, :remove, {:id=>1}
+        
+        response.should render_template(:controller=>"user", :action=>"accounts")
+      end    
     end    
   end
 end

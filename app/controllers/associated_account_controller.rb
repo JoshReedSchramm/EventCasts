@@ -48,4 +48,13 @@ class AssociatedAccountController < ApplicationController
       render :controller=>"associated_account", :action=>"add"
     end    
   end  
+  
+  def remove
+    AssociatedAccount.delete(params[:id])
+    if request.xhr?
+      render :controller => "user", :action=>"accounts", :layout=>false
+    else
+      redirect_to :controller=>"user", :action=>"accounts"
+    end    
+  end
 end

@@ -29,7 +29,7 @@ production:
   database: eventcasts_production
   pool: 5
   username: root
-  password: 8dJtAQ9o
+  password: 
   socket:  <%=
         ['/var/run/mysqld/mysqld.sock',           # ubuntu/debian
          '/tmp/mysql.sock'].select { |f| File.exist? f }.first %>
